@@ -1,7 +1,7 @@
 # n3mo's nixos config
 my personal nixos configuration, including my laptop, desktop, media server, and vps
 
-# TODO
+# todo 
 - add nixos-hardware
 - impermanence
 - manage secrets
