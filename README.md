@@ -9,4 +9,4 @@ my personal nixos configuration, including my laptop, desktop, media server, and
 - utilize nix for a good development workflow
 - get into emacs
 - fix firefox
-- declarative syncthing config
+- declarative syncthing config (sync .gnupg directory)
