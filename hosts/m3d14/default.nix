@@ -37,7 +37,7 @@ in
 
   # filesystems
   environment.systemPackages = with pkgs; [ mergerfs ];
-  snapraid = {
+  services.snapraid = {
     enable = true;
     parityFiles = [ "/srv/diskp/snapraid.parity" ];
     contentFiles = [

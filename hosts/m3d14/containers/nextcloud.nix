@@ -69,10 +69,10 @@
           config.adminpassFile = "${pkgs.writeText "adminpass" "J0hn 0316"}";
           extraApps = with config.services.nextcloud.package.packages.apps; {
             inherit contacts calendar bookmarks;
-            cookbook = pkgs.fetchNextcloudApp rec {
-              url = "https://github.com/nextcloud/cookbook/releases/download/v0.10.2/Cookbook-0.10.2.tar.gz";
-              sha256 = "XgBwUr26qW6wvqhrnhhhhcN4wkI+eXDHnNSm1HDbP6M=";
-            };
+            #cookbook = pkgs.fetchNextcloudApp rec {
+            #  url = "https://github.com/nextcloud/cookbook/releases/download/v0.10.2/Cookbook-0.10.2.tar.gz";
+            #  sha256 = "XgBwUr26qW6wvqhrnhhhhcN4wkI+eXDHnNSm1HDbP6M=";
+            #};
           };
           extraAppsEnable = true;
           configureRedis = true;
