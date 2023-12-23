@@ -8,8 +8,8 @@ in
   homeDir = "${homeDir}";
 
   docsDir = "${homeDir}/Documents";
-  dotsDir = "${homeDir}/Documents/dots";
-  scriptsDir = "${homeDir}/Documents/dots/scripts";
+  dotsDir = "${homeDir}/Documents/nixos-config";
+  scriptsDir = "${homeDir}/Documents/nixos-config/scripts";
   picsDir = "${homeDir}/Pictures";
   scrotsDir = "${homeDir}/Pictures/Screenshots";
   vidsDir = "${homeDir}/Videos";
