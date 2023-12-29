@@ -6,7 +6,6 @@ my personal nixos configuration, including my laptop, desktop, media server, and
 - impermanence
 - manage secrets
 - something something remote deployment
-- explore the module system more
 - utilize nix for a good development workflow
 - get better with neovim (code formatting, beautify, consistent spacing)
 - get into emacs
