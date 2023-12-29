@@ -22,7 +22,6 @@ in
 
 
   # zsh nixos-rebuild alias
-  programs.zsh.shellAliases.sysrebuild =
-      "sudo nixos-rebuild switch --flake ${vars.homeDir}/nixos-config/#m3d14";
+  rebuildAlias = "sudo nixos-rebuild switch --flake ${vars.homeDir}/nixos-config/#m3d14";
 
 }
