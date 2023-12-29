@@ -64,7 +64,7 @@
       services = {
         nextcloud = {
           enable = true;
-          package = pkgs.nextcloud27;
+          package = pkgs.nextcloud28;
           hostName = "m3d14";
           config.adminpassFile = "${pkgs.writeText "adminpass" "J0hn 0316"}";
           extraApps = with config.services.nextcloud.package.packages.apps; {
