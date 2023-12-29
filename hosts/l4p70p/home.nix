@@ -43,8 +43,6 @@ in
   # syncthing
   services.syncthing.enable = true;
 
-  # zsh nixos-rebuild alias
-  programs.zsh.shellAliases.sysrebuild =
-      "sudo nixos-rebuild switch --flake ${vars.docsDir}/nixos-config/#l4p70p";
+  rebuildAlias = "sudo nixos-rebuild switch --flake ${vars.docsDir}/nixos-config/#l4p70p";
 
 }
