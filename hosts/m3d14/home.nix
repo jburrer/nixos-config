@@ -10,7 +10,6 @@ in
     ../../modules/home-manager/zsh.nix
     ../../modules/home-manager/git.nix
     ../../modules/home-manager/gpg.nix
-    #../../modules/home-manager/tmux.nix
   ];
 
   # home manager

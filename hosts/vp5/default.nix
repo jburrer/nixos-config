@@ -17,7 +17,7 @@ in
   boot.loader.grub.device = "/dev/vda";
 
   # networking
-  networking.hostName = "birdsbirdsbirds";
+  networking.hostName = "vp5";
 
   # time
 	time.timeZone = "America/Chicago";

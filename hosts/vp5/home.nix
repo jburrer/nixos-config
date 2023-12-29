@@ -9,9 +9,8 @@ in
     ../../modules/home-manager/neovim.nix
     ../../modules/home-manager/zsh.nix
     ../../modules/home-manager/git.nix
-    #../../modules/home-manager/tmux.nix
-    #../../modules/home-manager/ssh.nix
-    #../../modules/home-manager/gpg.nix
+    ../../modules/home-manager/ssh.nix
+    ../../modules/home-manager/gpg.nix
   ];
 
   # home manager
@@ -24,7 +23,6 @@ in
 
   # zsh nixos-rebuild alias
   programs.zsh.shellAliases.sysrebuild =
-      #"sudo nixos-rebuild switch --impure --flake ${vars.homeDir}/nixos-config/#birdsbirdsbirds";
-      "sudo nixos-rebuild switch --flake ${vars.homeDir}/nixos-config/#birdsbirdsbirds";
+      "sudo nixos-rebuild switch --flake ${vars.homeDir}/nixos-config/#vp5";
 
 }

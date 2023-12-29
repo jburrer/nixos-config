@@ -71,7 +71,7 @@ in
   };
 
   # change ssh server port to access gitea on port 22
-  services.openssh.ports = [ 222 ];
+  port = 222;
 
 	system.stateVersion = "23.05";
 

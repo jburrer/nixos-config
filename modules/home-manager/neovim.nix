@@ -20,6 +20,7 @@ in
 			vim-nix
 			indent-blankline-nvim
       vimtex
+      rust-vim
 		];
 		extraConfig = ''
 			set number
@@ -34,10 +35,13 @@ in
 			set termguicolors
       set cursorline
 
-      filetype plugin indent on
       syntax enable
+      filetype plugin indent on
       let g:vimtex_view_general_viewer = 'evince'
 		'';
+    extraLuaConfig = ''
+      require("ibl").setup()
+    '';
 	};
 
   xdg.desktopEntries.nvim = {

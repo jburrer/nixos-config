@@ -39,6 +39,9 @@ in
           hostname = "m3d14";
           port = 222;
         };
+        "74bl37" = {
+          user = "root";
+        };
       };
     };
 

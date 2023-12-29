@@ -5,85 +5,23 @@ with lib.hm.gvariant;
 
 {
   dconf.settings = {
-    "apps/seahorse/listing" = {
-      item-filter = "any";
-      keyrings-selected = [ "gnupg://" ];
-    };
-
-    "apps/seahorse/windows/key-manager" = {
-      height = 770;
-      width = 1025;
-    };
-
-    "com/github/GradienceTeam/Gradience" = {
-      enabled-plugins = [ "firefox_gnome_theme" ];
-      first-run = false;
-      last-opened-version = "0.4.1";
-      user-flatpak-theming-gtk4 = true;
-    };
-
-    "io/github/celluloid-player/celluloid/window-state" = {
-      height = 902;
-      loop-playlist = false;
-      maximized = false;
-      playlist-width = 250;
-      show-playlist = false;
-      volume = 1.0;
-      width = 810;
-    };
-
-    "org/gnome/Console" = {
-      last-window-size = mkTuple [ 973 623 ];
-    };
-
-    "org/gnome/Snapshot" = {
-      is-maximized = false;
-      window-height = 640;
-      window-width = 800;
-    };
-
-    "org/gnome/Totem" = {
-      active-plugins = [ "skipto" "apple-trailers" "movie-properties" "save-file" "screensaver" "autoload-subtitles" "mpris" "rotation" "vimeo" "variable-rate" "screenshot" "open-directory" "recent" ];
-      subtitle-encoding = "UTF-8";
-    };
-
-    "org/gnome/calculator" = {
-      accuracy = 9;
-      angle-units = "degrees";
-      base = 10;
-      button-mode = "basic";
-      number-format = "automatic";
-      show-thousands = false;
-      show-zeroes = false;
-      source-currency = "";
-      source-units = "degree";
-      target-currency = "";
-      target-units = "radian";
-      window-maximized = false;
-      window-size = mkTuple [ 360 507 ];
-      word-size = 64;
-    };
-
-    "org/gnome/calendar" = {
-      active-view = "month";
-      week-view-zoom-level = 1.0;
-      window-maximized = true;
-      window-size = mkTuple [ 768 600 ];
-    };
-
     "org/gnome/control-center" = {
-      last-panel = "multitasking";
-      window-state = mkTuple [ 980 640 false ];
+      last-panel = "datetime";
+      window-state = mkTuple [ 940 1028 false ];
     };
 
     "org/gnome/desktop/app-folders" = {
-      folder-children = [ "Utilities" "YaST" "Pardus" "f123759f-fe9c-4d29-9431-77d632b393db" "c21d7f08-14b2-43f3-80e8-83f5d15f1287" "700186ed-ce99-4413-b547-5991ef813813" ];
+      folder-children = [ "Utilities" "YaST" "Pardus" "376003c9-6abb-4bd9-a2ef-997564de7ebd" "706335f8-a77f-42b7-a0ce-8128118d1b20" "d8118c86-5e9d-4927-88aa-95d2e14178d7" ];
     };
 
-    "org/gnome/desktop/app-folders/folders/700186ed-ce99-4413-b547-5991ef813813" = {
+    "org/gnome/desktop/app-folders/folders/376003c9-6abb-4bd9-a2ef-997564de7ebd" = {
       apps = [ "torbrowser.desktop" "monero-wallet-gui.desktop" ];
-      name = "Darknet";
-      translate = false;
+      name = "Internet";
+    };
+
+    "org/gnome/desktop/app-folders/folders/706335f8-a77f-42b7-a0ce-8128118d1b20" = {
+      apps = [ "ardour8.desktop" "org.pipewire.Helvum.desktop" "audacity.desktop" "org.hydrogenmusic.Hydrogen.desktop" "org.pitivi.Pitivi.desktop" ];
+      name = "Sound & Video";
     };
 
     "org/gnome/desktop/app-folders/folders/Pardus" = {
@@ -93,9 +31,8 @@ with lib.hm.gvariant;
     };
 
     "org/gnome/desktop/app-folders/folders/Utilities" = {
-      apps = [ "gnome-abrt.desktop" "gnome-system-log.desktop" "nm-connection-editor.desktop" "org.gnome.baobab.desktop" "org.gnome.Connections.desktop" "org.gnome.DejaDup.desktop" "org.gnome.Dictionary.desktop" "org.gnome.DiskUtility.desktop" "org.gnome.Evince.desktop" "org.gnome.FileRoller.desktop" "org.gnome.fonts.desktop" "org.gnome.Loupe.desktop" "org.gnome.seahorse.Application.desktop" "org.gnome.Usage.desktop" "vinagre.desktop" ];
+      apps = [ "gnome-abrt.desktop" "gnome-system-log.desktop" "nm-connection-editor.desktop" "org.gnome.baobab.desktop" "org.gnome.Connections.desktop" "org.gnome.DejaDup.desktop" "org.gnome.Dictionary.desktop" "org.gnome.DiskUtility.desktop" "org.gnome.Evince.desktop" "org.gnome.FileRoller.desktop" "org.gnome.fonts.desktop" "org.gnome.Loupe.desktop" "org.gnome.seahorse.Application.desktop" "org.gnome.tweaks.desktop" "org.gnome.Usage.desktop" "vinagre.desktop" ];
       categories = [ "X-GNOME-Utilities" ];
-      excluded-apps = [ "org.gnome.tweaks.desktop" ];
       name = "X-GNOME-Utilities.directory";
       translate = true;
     };
@@ -106,15 +43,9 @@ with lib.hm.gvariant;
       translate = true;
     };
 
-    "org/gnome/desktop/app-folders/folders/c21d7f08-14b2-43f3-80e8-83f5d15f1287" = {
-      apps = [ "startcenter.desktop" "writer.desktop" "impress.desktop" "calc.desktop" "draw.desktop" "math.desktop" "base.desktop" ];
+    "org/gnome/desktop/app-folders/folders/d8118c86-5e9d-4927-88aa-95d2e14178d7" = {
+      apps = [ "startcenter.desktop" "writer.desktop" "calc.desktop" "impress.desktop" "draw.desktop" "math.desktop" "base.desktop" ];
       name = "Office";
-    };
-
-    "org/gnome/desktop/app-folders/folders/f123759f-fe9c-4d29-9431-77d632b393db" = {
-      apps = [ "ardour8.desktop" "audacity.desktop" "org.hydrogenmusic.Hydrogen.desktop" "org.pipewire.Helvum.desktop" ];
-      name = "Music Prod";
-      translate = false;
     };
 
     "org/gnome/desktop/background" = {
@@ -124,6 +55,10 @@ with lib.hm.gvariant;
       picture-uri-dark = "file:///nix/store/7rrr8dh71z89hs2db7yzj1xn55fx353z-wallpaper.jpg";
     };
 
+    "org/gnome/desktop/calendar" = {
+      show-weekdate = false;
+    };
+
     "org/gnome/desktop/input-sources" = {
       sources = [ (mkTuple [ "xkb" "us" ]) ];
       xkb-options = [ "caps:swapescape" ];
@@ -131,143 +66,121 @@ with lib.hm.gvariant;
 
     "org/gnome/desktop/interface" = {
       clock-format = "12h";
+      clock-show-weekday = false;
       color-scheme = "prefer-dark";
       cursor-size = 16;
       cursor-theme = "Bibata-Modern-Classic";
       document-font-name = "Cantarell  11";
       enable-animations = true;
-      enable-hot-corners = false;
-      font-antialiasing = "grayscale";
-      font-hinting = "slight";
       font-name = "Cantarell 12";
+      gtk-theme = "adw-gtk3";
       monospace-font-name = "Cascadia Code 12";
     };
 
     "org/gnome/desktop/notifications" = {
-      application-children = [ "gnome-power-panel" "org-gnome-evolution-alarm-notify" "firefox" "thunderbird" "spotify" "org-gnome-shell-extensions-gsconnect" ];
-    };
-
-    "org/gnome/desktop/notifications/application/firefox" = {
-      application-id = "firefox.desktop";
-    };
-
-    "org/gnome/desktop/notifications/application/gnome-network-panel" = {
-      application-id = "gnome-network-panel.desktop";
+      application-children = [ "gnome-power-panel" ];
     };
 
     "org/gnome/desktop/notifications/application/gnome-power-panel" = {
       application-id = "gnome-power-panel.desktop";
     };
 
-    "org/gnome/desktop/notifications/application/org-gnome-console" = {
-      application-id = "org.gnome.Console.desktop";
+    "org/gnome/desktop/peripherals/touchpad" = {
+      two-finger-scrolling-enabled = true;
     };
 
-    "org/gnome/desktop/notifications/application/org-gnome-evolution-alarm-notify" = {
-      application-id = "org.gnome.Evolution-alarm-notify.desktop";
-    };
-
-    "org/gnome/desktop/notifications/application/org-gnome-shell-extensions-gsconnect" = {
-      application-id = "org.gnome.Shell.Extensions.GSConnect.desktop";
-    };
-
-    "org/gnome/desktop/notifications/application/org-mpdevil-mpdevil" = {
-      application-id = "org.mpdevil.mpdevil.desktop";
-    };
-
-    "org/gnome/desktop/notifications/application/org-pitivi-pitivi" = {
-      application-id = "org.pitivi.Pitivi.desktop";
-    };
-
-    "org/gnome/desktop/notifications/application/spotify" = {
-      application-id = "spotify.desktop";
-    };
-
-    "org/gnome/desktop/notifications/application/thunderbird" = {
-      application-id = "thunderbird.desktop";
+    "org/gnome/desktop/wm/keybindings" = {
+      maximize = [];
+      move-to-monitor-down = [];
+      move-to-monitor-left = [];
+      move-to-monitor-right = [];
+      move-to-monitor-up = [];
+      switch-applications = [];
+      switch-applications-backward = [];
+      switch-group = [];
+      switch-group-backward = [];
+      switch-to-workspace-1 = [];
+      switch-to-workspace-last = [];
+      switch-to-workspace-left = [];
+      switch-to-workspace-right = [];
+      unmaximize = [];
     };
 
     "org/gnome/desktop/wm/preferences" = {
-      num-workspaces = 5;
-    };
-
-    "org/gnome/evince/default" = {
-      continuous = true;
-      dual-page = false;
-      dual-page-odd-left = false;
-      enable-spellchecking = true;
-      fullscreen = false;
-      inverted-colors = false;
-      show-sidebar = false;
-      sidebar-page = "thumbnails";
-      sidebar-size = 132;
-      sizing-mode = "automatic";
-      window-ratio = mkTuple [ 1.568627 1.323232 ];
+      workspace-names = [ "" "" "Workspace 3" "Workspace 6" "Workspace 6" ];
     };
 
     "org/gnome/evolution-data-server" = {
       migrated = true;
     };
 
-    "org/gnome/evolution-data-server/calendar" = {
-      notify-window-height = 281;
-      notify-window-paned-position = 48;
-      notify-window-width = 211;
-      notify-window-x = 35;
-      notify-window-y = 32;
-      reminders-past = [ "5278b87b30146795708e124f5d99a720cbd99470n44cf890457dc6e42681ffa241f5d83df78e73d48t20231221T120000n1703176200n1703178000n1703187000nBEGIN:VEVENTrnCREATED:20231116T185750ZrnDTSTAMP:20231116T185831ZrnLAST-MODIFIED:20231208T014334ZrnSEQUENCE:2rnUID:178f64e8-5e30-435c-9816-412087758131rnDTSTART;TZID=America/Indiana/Indianapolis:20231221T120000rnDTEND;TZID=America/Indiana/Indianapolis:20231221T143000rnSTATUS:CONFIRMEDrnSUMMARY:WorkrnCOLOR:mediumpurplernRRULE:FREQ=WEEKLY;BYDAY=THrnX-EVOLUTION-CALDAV-ETAG:b19e73fd65a3659de54bf22048c33554rnRECURRENCE-ID;TZID=America/Indiana/Indianapolis:20231221T120000rnBEGIN:VALARMrnX-EVOLUTION-ALARM-UID:44cf890457dc6e42681ffa241f5d83df78e73d48rnACTION:DISPLAYrnTRIGGER;RELATED=START:-PT30MrnACKNOWLEDGED:20231208T014334ZrnEND:VALARMrnEND:VEVENTrn" ];
+    "org/gnome/mutter" = {
+      attach-modal-dialogs = false;
+      dynamic-workspaces = true;
+      edge-tiling = false;
+      workspaces-only-on-primary = false;
     };
 
-    "org/gnome/gnome-system-monitor" = {
-      current-tab = "processes";
-      maximized = true;
-      network-total-in-bits = false;
-      show-dependencies = false;
-      show-whose-processes = "user";
-      window-state = mkTuple [ 1920 1048 0 0 ];
+    "org/gnome/mutter/keybindings" = {
+      cancel-input-capture = [];
+      toggle-tiled-left = [];
+      toggle-tiled-right = [];
     };
 
-    "org/gnome/gnome-system-monitor/disktreenew" = {
-      col-6-visible = true;
-      col-6-width = 0;
+    "org/gnome/mutter/wayland/keybindings" = {
+      restore-shortcuts = [];
     };
 
-    "org/gnome/gnome-system-monitor/proctree" = {
-      columns-order = [ 0 1 2 3 4 6 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 ];
-      sort-col = 0;
-      sort-order = 0;
-    };
-
-    "org/gnome/nautilus/preferences" = {
-      default-folder-viewer = "list-view";
-      migrated-gtk-settings = true;
-      search-filter-time-type = "last_modified";
-    };
-
-    "org/gnome/nautilus/window-state" = {
-      initial-size = mkTuple [ 890 550 ];
-      maximized = false;
-    };
-
-    "org/gnome/settings-daemon/plugins/color" = {
-      night-light-enabled = false;
+    "org/gnome/settings-daemon/plugins/media-keys" = {
+      rotate-video-lock-static = [];
     };
 
     "org/gnome/shell" = {
       command-history = [ "lg" ];
-      enabled-extensions = [ "gsconnect@andyholmes.github.io" "syncthing@gnome.2nv2u.com" "native-window-placement@gnome-shell-extensions.gcampax.github.com" "just-perfection-desktop@just-perfection" "auto-move-windows@gnome-shell-extensions.gcampax.github.com" "mediacontrols@cliffniff.github.com" "tailscale@joaophi.github.com" ];
+      disabled-extensions = [ "native-window-placement@gnome-shell-extensions.gcampax.github.com" "window-list@gnome-shell-extensions.gcampax.github.com" ];
+      enabled-extensions = [ "dash-to-panel@jderose9.github.com" "gsconnect@andyholmes.github.io" "just-perfection-desktop@just-perfection" "mediacontrols@cliffniff.github.com" "paperwm@paperwm.github.com" "syncthing@gnome.2nv2u.com" "tailscale@joaophi.github.com" "auto-move-windows@gnome-shell-extensions.gcampax.github.com" ];
       favorite-apps = [ "firefox.desktop" "thunderbird.desktop" "Alacritty.desktop" "org.gnome.Nautilus.desktop" "org.gnome.Settings.desktop" ];
-      last-selected-power-profile = "power-saver";
-      welcome-dialog-last-shown-version = "45.1";
+      welcome-dialog-last-shown-version = "45.2";
+    };
+
+    "org/gnome/shell/app-switcher" = {
+      current-workspace-only = false;
     };
 
     "org/gnome/shell/extensions/auto-move-windows" = {
-      application-list = [ "thunderbird.desktop:5" "spotify.desktop:4" ];
+      application-list = [ "thunderbird.desktop:2" ];
+    };
+
+    "org/gnome/shell/extensions/dash-to-panel" = {
+      animate-appicon-hover-animation-extent = "{\"RIPPLE\":4,\"PLANK\":4,\"SIMPLE\":1}";
+      appicon-margin = 4;
+      appicon-padding = 6;
+      available-monitors = [ 0 ];
+      dot-position = "BOTTOM";
+      dot-style-focused = "SEGMENTED";
+      dot-style-unfocused = "SEGMENTED";
+      hotkeys-overlay-combo = "TEMPORARILY";
+      intellihide = false;
+      leftbox-padding = -1;
+      panel-anchors = "{\"0\":\"MIDDLE\"}";
+      panel-element-positions = "{\"0\":[{\"element\":\"showAppsButton\",\"visible\":false,\"position\":\"stackedTL\"},{\"element\":\"activitiesButton\",\"visible\":false,\"position\":\"stackedTL\"},{\"element\":\"leftBox\",\"visible\":false,\"position\":\"stackedTL\"},{\"element\":\"taskbar\",\"visible\":true,\"position\":\"stackedTL\"},{\"element\":\"centerBox\",\"visible\":false,\"position\":\"stackedBR\"},{\"element\":\"dateMenu\",\"visible\":true,\"position\":\"centerMonitor\"},{\"element\":\"rightBox\",\"visible\":true,\"position\":\"stackedBR\"},{\"element\":\"systemMenu\",\"visible\":true,\"position\":\"stackedBR\"},{\"element\":\"desktopButton\",\"visible\":false,\"position\":\"stackedBR\"}]}";
+      panel-lengths = "{\"0\":100}";
+      panel-positions = "{\"0\":\"TOP\"}";
+      panel-sizes = "{\"0\":32}";
+      primary-monitor = 0;
+      show-tooltip = false;
+      show-window-previews = false;
+      status-icon-padding = -1;
+      stockgs-keep-dash = false;
+      stockgs-keep-top-panel = false;
+      trans-use-custom-gradient = false;
+      tray-padding = -1;
+      window-preview-title-position = "TOP";
     };
 
     "org/gnome/shell/extensions/gsconnect" = {
-      devices = [ "6a0b3c14_12a9_429d_a7c2_ecc4bc676fae" ];
-      id = "cf4b5161-a275-4743-b0ea-f2710d1c2cb6";
+      devices = [];
+      id = "a6ab0182-34de-4472-bd74-16d0f90a434e";
       name = "l4p70p";
     };
 
@@ -280,129 +193,103 @@ with lib.hm.gvariant;
       type = "phone";
     };
 
-    "org/gnome/shell/extensions/gsconnect/device/6a0b3c14_12a9_429d_a7c2_ecc4bc676fae/plugin/battery" = {
-      custom-battery-notification-value = mkUint32 80;
-    };
-
-    "org/gnome/shell/extensions/gsconnect/device/6a0b3c14_12a9_429d_a7c2_ecc4bc676fae/plugin/clipboard" = {
-      receive-content = true;
-      send-content = true;
-    };
-
-    "org/gnome/shell/extensions/gsconnect/device/6a0b3c14_12a9_429d_a7c2_ecc4bc676fae/plugin/notification" = {
-      applications = ''
-        {"Power":{"iconName":"org.gnome.Settings-power-symbolic","enabled":true},"Clocks":{"iconName":"org.gnome.clocks","enabled":true},"Color":{"iconName":"org.gnome.Settings-color-symbolic","enabled":true},"Archive Manager":{"iconName":"org.gnome.FileRoller","enabled":true},"Printers":{"iconName":"org.gnome.Settings-printers-symbolic","enabled":true},"Disk Usage Analyzer":{"iconName":"org.gnome.baobab","enabled":true},"Files":{"iconName":"org.gnome.Nautilus","enabled":true},"Console":{"iconName":"org.gnome.Console","enabled":true},"Disks":{"iconName":"org.gnome.DiskUtility","enabled":true},"Evolution Alarm Notify":{"iconName":"appointment-soon","enabled":true},"Date & Time":{"iconName":"org.gnome.Settings-time-symbolic","enabled":true},"Thunderbird":{"iconName":"","enabled":true},"Spotify":{"iconName":"","enabled":true}}\n
-      '';
-    };
-
-    "org/gnome/shell/extensions/gsconnect/device/6a0b3c14_12a9_429d_a7c2_ecc4bc676fae/plugin/share" = {
-      receive-directory = "/home/n3mo/Downloads";
-    };
-
-    "org/gnome/shell/extensions/gsconnect/preferences" = {
-      window-maximized = false;
-      window-size = mkTuple [ 859 460 ];
-    };
-
     "org/gnome/shell/extensions/just-perfection" = {
       accessibility-menu = false;
-      animation = 6;
+      activities-button = false;
       background-menu = false;
-      controls-manager-spacing-size = 0;
-      dash = true;
-      dash-icon-size = 48;
+      dash = false;
+      dash-app-running = false;
       dash-separator = false;
-      double-super-to-appgrid = true;
-      osd = true;
-      panel = false;
-      panel-in-overview = true;
-      ripple-box = false;
+      keyboard-layout = false;
+      panel-notification-icon = true;
+      panel-size = 0;
+      power-icon = true;
+      quick-settings = true;
       search = false;
-      show-apps-button = true;
-      startup-status = 1;
-      theme = true;
-      window-demands-attention-focus = true;
-      window-picker-icon = false;
+      show-apps-button = false;
+      theme = false;
       window-preview-caption = false;
-      window-preview-close-button = true;
-      workspace = true;
-      workspace-background-corner-size = 0;
+      workspace = false;
+      workspace-peek = true;
       workspace-popup = false;
-      workspace-switcher-should-show = false;
-      workspace-wrap-around = true;
+      workspace-wrap-around = false;
       workspaces-in-app-grid = false;
+      world-clock = true;
     };
 
     "org/gnome/shell/extensions/mediacontrols" = {
-      colored-player-icon = false;
-      extension-position = "right";
       mouse-actions = [ "toggle_play" "toggle_menu" "none" "none" "none" "none" "none" "none" ];
-      show-player-icon = false;
-      show-seperators = false;
-      show-sources-menu = false;
+    };
+
+    "org/gnome/shell/extensions/paperwm" = {
+      cycle-height-steps = [ 1.0 ];
+      cycle-width-steps = [ 0.5 1.0 ];
+      default-focus-mode = 0;
+      disable-topbar-styling = true;
+      horizontal-margin = 10;
+      restore-attach-modal-dialogs = "false";
+      restore-edge-tiling = "false";
+      restore-keybinds = ''
+        {}
+      '';
+      restore-workspaces-only-on-primary = "false";
+      show-focus-mode-icon = false;
+      show-window-position-bar = false;
+      show-workspace-indicator = false;
+      use-default-background = true;
+      winprops = [ ''
+        {"wm_class":"*","title":"*","preferredWidth":"50%"}
+      '' ''
+        {"wm_class":"thunderbird","preferredWidth":"100%","title":""}
+      '' ];
+    };
+
+    "org/gnome/shell/extensions/paperwm/workspaces" = {
+      list = [ "a59ec5c3-c27a-4829-8dc7-49a728a03554" "5bb94dda-8dd0-444c-b561-1311b84fda40" "c6762542-8891-4bee-8298-b4f39f1baabc" "90c64e59-2d2c-4001-a0bb-bc5dc164f7d8" "f0bd4bb0-eeac-46db-b8c1-ee8ae2b08062" "1661b690-a1c6-4054-95c6-4d5e73b7dbf6" ];
+    };
+
+    "org/gnome/shell/extensions/paperwm/workspaces/1661b690-a1c6-4054-95c6-4d5e73b7dbf6" = {
+      index = 3;
+    };
+
+    "org/gnome/shell/extensions/paperwm/workspaces/5bb94dda-8dd0-444c-b561-1311b84fda40" = {
+      index = 1;
+    };
+
+    "org/gnome/shell/extensions/paperwm/workspaces/90c64e59-2d2c-4001-a0bb-bc5dc164f7d8" = {
+      index = 5;
+    };
+
+    "org/gnome/shell/extensions/paperwm/workspaces/a59ec5c3-c27a-4829-8dc7-49a728a03554" = {
+      index = 0;
+      show-top-bar = true;
+    };
+
+    "org/gnome/shell/extensions/paperwm/workspaces/c6762542-8891-4bee-8298-b4f39f1baabc" = {
+      index = 4;
+    };
+
+    "org/gnome/shell/extensions/paperwm/workspaces/f0bd4bb0-eeac-46db-b8c1-ee8ae2b08062" = {
+      index = 2;
     };
 
     "org/gnome/shell/extensions/user-theme" = {
       name = "Stylix";
     };
 
-    "org/gnome/simple-scan" = {
-      document-type = "photo";
+    "org/gnome/shell/keybindings" = {
+      focus-active-notification = [];
+      shift-overview-down = [];
+      shift-overview-up = [];
     };
 
     "org/gnome/software" = {
-      check-timestamp = mkInt64 1703170659;
+      check-timestamp = mkInt64 1703360275;
       first-run = false;
-      flatpak-purge-timestamp = mkInt64 1703171261;
-    };
-
-    "org/gnome/tweaks" = {
-      show-extensions-notice = false;
-    };
-
-    "org/gtk/gtk4/settings/color-chooser" = {
-      custom-colors = [ (mkTuple [ 0.211765 0.286275 0.329412 1.0 ]) (mkTuple [ 9.8039e-2 0.109804 0.117647 1.0 ]) ];
-      selected-color = mkTuple [ true 0.211765 0.286275 0.329412 1.0 ];
-    };
-
-    "org/gtk/gtk4/settings/file-chooser" = {
-      date-format = "regular";
-      location-mode = "path-bar";
-      show-hidden = false;
-      show-size-column = true;
-      show-type-column = true;
-      sidebar-width = 140;
-      sort-column = "name";
-      sort-directories-first = true;
-      sort-order = "ascending";
-      type-format = "category";
-      view-type = "list";
-      window-size = mkTuple [ 931 326 ];
     };
 
     "org/gtk/settings/file-chooser" = {
       clock-format = "12h";
-      date-format = "regular";
-      location-mode = "path-bar";
-      show-hidden = false;
-      show-size-column = true;
-      show-type-column = true;
-      sidebar-width = 189;
-      sort-column = "name";
-      sort-directories-first = false;
-      sort-order = "ascending";
-      type-format = "category";
-      window-position = mkTuple [ 35 32 ];
-      window-size = mkTuple [ 1310 982 ];
-    };
-
-    "org/mpdevil/mpdevil" = {
-      height = 691;
-      maximize = false;
-      paned2 = 718;
-      send-notify = true;
-      socket-connection = false;
-      width = 1069;
     };
 
   };

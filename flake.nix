@@ -4,7 +4,6 @@
 
   inputs = {
 		nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    # maybe add stable nixpkgs as well? determine which to use for which host?
     home-manager = {
 			url = "github:nix-community/home-manager";
 			inputs.nixpkgs.follows = "nixpkgs";
@@ -115,16 +114,16 @@
           }
         ];
       };
-      "birdsbirdsbirds" = nixpkgs.lib.nixosSystem {
+      "vp5" = nixpkgs.lib.nixosSystem {
 			  inherit system;
         modules = [
-          ./hosts/birdsbirdsbirds
+          ./hosts/vp5
           (nixConf pkgs)
           home-manager.nixosModules.home-manager {
             home-manager = {
               useGlobalPkgs = true;
               useUserPackages = true;
-              users."n3mo".imports = [ ./hosts/birdsbirdsbirds/home.nix ];
+              users."n3mo".imports = [ ./hosts/vp5/home.nix ];
             };
           }
         ];

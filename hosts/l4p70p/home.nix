@@ -29,7 +29,9 @@ in
       helvum ardour audacity hydrogen pitivi
 			gnome3.gnome-tweaks dconf2nix
 		]) ++ (with pkgs.gnomeExtensions; [
-			tailscale-qs syncthing-indicator media-controls just-perfection auto-move-windows
+      paperwm dash-to-panel auto-move-windows
+      just-perfection #blur-my-shell 
+      tailscale-qs syncthing-indicator media-controls
 		]);
     stateVersion = "23.05";
   };
