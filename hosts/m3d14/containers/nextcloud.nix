@@ -81,7 +81,7 @@
           enable = true;
           guiAddress = "0.0.0.0:8384";
           openDefaultPorts = true;
-          extraOptions."gui" = {
+          settings.gui = {
             user = "n3mo";
             password = "J0hn 0316";
           };
