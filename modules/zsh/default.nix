@@ -1,11 +1,8 @@
-{ pkgs, ... } :
+{ config, pkgs, ... } :
 
-let
-	vars = import ../vars.nix;
-in
 {
 
-  users.users."${vars.username}".shell = pkgs.zsh;
+  users.users."${config.username}".shell = pkgs.zsh;
 
   environment = {
     shells = [ pkgs.zsh ];

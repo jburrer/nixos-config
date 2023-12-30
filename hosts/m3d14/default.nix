@@ -1,39 +1,20 @@
 { config, pkgs, ... }:
 
-let
-  vars = import ../../vars.nix;
-in
 {
 
   imports = [
     ./hardware-configuration.nix
     ./containers
-    ../../modules/system.nix
-    ../../modules/tailscale.nix
-    ../../modules/ssh-server.nix
-    ../../modules/zsh.nix
+    ../../modules/system
+    ../../modules/tailscale
+    ../../modules/ssh-server
+    ../../modules/zsh
   ];
+
+  hostname = "m3d14";
 	
   # bootloader
 	boot.loader.systemd-boot.enable = true;
-
-  # networking
-  networking.hostName = "m3d14";
-
-  # time
-	time.timeZone = "America/Indianapolis";
-
-  # user
-	users = {
-    mutableUsers = false;
-		users."${vars.username}" = {
-      isNormalUser = true;
-		  description = "${vars.username}";
-      hashedPassword = "$6$SbShs85kCNZRdQ4f$J5.gwBoKIO8GSW2vFETLbiAFHRvL/6ngCdQKDuwwB4HIJg.F569vtCkQUrKMf578l3kDHE1peUjAANVT.C5PW0";
-      extraGroups = [ "wheel" ];
-      openssh.authorizedKeys.keys = [ (builtins.readFile ../../key.pub) ];
-    };
-	};
 
   # filesystems
   environment.systemPackages = with pkgs; [ mergerfs ];
@@ -71,7 +52,7 @@ in
   };
 
   # change ssh server port to access gitea on port 22
-  port = 222;
+  ssh-server.port = 222;
 
 	system.stateVersion = "23.05";
 

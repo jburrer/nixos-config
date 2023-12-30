@@ -1,18 +1,18 @@
-{ config, pkgs, ... }:
+{ config, pkgs, vars, ... }:
 
-let
-	vars = import ../../vars.nix;
-in
 {
 
   imports = [
     ./hardware-configuration.nix
-    ../../modules/system.nix
-    ../../modules/tailscale.nix
-    ../../modules/gnome.nix
-    ../../modules/music-production.nix
-    ../../modules/zsh.nix
+    ../../modules/system
+    ../../modules/tailscale
+    ../../modules/gnome
+    ../../modules/music-production
+    ../../modules/zsh
   ];
+
+  hostname = "l4p70p";
+  configDir = "${config.homeDir}/Documents/nixos-config";
 
   # bootloader
   boot.loader = {
@@ -21,23 +21,8 @@ in
   };
 
 	# networking
-	networking = {
-		hostName = "l4p70p";
-		networkmanager.enable = true;
-  };
-
-	# time
-	time.timeZone = "America/Indiana/Indianapolis";
-
-	# user
-	users.users."${vars.username}" = {
-		isNormalUser = true;
-		description = "${vars.username}";
-		extraGroups = [
-			"networkmanager"
-			"wheel"
-		];
-	};
+	networking.networkmanager.enable = true;
+	users.users."${config.username}".extraGroups = [ "networkmanager" ];
 
   # flatpack
   services.flatpak.enable = true;

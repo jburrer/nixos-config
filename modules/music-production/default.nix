@@ -1,8 +1,5 @@
-{ ... }:
+{ config, ... }:
 
-let
-	vars = import ../vars.nix;
-in
 {
 
 	services.pipewire = {
@@ -32,7 +29,7 @@ in
     kernel.realtime = true;
   };
 
-  users.users.${vars.username}.extraGroups = [
+  users.users."${config.username}".extraGroups = [
     "video"
     "audio"
   ];

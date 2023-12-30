@@ -56,6 +56,7 @@
         };
       };
     };
+    vars = import ./vars.nix;
   in {
     nixosConfigurations = {
       "l4p70p" = nixpkgs.lib.nixosSystem {

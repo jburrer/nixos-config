@@ -1,11 +1,9 @@
-{ config, pkgs, firefox-gnome-theme, ... }:
+{ config, osConfig, pkgs, firefox-gnome-theme, ... }:
 
-let
-  vars = import ../../vars.nix;
-in
 {
 
-  home.file.".mozilla/firefox/${vars.username}/chrome/firefox-gnome-theme".source = firefox-gnome-theme;
+  home.file.".mozilla/firefox/${osConfig.username}/chrome/firefox-gnome-theme".source =
+      firefox-gnome-theme;
 
   programs = {
 
@@ -39,9 +37,9 @@ in
         enable = true;
         version = "master";
       };
-      profiles."${vars.username}" = {
+      profiles."${osConfig.username}" = {
         id = 0;
-        name = "${vars.username}";
+        name = "${osConfig.username}";
         arkenfox = {
           enable = true;
           "0000".enable = true;

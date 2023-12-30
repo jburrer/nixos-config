@@ -1,8 +1,5 @@
-{ config, pkgs, thunderbird-gnome-theme, ... }:
+{ config, osConfig, pkgs, thunderbird-gnome-theme, ... }:
 
-let
-  vars = import ../../vars.nix;
-in
 {
 
   #accounts.email.accounts."school" = {
@@ -30,7 +27,8 @@ in
   #  thunderbird.enable = true;
   #};
 
-  home.file.".thunderbird/${vars.username}/chrome/thunderbird-gnome-theme".source = thunderbird-gnome-theme;
+  home.file.".thunderbird/${osConfig.username}/chrome/thunderbird-gnome-theme".source =
+      thunderbird-gnome-theme;
 
   programs.thunderbird = {
     enable = true;

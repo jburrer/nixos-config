@@ -1,10 +1,7 @@
 { pkgs, ... }:
 
 let
-  vars = import ../../vars.nix;
-  gitIdentity =
-    pkgs.writeShellScriptBin "git-identity"
-    (builtins.readFile "${vars.scriptsDir}/git-identity");
+  gitIdentity = pkgs.writeShellScriptBin "git-identity" (builtins.readFile ./git-identity);
 in
 {
 
@@ -15,11 +12,11 @@ in
       extraConfig = {
         user.useConfigOnly = true;
         commit.gpgSign = true;
-        user.professional.name = "${vars.professionalUsername}";
-        user.professional.email = "${vars.professionalEmail}";
+        user.professional.name = "jb-24";
+        user.professional.email = "jburrer@purdue.edu";
         user.professional.signingkey = "EBDE10F25B613962";
-        user.personal.name = "${vars.personalUsername}";
-        user.personal.email = "${vars.personalEmail}";
+        user.personal.name = "n3mo";
+        user.personal.email = "n3mo@no.one";
         user.personal.signingkey = "0F0B80DCA5FC0EE6";
       };
       aliases = {
@@ -46,5 +43,7 @@ in
     };
 
   };
+
+  home.packages = with pkgs; [ git fzf gitIdentity ];
 
 }

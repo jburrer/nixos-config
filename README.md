@@ -2,6 +2,9 @@
 my personal nixos configuration, including my laptop, desktop, media server, and vps
 
 # todo 
+- set up desktop
+- switch to new config on vps
+
 - add nixos-hardware
 - impermanence
 - manage secrets

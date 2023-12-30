@@ -30,7 +30,7 @@
   };
 
   stylix = {
-    image = ../wallpaper.jpg;
+    image = ../../wallpaper.jpg;
     base16Scheme = "${pkgs.base16-schemes}/share/themes/tomorrow-night.yaml";
     polarity = "dark";
     fonts = {
