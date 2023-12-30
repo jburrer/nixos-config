@@ -21,8 +21,7 @@
       };
     };
 
-    users.users."${config.username}".openssh.authorizedKeys =
-        [ (builtins.readFile ../../key.pub) ];
+    users.users."${config.username}".openssh.authorizedKeys.keyFiles = [ ../../key.pub ];
 
   };
 
