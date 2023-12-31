@@ -45,6 +45,14 @@ with lib;
       '';
     };
 
+    ssh-server.port = mkOption {
+      default = 22;
+      type = types.port;
+      description = ''
+        port on which to host ssh server
+      '';
+    };
+
   };
 
   config = {
@@ -82,8 +90,28 @@ with lib;
         description = "${config.username}";
         hashedPassword = "$6$SbShs85kCNZRdQ4f$J5.gwBoKIO8GSW2vFETLbiAFHRvL/6ngCdQKDuwwB4HIJg.F569vtCkQUrKMf578l3kDHE1peUjAANVT.C5PW0";
         extraGroups = [ "wheel" ];
+        openssh.authorizedKeys.keyFiles = [ ../../key.pub ];
       };
     };
+
+    services.openssh = {
+      enable = true;
+      ports = [ config.ssh-server.port ];
+      settings = {
+        PermitRootLogin = "no";
+        PasswordAuthentication = false;
+      };
+    };
+
+    security.sudo.extraRules = [{
+      groups = [ "wheel" ];
+      commands = [
+        {
+          command = "ALL";
+          options = [ "NOPASSWD" ];
+        }
+      ];
+    }];
 
     documentation.doc.enable = false;
 

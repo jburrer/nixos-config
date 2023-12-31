@@ -8,6 +8,7 @@
 			url = "github:nix-community/home-manager";
 			inputs.nixpkgs.follows = "nixpkgs";
     };
+    deploy-rs.url = "github:serokell/deploy-rs";
     nur.url = "github:nix-community/NUR";
     # add nixos hardware?
     # add impermanence?
@@ -27,13 +28,14 @@
   outputs = inputs @ {
     self,
     nixpkgs,
-    nur,
     home-manager,
-    firefox-gnome-theme,
-    thunderbird-gnome-theme,
+    deploy-rs,
+    nur,
     arkenfox,
     musnix,
-    stylix
+    stylix,
+    firefox-gnome-theme,
+    thunderbird-gnome-theme
   }:
   let
 		system = "x86_64-linux";
@@ -54,6 +56,7 @@
           dates = "weekly";
           options = "--delete-older-than 7d";
         };
+        binaryCachePublicKeys = [ (builtins.readFile ./nix-pub.pem) ];
       };
     };
     vars = import ./vars.nix;
@@ -130,6 +133,42 @@
         ];
       };
     };
+
+    deploy = {
+      nodes = {
+        "l4p70p" = {
+          hostname = "l4p70p";
+          profiles.system.path =
+              deploy-rs.lib.x86_64-linux.activate.nixos
+                  self.nixosConfigurations."l4p70p";
+        };
+        "d35k70p" = {
+          hostname = "d35k70p";
+          profiles.system.path =
+              deploy-rs.lib.x86_64-linux.activate.nixos
+                  self.nixosConfigurations."d35k70p";
+        };
+        "m3d14" = {
+          hostname = "m3d14";
+          sshOpts = [ "-p" "222" ];
+          profiles.system.path =
+              deploy-rs.lib.x86_64-linux.activate.nixos
+                  self.nixosConfigurations."m3d14";
+        };
+        "vp5" = {
+          hostname = "whirlybirds.online"; # change to vp5 after first deploy
+          profiles.system.path =
+              deploy-rs.lib.x86_64-linux.activate.nixos
+                  self.nixosConfigurations."vp5";
+        };
+      };
+      sshUser = "n3mo";
+      user = "root";
+    };
+
+    checks = builtins.mapAttrs
+        (system: deployLib: deployLib.deployChecks self.deploy) deploy-rs.lib;
+
   };
 
 }

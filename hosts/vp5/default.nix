@@ -6,7 +6,6 @@
     ./hardware-configuration.nix
     ../../modules/system
     ../../modules/tailscale
-    ../../modules/ssh-server
     ../../modules/zsh
   ];
 
@@ -34,7 +33,7 @@
   # acme for whirly birds site
   security.acme = {
     acceptTerms = true;
-    defaults.email = "${vars.professionalEmail}";
+    defaults.email = "jburrer@purdue.edu";
   };
 
 	system.stateVersion = "23.05";

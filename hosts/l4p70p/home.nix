@@ -20,7 +20,7 @@
     username = osConfig.username;
     homeDirectory = osConfig.homeDir;
     packages = (with pkgs; [
-      pass wl-clipboard cliphist
+      deploy-rs pass wl-clipboard cliphist
       tor-browser-bundle-bin monero-gui
       libreoffice celluloid gimp texlive.combined.scheme-medium
       helvum ardour audacity hydrogen pitivi

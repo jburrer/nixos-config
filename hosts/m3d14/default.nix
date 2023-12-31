@@ -7,7 +7,6 @@
     ./containers
     ../../modules/system
     ../../modules/tailscale
-    ../../modules/ssh-server
     ../../modules/zsh
   ];
 
