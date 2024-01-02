@@ -44,22 +44,20 @@
 			config.allowUnfree = true;
 		};
     nixConf = pkgs: {
-      documentation.doc.enable = false;
       nix = {
         package = pkgs.nixFlakes;
         settings = {
           auto-optimise-store = true;
           experimental-features = [ "nix-command" "flakes" ];
+          trusted-users = [ "n3mo" ];
         };
         gc = {
           automatic = true;
           dates = "weekly";
           options = "--delete-older-than 7d";
         };
-        binaryCachePublicKeys = [ (builtins.readFile ./nix-pub.pem) ];
       };
     };
-    vars = import ./vars.nix;
   in {
     nixosConfigurations = {
       "l4p70p" = nixpkgs.lib.nixosSystem {
@@ -156,7 +154,7 @@
                   self.nixosConfigurations."m3d14";
         };
         "vp5" = {
-          hostname = "whirlybirds.online"; # change to vp5 after first deploy
+          hostname = "vp5";
           profiles.system.path =
               deploy-rs.lib.x86_64-linux.activate.nixos
                   self.nixosConfigurations."vp5";
