@@ -2,31 +2,31 @@
 
 {
 
-	services = {
-		xserver = {
-			enable = true;
-			displayManager.gdm.enable = true;
-			desktopManager.gnome.enable = true;
-			excludePackages = [ pkgs.xterm ];
-		};
-		dbus.packages = [ pkgs.dconf ];
-		udev.packages = [ pkgs.gnome3.gnome-settings-daemon ];
-	};
+  services = {
+    xserver = {
+      enable = true;
+      displayManager.gdm.enable = true;
+      desktopManager.gnome.enable = true;
+      excludePackages = [ pkgs.xterm ];
+    };
+    dbus.packages = [ pkgs.dconf ];
+    udev.packages = [ pkgs.gnome3.gnome-settings-daemon ];
+  };
 
-	environment = {
-		gnome.excludePackages = (with pkgs; [
-			gnome-tour gnome-connections gnome-text-editor gnome-console snapshot
-		]) ++ (with pkgs.gnome; [
-			epiphany geary gnome-maps yelp totem simple-scan gnome-music
-		]);
-	};
+  environment = {
+    gnome.excludePackages = (with pkgs; [
+      gnome-tour gnome-connections gnome-text-editor gnome-console snapshot
+    ]) ++ (with pkgs.gnome; [
+      epiphany geary gnome-maps yelp totem simple-scan gnome-music
+    ]);
+  };
 
   programs = {
     kdeconnect = {
       enable = true;
       package = pkgs.gnomeExtensions.gsconnect;
     };
-	  dconf.enable = true;
+    dconf.enable = true;
   };
 
   stylix = {
@@ -52,16 +52,16 @@
     targets.gnome.enable = true;
   };
 
-	services.pipewire = {
-		enable = true;
-		alsa = {
-			enable = true;
-			support32Bit = true;
-		};
-		pulse.enable = true;
-		wireplumber.enable = true;
-	};
+  services.pipewire = {
+    enable = true;
+    alsa = {
+      enable = true;
+      support32Bit = true;
+    };
+    pulse.enable = true;
+    wireplumber.enable = true;
+  };
   hardware.pulseaudio.enable = false;
-	security.rtkit.enable = true;
+  security.rtkit.enable = true;
 
 }

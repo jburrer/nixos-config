@@ -6,6 +6,7 @@
     ./dconf.nix
     ../../modules/home-manager/firefox
     ../../modules/home-manager/thunderbird
+    ../../modules/home-manager/emacs
     ../../modules/home-manager/alacritty
     ../../modules/home-manager/music
     ../../modules/home-manager/tmux
@@ -20,9 +21,8 @@
     username = osConfig.username;
     homeDirectory = osConfig.homeDir;
     packages = (with pkgs; [
-      deploy-rs pass wl-clipboard cliphist
-      tor-browser-bundle-bin monero-gui
-      libreoffice celluloid gimp texlive.combined.scheme-medium
+      deploy-rs pass tor-browser-bundle-bin monero-gui
+      libreoffice celluloid gimp
       helvum ardour audacity hydrogen pitivi
 			gnome3.gnome-tweaks dconf2nix
 		]) ++ (with pkgs.gnomeExtensions; [
@@ -36,6 +36,9 @@
 
   # xdg
   xdg.enable = true;
+
+  # pinentry flavor
+  pinentry = "gnome3";
 
   # syncthing
   services.syncthing.enable = true;

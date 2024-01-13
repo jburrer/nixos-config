@@ -2,16 +2,16 @@
 
 {
 
-	services.pipewire = {
-		enable = true;
-		alsa = {
-			enable = true;
-			support32Bit = true;
-		};
-		jack.enable = true;
-	};
+  services.pipewire = {
+    enable = true;
+    alsa = {
+	enable = true;
+	support32Bit = true;
+    };
+    jack.enable = true;
+  };
   hardware.pulseaudio.enable = false;
-	security.rtkit.enable = true;
+  security.rtkit.enable = true;
 
   environment.etc = {
     "pipewire/pipewire.conf.d/92-low-latency.conf".text = ''

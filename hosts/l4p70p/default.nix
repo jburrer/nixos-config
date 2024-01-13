@@ -7,7 +7,6 @@
     ../../modules/system
     ../../modules/tailscale
     ../../modules/gnome
-    ../../modules/music-production
     ../../modules/zsh
   ];
 
@@ -20,13 +19,13 @@
     efi.canTouchEfiVariables = true;
   };
 
-	# networking
-	networking.networkmanager.enable = true;
-	users.users."${config.username}".extraGroups = [ "networkmanager" ];
+  # networking
+  networking.networkmanager.enable = true;
+  users.users."${config.username}".extraGroups = [ "networkmanager" ];
 
   # flatpack
   services.flatpak.enable = true;
 
-	system.stateVersion = "23.05";
+  system.stateVersion = "23.05";
 
 }

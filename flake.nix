@@ -3,7 +3,7 @@
   description = "my nixos configuration, including my laptop, desktop, media server, and vps";
 
   inputs = {
-		nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+		nixpkgs.url = "github:NixOs/nixpkgs/nixos-unstable";
     home-manager = {
 			url = "github:nix-community/home-manager";
 			inputs.nixpkgs.follows = "nixpkgs";
@@ -15,6 +15,14 @@
 		arkenfox.url = "github:dwarfmaster/arkenfox-nixos";
     musnix.url = "github:musnix/musnix";
     stylix.url = "github:danth/stylix";
+    nixvim = {
+      url = "github:nix-community/nixvim";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    emacs-overlay = {
+      url = "github:nix-community/emacs-overlay";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     firefox-gnome-theme = {
       url = "github:rafaelmardojai/firefox-gnome-theme";
       flake = false;
@@ -34,10 +42,13 @@
     arkenfox,
     musnix,
     stylix,
+    nixvim,
+    emacs-overlay,
     firefox-gnome-theme,
     thunderbird-gnome-theme
   }:
   let
+    user = "n3mo";
 		system = "x86_64-linux";
 		pkgs = import nixpkgs {
 			inherit system;
@@ -49,7 +60,7 @@
         settings = {
           auto-optimise-store = true;
           experimental-features = [ "nix-command" "flakes" ];
-          trusted-users = [ "n3mo" ];
+          trusted-users = [ "${user}" ];
         };
         gc = {
           automatic = true;
@@ -72,11 +83,14 @@
               useGlobalPkgs = true;
               useUserPackages = true;
               extraSpecialArgs = inputs;
-              users."n3mo".imports = [
-                ./hosts/l4p70p/home.nix
-                nur.hmModules.nur
-                arkenfox.hmModules.arkenfox
-              ];
+              users."${user}" = {
+                imports = [
+                  ./hosts/l4p70p/home.nix
+                  nur.hmModules.nur
+                  arkenfox.hmModules.arkenfox
+                  nixvim.homeManagerModules.nixvim
+                ];
+              };
             };
           }
         ];
@@ -93,10 +107,11 @@
               useGlobalPkgs = true;
               useUserPackages = true;
               extraSpecialArgs = inputs;
-              users."n3mo".imports = [
+              users."${user}".imports = [
                 ./hosts/d35k70p/home.nix
                 nur.hmModules.nur
                 arkenfox.hmModules.arkenfox
+                nixvim.homeManagerModules.nixvim
               ];
             };
           }
@@ -111,7 +126,10 @@
             home-manager = {
               useGlobalPkgs = true;
               useUserPackages = true;
-              users."n3mo".imports = [ ./hosts/m3d14/home.nix ];
+              users."${user}".imports = [
+                ./hosts/m3d14/home.nix
+                nixvim.homeManagerModules.nixvim
+              ];
             };
           }
         ];
@@ -125,7 +143,10 @@
             home-manager = {
               useGlobalPkgs = true;
               useUserPackages = true;
-              users."n3mo".imports = [ ./hosts/vp5/home.nix ];
+              users."${user}".imports = [
+                ./hosts/vp5/home.nix
+                nixvim.homeManagerModules.nixvim
+              ];
             };
           }
         ];
@@ -160,7 +181,7 @@
                   self.nixosConfigurations."vp5";
         };
       };
-      sshUser = "n3mo";
+      sshUser = "${user}";
       user = "root";
     };
 

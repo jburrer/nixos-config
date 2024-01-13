@@ -3,7 +3,7 @@
 {
 
   imports = [
-    ./dconf.nix
+    #./dconf.nix
     ../../modules/home-manager/firefox
     ../../modules/home-manager/thunderbird
     ../../modules/home-manager/alacritty
@@ -20,22 +20,24 @@
     username = osConfig.username;
     homeDirectory = osConfig.homeDir;
     packages = (with pkgs; [
-      deploy-rs pass wl-clipboard cliphist
-      tor-browser-bundle-bin monero-gui
-      libreoffice celluloid gimp texlive.combined.scheme-medium
+      deploy-rs pass tor-browser-bundle-bin monero-gui
+      libreoffice celluloid gimp
       helvum ardour audacity hydrogen pitivi
-			gnome3.gnome-tweaks dconf2nix
-		]) ++ (with pkgs.gnomeExtensions; [
+      gnome3.gnome-tweaks dconf2nix
+    ]) ++ (with pkgs.gnomeExtensions; [
       paperwm dash-to-panel auto-move-windows
-      just-perfection #blur-my-shell
+      just-perfection blur-my-shell
       tailscale-qs syncthing-indicator media-controls
-		]);
-    stateVersion = "23.05";
+    ]);
+    stateVersion = "22.11";
   };
   programs.home-manager.enable = true;
 
   # xdg
   xdg.enable = true;
+
+  # pinentry flavor
+  pinentry = "gnome3";
 
   # syncthing
   services.syncthing.enable = true;
