@@ -1,5 +1,33 @@
 { config, osConfig, pkgs, ... }:
 
+let
+  extraZshConfig = ''
+
+PS1='%F{green}%n%f@%F{magenta}%m%f:%F{blue}%~%f > '
+
+set -o vi
+
+gpg-connect-agent /bye
+export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
+
+vterm_printf() {
+    printf "\e]%s\e\\" "$1"
+}
+vterm_prompt_end() {
+    vterm_printf "51;A$(whoami)@$(hostname):$(pwd)"
+}
+setopt PROMPT_SUBST
+PROMPT=$PROMPT'%{$(vterm_prompt_end)%}'
+
+
+#if [ "$TERM" = 'alacritty' ] && [ -z "$TMUX" ] && \
+#    [[ ! "$(tmux ls -F '#{session_id},#{session_attached}')" =~ '$0,1' ]]
+#then
+#exec tmux new-session -A -s main
+#fi
+
+  '';
+in
 {
 
   programs.zsh = {
@@ -23,19 +51,8 @@
       neofetch = "echo && ${pkgs.neofetch}/bin/neofetch";
       sysrebuild = "sudo nixos-rebuild switch --flake ${osConfig.configDir}/#${osConfig.hostname}";
     };
-    initExtra = ''
-      PS1='%F{green}%n%f@%F{magenta}%m%f:%F{blue}%~%f > '
-      export EDITOR="nvim"
-      set -o vi
-      gpg-connect-agent /bye
-      export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
-      if [ "$TERM" = 'alacritty' ] && [ -z "$TMUX" ] && \
-          [[ ! "$(tmux ls -F '#{session_id},#{session_attached}')" =~ '$0,1' ]]
-      then
-        exec tmux new-session -A -s main
-      fi
-    '';
     syntaxHighlighting.enable = true;
+    initExtra = extraZshConfig;
   };
 
 }

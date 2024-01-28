@@ -16,15 +16,15 @@
   # bootloader
   boot.loader = {
     systemd-boot.enable = true;
-    efi.canTouchEfiVariables = true;
+    efi.efiSysMountPoint = "/boot";
   };
+
+  # system76 hardware settings
+  hardware.system76.enableAll = true;
 
   # networking
   networking.networkmanager.enable = true;
   users.users."${config.username}".extraGroups = [ "networkmanager" ];
-
-  # flatpack
-  services.flatpak.enable = true;
 
   system.stateVersion = "23.05";
 

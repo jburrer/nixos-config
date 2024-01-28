@@ -1,9 +1,11 @@
-{ config, osConfig, pkgs, firefox-gnome-theme, ... }:
+{ config, osConfig, pkgs, firefox-cascade-theme, ... }:
 
 {
 
-  home.file.".mozilla/firefox/${osConfig.username}/chrome/firefox-gnome-theme".source =
-      firefox-gnome-theme;
+  home.file.".mozilla/firefox/${osConfig.username}/chrome/firefox-cascade-theme".source =
+      firefox-cascade-theme;
+
+  home.file.".mozilla/firefox/${osConfig.username}/chrome/firefox-cascade-theme/chrome/includes/cascade-colours.css".source = firefox-cascade-theme."/integrations/catppuccin/cascade-mocha.css";
 
   programs = {
 
@@ -112,13 +114,18 @@
           linkhints
         ];
         userChrome = ''
-          @import "firefox-gnome-theme/userChrome.css";
-          #tabs-newtab-button { display: none !important; } 
-          * { font-family: Cantarell !important; }
-          #urlbar { font-family: Cantarell !important; font-weight: bold !important; font-size: 11pt !important; }
-        '';
-        userContent = ''
-          @import "firefox-gnome-theme/userContent.css";
+          @import "firefox-cascade-theme/chrome/userChrome.css";
+          #tabs-newtab-button {
+            display: none !important;
+          } 
+          * {
+            font-family: Cantarell !important;
+          }
+          #urlbar {
+            font-family: Cantarell !important;
+            font-weight: bold !important;
+            font-size: 11pt !important;
+          }
         '';
       };
     };

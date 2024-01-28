@@ -30,8 +30,8 @@
   };
 
   stylix = {
-    image = ../../wallpaper.jpg;
-    base16Scheme = "${pkgs.base16-schemes}/share/themes/tomorrow-night.yaml";
+    image = ../../wallpaper.png;
+    base16Scheme = ./catppuccin-mocha.yaml;
     polarity = "dark";
     fonts = {
       serif = {
@@ -45,11 +45,10 @@
       };
     };
     cursor = {
-      package = pkgs.bibata-cursors;
-      name = "Bibata-Modern-Classic";
+      package = pkgs.catppuccin-cursors;
+      #name = "Bibata-Modern-Classic";
       size = 16;
     };
-    targets.gnome.enable = true;
   };
 
   services.pipewire = {

@@ -3,16 +3,15 @@
   description = "my nixos configuration, including my laptop, desktop, media server, and vps";
 
   inputs = {
-		nixpkgs.url = "github:NixOs/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:NixOs/nixpkgs/nixos-unstable";
     home-manager = {
-			url = "github:nix-community/home-manager";
-			inputs.nixpkgs.follows = "nixpkgs";
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     deploy-rs.url = "github:serokell/deploy-rs";
     nur.url = "github:nix-community/NUR";
-    # add nixos hardware?
     # add impermanence?
-		arkenfox.url = "github:dwarfmaster/arkenfox-nixos";
+    arkenfox.url = "github:dwarfmaster/arkenfox-nixos";
     musnix.url = "github:musnix/musnix";
     stylix.url = "github:danth/stylix";
     nixvim = {
@@ -25,6 +24,10 @@
     };
     firefox-gnome-theme = {
       url = "github:rafaelmardojai/firefox-gnome-theme";
+      flake = false;
+    };
+    firefox-cascade-theme = {
+      url = "github:andreasgrafen/cascade";
       flake = false;
     };
     thunderbird-gnome-theme = {
@@ -45,6 +48,7 @@
     nixvim,
     emacs-overlay,
     firefox-gnome-theme,
+    firefox-cascade-theme,
     thunderbird-gnome-theme
   }:
   let
@@ -76,6 +80,9 @@
         modules = [
           ./hosts/l4p70p
           (nixConf pkgs)
+	  ({pkgs, ...}: {
+	    nixpkgs.overlays = [ emacs-overlay.overlay ];
+	  })
           musnix.nixosModules.musnix
           stylix.nixosModules.stylix
           home-manager.nixosModules.home-manager {

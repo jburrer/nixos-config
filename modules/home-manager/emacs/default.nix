@@ -1,26 +1,31 @@
-{ pkgs, emacs-overlay, ... }:
+{ pkgs, ... }:
 
 {
- 
+
   programs.emacs = {
     enable = true;
-    package = emacs-overlay.packages.${pkgs.system}.emacs-pgtk.override {
-      withTreeSitter = true;
-    };
-    extraConfig = (builtins.readFile ./init.el);
-    extraPackages = epkgs: with epkgs; [
-      evil evil-collection
-      vterm multi-vterm
-      doom-themes
-      nix-ts-mode
-      org-roam
-      #eglot
-      treesit-grammars.with-all-grammars
-    ];
+    package = (pkgs.emacsWithPackagesFromUsePackage {
+      config = ./init.el;
+      defaultInitFile = true;
+      alwaysTangle = true;
+      package = pkgs.emacs-pgtk.override {
+        withTreeSitter = true;
+      };
+      extraEmacsPackages = epkgs: with epkgs; [
+        evil evil-collection general which-key
+        vterm multi-vterm
+	org-bullets toc-org
+        auctex pdf-tools
+        catppuccin-theme rainbow-delimiters highlight-indent-guides
+        nix-ts-mode treesit-grammars.with-all-grammars
+      ];
+    });
   };
 
-  services.emacs.enable = true;
+  home.packages = with pkgs; [ texliveBasic ];
 
   stylix.targets.emacs.enable = false;
+
+  services.emacs.enable = true;
 
 }
