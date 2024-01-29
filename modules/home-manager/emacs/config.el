@@ -84,10 +84,49 @@
 
 (setq-default indent-tabs-mode nil)
 
+(use-package telephone-line
+             :ensure t
+             :config
+             (set-face-attribute 'telephone-line-evil-normal
+                                 nil
+                                 :foreground
+                                 "#1e1e2e"
+                                 :background
+                                 "#cba6f7")
+             (set-face-attribute 'telephone-line-evil-insert
+                                 nil
+                                 :foreground
+                                 "#1e1e2e"
+                                 :background
+                                 "#a6e3a1")
+             (set-face-attribute 'telephone-line-evil-visual
+                                 nil
+                                 :foreground
+                                 "#1e1e2e"
+                                 :background
+                                 "#f38ba8")
+             (setq telephone-line-lhs
+                   '((evil . (telephone-line-evil-tag-segment))
+                     (accent . (telephone-line-vc-segment
+                                telephone-line-erc-modified-channels-segment
+                                telephone-line-process-segment))
+                     (nil . (telephone-line-minor-mode-segment
+                             telephone-line-buffer-segment))))
+             (setq telephone-line-rhs
+                   '((nil . (telephone-line-misc-info-segment))
+                     (accent . (telephone-line-major-mode-segment))
+                     (evil . (telephone-line-airline-position-segment)))) 
+             (telephone-line-mode 1))
+
 (setq redisplay-dont-pause t
       scroll-margin 500
       scroll-conservatively 10000
       scroll-preserve-screen-position 1)
+
+(use-package catppuccin-theme
+             :ensure t
+             :config
+             (load-theme 'catppuccin :no-confirm))
 
 (use-package rainbow-delimiters
              :ensure t
@@ -147,12 +186,9 @@
 
 (transient-mark-mode 1)  ; dont actually know what this does
 
-(use-package catppuccin-theme
-             :ensure t
-             :config
-             (load-theme 'catppuccin :no-confirm))
-
-(setq initial-buffer-choice 'multi-vterm)
+(setq initial-buffer-choice 'multi-vterm
+      vterm-term-environment-variable "eterm-color"
+      vterm-kill-buffer-on-exit t)
 
 (use-package nix-ts-mode
              :ensure t
