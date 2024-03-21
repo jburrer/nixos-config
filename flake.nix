@@ -14,17 +14,9 @@
     arkenfox.url = "github:dwarfmaster/arkenfox-nixos";
     musnix.url = "github:musnix/musnix";
     stylix.url = "github:danth/stylix";
-    nixvim = {
-      url = "github:nix-community/nixvim";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     emacs-overlay = {
       url = "github:nix-community/emacs-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
-    };
-    firefox-gnome-theme = {
-      url = "github:rafaelmardojai/firefox-gnome-theme";
-      flake = false;
     };
     firefox-cascade-theme = {
       url = "github:andreasgrafen/cascade";
@@ -45,19 +37,17 @@
     arkenfox,
     musnix,
     stylix,
-    nixvim,
     emacs-overlay,
-    firefox-gnome-theme,
     firefox-cascade-theme,
     thunderbird-gnome-theme
   }:
   let
     user = "n3mo";
-		system = "x86_64-linux";
-		pkgs = import nixpkgs {
-			inherit system;
-			config.allowUnfree = true;
-		};
+    system = "x86_64-linux";
+    pkgs = import nixpkgs {
+      inherit system;
+      config.allowUnfree = true;
+    };
     nixConf = pkgs: {
       nix = {
         package = pkgs.nixFlakes;
@@ -76,13 +66,11 @@
   in {
     nixosConfigurations = {
       "l4p70p" = nixpkgs.lib.nixosSystem {
-			  inherit system;
+	inherit system;
         modules = [
           ./hosts/l4p70p
           (nixConf pkgs)
-	  ({pkgs, ...}: {
-	    nixpkgs.overlays = [ emacs-overlay.overlay ];
-	  })
+	  ({pkgs, ...}: { nixpkgs.overlays = [ emacs-overlay.overlay ]; })
           musnix.nixosModules.musnix
           stylix.nixosModules.stylix
           home-manager.nixosModules.home-manager {
@@ -95,7 +83,6 @@
                   ./hosts/l4p70p/home.nix
                   nur.hmModules.nur
                   arkenfox.hmModules.arkenfox
-                  nixvim.homeManagerModules.nixvim
                 ];
               };
             };
@@ -103,7 +90,7 @@
         ];
       };
       "d35k70p" = nixpkgs.lib.nixosSystem {
-			  inherit system;
+	inherit system;
         modules = [
           ./hosts/d35k70p
           (nixConf pkgs)
@@ -118,14 +105,13 @@
                 ./hosts/d35k70p/home.nix
                 nur.hmModules.nur
                 arkenfox.hmModules.arkenfox
-                nixvim.homeManagerModules.nixvim
               ];
             };
           }
         ];
       };
       "m3d14" = nixpkgs.lib.nixosSystem {
-			  inherit system;
+	inherit system;
         modules = [
           ./hosts/m3d14
           (nixConf pkgs)
@@ -135,14 +121,13 @@
               useUserPackages = true;
               users."${user}".imports = [
                 ./hosts/m3d14/home.nix
-                nixvim.homeManagerModules.nixvim
               ];
             };
           }
         ];
       };
       "vp5" = nixpkgs.lib.nixosSystem {
-			  inherit system;
+	inherit system;
         modules = [
           ./hosts/vp5
           (nixConf pkgs)
@@ -152,7 +137,6 @@
               useUserPackages = true;
               users."${user}".imports = [
                 ./hosts/vp5/home.nix
-                nixvim.homeManagerModules.nixvim
               ];
             };
           }

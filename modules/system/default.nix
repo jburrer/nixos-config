@@ -76,10 +76,10 @@ with lib;
       };
     };
 
-    services.xserver = {
+    services.xserver.xkb = {
       layout = "us";
-      xkbVariant = "";
-      xkbOptions = "caps:swapescape";
+      variant = "";
+      options = "caps:swapescape";
     };
     console.useXkbConfig = true;
 

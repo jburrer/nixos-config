@@ -17,15 +17,22 @@
   # nginx to serve whirly birds site
   services.nginx = {
     enable = true;
-    virtualHosts."whirlybirds.online" = {
-      forceSSL = true;
-      enableACME = true;
-      root = "/var/www/whirlybirds.online";
-    };
-    virtualHosts."cloud.whirlybirds.online" = {
-      forceSSL = true;
-      enableACME = true;
-      root = "/var/www/test";
+    virtualHosts = {
+      "whirlybirds.online" = {
+        forcessl = true;
+        enableacme = true;
+        root = "/var/www/whirlybirds.online";
+      };
+      "cloud.whirlybirds.online" = {
+        forceSSL = true;
+        enableACME = true;
+        root = "/var/www/test";
+      };
+      "vp5" = {
+        #forcessl = true;
+        #enableacme = true;
+        root = "/var/www/ydsapurdue.online";
+      };
     };
   };
   networking.firewall.allowedTCPPorts = [ 80 443 ];
@@ -36,6 +43,6 @@
     defaults.email = "jburrer@purdue.edu";
   };
 
-	system.stateVersion = "23.05";
+  system.stateVersion = "23.05";
 
 }

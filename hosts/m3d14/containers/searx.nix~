@@ -1,18 +1,19 @@
 {...}:
 
+# WIP 
+
 {
 
   users = {
-    users.nextcloud = {
+    users.searx = {
       isSystemUser = true;
-      uid = 509;
-      group = "nextcloud";
-      extraGroups = [ "media" "torrents" "usenet" ];
+      uid = 513;
+      group = "searx";
     };
-    groups."nextcloud".gid = 409;
+    groups."searx".gid = 413;
   };
 
-  containers."nextcloud" = {
+  containers."searx" = {
 
     autoStart = true;
 

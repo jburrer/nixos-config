@@ -2,7 +2,7 @@
 
 let
   rstudio-with-packages = pkgs.rstudioWrapper.override {
-    packages = with pkgs.rPackages; [];
+    packages = with pkgs.rPackages; [ ];
   };
 in
 {

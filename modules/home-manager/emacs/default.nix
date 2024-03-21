@@ -16,6 +16,7 @@
         vterm multi-vterm
 	org-bullets toc-org
         auctex pdf-tools
+        pass
         catppuccin-theme telephone-line rainbow-delimiters highlight-indent-guides
         nix-ts-mode treesit-grammars.with-all-grammars
       ];

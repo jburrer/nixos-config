@@ -4,7 +4,8 @@
              (setq evil-want-keybinding nil
                    evil-vsplit-window-right t
                    evil-split-window-below t
-                   evil-emacs-state-modes nil
+                   evil-default-state 'normal
+                   evil-emacs-state-modes nil 
                    evil-insert-state-modes nil
                    evil-motion-state-modes nil)
              (evil-mode))
@@ -22,16 +23,18 @@
                                      :states '(normal insert visual emacs)
                                      :keymaps 'override
                                      :prefix "SPC"
-                                     :global-prefix "M-SPC") 
+                                     :global-prefix "C-SPC") 
              (n3mo/leader-keys "e" '(:ignore t :wk "buffer")
                                "eb" '(switch-to-buffer :wk "Switch buffer")
-                               "eq" '(kill-this-buffer :wk "Kill this buffer")
-                               "ej" '(next-buffer :wk "Next buffer")
-                               "ek" '(previous-buffer :wk "Previous buffer")
+                               "ej" '(previous-buffer :wk "Previous buffer")
+                               "ek" '(next-buffer :wk "Next buffer")
                                "er" '(revert-buffer :wk "Reload buffer")
+                               "eq" '(kill-this-buffer :wk "Kill this buffer")
                                "w" '(:ignore t :wk "window")
                                "wh" '(windmove-left :wk "Move to left window")
                                "wl" '(windmove-right :wk "Move to right window")
+                               "wj" '(windmove-down :wk "Move to lower window")
+                               "wk" '(windmove-up :wk "Move to upper window")
                                "wH" '(windmove-swap-states-left
                                       :wk "Swap window to the left")
                                "wL" '(windmove-swap-states-right
@@ -41,7 +44,16 @@
                                "wv" '(evil-window-vsplit
                                       :wk "Split window vertically")
                                "wq" '(evil-quit
-                                      :wk "Close window")))
+                                      :wk "Close window")
+                               "t" '(:ignore t :wk "tab")
+                               "th" '(tab-bar-switch-to-prev-tab :wk "Previous tab")
+                               "tj" '(tab-bar-switch-to-prev-tab :wk "Previous tab")
+                               "tk" '(tab-bar-switch-to-next-tab :wk "Next tab")
+                               "tl" '(tab-bar-switch-to-next-tab :wk "Next tab")
+                               "tt" '(tab-bar-new-tab :wk "New tab")
+                               "tq" '(tab-bar-close-tab :wk "Close tab")))
+
+(setenv "SSH_AUTH_SOCK" "/run/user/1000/gnupg/S.gpg-agent.ssh")
 
 (set-face-attribute 'default nil
                     :font "Cascadia Mono"
@@ -66,6 +78,14 @@
 
 (add-to-list 'default-frame-alist '(font . "Cascadia Mono-11"))
 
+(set-frame-parameter nil 'undecorated t)
+
+(set-frame-parameter nil 'alpha-background 75)
+
+(setq frame-resize-pixelwise t)
+
+(add-to-list 'default-frame-alist '(internal-border-width . 10))
+
 (menu-bar-mode -1)
 
 (scroll-bar-mode -1)
@@ -74,7 +94,37 @@
 
 (setq visible-bell 1)
 
-(setq frame-resize-pixelwise t)
+(use-package catppuccin-theme
+             :ensure t
+             :config
+             (load-theme 'catppuccin :no-confirm))
+
+(defface n3mo-tab-bar-tab
+         `((t
+            :inherit 'tab-bar-tab
+            :foreground ,(face-attribute 'font-lock-keyword-face :foreground nil t)))
+         "Face for active tab in tab-bar."
+         :group 'n3mo-tab-bar)
+
+(defface n3mo-tab-bar-tab-inactive
+         `((t :inherit 'tab-bar-tab-inactive
+              :foreground ,(face-attribute 'font-lock-comment-face :foreground nil t)))
+         "Face for inactive tab in tab-bar."
+         :group 'n3mo-tab-bar)
+
+(defun n3mo-tab-bar-tab-name-format-default (tab i)
+       (let* ((current-p (eq (car tab) 'current-tab))
+              (tab-face (if current-p
+                            'n3mo-tab-bar-tab
+                            'n3mo-tab-bar-tab-inactive)))
+             (propertize (concat "  " (alist-get 'name tab) "  ") 'face tab-face)))
+
+(setq tab-bar-show 1
+            tab-bar-close-button-show nil
+            tab-bar-new-tab-choice 'multi-vterm
+            tab-bar-tab-name-format-function 'n3mo-tab-bar-tab-name-format-default)
+
+(tab-bar-mode 1)
 
 (add-hook 'prog-mode-hook 'display-line-numbers-mode)
 
@@ -105,6 +155,10 @@
                                  "#1e1e2e"
                                  :background
                                  "#f38ba8")
+             (setq telephone-line-primary-left-separator 'telephone-line-flat
+                   telephone-line-secondary-left-separator 'telephone-line-nil
+                   telephone-line-primary-right-separator 'telephone-line-flat
+                   telephone-line-secondary-right-separator 'telephone-line-nil)
              (setq telephone-line-lhs
                    '((evil . (telephone-line-evil-tag-segment))
                      (accent . (telephone-line-vc-segment
@@ -122,11 +176,6 @@
       scroll-margin 500
       scroll-conservatively 10000
       scroll-preserve-screen-position 1)
-
-(use-package catppuccin-theme
-             :ensure t
-             :config
-             (load-theme 'catppuccin :no-confirm))
 
 (use-package rainbow-delimiters
              :ensure t
@@ -184,11 +233,13 @@
              :init
              (pdf-tools-install))
 
-(transient-mark-mode 1)  ; dont actually know what this does
-
-(setq initial-buffer-choice 'multi-vterm
-      vterm-term-environment-variable "eterm-color"
-      vterm-kill-buffer-on-exit t)
+(use-package vterm
+             :ensure t
+             :config
+             (setq initial-buffer-choice 'multi-vterm
+                   vterm-term-environment-variable "eterm-color"
+                   vterm-kill-buffer-on-exit t))
+             ;;(evil-set-initial-state 'vterm-mode 'emacs))
 
 (use-package nix-ts-mode
              :ensure t
@@ -198,10 +249,12 @@
              :ensure t
              :config
              (setq highlight-indent-guides-method 'character
-                   highlight-indent-guides-character ?|))
-             ;(set-face-background 'highlight-indent-guides-odd-face "darkgray")
-             ;(set-face-background 'highlight-indent-guides-even-face "dimgray"))
+                   highlight-indent-guides-character ?|)
+             (set-face-background 'highlight-indent-guides-odd-face "darkgray")
+             (set-face-background 'highlight-indent-guides-even-face "dimgray"))
 
 (add-hook 'prog-mode-hook 'highlight-indent-guides-mode)
 
 (add-hook 'org-mode-hook 'highlight-indent-guides-mode)
+
+(use-package pass :ensure t)

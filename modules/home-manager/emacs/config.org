@@ -7,14 +7,16 @@
 * TABLE OF CONTENTS :toc:
 - [[#important-programs-to-load-first][IMPORTANT PROGRAMS TO LOAD FIRST]]
   - [[#evil-mode][EVIL MODE]]
-  - [[#general-keybindings][GENERAL KEYBINDINGS]]
+  - [[#general-keybinding][GENERAL KEYBINDING]]
+  - [[#environment-variables][ENVIRONMENT VARIABLES]]
 - [[#fonts][FONTS]]
-- [[#gui-tweaks][GUI TWEAKS]]
-  - [[#disable-stuff][DISABLE STUFF]]
+- [[#gui][GUI]]
+  - [[#frame-layout][FRAME LAYOUT]]
+  - [[#catppuccin-theme][CATPPUCCIN THEME]]
+  - [[#tab-bar][TAB BAR]]
   - [[#line-numbers-truncating-and-indentation][LINE NUMBERS, TRUNCATING, AND INDENTATION]]
   - [[#telephone-line][TELEPHONE LINE]]
   - [[#smooth-scrolling][SMOOTH SCROLLING]]
-  - [[#catppuccin-theme][CATPPUCCIN THEME]]
   - [[#rainbow-delimiters][RAINBOW DELIMITERS]]
 - [[#org-mode][ORG MODE]]
   - [[#table-of-contents][TABLE OF CONTENTS]]
@@ -24,10 +26,10 @@
   - [[#auctex][AUCTEX]]
   - [[#pdf-tools][PDF-TOOLS]]
 - [[#misc][MISC]]
-  - [[#transient-mark-mode][TRANSIENT MARK MODE]]
   - [[#vterm][VTERM]]
   - [[#nix-treesitter][NIX TREESITTER]]
   - [[#highlight-indent-guides][HIGHLIGHT INDENT GUIDES]]
+  - [[#pass][PASS]]
 
 * IMPORTANT PROGRAMS TO LOAD FIRST
 
@@ -39,7 +41,8 @@
              (setq evil-want-keybinding nil
                    evil-vsplit-window-right t
                    evil-split-window-below t
-                   evil-emacs-state-modes nil
+                   evil-default-state 'normal
+                   evil-emacs-state-modes nil 
                    evil-insert-state-modes nil
                    evil-motion-state-modes nil)
              (evil-mode))
@@ -51,7 +54,7 @@
              (evil-collection-init))
 #+end_src 
 
-** GENERAL KEYBINDINGS
+** GENERAL KEYBINDING
 #+begin_src emacs-lisp
 (use-package general
              :config
@@ -60,16 +63,18 @@
                                      :states '(normal insert visual emacs)
                                      :keymaps 'override
                                      :prefix "SPC"
-                                     :global-prefix "M-SPC") 
+                                     :global-prefix "C-SPC") 
              (n3mo/leader-keys "e" '(:ignore t :wk "buffer")
                                "eb" '(switch-to-buffer :wk "Switch buffer")
-                               "eq" '(kill-this-buffer :wk "Kill this buffer")
-                               "ej" '(next-buffer :wk "Next buffer")
-                               "ek" '(previous-buffer :wk "Previous buffer")
+                               "ej" '(previous-buffer :wk "Previous buffer")
+                               "ek" '(next-buffer :wk "Next buffer")
                                "er" '(revert-buffer :wk "Reload buffer")
+                               "eq" '(kill-this-buffer :wk "Kill this buffer")
                                "w" '(:ignore t :wk "window")
                                "wh" '(windmove-left :wk "Move to left window")
                                "wl" '(windmove-right :wk "Move to right window")
+                               "wj" '(windmove-down :wk "Move to lower window")
+                               "wk" '(windmove-up :wk "Move to upper window")
                                "wH" '(windmove-swap-states-left
                                       :wk "Swap window to the left")
                                "wL" '(windmove-swap-states-right
@@ -79,7 +84,19 @@
                                "wv" '(evil-window-vsplit
                                       :wk "Split window vertically")
                                "wq" '(evil-quit
-                                      :wk "Close window")))
+                                      :wk "Close window")
+                               "t" '(:ignore t :wk "tab")
+                               "th" '(tab-bar-switch-to-prev-tab :wk "Previous tab")
+                               "tj" '(tab-bar-switch-to-prev-tab :wk "Previous tab")
+                               "tk" '(tab-bar-switch-to-next-tab :wk "Next tab")
+                               "tl" '(tab-bar-switch-to-next-tab :wk "Next tab")
+                               "tt" '(tab-bar-new-tab :wk "New tab")
+                               "tq" '(tab-bar-close-tab :wk "Close tab")))
+#+end_src
+
+** ENVIRONMENT VARIABLES
+#+begin_src emacs-lisp
+(setenv "SSH_AUTH_SOCK" "/run/user/1000/gnupg/S.gpg-agent.ssh")
 #+end_src
 
 * FONTS
@@ -108,19 +125,63 @@
 (add-to-list 'default-frame-alist '(font . "Cascadia Mono-11"))
 #+end_src
 
-* GUI TWEAKS
+* GUI
 
-** DISABLE STUFF
+** FRAME LAYOUT
 #+begin_src emacs-lisp
-  (menu-bar-mode -1)
+(set-frame-parameter nil 'undecorated t)
 
-  (scroll-bar-mode -1)
+(set-frame-parameter nil 'alpha-background 75)
 
-  (tool-bar-mode -1)
+(setq frame-resize-pixelwise t)
 
-  (setq visible-bell 1)
+(add-to-list 'default-frame-alist '(internal-border-width . 10))
 
-  (setq frame-resize-pixelwise t)
+(menu-bar-mode -1)
+
+(scroll-bar-mode -1)
+
+(tool-bar-mode -1)
+
+(setq visible-bell 1)
+#+end_src
+
+** CATPPUCCIN THEME
+#+begin_src emacs-lisp
+(use-package catppuccin-theme
+             :ensure t
+             :config
+             (load-theme 'catppuccin :no-confirm))
+#+end_src
+
+** TAB BAR
+#+begin_src emacs-lisp
+  (defface n3mo-tab-bar-tab
+           `((t
+              :inherit 'tab-bar-tab
+              :foreground ,(face-attribute 'font-lock-keyword-face :foreground nil t)))
+           "Face for active tab in tab-bar."
+           :group 'n3mo-tab-bar)
+
+  (defface n3mo-tab-bar-tab-inactive
+           `((t :inherit 'tab-bar-tab-inactive
+                :foreground ,(face-attribute 'font-lock-comment-face :foreground nil t)))
+           "Face for inactive tab in tab-bar."
+           :group 'n3mo-tab-bar)
+
+  (defun n3mo-tab-bar-tab-name-format-default (tab i)
+         (let* ((current-p (eq (car tab) 'current-tab))
+                (tab-face (if current-p
+                              'n3mo-tab-bar-tab
+                              'n3mo-tab-bar-tab-inactive)))
+               (propertize (concat "  " (alist-get 'name tab) "  ") 'face tab-face)))
+
+  (setq tab-bar-show 1
+              tab-bar-close-button-show nil
+              tab-bar-new-tab-choice 'multi-vterm
+              tab-bar-tab-name-format-function 'n3mo-tab-bar-tab-name-format-default)
+
+  (tab-bar-mode 1)
 #+end_src
 
 ** LINE NUMBERS, TRUNCATING, AND INDENTATION
@@ -157,6 +218,10 @@
                                  "#1e1e2e"
                                  :background
                                  "#f38ba8")
+             (setq telephone-line-primary-left-separator 'telephone-line-flat
+                   telephone-line-secondary-left-separator 'telephone-line-nil
+                   telephone-line-primary-right-separator 'telephone-line-flat
+                   telephone-line-secondary-right-separator 'telephone-line-nil)
              (setq telephone-line-lhs
                    '((evil . (telephone-line-evil-tag-segment))
                      (accent . (telephone-line-vc-segment
@@ -177,14 +242,6 @@
       scroll-margin 500
       scroll-conservatively 10000
       scroll-preserve-screen-position 1)
-#+end_src
-
-** CATPPUCCIN THEME
-#+begin_src emacs-lisp
-(use-package catppuccin-theme
-             :ensure t
-             :config
-             (load-theme 'catppuccin :no-confirm))
 #+end_src
 
 ** RAINBOW DELIMITERS
@@ -268,16 +325,15 @@
 
 * MISC 
 
-** TRANSIENT MARK MODE
-#+begin_src emacs-lisp
-(transient-mark-mode 1)  ; dont actually know what this does
-#+end_src
-
 ** VTERM
 #+begin_src emacs-lisp
-(setq initial-buffer-choice 'multi-vterm
-      vterm-term-environment-variable "eterm-color"
-      vterm-kill-buffer-on-exit t)
+(use-package vterm
+             :ensure t
+             :config
+             (setq initial-buffer-choice 'multi-vterm
+                   vterm-term-environment-variable "eterm-color"
+                   vterm-kill-buffer-on-exit t))
+             ;;(evil-set-initial-state 'vterm-mode 'emacs))
 #+end_src
 
 ** NIX TREESITTER
@@ -293,14 +349,20 @@
              :ensure t
              :config
              (setq highlight-indent-guides-method 'character
-                   highlight-indent-guides-character ?|))
-             ;(set-face-background 'highlight-indent-guides-odd-face "darkgray")
-             ;(set-face-background 'highlight-indent-guides-even-face "dimgray"))
+                   highlight-indent-guides-character ?|)
+             (set-face-background 'highlight-indent-guides-odd-face "darkgray")
+             (set-face-background 'highlight-indent-guides-even-face "dimgray"))
 
 (add-hook 'prog-mode-hook 'highlight-indent-guides-mode)
 
 (add-hook 'org-mode-hook 'highlight-indent-guides-mode)
 #+end_src
+
+** PASS
+#+begin_src emacs-lisp
+(use-package pass :ensure t)
+#+end_src
+
 
 #+RESULTS:
 | highlight-indent-guides-mode | #[0 \301\211\207 [imenu-create-index-function org-imenu-get-tree] 2] | (lambda nil (org-bullets-mode 1)) | org-indent-mode | toc-org-enable | display-line-numbers-mode | #[0 \300\301\302\303\304$\207 [add-hook change-major-mode-hook org-fold-show-all append local] 5] | #[0 \300\301\302\303\304$\207 [add-hook change-major-mode-hook org-babel-show-result-all append local] 5] | org-babel-result-hide-spec | org-babel-hide-all-hashes |
