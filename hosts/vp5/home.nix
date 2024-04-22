@@ -3,7 +3,6 @@
 {
 
   imports = [
-    ../../modules/home-manager/neovim
     ../../modules/home-manager/zsh
     ../../modules/home-manager/git
     ../../modules/home-manager/gpg

@@ -107,9 +107,10 @@
           istilldontcareaboutcookies
           sponsorblock
           browserpass
-          floccus
+          #floccus
           new-tab-override
           linkhints
+          privacy-redirect
         ];
         userChrome = ''
           @import "firefox-cascade-theme/chrome/userChrome.css";

@@ -13,7 +13,7 @@
   hostname = "m3d14";
 	
   # bootloader
-	boot.loader.systemd-boot.enable = true;
+  boot.loader.systemd-boot.enable = true;
 
   # filesystems
   environment.systemPackages = with pkgs; [ mergerfs ];
@@ -53,6 +53,6 @@
   # change ssh server port to access gitea on port 22
   ssh-server.port = 222;
 
-	system.stateVersion = "23.05";
+  system.stateVersion = "23.05";
 
 }

@@ -11,6 +11,20 @@
     deploy-rs.url = "github:serokell/deploy-rs";
     nur.url = "github:nix-community/NUR";
     # add impermanence?
+
+    hyprland = {
+      url = "github:hyprwm/Hyprland";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    hyprgrass = {
+      url = "github:horriblename/hyprgrass";
+      inputs.hyprland.follows = "hyprland"; # IMPORTANT
+    };
+    hyprspace = {
+      url = "github:KZDKM/Hyprspace";
+      inputs.hyprland.follows = "hyprland";
+    };
+
     arkenfox.url = "github:dwarfmaster/arkenfox-nixos";
     musnix.url = "github:musnix/musnix";
     stylix.url = "github:danth/stylix";
@@ -22,10 +36,6 @@
       url = "github:andreasgrafen/cascade";
       flake = false;
     };
-    thunderbird-gnome-theme = {
-      url = "github:rafaelmardojai/thunderbird-gnome-theme";
-      flake = false;
-    };
   };
 
   outputs = inputs @ {
@@ -34,12 +44,14 @@
     home-manager,
     deploy-rs,
     nur,
+    hyprland,
+    hyprgrass,
+    hyprspace,
     arkenfox,
     musnix,
     stylix,
     emacs-overlay,
     firefox-cascade-theme,
-    thunderbird-gnome-theme
   }:
   let
     user = "n3mo";
@@ -55,11 +67,6 @@
           auto-optimise-store = true;
           experimental-features = [ "nix-command" "flakes" ];
           trusted-users = [ "${user}" ];
-        };
-        gc = {
-          automatic = true;
-          dates = "weekly";
-          options = "--delete-older-than 7d";
         };
       };
     };
@@ -82,6 +89,7 @@
                 imports = [
                   ./hosts/l4p70p/home.nix
                   nur.hmModules.nur
+                  hyprland.homeManagerModules.default
                   arkenfox.hmModules.arkenfox
                 ];
               };

@@ -1,10 +1,10 @@
-{ config, lib, ... }:
+{ pkgs, config, lib, ... }:
 
 with lib;
 {
 
   options.pinentryPackage = mkOption {
-    default = "curses";
+    default = pkgs.pinentry-curses;
     type = types.package;
     description = ''
       flavor of pinentry

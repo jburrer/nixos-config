@@ -20,7 +20,6 @@
       deploy-rs pass wl-clipboard
       tor-browser-bundle-bin monero-gui
       libreoffice celluloid gimp
-      spotube fractal
     ];
     stateVersion = "23.05";
   };

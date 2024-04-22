@@ -45,20 +45,19 @@ in
       enableCompletion = true;
       enableVteIntegration = true;
       history = {
-      size = 10000;
-      ignoreAllDups = true;
+        size = 10000;
+        ignoreAllDups = true;
       };
       shellAliases = {
-      ls = "ls -1 --group-directories-first --color=auto"; 
-      la = "ls -1A --group-directories-first --color=auto"; 
-      grep = "grep --color=auto";
-      mv = "mv -v";
-      cp = "cp -v";
-      rm = "rm -v";
-      rmdir = "rmdir -v";
-      mkdir = "mkdir -v";
-      neofetch = "echo && ${pkgs.neofetch}/bin/neofetch";
-      sysrebuild = "sudo nixos-rebuild switch --flake ${osConfig.configDir}/#${osConfig.hostname}";
+        ls = "ls -1 --group-directories-first --color=auto"; 
+        la = "ls -1A --group-directories-first --color=auto"; 
+        grep = "grep --color=auto";
+        mv = "mv -v";
+        cp = "cp -v";
+        rm = "rm -v";
+        rmdir = "rmdir -v";
+        mkdir = "mkdir -v";
+        neofetch = "echo && ${pkgs.neofetch}/bin/neofetch";
       };
       syntaxHighlighting.enable = true;
       initExtra = extraZshConfig;

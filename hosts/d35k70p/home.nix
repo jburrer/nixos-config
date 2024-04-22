@@ -8,8 +8,8 @@
     ../../modules/home-manager/thunderbird
     ../../modules/home-manager/alacritty
     ../../modules/home-manager/music
-    ../../modules/home-manager/tmux
-    ../../modules/home-manager/neovim
+    #../../modules/home-manager/tmux
+    #../../modules/home-manager/neovim
     ../../modules/home-manager/zsh
     ../../modules/home-manager/git
     ../../modules/home-manager/gpg
@@ -35,9 +35,6 @@
 
   # xdg
   xdg.enable = true;
-
-  # pinentry flavor
-  pinentry = "gnome3";
 
   # syncthing
   services.syncthing.enable = true;

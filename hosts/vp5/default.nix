@@ -19,25 +19,19 @@
     enable = true;
     virtualHosts = {
       "whirlybirds.online" = {
-        forcessl = true;
-        enableacme = true;
-        root = "/var/www/whirlybirds.online";
-      };
-      "cloud.whirlybirds.online" = {
         forceSSL = true;
         enableACME = true;
-        root = "/var/www/test";
+        root = "/var/www/whirlybirds.online";
       };
-      "vp5" = {
-        #forcessl = true;
-        #enableacme = true;
-        root = "/var/www/ydsapurdue.online";
+      "ydsapurdue.mooo.com" = {
+        forceSSL = true;
+        enableACME = true;
+        root = "/var/www/ydsapurdue.mooo.com";
       };
     };
   };
   networking.firewall.allowedTCPPorts = [ 80 443 ];
 
-  # acme for whirly birds site
   security.acme = {
     acceptTerms = true;
     defaults.email = "jburrer@purdue.edu";

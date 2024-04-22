@@ -115,6 +115,15 @@ with lib;
       }
     ];
 
+    programs.nh = {
+      enable = true;
+      flake = "${config.configDir}";
+      clean = {
+        enable = true;
+        extraArgs = "--keep-since 4d --keep 3";
+      };
+    };
+
     documentation.doc.enable = false;
 
   };

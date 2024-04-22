@@ -2,33 +2,14 @@
 
 {
 
-  home.packages = (with pkgs; [
-    gnome3.gnome-tweaks catppuccin
-  ]) ++ (with pkgs.gnomeExtensions; [
+  imports = [ ../desktop ];
+
+  home.packages = ([ pkgs.gnome3.gnome-tweaks ]) ++ (with pkgs.gnomeExtensions; [
     paperwm dash-to-panel auto-move-windows
     just-perfection blur-my-shell user-themes
     tailscale-qs syncthing-indicator
-    #rounded-window-corners
+    celluloid
   ]);
-
-  xdg.enable = true;
-
-  gtk = {
-    enable = true;
-    theme = lib.mkForce {
-      name = "Catppuccin-Mocha-Compact-Mauve-Dark";
-      package = pkgs.catppuccin-gtk.override {
-        accents = [ "mauve" ];
-        size = "compact";
-        tweaks = [ "rimless" ];
-        variant = "mocha";
-      };
-    };
-    iconTheme = {
-      name = "Papirus";
-      package = pkgs.papirus-icon-theme;
-    };
-  };
 
   dconf.settings = lib.mkForce {
     "org/gnome/shell" = {
