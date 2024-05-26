@@ -29,7 +29,7 @@
                                "ej" '(previous-buffer :wk "Previous buffer")
                                "ek" '(next-buffer :wk "Next buffer")
                                "er" '(revert-buffer :wk "Reload buffer")
-                               "eq" '(kill-this-buffer :wk "Kill this buffer")
+                               "eq" '(kill-buffer (current-buffer) :wk "Kill this buffer")
                                "w" '(:ignore t :wk "window")
                                "wh" '(windmove-left :wk "Move to left window")
                                "wl" '(windmove-right :wk "Move to right window")

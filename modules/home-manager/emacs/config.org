@@ -56,42 +56,42 @@
 
 ** GENERAL KEYBINDING
 #+begin_src emacs-lisp
-(use-package general
-             :config
-             (general-evil-setup)
-             (general-create-definer n3mo/leader-keys
-                                     :states '(normal insert visual emacs)
-                                     :keymaps 'override
-                                     :prefix "SPC"
-                                     :global-prefix "C-SPC") 
-             (n3mo/leader-keys "e" '(:ignore t :wk "buffer")
-                               "eb" '(switch-to-buffer :wk "Switch buffer")
-                               "ej" '(previous-buffer :wk "Previous buffer")
-                               "ek" '(next-buffer :wk "Next buffer")
-                               "er" '(revert-buffer :wk "Reload buffer")
-                               "eq" '(kill-this-buffer :wk "Kill this buffer")
-                               "w" '(:ignore t :wk "window")
-                               "wh" '(windmove-left :wk "Move to left window")
-                               "wl" '(windmove-right :wk "Move to right window")
-                               "wj" '(windmove-down :wk "Move to lower window")
-                               "wk" '(windmove-up :wk "Move to upper window")
-                               "wH" '(windmove-swap-states-left
-                                      :wk "Swap window to the left")
-                               "wL" '(windmove-swap-states-right
-                                      :wk "Swap window to the right")
-                               "ws" '(evil-window-split
-                                      :wk "Split window horizontally")
-                               "wv" '(evil-window-vsplit
-                                      :wk "Split window vertically")
-                               "wq" '(evil-quit
-                                      :wk "Close window")
-                               "t" '(:ignore t :wk "tab")
-                               "th" '(tab-bar-switch-to-prev-tab :wk "Previous tab")
-                               "tj" '(tab-bar-switch-to-prev-tab :wk "Previous tab")
-                               "tk" '(tab-bar-switch-to-next-tab :wk "Next tab")
-                               "tl" '(tab-bar-switch-to-next-tab :wk "Next tab")
-                               "tt" '(tab-bar-new-tab :wk "New tab")
-                               "tq" '(tab-bar-close-tab :wk "Close tab")))
+  (use-package general
+               :config
+               (general-evil-setup)
+               (general-create-definer n3mo/leader-keys
+                                       :states '(normal insert visual emacs)
+                                       :keymaps 'override
+                                       :prefix "SPC"
+                                       :global-prefix "C-SPC") 
+               (n3mo/leader-keys "e" '(:ignore t :wk "buffer")
+                                 "eb" '(switch-to-buffer :wk "Switch buffer")
+                                 "ej" '(previous-buffer :wk "Previous buffer")
+                                 "ek" '(next-buffer :wk "Next buffer")
+                                 "er" '(revert-buffer :wk "Reload buffer")
+                                 "eq" '(kill-buffer (current-buffer) :wk "Kill this buffer")
+                                 "w" '(:ignore t :wk "window")
+                                 "wh" '(windmove-left :wk "Move to left window")
+                                 "wl" '(windmove-right :wk "Move to right window")
+                                 "wj" '(windmove-down :wk "Move to lower window")
+                                 "wk" '(windmove-up :wk "Move to upper window")
+                                 "wH" '(windmove-swap-states-left
+                                        :wk "Swap window to the left")
+                                 "wL" '(windmove-swap-states-right
+                                        :wk "Swap window to the right")
+                                 "ws" '(evil-window-split
+                                        :wk "Split window horizontally")
+                                 "wv" '(evil-window-vsplit
+                                        :wk "Split window vertically")
+                                 "wq" '(evil-quit
+                                        :wk "Close window")
+                                 "t" '(:ignore t :wk "tab")
+                                 "th" '(tab-bar-switch-to-prev-tab :wk "Previous tab")
+                                 "tj" '(tab-bar-switch-to-prev-tab :wk "Previous tab")
+                                 "tk" '(tab-bar-switch-to-next-tab :wk "Next tab")
+                                 "tl" '(tab-bar-switch-to-next-tab :wk "Next tab")
+                                 "tt" '(tab-bar-new-tab :wk "New tab")
+                                 "tq" '(tab-bar-close-tab :wk "Close tab")))
 #+end_src
 
 ** ENVIRONMENT VARIABLES

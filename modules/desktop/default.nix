@@ -13,7 +13,10 @@
         package = pkgs.cantarell-fonts;
         name = "Cantarell";
       };
-      sansSerif = config.stylix.fonts.serif;
+      sansSerif = {
+        package = pkgs.cantarell-fonts;
+        name = "Cantarell";
+      };
       monospace = {
         package = pkgs.cascadia-code;
         name = "Cascadia Code";
@@ -36,5 +39,12 @@
   };
   hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
+
+  hardware.bluetooth = {
+    enable = true;
+    powerOnBoot = true;
+  };
+
+  services.dbus.packages = [ pkgs.gcr ];
 
 }

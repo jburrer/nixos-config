@@ -11,20 +11,18 @@
     deploy-rs.url = "github:serokell/deploy-rs";
     nur.url = "github:nix-community/NUR";
     # add impermanence?
-
     hyprland = {
-      url = "github:hyprwm/Hyprland";
+      url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    hyprgrass = {
-      url = "github:horriblename/hyprgrass";
-      inputs.hyprland.follows = "hyprland"; # IMPORTANT
-    };
-    hyprspace = {
-      url = "github:KZDKM/Hyprspace";
+    hyprscroller = {
+      url = "github:dawsers/hyprscroller";
       inputs.hyprland.follows = "hyprland";
     };
-
+    #hyprspace = {
+    #  url = "github:KZDKM/Hyprspace";
+    #  inputs.hyprland.follows = "hyprland";
+    #};
     arkenfox.url = "github:dwarfmaster/arkenfox-nixos";
     musnix.url = "github:musnix/musnix";
     stylix.url = "github:danth/stylix";
@@ -45,8 +43,8 @@
     deploy-rs,
     nur,
     hyprland,
-    hyprgrass,
-    hyprspace,
+    hyprscroller,
+    #hyprspace,
     arkenfox,
     musnix,
     stylix,

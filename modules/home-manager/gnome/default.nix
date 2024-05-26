@@ -4,11 +4,12 @@
 
   imports = [ ../desktop ];
 
-  home.packages = ([ pkgs.gnome3.gnome-tweaks ]) ++ (with pkgs.gnomeExtensions; [
+  home.packages = (with pkgs; [
+    gnome3.gnome-tweaks celluloid
+  ]) ++ (with pkgs.gnomeExtensions; [
     paperwm dash-to-panel auto-move-windows
     just-perfection blur-my-shell user-themes
     tailscale-qs syncthing-indicator
-    celluloid
   ]);
 
   dconf.settings = lib.mkForce {

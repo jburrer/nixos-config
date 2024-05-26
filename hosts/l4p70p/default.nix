@@ -6,7 +6,7 @@
     ./hardware-configuration.nix
     ../../modules/system
     ../../modules/tailscale
-    ../../modules/gnome
+    ../../modules/hyprland
     ../../modules/zsh
   ];
 
