@@ -13,7 +13,7 @@
     # add impermanence?
     hyprland = { # pinned to specific commit to compile w hyprscroller
       #url = "git+https://github.com/hyprwm/Hyprland?submodules=1"; # current
-      url = "git+https://github.com/hyprwm/Hyprland?rev=ea2501d4556f84d3de86a4ae2f4b22a474555b9f&submodules=1"; # 0.41.0 (matching arch repo)
+      url =   "git+https://github.com/hyprwm/Hyprland?rev=ea2501d4556f84d3de86a4ae2f4b22a474555b9f&submodules=1"; # 0.41.0 (matching arch repo)
       inputs.nixpkgs.follows = "nixpkgs";
     };
     hyprscroller = {
@@ -82,7 +82,6 @@
               extraSpecialArgs = inputs;
               users."${user}" = {
                 imports = [
-                  #./hosts/l4p70p/home.nix
                   nur.hmModules.nur
                   hyprland.homeManagerModules.default
                   arkenfox.hmModules.arkenfox
@@ -105,7 +104,6 @@
               useUserPackages = true;
               extraSpecialArgs = inputs;
               users."${user}".imports = [
-                ./hosts/d35k70p/home.nix
                 nur.hmModules.nur
                 arkenfox.hmModules.arkenfox
               ];
@@ -122,9 +120,6 @@
             home-manager = {
               useGlobalPkgs = true;
               useUserPackages = true;
-              users."${user}".imports = [
-                ./hosts/m3d14/home.nix
-              ];
             };
           }
         ];
@@ -138,9 +133,6 @@
             home-manager = {
               useGlobalPkgs = true;
               useUserPackages = true;
-              users."${user}".imports = [
-                ./hosts/vp5/home.nix
-              ];
             };
           }
         ];
