@@ -40,7 +40,5 @@
         repeat = true;
     };
   };
-
-  pinentryPackage = pkgs.pinentry-gnome3;
   
 }

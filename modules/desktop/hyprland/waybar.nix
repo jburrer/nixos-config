@@ -1,8 +1,7 @@
-{ ... }:
+{ pkgs, lib, osConfig, ... }:
 
 let
   style = ''
-
 @define-color base #1e1e2e;
 @define-color mantle #181825;
 @define-color surface0 #313244;
@@ -43,7 +42,7 @@ let
     margin-right: 5px;
 }
 
-.modules-left, .modules-right {
+.modules-center, .modules-right {
     padding-left: 10px;
     padding-right: 10px;
 }
@@ -74,7 +73,6 @@ let
 #workspaces button.empty{
     color: @text;
 }
-
   '';
 in {
 
@@ -84,20 +82,27 @@ in {
     settings = {
       mainBar = {
         output = [ "eDP-1" ];
-        modules-left = [ "clock" ];
-        modules-center = [ "hyprland/workspaces" ];
-        modules-right = [ "bluetooth" "network" "wireplumber" "battery" "custom/powermenu" ];
+        modules-left = [ "hyprland/workspaces" ];
+        modules-center = [ "clock" ];
+        modules-right = [
+          "tray"
+          #"bluetooth"
+          #"network"
+          "wireplumber"
+          "battery"
+          "custom/powermenu"
+        ];
         clock = {
           format = "{:%A   %I:%M %p   %m/%d}";
           timezone = "America/Indianapolis";
         };
-        network = {
-          format-wifi = "󰤨  {signalStrength}";
-          format-ethernet = "  {signalStrength}";
-          format-disconnected = "󰤭";
-          on-click = "notify-send test";
-        };
-        wireplumber.format = "  {volume}%";
+        #network = {
+        #  format-wifi = "<span size=\"xx-large\" rise=\"-3.5pt\"></span>  {signalStrength}";
+        #  format-ethernet = "<span size=\"xx-large\" rise=\"-3.5pt\"></span>  {signalStrength}";
+        #  format-disconnected = "<span size=\"xx-large\" rise=\"-3.5pt\"></span>";
+        #  on-click = "notify-send test";
+        #};
+        wireplumber.format = "<span size=\"xx-large\" rise=\"-3.5pt\"></span>  {volume}%";
         battery = {
           states = {
             warning = 30;
@@ -107,14 +112,17 @@ in {
           format = "{icon}  {capacity}%";
           format-warning = "{icon}  {capacity}%";
           format-critical = "{icon}  {capacity}%";
+          format-alt = "{icon}  {capacity}%";
+          #format-charging = "<span size=\"large\" rise=\"-3.5pt\"></span>  {capacity}%";
+          #format-plugged = "<span size=\"large\" rise=\"-3.5pt\"></span>  {capacity}%";
+          #format-full = "<span size=\"large\" rise=\"-3.5pt\"></span>  100%";
           format-charging = "  {capacity}%";
           format-plugged = "  {capacity}%";
-          format-alt = "{icon}  {capacity}%";
           format-full = "  100%";
           format-icons = [ "󰂎" "󰁺" "󰁻" "󰁼" "󰁽" "󰁾" "󰁿" "󰂀" "󰂁" "󰂂" ];
         };
         "custom/powermenu" = {
-          format = "⏻";
+          format = "<span size=\"large\" rise=\"-3.5pt\"></span>";
         };
       };
     };

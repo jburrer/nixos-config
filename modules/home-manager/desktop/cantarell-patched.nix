@@ -12,8 +12,8 @@ stdenvNoCC.mkDerivation rec {
     done
   '';
 
-  dontUnpack = true;
   dontInstall = true;
+  dontUnpack = true;
   dontFixup = true;
 
   meta = with lib; {

@@ -1,6 +1,4 @@
-{ pkgs, ... }:
-
-{
+{ pkgs, ... }: {
 
   programs.emacs = {
     enable = true;
@@ -14,7 +12,7 @@
       extraEmacsPackages = epkgs: with epkgs; [
         evil evil-collection general which-key
         vterm multi-vterm
-	org-bullets toc-org
+	org-bullets toc-org org-roam org-roam-ui
         auctex pdf-tools
         pass
         catppuccin-theme telephone-line rainbow-delimiters highlight-indent-guides

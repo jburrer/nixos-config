@@ -1,7 +1,6 @@
-{ config, osConfig, pkgs, ... }:
+{ config, pkgs, ... } :
 
-let
-  extraZshConfig = ''
+let extraZshConfig = ''
 PS1='%F{green}%n%f@%F{magenta}%m%f:%F{blue}%~%f > '
 
 set -o vi
@@ -33,11 +32,19 @@ setopt PROMPT_SUBST
 PROMPT=$PROMPT'%{$(vterm_prompt_end)%}'
 
 eval "$(direnv hook zsh)"
-  '';
-in
-{
+'';
+in {
 
-  programs = {
+  users.users."${config.username}".shell = pkgs.zsh;
+
+  environment = {
+    shells = [ pkgs.zsh ];
+    pathsToLink = [ "/share/zsh" ];
+  };
+
+  programs.zsh.enable = true;
+
+  home-manager.users.${config.username}.programs = {
 
     zsh = {
       enable = true;

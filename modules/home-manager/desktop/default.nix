@@ -5,37 +5,13 @@ let
 in {
 
   home.packages = [
-    pkgs.catppuccin
     cantarellPatched
+    pkgs.catppuccin
   ];
 
   xdg.enable = true;
   
   fonts.fontconfig.enable = true;
-
-  stylix = {
-    image = ../../../wallpaper.png;
-    base16Scheme = ./catppuccin-mocha.yaml;
-    polarity = "dark";
-    fonts = {
-      serif = {
-        package = pkgs.cantarell-fonts;
-        name = "Cantarell";
-      };
-      sansSerif = {
-        package = pkgs.cantarell-fonts;
-        name = "Cantarell";
-      };
-      monospace = {
-        package = pkgs.cascadia-code;
-        name = "Cascadia Code";
-      };
-    };
-    cursor = {
-      package = pkgs.catppuccin-cursors;
-      size = 16;
-    };
-  };
 
   gtk = {
     enable = true;
@@ -53,5 +29,7 @@ in {
       package = pkgs.papirus-icon-theme;
     };
   };
+
+  pinentryPackage = pkgs.pinentry-gnome3;
 
 }

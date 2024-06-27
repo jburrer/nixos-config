@@ -1,18 +1,18 @@
-{ config, pkgs, vars, ... }:
-
-{
+{ config, pkgs, ... }: {
 
   imports = [
     ./hardware-configuration.nix
-    ../../modules/system
-    ../../modules/tailscale
-    ../../modules/gnome
-    ../../modules/music-production
-    ../../modules/zsh
+    ../../modules
   ];
 
   hostname = "d35k70p";
   configDir = "${config.homeDir}/Documents/nixos-config";
+  desktop = "gnome";
+  musicProduction.enable = true;
+  gaming = {
+    enable = true;
+    nvidia = true;
+  }
 
   # bootloader
   boot = {
@@ -40,37 +40,8 @@
     };
   };
 
-  # networking
-  networking.networkmanager.enable = true;
-  users.users."${config.username}".extraGroups = [ "networkmanager" ];
-
-  # flatpack
-  services.flatpak.enable = true;
-
-  # nvidia
-  services.xserver.videoDrivers = [ "nvidia" ];
-  hardware = {
-    opengl = {
-      enable = true;
-      driSupport = true;
-      driSupport32Bit = true;
-    };
-    nvidia = {
-      package = config.boot.kernelPackages.nvidiaPackages.stable;
-      modesetting.enable = true;
-      open = false;
-      nvidiaSettings = false;
-    };
-  };
-
-  # steam
-  programs.steam = {
-    enable = true;
-    remotePlay.openFirewall = true;
-    dedicatedServer.openFirewall = true;
-  };
-
-  nixpkgs.config.allowUnfree = true;
+  # enable syncthing with home manager
+  home-manager.users.${config.username}.services.syncthing.enable = true;
 
   system.stateVersion = "22.11";
 

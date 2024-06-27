@@ -1,4 +1,4 @@
-{ pkgs, config, osConfig, lib, hyprscroller, hyprspace, ... }:
+{ pkgs, lib, config, osConfig, hyprscroller, ... }:
 
 {
 
@@ -15,15 +15,12 @@
     enable = true;
     systemd.variables = ["--all"];
 
-    plugins = [
-      hyprscroller.packages.${pkgs.system}.hyprscroller
-      #hyprspace.packages.${pkgs.system}.Hyprspace
-    ];
+    plugins = [ hyprscroller.packages.${pkgs.system}.hyprscroller ];
 
     settings = {
 
       monitor = "eDP-1,1920x1080@60,0x0,1";
-      exec-once = "${pkgs.swaybg}/bin/swaybg -i ${osConfig.configDir}/wallpaper.png";
+
       "$mod" = "SUPER";
 
       general = {
@@ -54,15 +51,28 @@
 
       misc = {
         disable_hyprland_logo = true;
-        disable_autoreload = true; # doesnt seem to work with home manager, might as well disable
+        disable_autoreload = true;
+        focus_on_activate = true;
       };
 
-      #gestures = {
-      #  workspace_swipe = true;
-      #  workspace_swipe_fingers = 3;
-      #};
-
       plugin.scroller.column_default_width = "onehalf";
+
+      exec-once = lib.lists.optionals osConfig.services.tailscale.enable [
+        "${pkgs.tailscale-systray}/bin/tailscale-systray"
+      ] ++ [
+        "${pkgs.wl-clipboard}/bin/wl-paste --type text --watch cliphist store"
+        "${pkgs.wl-clipboard}/bin/wl-paste --type image --watch cliphist store"
+        "hyprctl setcursor catppuccin-mocha-mauve-cursors 16"
+        "${pkgs.networkmanagerapplet}/bin/nm-applet --indicator"
+        "${pkgs.thunderbird}/bin/thunderbird"
+        "${pkgs.valent}/bin/valent"
+      ];
+
+      windowrule = [
+        "workspace 2,^(thunderbird)$"
+        "workspace 2,^(valent)$"
+      ];
+      windowrulev2 = "stayfocused, class:^(pinentry-)";
 
       bind = let
         screenshot_save_cmd = ''
@@ -71,10 +81,17 @@
         screenshot_edit_cmd = ''
           ${pkgs.grimblast}/bin/grimblast --notify edit area
         '';
+        screenshot_ocr_cmd = ''
+          ${pkgs.grimblast}/bin/grimblast copysave area - | ${pkgs.tesseract}/bin/tesseract -l eng - - | ${pkgs.wl-clipboard}/bin/wl-copy && ${pkgs.dunst}/bin/dunstify "Screenshot OCR Script" "Text copied successfully !!"
+        '';
+        cliphist_rofi_cmd = ''
+          ${pkgs.cliphist}/bin/cliphist list | ${pkgs.rofi}/bin/rofi -dmenu -p "Clipboard" | ${pkgs.cliphist}/bin/cliphist decode | ${pkgs.wl-clipboard}/bin/wl-copy
+        '';
       in [
-        #"$mod, Space, overview:toggle,"
+        "$mod, Space, scroller:toggleoverview,"
         "$mod, D, exec, rofi -show drun"
         "$mod, Q, killactive,"
+        "$mod, X, exec, hyprlock"
 
         "$mod, H, scroller:movefocus, l"
         "$mod, L, scroller:movefocus, r"
@@ -97,8 +114,10 @@
         "$mod SHIFT, 3, movetoworkspace, 3"
         "$mod SHIFT, 4, movetoworkspace, 4"
 
+        "$mod, o, exec, ${screenshot_ocr_cmd}"
         "$mod, P, exec, ${screenshot_save_cmd}"
         "$mod SHIFT, P, exec, ${screenshot_edit_cmd}"
+        "$mod, V, exec, ${cliphist_rofi_cmd}"
       ];
 
       bindel = let
@@ -129,17 +148,106 @@
 
   };
 
-  # notifications (dunst)
-  services.dunst.enable = true;
+  # notifications
+  services.dunst = {
+    enable = true;
+    settings = {
+      global = {
+        origin = "top-center";
+        offset = "0x5";
+        width = "(250, 1000)";
+        height = 500;
+        corner_radius = 10;
+        frame_width = 0;
+        gap_size = 5;
+        background = "#181825";
+        foreground = "#cdd6f4";
+        highlight = "#b4befe";
+        font = "Cantarell 12";
+        format = "<b>%s</b>\n%b";
+      };
+    };
+  };
+  stylix.targets.dunst.enable = false;
 
-  # pinentry
-  pinentryPackage = pkgs.pinentry-gnome3;
+  # wallpaper
+  services.hyprpaper = {
+    enable = true;
+    settings = {
+      ipc = "off";
+      splash = true;
+      preload = "${osConfig.configDir}/wallpaper.png";
+      wallpaper = ",${osConfig.configDir}/wallpaper.png";
+    };
+  };
+
+  # lock screen
+  programs.hyprlock = {
+    enable = true;
+    settings = {
+      general = {
+        hide_cursor = true;
+        no_fade_in = false;
+      };
+      background = [
+        {
+          path = "screenshot";
+          blur_passes = 3;
+          blur_size = 8;
+        }
+      ];
+      input-field = [
+        {
+          size = "300, 50";
+          position = "0, 0";
+          monitor = "";
+          fade_on_empty = false;
+          font_color = "rgb(cdd6f4)";
+          inner_color = "rgb(181825)";
+          outer_color = "rgb(b4befe)";
+          outline_thickness = 3;
+          rounding = 10;
+          placeholder_text = "cave canem";
+          shadow_passes = 2;
+        }
+      ];
+    };
+  };
+
+  # idle daemon
+  services.hypridle = {
+    enable = true;
+    settings = {
+      general = {
+        after_sleep_cmd = "hyprctl dispatch dpms on";
+        ignore_dbus_inhibit = false;
+        lock_cmd = "hyprlock";
+      };
+      listener = [
+        {
+          timeout = 300;
+          on-timeout = "hyprlock";
+        }
+        {
+          timeout = 360;
+          on-timeout = "hyprctl dispatch dpms off";
+          on-resume = "hyprctl dispatch dpms on";
+        }
+      ];
+    };
+  };
+
+  services.kdeconnect = {
+    enable = true;
+    package = pkgs.valent;
+  };
+
+  services.blueman-applet.enable = true;
 
   # default apps
   home.packages = with pkgs; [
-    gnome.nautilus imv mpv # general apps
-    iwgtk blueberry # settings apps
-    libnotify
+    grimblast wl-clipboard cliphist
+    gnome.nautilus imv mpv
   ];
 
 }

@@ -11,18 +11,15 @@
     deploy-rs.url = "github:serokell/deploy-rs";
     nur.url = "github:nix-community/NUR";
     # add impermanence?
-    hyprland = {
-      url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
+    hyprland = { # pinned to specific commit to compile w hyprscroller
+      #url = "git+https://github.com/hyprwm/Hyprland?submodules=1"; # current
+      url = "git+https://github.com/hyprwm/Hyprland?rev=ea2501d4556f84d3de86a4ae2f4b22a474555b9f&submodules=1"; # 0.41.0 (matching arch repo)
       inputs.nixpkgs.follows = "nixpkgs";
     };
     hyprscroller = {
       url = "github:dawsers/hyprscroller";
       inputs.hyprland.follows = "hyprland";
     };
-    #hyprspace = {
-    #  url = "github:KZDKM/Hyprspace";
-    #  inputs.hyprland.follows = "hyprland";
-    #};
     arkenfox.url = "github:dwarfmaster/arkenfox-nixos";
     musnix.url = "github:musnix/musnix";
     stylix.url = "github:danth/stylix";
@@ -44,7 +41,6 @@
     nur,
     hyprland,
     hyprscroller,
-    #hyprspace,
     arkenfox,
     musnix,
     stylix,
@@ -72,6 +68,7 @@
     nixosConfigurations = {
       "l4p70p" = nixpkgs.lib.nixosSystem {
 	inherit system;
+        specialArgs = inputs;
         modules = [
           ./hosts/l4p70p
           (nixConf pkgs)
@@ -85,7 +82,7 @@
               extraSpecialArgs = inputs;
               users."${user}" = {
                 imports = [
-                  ./hosts/l4p70p/home.nix
+                  #./hosts/l4p70p/home.nix
                   nur.hmModules.nur
                   hyprland.homeManagerModules.default
                   arkenfox.hmModules.arkenfox

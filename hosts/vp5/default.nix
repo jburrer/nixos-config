@@ -1,12 +1,8 @@
-{ config, pkgs, ... }:
-
-{
+{ config, pkgs, ... }: {
 
   imports = [
     ./hardware-configuration.nix
-    ../../modules/system
-    ../../modules/tailscale
-    ../../modules/zsh
+    ../../modules
   ];
 
   hostname = "vp5";

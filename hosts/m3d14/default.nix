@@ -1,13 +1,9 @@
-{ config, pkgs, ... }:
-
-{
+{ config, pkgs, ... }: {
 
   imports = [
     ./hardware-configuration.nix
+    ../../modules
     ./containers
-    ../../modules/system
-    ../../modules/tailscale
-    ../../modules/zsh
   ];
 
   hostname = "m3d14";

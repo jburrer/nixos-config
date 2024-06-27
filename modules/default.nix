@@ -1,55 +1,64 @@
-{ config, lib, ... }:
+{ pkgs, lib, config, ... }: {
 
-with lib;
-
-{
+  imports = [
+    ./desktop
+    ./zsh.nix
+  ];
 
   options = {
 
-    username = mkOption {
+    username = lib.mkOption {
       default = "n3mo";
-      type = types.str;
+      type = lib.types.str;
       description = ''
         username of main user
       '';
     };
-    
-    hostname = mkOption {
-      type = types.str;
+
+    hostname = lib.mkOption {
+      type = lib.types.str;
       description = ''
         hostname of nixos machine
       '';
     };
 
-    homeDir = mkOption {
+    homeDir = lib.mkOption {
       default = "/home/${config.username}";
-      type = types.str;
+      type = lib.types.str;
       description = ''
         home directory of main user
       '';
     };
 
-    configDir = mkOption {
+    configDir = lib.mkOption {
       default = "${config.homeDir}/nixos-config";
-      type = types.str;
+      type = lib.types.str;
       description = ''
         directory storing nixos config
       '';
     };
 
-    timezone = mkOption {
+    timezone = lib.mkOption {
       default = "America/Indiana/Indianapolis";
-      type = types.str;
+      type = lib.types.str;
       description = ''
         timezone that sytem primarily resides in
       '';
     };
 
-    ssh-server.port = mkOption {
+    sshServer.port = lib.mkOption {
       default = 22;
-      type = types.port;
+      type = lib.types.port;
       description = ''
         port on which to host ssh server
+      '';
+    };
+
+    pinentryPackage = lib.mkOption {
+      default = pkgs.pinentry-curses;
+      type = lib.types.package;
+      description = ''
+        flavor of pinentry
       '';
     };
 
@@ -57,10 +66,13 @@ with lib;
 
   config = {
 
+    # hostname
     networking.hostName = config.hostname;
 
+    # time zone
     time.timeZone = config.timezone;
 
+    # locale
     i18n = {
       defaultLocale = "en_US.UTF-8";
       extraLocaleSettings = {
@@ -76,6 +88,7 @@ with lib;
       };
     };
 
+    # swap caps and escape everywhere
     services.xserver.xkb = {
       layout = "us";
       variant = "";
@@ -83,6 +96,7 @@ with lib;
     };
     console.useXkbConfig = true;
 
+    # set up user
     users = {
       mutableUsers = false;
       users."${config.username}" = {
@@ -90,19 +104,21 @@ with lib;
         description = "${config.username}";
         hashedPassword = "$6$SbShs85kCNZRdQ4f$J5.gwBoKIO8GSW2vFETLbiAFHRvL/6ngCdQKDuwwB4HIJg.F569vtCkQUrKMf578l3kDHE1peUjAANVT.C5PW0";
         extraGroups = [ "wheel" ];
-        openssh.authorizedKeys.keyFiles = [ ../../key.pub ];
+        openssh.authorizedKeys.keyFiles = [ ../key.pub ];
       };
     };
 
+    # sshd
     services.openssh = {
       enable = true;
-      ports = [ config.ssh-server.port ];
+      ports = [ config.sshServer.port ];
       settings = {
         PermitRootLogin = "no";
         PasswordAuthentication = false;
       };
     };
 
+    # allow passwordless sudo
     security.sudo.extraRules = [
       {
         groups = [ "wheel" ];
@@ -115,6 +131,15 @@ with lib;
       }
     ];
 
+    # tailscale
+    networking.firewall = {
+      checkReversePath = "loose";
+      trustedInterfaces = [ "tailscale0" ];
+      allowedUDPPorts = [ config.services.tailscale.port ];
+    };
+    services.tailscale.enable = true;
+
+    # nh (for rebuilding config)
     programs.nh = {
       enable = true;
       flake = "${config.configDir}";
@@ -124,7 +149,26 @@ with lib;
       };
     };
 
+    # disable documentation (maybe stop doing this?)
     documentation.doc.enable = false;
+
+    # import some home manager modules
+    home-manager.users.${config.username} = {
+
+      imports = [
+        ./git.nix
+        ./gpg.nix
+      ];
+
+      # generic home manager setup
+      home = {
+        username = config.username;
+        homeDirectory = config.homeDir;
+        stateVersion = config.system.stateVersion;
+      };
+      programs.home-manager.enable = true;
+
+    };
 
   };
 
