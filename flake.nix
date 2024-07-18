@@ -10,7 +10,12 @@
     };
     deploy-rs.url = "github:serokell/deploy-rs";
     nur.url = "github:nix-community/NUR";
-    # add impermanence?
+    disko = {
+      url = "github:nix-community/disko";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    impermanence.url = "github:nix-community/impermanence";
+    nixarr.url = "github:rasmus-kirk/nixarr";
     hyprland = { # pinned to specific commit to compile w hyprscroller
       #url = "git+https://github.com/hyprwm/Hyprland?submodules=1"; # current
       url =   "git+https://github.com/hyprwm/Hyprland?rev=ea2501d4556f84d3de86a4ae2f4b22a474555b9f&submodules=1"; # 0.41.0 (matching arch repo)
@@ -39,6 +44,9 @@
     home-manager,
     deploy-rs,
     nur,
+    disko,
+    impermanence, 
+    nixarr,
     hyprland,
     hyprscroller,
     arkenfox,
@@ -73,6 +81,8 @@
           ./hosts/l4p70p
           (nixConf pkgs)
 	  ({pkgs, ...}: { nixpkgs.overlays = [ emacs-overlay.overlay ]; })
+          disko.nixosModules.disko
+          impermanence.nixosModules.impermanence
           musnix.nixosModules.musnix
           stylix.nixosModules.stylix
           home-manager.nixosModules.home-manager {
@@ -82,6 +92,7 @@
               extraSpecialArgs = inputs;
               users."${user}" = {
                 imports = [
+                  impermanence.nixosModules.home-manager.impermanence
                   nur.hmModules.nur
                   hyprland.homeManagerModules.default
                   arkenfox.hmModules.arkenfox
@@ -96,6 +107,8 @@
         modules = [
           ./hosts/d35k70p
           (nixConf pkgs)
+	  ({pkgs, ...}: { nixpkgs.overlays = [ emacs-overlay.overlay ]; })
+          impermanence.nixosModules.impermanence
           musnix.nixosModules.musnix
           stylix.nixosModules.stylix
           home-manager.nixosModules.home-manager {
@@ -116,10 +129,20 @@
         modules = [
           ./hosts/m3d14
           (nixConf pkgs)
+	  ({pkgs, ...}: { nixpkgs.overlays = [ emacs-overlay.overlay ]; })
+          impermanence.nixosModules.impermanence
+          nixarr.nixosModules.default
+          musnix.nixosModules.musnix
+          stylix.nixosModules.stylix
           home-manager.nixosModules.home-manager {
             home-manager = {
               useGlobalPkgs = true;
               useUserPackages = true;
+              extraSpecialArgs = inputs;
+              users."${user}".imports = [
+                nur.hmModules.nur
+                arkenfox.hmModules.arkenfox
+              ];
             };
           }
         ];
@@ -129,10 +152,19 @@
         modules = [
           ./hosts/vp5
           (nixConf pkgs)
+	  ({pkgs, ...}: { nixpkgs.overlays = [ emacs-overlay.overlay ]; })
+          impermanence.nixosModules.impermanence
+          musnix.nixosModules.musnix
+          stylix.nixosModules.stylix
           home-manager.nixosModules.home-manager {
             home-manager = {
               useGlobalPkgs = true;
               useUserPackages = true;
+              extraSpecialArgs = inputs;
+              users."${user}".imports = [
+                nur.hmModules.nur
+                arkenfox.hmModules.arkenfox
+              ];
             };
           }
         ];

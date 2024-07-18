@@ -3,6 +3,7 @@
   imports = [
     ./hardware-configuration.nix
     ../../modules
+    ./homelab.nix
     ./containers
   ];
 
@@ -18,11 +19,17 @@
     parityFiles = [ "/srv/diskp/snapraid.parity" ];
     contentFiles = [
       "/var/snapraid/snapraid.content"
-      "/srv/disk0/snapraid.content"
+      "/mnt/disks/disk0/snapraid.content"
+      "/mnt/disks/disk1/snapraid.content"
     ];
     dataDisks = {
-      d0 = "/srv/disk0";
+      d0 = "/mnt/disks/disk0";
+      d1 = "/mnt/disks/disk1";
     };
+  };
+  fileSystems."/srv/storage" = {
+    device = "/mnt/disks/*";
+    fsType = "fuse.mergerfs";
   };
 
   # nginx proxy for qbittorrent
@@ -47,7 +54,7 @@
   };
 
   # change ssh server port to access gitea on port 22
-  ssh-server.port = 222;
+  sshServer.port = 222;
 
   system.stateVersion = "23.05";
 

@@ -63,8 +63,8 @@
           icon-theme = "Papirus-Dark";
         };
         "org/gnome/desktop/peripherals/keyboard" = {
-            delay = lib.hm.gvariant.mkUint32 175;
-            repeat-interval = lib.hm.gvariant.mkUint32 18;
+            delay = 175;
+            repeat-interval = 18;
             repeat = true;
         };
       };

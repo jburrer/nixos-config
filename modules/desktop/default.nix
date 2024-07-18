@@ -10,17 +10,17 @@
   options = {
 
     desktop = lib.mkOption {
-      default = null;
+      default = "none";
       type = lib.types.str;
       description = ''
         which desktop to set up, if at all
-        "gnome", "hyprland", or null supported
+        "gnome", "hyprland", or "none" supported
       '';
     };
 
   };
 
-  config = lib.mkIf (config.desktop != null) {
+  config = lib.mkIf (config.desktop != "none") {
 
     # sound with pipwire
     services.pipewire = {
@@ -51,7 +51,7 @@
     # auto-ricing with stylix
     stylix = {
       enable = true;
-      image = ../../wallpaper.png;
+      autoEnable = true;
       base16Scheme = ./catppuccin-mocha.yaml;
       polarity = "dark";
       fonts = {
@@ -102,6 +102,32 @@
         iconTheme = {
           name = "Papirus";
           package = pkgs.papirus-icon-theme;
+        };
+      };
+
+      stylix = {
+        enable = true;
+        autoEnable = true;
+        image = ../../wallpaper.png;
+        base16Scheme = ./catppuccin-mocha.yaml;
+        polarity = "dark";
+        fonts = {
+          serif = {
+            package = pkgs.cantarell-fonts;
+            name = "Cantarell";
+          };
+          sansSerif = {
+            package = pkgs.cantarell-fonts;
+            name = "Cantarell";
+          };
+          monospace = {
+            package = pkgs.cascadia-code;
+            name = "Cascadia Code";
+          };
+        };
+        cursor = {
+          package = pkgs.catppuccin-cursors;
+          size = 16;
         };
       };
 

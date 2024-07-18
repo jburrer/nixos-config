@@ -31,14 +31,20 @@ in
     git = {
       enable = true;
       extraConfig = {
-        user.useConfigOnly = true;
         commit.gpgSign = true;
-        user.professional.name = "jb-24";
-        user.professional.email = "jburrer@purdue.edu";
-        user.professional.signingkey = "EBDE10F25B613962";
-        user.personal.name = "n3mo";
-        user.personal.email = "n3mo@no.one";
-        user.personal.signingkey = "0F0B80DCA5FC0EE6";
+        user = {
+          useConfigOnly = true;
+          professional = {
+            name = "Johnny Burrer";
+            email = "jburrer@purdue.edu";
+            signingkey = "EBDE10F25B613962";
+          };
+          personal = {
+            name = "n3mo";
+            email = "n3mo@no.one";
+            signingkey = "0F0B80DCA5FC0EE6";
+          };
+        };
       };
       aliases = {
         identity = "! git-identity";

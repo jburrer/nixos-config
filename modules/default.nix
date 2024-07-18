@@ -152,6 +152,9 @@
     # disable documentation (maybe stop doing this?)
     documentation.doc.enable = false;
 
+    # stylix image, needed to get deploy.rs to shut up
+    stylix.image = ../wallpaper.png;
+
     # import some home manager modules
     home-manager.users.${config.username} = {
 

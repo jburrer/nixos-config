@@ -10,19 +10,35 @@
   # bootloader
   boot.loader.grub.device = "/dev/vda";
 
-  # nginx to serve whirly birds site
+  # nginx
   services.nginx = {
     enable = true;
+    recommendedProxySettings = true;
+    recommendedTlsSettings = true;
     virtualHosts = {
+      # whirly birds
       "whirlybirds.online" = {
         forceSSL = true;
         enableACME = true;
         root = "/var/www/whirlybirds.online";
       };
+      # ydsa 
       "ydsapurdue.mooo.com" = {
         forceSSL = true;
         enableACME = true;
         root = "/var/www/ydsapurdue.mooo.com";
+      };
+      # dispatch dashboard
+      "dispatchdashboard.mooo.com" = {
+        forceSSL = true;
+        enableACME = true;
+        locations."/" = {
+          proxyPass = "http://127.0.0.1:8080";
+          extraConfig = ''
+            proxy_ssl_server_name on;
+            proxy_pass_header Authorization;
+          '';
+        };
       };
     };
   };

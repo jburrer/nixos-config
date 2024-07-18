@@ -12,7 +12,7 @@
   gaming = {
     enable = true;
     nvidia = true;
-  }
+  };
 
   # bootloader
   boot = {
