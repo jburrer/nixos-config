@@ -12,9 +12,9 @@
     };
     transmission = {
       enable = true;
-      flood.enable = true;
+      #flood.enable = true;
       vpn.enable = true;
-      #peerPort = 50000;
+      peerPort = 50000;
     };
     jellyfin.enable = true;
     radarr.enable = true;

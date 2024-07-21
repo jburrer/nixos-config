@@ -8,7 +8,7 @@
     [ (modulesPath + "/installer/scan/not-detected.nix")
     ];
 
-  boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "nvme" "sd_mod" "sdhci_pci" ];
+  boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usbhid" "sd_mod" "sdhci_pci" ];
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
@@ -23,19 +23,19 @@
       fsType = "vfat";
     };
 
-  fileSystems."/mnt/diskp" =
-    { device = "/dev/disk/by-uuid/29b42662-9122-4653-a0d7-517b30930ce3";
-      fsType = "ext4";
-    };
-
-  fileSystems."/mnt/disks/disk0" =
+  fileSystems."/srv/disk0" =
     { device = "/dev/disk/by-uuid/941f248e-8a70-4d00-a0eb-dc52c8d47fe4";
       fsType = "ext4";
     };
 
-  fileSystems."/mnt/disks/disk1" =
-    { device = "/dev/disk/by-uuid/d57774de-b3d2-4880-adfb-bcc1ae4db2f2";
+  fileSystems."/srv/diskp" =
+    { device = "/dev/disk/by-uuid/29b42662-9122-4653-a0d7-517b30930ce3";
       fsType = "ext4";
+    };
+
+  fileSystems."/srv/storage" =
+    { device = "/srv/disk0";
+      fsType = "fuse.mergerfs";
     };
 
   swapDevices =
@@ -50,8 +50,8 @@
   # networking.interfaces.enp2s0.useDHCP = lib.mkDefault true;
   # networking.interfaces.enp3s0.useDHCP = lib.mkDefault true;
   # networking.interfaces.enp4s0.useDHCP = lib.mkDefault true;
-  # networking.interfaces.tailscale0.useDHCP = lib.mkDefault true;
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
+  powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 }
