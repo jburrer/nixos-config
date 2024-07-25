@@ -34,10 +34,9 @@
     };
 
     # some apps
-    home-manager.users.${config.username}.home.packages
-        = lib.lists.optionals (config.desktop == "gnome") [
-      pkgs.gnomeExtensions.gamemode-indicator-in-system-settings
-    ] ++ [ pkgs.lutris pkgs.gamemode pkgs.transmission ];
+    home-manager.users.${config.username}.home.packages = with pkgs; [
+      gamemode transmission #lutris
+    ];
 
   };
 

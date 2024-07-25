@@ -90,15 +90,22 @@
     enable = true;
     powerOnBoot = true;
   };
-  services.blueman.enable = true;
 
   # home manager
   programs.fuse.userAllowOther = true;
   home-manager.users.${config.username} = {
 
+    imports = [ ../../modules/desktop/thunderbird.nix ];
+
     home.packages = with pkgs; [
       libreoffice tor-browser-bundle-bin monero-gui
     ];
+
+    #services.flatpack = {
+    #  enable = true;
+    #  update.onActivation = true;
+    #  packages = [ "app.bluebubbles.BlueBubbles" ];
+    #};
 
     #home.persistence."/persist/home" = {
     #  directories = [

@@ -1,8 +1,22 @@
-{ pkgs, lib, config, ... }: {
+{ pkgs, lib, config, ... }:
+
+#let
+#
+#  rounded-window-corners-reborn = buildGnomeExtension {
+#    uuid = ;
+#    name = ;
+#    pname = ;
+#    description = ;
+#    link = ;
+#    version = ;
+#    sha256 = ;
+#    metadata = ;
+#  };
+#
+#in
+{
 
   imports = [
-    ./gnome
-    ./hyprland
     ./music-production.nix
     ./gaming.nix
   ];
@@ -39,40 +53,41 @@
     networking.networkmanager.enable = true;
     users.users."${config.username}".extraGroups = [ "networkmanager" ];
 
-    # honestly not sure
-    services.dbus.packages = [ pkgs.gcr ];
+    # gnome
+    services = {
+      xserver = {
+        enable = true;
+        displayManager = {
+          gdm.enable = true;
+          defaultSession = "gnome";
+        };
+        desktopManager.gnome.enable = true;
+        excludePackages = [ pkgs.xterm ];
+      };
+      dbus.packages = [ pkgs.dconf pkgs.gcr ];
+      udev.packages = [ pkgs.gnome3.gnome-settings-daemon ];
+    };
+
+    # exclude unecessary gnome crap
+    environment = {
+      gnome.excludePackages = (with pkgs; [
+        gnome-tour gnome-connections gnome-text-editor snapshot gnome-console
+      ]) ++ (with pkgs.gnome; [
+        epiphany geary gnome-maps yelp totem simple-scan gnome-music
+      ]);
+    };
+
+    # dconf
+    programs.dconf.enable = true;
+
+    # kdeconnect
+    programs.kdeconnect = {
+      enable = true;
+      package = pkgs.gnomeExtensions.gsconnect;
+    };
 
     # pinentry
     pinentryPackage = pkgs.pinentry-gnome3;
-
-    # kdeconnect
-    programs.kdeconnect.enable = true;
-
-    # auto-ricing with stylix
-    stylix = {
-      enable = true;
-      autoEnable = true;
-      base16Scheme = ./catppuccin-mocha.yaml;
-      polarity = "dark";
-      fonts = {
-        serif = {
-          package = pkgs.cantarell-fonts;
-          name = "Cantarell";
-        };
-        sansSerif = {
-          package = pkgs.cantarell-fonts;
-          name = "Cantarell";
-        };
-        monospace = {
-          package = pkgs.cascadia-code;
-          name = "Cascadia Code";
-        };
-      };
-      cursor = {
-        package = pkgs.catppuccin-cursors;
-        size = 16;
-      };
-    };
 
     # home manager
     home-manager.users.${config.username} = {
@@ -80,59 +95,47 @@
       imports = [
         ./emacs
         ./firefox.nix
-        ./thunderbird.nix
-        ./alacritty.nix
       ];
 
       xdg.enable = true;
 
       fonts.fontconfig.enable = true;
 
-      gtk = {
-        enable = true;
-        theme = lib.mkForce {
-          name = "Catppuccin-Mocha-Compact-Mauve-Dark";
-          package = pkgs.catppuccin-gtk.override {
-            accents = [ "mauve" ];
-            size = "compact";
-            tweaks = [ "rimless" ];
-            variant = "mocha";
-          };
-        };
-        iconTheme = {
-          name = "Papirus";
-          package = pkgs.papirus-icon-theme;
-        };
+      home.packages = (with pkgs; [
+        deploy-rs pass wl-clipboard gimp cascadia-code adw-gtk3
+        gnome3.gnome-tweaks ptyxis celluloid dconf2nix
+      ]) ++ (with pkgs.gnomeExtensions; [
+        paperwm dash-to-panel auto-move-windows
+        blur-my-shell rounded-corners
+        tailscale-qs #syncthing-indicator
+      ]);
+
+      home.file.".local/share/gnome-shell/extensions/rounded-window-corners@flexagoon.github.com".source = builtins.fetchGit {
+        url = "https://github.com/flexagoon/rounded-window-corners";
+        rev = "99703159f4343e687c33e6ba6ef1af29e5ac1e34";
       };
 
-      stylix = {
-        enable = true;
-        autoEnable = true;
-        image = ../../wallpaper.png;
-        base16Scheme = ./catppuccin-mocha.yaml;
-        polarity = "dark";
-        fonts = {
-          serif = {
-            package = pkgs.cantarell-fonts;
-            name = "Cantarell";
-          };
-          sansSerif = {
-            package = pkgs.cantarell-fonts;
-            name = "Cantarell";
-          };
-          monospace = {
-            package = pkgs.cascadia-code;
-            name = "Cascadia Code";
-          };
+      dconf.settings = lib.mkForce {
+        "org/gnome/shell" = {
+          disable-user-extensions = false;
+          enabled-extensions = [
+            "paperwm@paperwm.github.com"
+            "dash-to-panel@jderose9.github.com"
+            "rounded-window-corners@flexagoon.github.com"
+            "auto-move-windows@gnome-shell-extensions.gcampax.github.com"
+            "blur-my-shell@aunetx"
+            "tailscale@joaophi.github.com"
+            #"syncthing@gnome.2nv2u.com"
+            "system-monitor@gnome-shell-extensions.gcampax.github.com"
+            "gsconnect@andyholmes.github.io"
+          ];
         };
-        cursor = {
-          package = pkgs.catppuccin-cursors;
-          size = 16;
+        "org/gnome/desktop/peripherals/keyboard" = {
+            delay = 175;
+            repeat-interval = 10; # 18
+            repeat = true;
         };
       };
-
-      # desktop-agnostic apps
-      home.packages = with pkgs; [ deploy-rs pass wl-clipboard gimp ];
 
     };
 

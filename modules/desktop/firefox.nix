@@ -1,9 +1,9 @@
-{ config, osConfig, pkgs, firefox-cascade-theme, ... }:
+{ config, osConfig, pkgs, firefox-gnome-theme, ... }:
 
 {
 
-  home.file.".mozilla/firefox/${osConfig.username}/chrome/firefox-cascade-theme".source =
-      firefox-cascade-theme;
+  home.file.".mozilla/firefox/${osConfig.username}/chrome/firefox-gnome-theme".source =
+      firefox-gnome-theme;
 
   programs = {
 
@@ -84,7 +84,7 @@
         };
         settings = {
           "general.smoothScroll" = true;
-          "browser.startup.homepage" = "https://www.startpage.com/do/mypage.pl?prfe=3d56c7540d41b7243eb2b32d3acf3cdc615fe3dfa27657bb5ce7bc481c5ff52afa7e407896d2a6a5c9341095d49a1984e0f9ee81501765c0c139f4d978118ce31ab198a4cbbb03fcfbea1752";
+          "browser.startup.homepage" = "https://www.startpage.com/do/mypage.pl?prfe=1ba6b5e57ea1ea6274050095f2cfb9c0e7baca3c6ce45743477b6d726f337d78d2ea4081f5ed808f4a9e4c9cc64c6a2c2795fb824e6027ed73c94607f4037a785c1e0c3d73374ab67eedee0c";
           "dom.security.https_only_mode" = true;
           "dom.security.https_only_mode_ever_enabled" = true;
           "privacy.donottrackheader.enabled" = true;
@@ -107,17 +107,17 @@
           istilldontcareaboutcookies
           sponsorblock
           browserpass
-          #floccus
           new-tab-override
           linkhints
           privacy-redirect
         ];
         userChrome = ''
-          @import "firefox-cascade-theme/chrome/userChrome.css";
-          @import "firefox-cascade-theme/integrations/catppuccin/cascade-mocha.css";
+          @import "firefox-gnome-theme/userChrome.css";
+          /*
           #tabs-newtab-button, #star-button-box {
             display: none !important;
           } 
+          */
           * {
             font-family: Cantarell !important;
           }
@@ -125,6 +125,9 @@
             font-weight: bold !important;
             font-size: 11pt !important;
           }
+        '';
+        userContent = ''
+          @import "firefox-gnome-theme/userContent.css";
         '';
       };
     };

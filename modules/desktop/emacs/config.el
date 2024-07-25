@@ -78,10 +78,6 @@
 
 (add-to-list 'default-frame-alist '(font . "Cascadia Mono-11"))
 
-(set-frame-parameter nil 'undecorated t)
-
-(set-frame-parameter nil 'alpha-background 75)
-
 (setq frame-resize-pixelwise t)
 
 (add-to-list 'default-frame-alist '(internal-border-width . 10))
@@ -94,10 +90,14 @@
 
 (setq visible-bell 1)
 
-(use-package catppuccin-theme
+;(use-package modus-themes
+;             :ensure t
+;             :config
+;             (load-theme 'modus-vivendi :no-confirm))
+(use-package adwaita-dark-theme
              :ensure t
              :config
-             (load-theme 'catppuccin :no-confirm))
+             (load-theme 'adwaita-dark :no-confirm))
 
 (defface n3mo-tab-bar-tab
          `((t
@@ -137,24 +137,24 @@
 (use-package telephone-line
              :ensure t
              :config
-             (set-face-attribute 'telephone-line-evil-normal
-                                 nil
-                                 :foreground
-                                 "#1e1e2e"
-                                 :background
-                                 "#cba6f7")
-             (set-face-attribute 'telephone-line-evil-insert
-                                 nil
-                                 :foreground
-                                 "#1e1e2e"
-                                 :background
-                                 "#a6e3a1")
-             (set-face-attribute 'telephone-line-evil-visual
-                                 nil
-                                 :foreground
-                                 "#1e1e2e"
-                                 :background
-                                 "#f38ba8")
+             ;(set-face-attribute 'telephone-line-evil-normal
+             ;                    nil
+             ;                    :foreground
+             ;                    "#1e1e2e"
+             ;                    :background
+             ;                    "#cba6f7")
+             ;(set-face-attribute 'telephone-line-evil-insert
+             ;                    nil
+             ;                    :foreground
+             ;                    "#1e1e2e"
+             ;                    :background
+             ;                    "#a6e3a1")
+             ;(set-face-attribute 'telephone-line-evil-visual
+             ;                    nil
+             ;                    :foreground
+             ;                    "#1e1e2e"
+             ;                    :background
+             ;                    "#f38ba8")
              (setq telephone-line-primary-left-separator 'telephone-line-flat
                    telephone-line-secondary-left-separator 'telephone-line-nil
                    telephone-line-primary-right-separator 'telephone-line-flat
@@ -264,9 +264,9 @@
              :ensure t
              :config
              (setq highlight-indent-guides-method 'character
-                   highlight-indent-guides-character ?|)
-             (set-face-background 'highlight-indent-guides-odd-face "darkgray")
-             (set-face-background 'highlight-indent-guides-even-face "dimgray"))
+                   highlight-indent-guides-character ?|))
+             ;(set-face-background 'highlight-indent-guides-odd-face "darkgray")
+             ;(set-face-background 'highlight-indent-guides-even-face "dimgray"))
 
 (add-hook 'prog-mode-hook 'highlight-indent-guides-mode)
 
