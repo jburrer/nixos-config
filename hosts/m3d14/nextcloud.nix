@@ -39,6 +39,10 @@
         hostPath = "/srv/state/nextcloud/";
         isReadOnly = false;
       };
+      "/data" = {
+        hostPath = "/srv/storage/";
+        isReadOnly = false;
+      };
     };
 
     config = { config, pkgs, ... }: {
