@@ -37,21 +37,37 @@
   # nginx proxy for qbittorrent
   services.nginx = {
     enable = true;
-    virtualHosts."m3d14" = {
+    #virtualHosts."m3d14" = {
+    #  listen = [
+    #    {
+    #      addr = "100.125.106.24";
+    #      port = 8080;
+    #    }
+    #  ];
+    #  locations."/".proxyPass = "http://127.0.0.1:801";
+    #  extraConfig = ''
+    #    proxy_http_version 1.1;
+    #    proxy_set_header Host 127.0.0.1:30000;
+    #    proxy_set_header X-Forwarded-Host $http_host;
+    #    proxy_set_header X-Forwarded-For $remote_addr;
+    #    client_max_body_size 100M;
+    #  '';
+    #};
+    virtualHosts."nextcloud" = {
       listen = [
         {
-          addr = "100.125.106.24";
-          port = 8080;
+          addr = "172.19.0.1";
+          port = 800;
         }
       ];
-      locations."/".proxyPass = "http://127.0.0.1:801";
-      extraConfig = ''
-        proxy_http_version 1.1;
-        proxy_set_header Host 127.0.0.1:30000;
-        proxy_set_header X-Forwarded-Host $http_host;
-        proxy_set_header X-Forwarded-For $remote_addr;
-        client_max_body_size 100M;
-      '';
+      locations."/".proxyPass = "http://127.0.0.1:800";
+      #extraConfig = ''
+      #  proxy_http_version 1.1;
+      #  proxy_set_header Host 127.0.0.1:800;
+      #  proxy_set_header X-Forwarded-Host $http_host;
+      #  proxy_set_header X-Forwarded-For $remote_addr;
+      #  client_max_body_size 100M;
+      #'';
     };
   };
 

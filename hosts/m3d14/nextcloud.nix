@@ -2,14 +2,14 @@
 
 {
 
-  networking = {
-    firewall = {
-      enable = true;
-      allowedTCPPorts = [ 800 8384 ];
-    };
-    useHostResolvConf = false;
-  };
-  services.resolved.enable = true;
+  #networking = {
+  #  firewall = {
+  #    enable = true;
+  #    allowedTCPPorts = [ 800 8384 ];
+  #  };
+  #  useHostResolvConf = false;
+  #};
+  #services.resolved.enable = true;
 
   containers."nextcloud" = {
 
