@@ -4,8 +4,8 @@
     ./hardware-configuration.nix
     ../../modules
     #./homelab.nix
-    ./containers
-    #./nextcloud.nix
+    #./containers
+    ./nextcloud.nix
     #./docker-osx.nix
   ];
 
