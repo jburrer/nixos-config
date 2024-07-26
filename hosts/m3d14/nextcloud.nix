@@ -3,13 +3,12 @@
 {
 
   users = {
-    users."syncthing" = {
+    users."nextcloud" = {
       isSystemUser = true;
-      home = "/srv/state/syncthing";
-      uid = 237;
-      group = "syncthing";
+      uid = 999;
+      group = "nextcloud";
     };
-    groups."syncthing".gid = 237;
+    groups."nextcloud".gid = 999;
   };
 
   containers."nextcloud" = {
@@ -45,7 +44,11 @@
     ];
 
     bindMounts = {
-      "/data" = {
+      "/state" = {
+        hostPath = "/srv/state/";
+        isReadOnly = false;
+      };
+      "/storage" = {
         hostPath = "/srv/storage/";
         isReadOnly = false;
       };
@@ -62,6 +65,7 @@
 
           hostName = "m3d14";
 
+          home = "/state/nextcloud";
           config.adminpassFile = "${pkgs.writeText "adminpass" "J0hn 0316"}";
 
           extraAppsEnable = true;
@@ -79,6 +83,13 @@
           enable = true;
           guiAddress = "0.0.0.0:8384";
           openDefaultPorts = true;
+
+          user = "nextcloud";
+          group = "nextcloud";
+
+          dataDir = "/storage";
+          configDir = "/state/syncthing";
+
           settings.gui = {
             user = "n3mo";
             password = "J0hn 0316";
