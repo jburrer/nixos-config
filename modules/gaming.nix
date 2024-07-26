@@ -1,11 +1,14 @@
 { pkgs, lib, config, ... }: {
 
-  options.gaming = {
-    enable = lib.mkEnableOption "whether to set stuff up for gaming";
-    nvidia = lib.mkEnableOption "whether to set up nvidia drivers";
+  options.gaming.nvidia.enable = lib.mkOption {
+    default = false;
+    type = lib.types.bool;
+    description = ''
+      whether to set up nvidia drivers
+    '';
   };
 
-  config = lib.mkIf config.gaming.enable {
+  config = {
 
     # allow proprietary nixpkgs
     nixpkgs.config.allowUnfree = true;
@@ -18,8 +21,8 @@
     };
 
     # nvidia
-    services.xserver.videoDrivers = lib.mkIf config.gaming.nvidia [ "nvidia" ];
-    hardware = lib.mkIf config.gaming.nvidia {
+    services.xserver.videoDrivers = lib.mkIf config.gaming.nvidia.enable [ "nvidia" ];
+    hardware = lib.mkIf config.gaming.nvidia.enable {
         opengl = {
         enable = true;
         driSupport = true;

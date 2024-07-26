@@ -3,8 +3,10 @@
   imports = [
     ./hardware-configuration.nix
     ../../modules
-    ./homelab.nix
-    ./containers
+    #./homelab.nix
+    #./containers
+    ./nextcloud.nix
+    ./docker-osx.nix
   ];
 
   hostname = "m3d14";

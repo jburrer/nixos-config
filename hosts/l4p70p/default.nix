@@ -4,15 +4,12 @@
     ./hardware-configuration.nix
     #(import ./disko-config.nix { device="/dev/nvme0n1"; })
     ../../modules
+    ../../modules/gnome.nix
+    ../../modules/gaming.nix
   ];
 
   hostname = "l4p70p";
   configDir = "${config.homeDir}/Documents/nixos-config";
-  desktop = "hyprland";
-  gaming = {
-    enable = true;
-    nvidia = false;
-  };
 
   # boot 
   boot = {
@@ -95,7 +92,7 @@
   programs.fuse.userAllowOther = true;
   home-manager.users.${config.username} = {
 
-    imports = [ ../../modules/desktop/thunderbird.nix ];
+    imports = [ ../../modules/thunderbird.nix ];
 
     home.packages = with pkgs; [
       libreoffice tor-browser-bundle-bin monero-gui

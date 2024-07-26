@@ -15,19 +15,12 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     impermanence.url = "github:nix-community/impermanence";
-    #nix-flatpak.url = "github:gmodena/nix-flatpak";
-    nixarr.url = "github:rasmus-kirk/nixarr";
     arkenfox.url = "github:dwarfmaster/arkenfox-nixos";
     musnix.url = "github:musnix/musnix";
-    #stylix.url = "github:danth/stylix";
     emacs-overlay = {
       url = "github:nix-community/emacs-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    #firefox-cascade-theme = {
-    #  url = "github:andreasgrafen/cascade";
-    #  flake = false;
-    #};
     firefox-gnome-theme = {
       url = "github:rafaelmardojai/firefox-gnome-theme";
       flake = false;
@@ -46,11 +39,8 @@
     nur,
     disko,
     impermanence, 
-    #nix-flatpack,
-    nixarr,
     arkenfox,
     musnix,
-    #stylix,
     emacs-overlay,
     firefox-gnome-theme,
     thunderbird-gnome-theme
@@ -83,9 +73,6 @@
 	  ({pkgs, ...}: { nixpkgs.overlays = [ emacs-overlay.overlay ]; })
           disko.nixosModules.disko
           impermanence.nixosModules.impermanence
-          #nix-flatpak.nixosModules.nix-flatpak
-          musnix.nixosModules.musnix
-          #stylix.nixosModules.stylix
           home-manager.nixosModules.home-manager {
             home-manager = {
               useGlobalPkgs = true;
@@ -93,7 +80,6 @@
               extraSpecialArgs = inputs;
               users."${user}" = {
                 imports = [
-                  #nix-flatpak.homeManagerModules.nix-flatpak
                   impermanence.nixosModules.home-manager.impermanence
                   nur.hmModules.nur
                   arkenfox.hmModules.arkenfox
@@ -111,7 +97,6 @@
 	  ({pkgs, ...}: { nixpkgs.overlays = [ emacs-overlay.overlay ]; })
           impermanence.nixosModules.impermanence
           musnix.nixosModules.musnix
-          #stylix.nixosModules.stylix
           home-manager.nixosModules.home-manager {
             home-manager = {
               useGlobalPkgs = true;
@@ -132,18 +117,11 @@
           (nixConf pkgs)
 	  ({pkgs, ...}: { nixpkgs.overlays = [ emacs-overlay.overlay ]; })
           impermanence.nixosModules.impermanence
-          nixarr.nixosModules.default
-          #musnix.nixosModules.musnix
-          #stylix.nixosModules.stylix
           home-manager.nixosModules.home-manager {
             home-manager = {
               useGlobalPkgs = true;
               useUserPackages = true;
               extraSpecialArgs = inputs;
-              #users."${user}".imports = [
-              #  nur.hmModules.nur
-              #  arkenfox.hmModules.arkenfox
-              #];
             };
           }
         ];
@@ -155,17 +133,11 @@
           (nixConf pkgs)
 	  ({pkgs, ...}: { nixpkgs.overlays = [ emacs-overlay.overlay ]; })
           impermanence.nixosModules.impermanence
-          #musnix.nixosModules.musnix
-          #stylix.nixosModules.stylix
           home-manager.nixosModules.home-manager {
             home-manager = {
               useGlobalPkgs = true;
               useUserPackages = true;
               extraSpecialArgs = inputs;
-              #users."${user}".imports = [
-              #  nur.hmModules.nur
-              #  arkenfox.hmModules.arkenfox
-              #];
             };
           }
         ];

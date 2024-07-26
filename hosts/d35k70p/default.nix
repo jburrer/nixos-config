@@ -3,16 +3,15 @@
   imports = [
     ./hardware-configuration.nix
     ../../modules
+    ../../modules/gnome.nix
+    ../../modules/gaming.nix
+    ../../modules/music-production.nix
   ];
 
   hostname = "d35k70p";
   configDir = "${config.homeDir}/Documents/nixos-config";
-  desktop = "gnome";
-  musicProduction.enable = true;
-  gaming = {
-    enable = true;
-    nvidia = true;
-  };
+
+  gaming.nvidia.enable = true;
 
   # bootloader
   boot = {
