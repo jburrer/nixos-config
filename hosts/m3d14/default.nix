@@ -3,9 +3,9 @@
   imports = [
     ./hardware-configuration.nix
     ../../modules
-    #./homelab.nix
+    ./homelab.nix
     #./containers
-    ./nextcloud.nix
+    #./nextcloud.nix
     #./docker-osx.nix
   ];
 
