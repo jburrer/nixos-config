@@ -15,21 +15,21 @@
 
     autoStart = true;
 
-    privateNetwork = true;
-    hostAddress = "172.19.0.1";
-    localAddress = "192.168.100.10";
+    #privateNetwork = true;
+    #hostAddress = "172.19.0.1";
+    #localAddress = "192.168.100.10";
 
     forwardPorts = [
       {
         containerPort = 80;
-        hostPort = 800;
+        hostPort = 80;
         protocol = "tcp";
       }
-      {
-        containerPort = 8384;
-        hostPort = 8384;
-        protocol = "tcp";
-      }
+      #{
+      #  containerPort = 8384;
+      #  hostPort = 8384;
+      #  protocol = "tcp";
+      #}
       #{
       #  containerPort = 22000;
       #  hostPort = 22000;
@@ -86,7 +86,8 @@
       networking = {
         firewall = {
           enable = true;
-          allowedTCPPorts = [ 80 8384 ];
+          #allowedTCPPorts = [ 80 8384 ];
+          allowedTCPPorts = [ 80 ];
         };
         useHostResolvConf = false;
       };
