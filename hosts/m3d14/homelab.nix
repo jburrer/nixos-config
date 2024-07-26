@@ -3,8 +3,9 @@
   # radicale
   services.radicale = {
     enable = true;
+    settings.server.hosts = [ "0.0.0.0:5232" ];
   };
-  networking.firewall.allowedTCPPorts = [ 5232 ];
+  #networking.firewall.allowedTCPPorts = [ 5232 ];
 
   # media server
   #nixarr = {
