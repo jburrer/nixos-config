@@ -5,7 +5,29 @@
     enable = true;
     settings.server.hosts = [ "0.0.0.0:5232" ];
   };
-  #networking.firewall.allowedTCPPorts = [ 5232 ];
+
+  ### media server ### 
+  users.groups."media".gid = 10000;
+  users.groups."torrenting".gid = 10001;
+  users.groups."usenet".gid = 10002;
+
+  # jellyfin
+  services.jellyfin = {
+    enable = true;
+    dataDir = "/srv/storage/media";
+    user = "jellyfin";
+    group = "media";
+  };
+
+  users = {
+    users."jellyfin" = {
+      isSystemUser = true;
+      uid = 10010;
+      group = "jellyfin";
+      extraGroups = [ "media" ];
+    };
+    groups."jellyfin".gid = 10010;
+  };
 
   # media server
   #nixarr = {
