@@ -2,6 +2,16 @@
 
 {
 
+  users = {
+    users."nextcloud" = {
+      isSystemUser = true;
+      home = "/srv/state/nextcloud";
+      uid = 10000;
+      group = "nextcloud";
+    };
+    groups."nextcloud".gid = 10000;
+  };
+
   containers."nextcloud" = {
 
     autoStart = true;
@@ -47,6 +57,16 @@
 
     config = { config, pkgs, ... }: {
 
+      users = {
+        users."nextcloud" = {
+          isSystemUser = true;
+          home = "/var/lib/nextcloud";
+          uid = 10000;
+          group = "nextcloud";
+        };
+        groups."nextcloud".gid = 10000;
+      };
+
       services = {
 
         nextcloud = {
@@ -73,8 +93,8 @@
           enable = true;
           guiAddress = "0.0.0.0:8384";
           openDefaultPorts = true;
-          user = "root";
-          group = "root";
+          user = "nextcloud";
+          group = "nextcloud";
           settings.gui = {
             user = "n3mo";
             password = "J0hn 0316";
