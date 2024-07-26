@@ -73,6 +73,8 @@
           enable = true;
           guiAddress = "0.0.0.0:8384";
           openDefaultPorts = true;
+          user = "root";
+          group = "root";
           settings.gui = {
             user = "n3mo";
             password = "J0hn 0316";
