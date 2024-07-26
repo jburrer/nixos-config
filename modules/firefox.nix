@@ -50,13 +50,12 @@
         };
         search = {
           force = true;
-          default = "Startpage";
+          default = "DuckDuckGoCustom";
           engines = {
-            "Startpage" = {
-              urls = [{ template = "https://www.startpage.com/sp/search?query={searchTerms}&t=night&lui=english&sc=klTrFwuDWtPR00&cat=web&prfe=3d56c7540d41b7243eb2b32d3acf3cdc615fe3dfa27657bb5ce7bc481c5ff52afa7e407896d2a6a5c9341095d49a1984e0f9ee81501765c0c139f4d978118ce31ab198a4cbbb03fcfbea1752"; }];
-              iconUpdateURL = "https://www.startpage.com/sp/cdn/favicons/favicon--default.ico";
+            "DuckDuckGoCustom" = {
+              urls = [{ template = "https://start.duckduckgo.com/?kae=t&kav=1&kn=1&k1=-1&kaj=u&kay=b&kv=-1&kak=-1&kax=-1&kaq=-1&kao=-1&kau=-1&kap=-1&ka=Cantarell+Bold&kt=Cantarell&kw=s&ksn=5&kpsb=-1&k7=242424&kj=1e1e1e&k9=26a269&kaa=cd9309&k8=ffffff&kx=3584e4&k21=1e1e1e&kbf=1&k5=2&q={searchTerms}"; }];
               updateInterval = 24 * 60 * 60 * 1000;
-              definedAliases = [ "@sp" ];
+              definedAliases = [ "@ddg" ];
             };
             "Nix Packages" = {
               urls = [{
@@ -84,7 +83,7 @@
         };
         settings = {
           "general.smoothScroll" = true;
-          "browser.startup.homepage" = "https://www.startpage.com/do/mypage.pl?prfe=1ba6b5e57ea1ea6274050095f2cfb9c0e7baca3c6ce45743477b6d726f337d78d2ea4081f5ed808f4a9e4c9cc64c6a2c2795fb824e6027ed73c94607f4037a785c1e0c3d73374ab67eedee0c";
+          "browser.startup.homepage" = "https://start.duckduckgo.com/?kae=t&kav=1&kn=1&k1=-1&kaj=u&kay=b&kv=-1&kak=-1&kax=-1&kaq=-1&kao=-1&kau=-1&kap=-1&ka=Cantarell+Bold&kt=Cantarell&kw=s&ksn=5&kpsb=-1&k7=242424&kj=1e1e1e&k9=26a269&kaa=cd9309&k8=ffffff&kx=3584e4&k21=1e1e1e&kbf=1&k5=2";
           "dom.security.https_only_mode" = true;
           "dom.security.https_only_mode_ever_enabled" = true;
           "privacy.donottrackheader.enabled" = true;
@@ -113,11 +112,6 @@
         ];
         userChrome = ''
           @import "firefox-gnome-theme/userChrome.css";
-          /*
-          #tabs-newtab-button, #star-button-box {
-            display: none !important;
-          } 
-          */
           * {
             font-family: Cantarell !important;
           }

@@ -2,22 +2,9 @@
 
 {
 
-  #networking = {
-  #  firewall = {
-  #    enable = true;
-  #    allowedTCPPorts = [ 800 8384 ];
-  #  };
-  #  useHostResolvConf = false;
-  #};
-  #services.resolved.enable = true;
-
   containers."nextcloud" = {
 
     autoStart = true;
-
-    #privateNetwork = true;
-    #hostAddress = "172.19.0.1";
-    #localAddress = "192.168.100.10";
 
     forwardPorts = [
       {
@@ -61,17 +48,27 @@
     config = { config, pkgs, ... }: {
 
       services = {
+
         nextcloud = {
+
           enable = true;
           package = pkgs.nextcloud29;
+
           hostName = "m3d14";
+
           config.adminpassFile = "${pkgs.writeText "adminpass" "J0hn 0316"}";
+
+          extraAppsEnable = true;
           extraApps = with config.services.nextcloud.package.packages.apps; {
             inherit contacts calendar;
           };
-          extraAppsEnable = true;
+
           configureRedis = true;
+
+          settings.auth.bruteforce.protection.enabled = false;
+
         };
+
         #syncthing = {
         #  enable = true;
         #  guiAddress = "0.0.0.0:8384";
@@ -81,6 +78,7 @@
         #    password = "J0hn 0316";
         #  };
         #};
+
       };
 
       networking = {
