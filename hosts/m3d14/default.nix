@@ -4,9 +4,9 @@
     ./hardware-configuration.nix
     ../../modules
     #./homelab.nix
-    #./containers
-    ./nextcloud.nix
-    ./docker-osx.nix
+    ./containers
+    #./nextcloud.nix
+    #./docker-osx.nix
   ];
 
   hostname = "m3d14";
