@@ -12,26 +12,26 @@
         hostPort = 80;
         protocol = "tcp";
       }
-      #{
-      #  containerPort = 8384;
-      #  hostPort = 8384;
-      #  protocol = "tcp";
-      #}
-      #{
-      #  containerPort = 22000;
-      #  hostPort = 22000;
-      #  protocol = "tcp";
-      #}
-      #{
-      #  containerPort = 22000;
-      #  hostPort = 22000;
-      #  protocol = "udp";
-      #}
-      #{
-      #  containerPort = 21027;
-      #  hostPort = 21027;
-      #  protocol = "udp";
-      #}
+      {
+        containerPort = 8384;
+        hostPort = 8384;
+        protocol = "tcp";
+      }
+      {
+        containerPort = 22000;
+        hostPort = 22000;
+        protocol = "tcp";
+      }
+      {
+        containerPort = 22000;
+        hostPort = 22000;
+        protocol = "udp";
+      }
+      {
+        containerPort = 21027;
+        hostPort = 21027;
+        protocol = "udp";
+      }
     ];
 
     bindMounts = {
@@ -39,10 +39,6 @@
         hostPath = "/srv/state/nextcloud/";
         isReadOnly = false;
       };
-      #"/var/www/html/data" = {
-      #  hostPath = "/srv/storage/data/";
-      #  isReadOnly = false;
-      #};
     };
 
     config = { config, pkgs, ... }: {
@@ -69,23 +65,22 @@
 
         };
 
-        #syncthing = {
-        #  enable = true;
-        #  guiAddress = "0.0.0.0:8384";
-        #  openDefaultPorts = true;
-        #  settings.gui = {
-        #    user = "n3mo";
-        #    password = "J0hn 0316";
-        #  };
-        #};
+        syncthing = {
+          enable = true;
+          guiAddress = "0.0.0.0:8384";
+          openDefaultPorts = true;
+          settings.gui = {
+            user = "n3mo";
+            password = "J0hn 0316";
+          };
+        };
 
       };
 
       networking = {
         firewall = {
           enable = true;
-          #allowedTCPPorts = [ 80 8384 ];
-          allowedTCPPorts = [ 80 ];
+          allowedTCPPorts = [ 80 8384 ];
         };
         useHostResolvConf = false;
       };
