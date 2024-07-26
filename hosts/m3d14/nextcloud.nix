@@ -6,10 +6,10 @@
     users."syncthing" = {
       isSystemUser = true;
       home = "/srv/state/syncthing";
-      uid = 10000;
+      uid = 237;
       group = "syncthing";
     };
-    groups."syncthing".gid = 10000;
+    groups."syncthing".gid = 237;
   };
 
   containers."nextcloud" = {
