@@ -77,10 +77,12 @@
         settings = {
           download-dir = "/storage";
           incomplete-dir = "/storage/incomplete";
+          rpc-bind-address = "0.0.0.0";
+          rpc-whitelist = "127.0.0.1,10.0.0.1";
         };
       };
 
-      system.stateVersion = "23.05";
+      system.stateVersion = "24.05";
 
     };
   };
