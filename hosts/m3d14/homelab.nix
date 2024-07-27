@@ -86,14 +86,14 @@
       download-dir = "/srv/storage/torrents";
       incomplete-dir = "/srv/storage/torrents/incomplete";
     };
-  }
+  };
   users.users."transmission".extraGroups = [ "torrenting" ];
   systemd.services.transmission = {
     bindsTo = [ "netns@wg.service" ];
     requires = [ "network-online.target" ];
     after = [ "wg.service" ];
     serviceConfig.NetworkNamespacePath = "/var/run/netns/wg";
-  }
+  };
 
 
 
