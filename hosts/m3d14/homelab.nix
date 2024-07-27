@@ -73,15 +73,13 @@
 
     };
   };
-  users = {
-    users."transmission" = {
-      isSystemUser = true;
-      #uid = ;
-      group = "transmission";
-      extraGroups = [ "torrenting" ];
-    };
-    #groups."transmission".gid = ;
+  users.users."transmission" = {
+    isSystemUser = true;
+    #uid = ;
+    group = "transmission";
+    extraGroups = [ "torrenting" ];
   };
+  #users.groups."transmission".gid = ;
 
   # sabnzbd
 
