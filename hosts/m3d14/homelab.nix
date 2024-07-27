@@ -35,7 +35,6 @@
   };
   users.users."radarr" = {
     isSystemUser = true;
-    uid = 10011;
     group = "media";
     extraGroups = [ "torrenting" "usenet" ];
   };
@@ -49,7 +48,6 @@
   };
   users.users."sonarr" = {
     isSystemUser = true;
-    uid = 10012;
     group = "media";
     extraGroups = [ "torrenting" "usenet" ];
   };
