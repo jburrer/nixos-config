@@ -20,11 +20,38 @@
     user = "jellyfin";
     group = "media";
   };
-
   users.users."jellyfin" = {
     isSystemUser = true;
     uid = 10010;
     group = "media";
+  };
+
+  # radarr
+  services.radarr = {
+    enable = true;
+    dataDir = "/srv/state/radarr";
+    user = "radarr";
+    group = "media";
+  };
+  users.users."radarr" = {
+    isSystemUser = true;
+    uid = 10011;
+    group = "media";
+    extraGroups = [ "torrenting" "usenet" ];
+  };
+
+  # sonarr 
+  services.sonarr = {
+    enable = true;
+    dataDir = "/srv/state/sonarr";
+    user = "sonarr";
+    group = "media";
+  };
+  users.users."sonarr" = {
+    isSystemUser = true;
+    uid = 10012;
+    group = "media";
+    extraGroups = [ "torrenting" "usenet" ];
   };
 
   # media server
