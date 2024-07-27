@@ -76,7 +76,7 @@
   users.users."transmission" = {
     isSystemUser = true;
     #uid = ;
-    group = "transmission";
+    #group = "transmission";
     extraGroups = [ "torrenting" ];
   };
   #users.groups."transmission".gid = ;
