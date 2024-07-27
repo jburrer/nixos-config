@@ -44,7 +44,18 @@
   # transmission + wireguard
   containers."transmission" = {
     autoStart = true;
-    forwardPorts = [];
+    forwardPorts = [
+      {
+        containerPort = 9091;
+        hostPort = 9091;
+        protocol = "tcp";
+      }
+      {
+        containerPort = 51820;
+        hostPort = 51820;
+        protocol = "udp";
+      }
+    ];
     bindMounts = {
       "/state" = {
         hostPath = "/srv/state/transmission";
@@ -75,12 +86,11 @@
   };
   users.users."transmission" = {
     isSystemUser = true;
-    #uid = ;
+    uid = 70;
     group = "transmission";
     extraGroups = [ "torrenting" ];
   };
-  #users.groups."transmission".gid = ;
-  users.groups."transmission" = {};
+  users.groups."transmission".gid = 70;
 
   # sabnzbd
 
