@@ -60,7 +60,7 @@
     serviceConfig = {
       Type = "oneshot";
       RemainAfterExit = true;
-      ExecStart = writers.writeBash "wg-up" ''
+      ExecStart = pkgs.writers.writeBash "wg-up" ''
         set -e
         ${pkgs.iproute}/bin/ip link add wg0 type wireguard
         ${pkgs.iproute}/bin/ip link set wg0 netns wg
@@ -70,7 +70,7 @@
         ${pkgs.iproute}/bin/ip -n wg link set wg0 up
         ${pkgs.iproute}/bin/ip -n wg route add default dev wg0
       '';
-      ExecStop = writers.writeBash "wg-down" ''
+      ExecStop = pkgs.writers.writeBash "wg-down" ''
         ${pkgs.iproute}/bin/ip -n wg route del default dev wg0
         ${pkgs.iproute}/bin/ip -n wg link del wg0
       '';
