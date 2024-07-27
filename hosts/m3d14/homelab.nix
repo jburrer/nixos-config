@@ -60,19 +60,19 @@
     serviceConfig = {
       Type = "oneshot";
       RemainAfterExit = true;
-      ExecStart = with pkgs; writers.writeBash "wg-up" ''
+      ExecStart = writers.writeBash "wg-up" ''
         set -e
-        ${iproute}/bin/ip link add wg0 type wireguard
-        ${iproute}/bin/ip link set wg0 netns wg
-        ${iproute}/bin/ip -n wg address add 68.235.44.2 dev wg0
-        ${iproute}/bin/ip netns exec wg \
-          ${wireguard}/bin/wg setconf wg0 /srv/state/wg0.conf
-        ${iproute}/bin/ip -n wg link set wg0 up
-        ${iproute}/bin/ip -n wg route add default dev wg0
+        ${pkgs.iproute}/bin/ip link add wg0 type wireguard
+        ${pkgs.iproute}/bin/ip link set wg0 netns wg
+        ${pkgs.iproute}/bin/ip -n wg address add 68.235.44.2 dev wg0
+        ${pkgs.iproute}/bin/ip netns exec wg \
+          ${pkgs.wireguard}/bin/wg setconf wg0 /srv/state/wg0.conf
+        ${pkgs.iproute}/bin/ip -n wg link set wg0 up
+        ${pkgs.iproute}/bin/ip -n wg route add default dev wg0
       '';
-      ExecStop = with pkgs; writers.writeBash "wg-down" ''
-        ${iproute}/bin/ip -n wg route del default dev wg0
-        ${iproute}/bin/ip -n wg link del wg0
+      ExecStop = writers.writeBash "wg-down" ''
+        ${pkgs.iproute}/bin/ip -n wg route del default dev wg0
+        ${pkgs.iproute}/bin/ip -n wg link del wg0
       '';
     };
   };
