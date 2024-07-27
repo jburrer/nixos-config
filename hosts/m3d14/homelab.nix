@@ -16,17 +16,15 @@
   # jellyfin
   services.jellyfin = {
     enable = true;
-    dataDir = "/srv/storage/media";
+    dataDir = "/srv/state/jellyfin";
     user = "jellyfin";
     group = "media";
   };
 
-  users = {
-    users."jellyfin" = {
-      isSystemUser = true;
-      uid = 10010;
-      group = "media";
-    };
+  users.users."jellyfin" = {
+    isSystemUser = true;
+    uid = 10010;
+    group = "media";
   };
 
   # media server
