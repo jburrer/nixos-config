@@ -7,10 +7,17 @@
   };
 
   ### media server ### 
-  users.groups = {
-    "media".gid = 10000;
-    "torrenting".gid = 10001;
-    "usenet".gid = 10002;
+  users = {
+    users."media" = {
+      isSystemUser = true;
+      uid = 10000;
+      group = "media";
+    };
+    groups = {
+      "media".gid = 10000;
+      "torrenting".gid = 10001;
+      "usenet".gid = 10002;
+    };
   };
 
   # jellyfin
