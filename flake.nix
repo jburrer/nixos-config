@@ -17,6 +17,10 @@
     impermanence.url = "github:nix-community/impermanence";
     arkenfox.url = "github:dwarfmaster/arkenfox-nixos";
     musnix.url = "github:musnix/musnix";
+    vpnconfinement = {
+      url = "github:Maroka-chan/VPN-Confinement";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     emacs-overlay = {
       url = "github:nix-community/emacs-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -41,6 +45,7 @@
     impermanence, 
     arkenfox,
     musnix,
+    vpnconfinement,
     emacs-overlay,
     firefox-gnome-theme,
     thunderbird-gnome-theme
@@ -115,8 +120,8 @@
         modules = [
           ./hosts/m3d14
           (nixConf pkgs)
-	  ({pkgs, ...}: { nixpkgs.overlays = [ emacs-overlay.overlay ]; })
           impermanence.nixosModules.impermanence
+          vpnconfinement.nixosModules.default
           home-manager.nixosModules.home-manager {
             home-manager = {
               useGlobalPkgs = true;
@@ -131,7 +136,6 @@
         modules = [
           ./hosts/vp5
           (nixConf pkgs)
-	  ({pkgs, ...}: { nixpkgs.overlays = [ emacs-overlay.overlay ]; })
           impermanence.nixosModules.impermanence
           home-manager.nixosModules.home-manager {
             home-manager = {

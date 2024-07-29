@@ -95,7 +95,8 @@
     imports = [ ../../modules/thunderbird.nix ];
 
     home.packages = with pkgs; [
-      libreoffice tor-browser-bundle-bin monero-gui
+      libreoffice amberol foliate
+      tor-browser-bundle-bin monero-gui
     ];
 
     #services.flatpack = {

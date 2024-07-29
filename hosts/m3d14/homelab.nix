@@ -42,57 +42,97 @@
   users.users."sonarr".extraGroups = [ "media" "torrenting" "usenet" ];
 
   # transmission + wireguard
-  containers."transmission" = {
-    autoStart = true;
-    forwardPorts = [
+
+  # Define VPN network namespace
+  vpnnamespaces.wg = {
+    enable = true;
+    #wireguardConfigFile = /. + "/secrets/wg0.conf";
+    wireguardConfigFile = "/srv/state/transmission/wg0.conf";
+    accessibleFrom = [ "192.168.0.0/24" ];
+    portMappings = [
       {
-        containerPort = 9091;
-        hostPort = 9091;
-        protocol = "tcp";
-      }
-      {
-        containerPort = 51820;
-        hostPort = 51820;
-        protocol = "udp";
+        from = 9091;
+        to = 9091;
       }
     ];
-    bindMounts = {
-      "/state" = {
-        hostPath = "/srv/state/transmission";
-        isReadOnly = false;
-      };
-      "/storage" = {
-        hostPath = "/srv/storage/torrents";
-        isReadOnly = false;
-      };
-    };
-    config = { config, pkgs, ... }: {
+    openVPNPorts = [
+      {
+        port = 60729;
+        protocol = "both";
+      }
+    ];
+  };
 
-      networking.wg-quick.interfaces."wg0".configFile = "/state/wg0.conf";
+  # Add systemd service to VPN network namespace.
+  systemd.services.transmission.vpnconfinement = {
+    enable = true;
+    vpnnamespace = "wg";
+  };
 
-      services.transmission = {
-        enable = true;
-        webHome = pkgs.flood-for-transmission;
-        home = "/state";
-        settings = {
-          download-dir = "/storage";
-          incomplete-dir = "/storage/incomplete";
-          rpc-bind-address = "0.0.0.0";
-          rpc-whitelist = "127.0.0.1,10.0.0.1";
-        };
-      };
+  #services.transmission = {
+  #  enable = true;
+  #  settings = {
+  #    "rpc-bind-address" = "192.168.15.1"; # Bind RPC/WebUI to bridge address
+  #  };
+  #};
 
-      system.stateVersion = "24.05";
-
+  services.transmission = {
+    enable = true;
+    webHome = pkgs.flood-for-transmission;
+    home = "/srv/state/transmission";
+    settings = {
+      download-dir = "/srv/storage/torrents";
+      incomplete-dir = "/srv/storage/torrents/incomplete";
+      rpc-bind-address = "192.168.15.1"; # Bind RPC/WebUI to bridge address
     };
   };
-  users.users."transmission" = {
-    isSystemUser = true;
-    uid = 70;
-    group = "transmission";
-    extraGroups = [ "torrenting" ];
-  };
-  users.groups."transmission".gid = 70;
+
+  users.users."transmission".extraGroups = [ "torrenting" ];
+
+  #containers."transmission" = {
+  #  autoStart = true;
+  #  forwardPorts = [
+  #    {
+  #      containerPort = 9091;
+  #      hostPort = 9091;
+  #      protocol = "tcp";
+  #    }
+  #    {
+  #      containerPort = 51820;
+  #      hostPort = 51820;
+  #      protocol = "udp";
+  #    }
+  #  ];
+  #  bindMounts = {
+  #    "/state" = {
+  #      hostPath = "/srv/state/transmission";
+  #      isReadOnly = false;
+  #    };
+  #    "/storage" = {
+  #      hostPath = "/srv/storage/torrents";
+  #      isReadOnly = false;
+  #    };
+  #  };
+  #  config = { config, pkgs, ... }: {
+
+  #    networking.wg-quick.interfaces."wg0".configFile = "/state/wg0.conf";
+
+  #    services.transmission = {
+  #      enable = true;
+  #      webHome = pkgs.flood-for-transmission;
+  #      home = "/state";
+  #      settings = {
+  #        download-dir = "/storage";
+  #        incomplete-dir = "/storage/incomplete";
+  #        rpc-bind-address = "0.0.0.0";
+  #        rpc-whitelist = "127.0.0.1,10.0.0.1";
+  #      };
+  #    };
+
+  #    system.stateVersion = "24.05";
+
+  #  };
+  #};
 
   # sabnzbd
 

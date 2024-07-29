@@ -37,7 +37,7 @@
     gnome.excludePackages = (with pkgs; [
       gnome-tour gnome-connections gnome-text-editor snapshot gnome-console
     ]) ++ (with pkgs.gnome; [
-      epiphany geary gnome-maps yelp totem simple-scan gnome-music
+      epiphany geary gnome-maps yelp totem gnome-music simple-scan
     ]);
   };
 

@@ -53,7 +53,7 @@
           default = "DuckDuckGoCustom";
           engines = {
             "DuckDuckGoCustom" = {
-              urls = [{ template = "https://start.duckduckgo.com/?kae=t&kav=1&kn=1&k1=-1&kaj=u&kay=b&kv=-1&kak=-1&kax=-1&kaq=-1&kao=-1&kau=-1&kap=-1&ka=Cantarell+Bold&kt=Cantarell&kw=s&ksn=5&kpsb=-1&k7=242424&kj=1e1e1e&k9=26a269&kaa=cd9309&k8=ffffff&kx=3584e4&k21=1e1e1e&kbf=1&k5=2&q={searchTerms}"; }];
+              urls = [{ template = "https://start.duckduckgo.com/?kav=1&kn=1&k1=-1&kaj=u&kay=b&kv=-1&kak=-1&kax=-1&kaq=-1&kap=-1&kao=-1&kau=-1&kae=t&kt=Cantarell&kw=n&km=m&ka=Cantarell&kpsb=-1&kj=1e1e1e&k7=242424&k9=26a269&kaa=3584e4&k8=ffffff&kx=613583&k5=2&kbg=-1&kbd=-1&ko=s&q={searchTerms}"; }];
               updateInterval = 24 * 60 * 60 * 1000;
               definedAliases = [ "@ddg" ];
             };
@@ -83,7 +83,7 @@
         };
         settings = {
           "general.smoothScroll" = true;
-          "browser.startup.homepage" = "https://start.duckduckgo.com/?kae=t&kav=1&kn=1&k1=-1&kaj=u&kay=b&kv=-1&kak=-1&kax=-1&kaq=-1&kao=-1&kau=-1&kap=-1&ka=Cantarell+Bold&kt=Cantarell&kw=s&ksn=5&kpsb=-1&k7=242424&kj=1e1e1e&k9=26a269&kaa=cd9309&k8=ffffff&kx=3584e4&k21=1e1e1e&kbf=1&k5=2";
+          "browser.startup.homepage" = "https://start.duckduckgo.com/?kav=1&kn=1&k1=-1&kaj=u&kay=b&kv=-1&kak=-1&kax=-1&kaq=-1&kap=-1&kao=-1&kau=-1&kae=t&kt=Cantarell&kw=n&km=m&ka=Cantarell&kpsb=-1&kj=1e1e1e&k7=242424&k9=26a269&kaa=3584e4&k8=ffffff&kx=613583&k5=2&kbg=-1&kbd=-1&ko=s";
           "dom.security.https_only_mode" = true;
           "dom.security.https_only_mode_ever_enabled" = true;
           "privacy.donottrackheader.enabled" = true;
