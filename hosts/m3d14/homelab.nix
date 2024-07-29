@@ -78,7 +78,7 @@
 
   services.transmission = {
     enable = true;
-    webHome = pkgs.flood-for-transmission;
+    #webHome = pkgs.flood-for-transmission;
     home = "/srv/state/transmission";
     settings = {
       download-dir = "/srv/storage/torrents";
