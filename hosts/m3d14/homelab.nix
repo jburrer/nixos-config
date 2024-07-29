@@ -20,9 +20,10 @@
   services.jellyfin = {
     enable = true;
     dataDir = "/srv/state/jellyfin";
-    user = "media";
+    user = "jellyfin";
     group = "media";
   };
+  users.users."jellyfin".extraGroups = [ "media" ];
 
   # radarr
   services.radarr = {
