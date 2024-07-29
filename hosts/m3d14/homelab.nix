@@ -19,9 +19,10 @@
   # jellyfin
   services.jellyfin = {
     enable = true;
-    dataDir = "/srv/state/jellyfin";
     user = "jellyfin";
     group = "media";
+    dataDir = "/srv/state/jellyfin";
+    cacheDir = "/srv/state/jellyfin/cache";
   };
   users.users."jellyfin".extraGroups = [ "media" ];
 
