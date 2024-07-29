@@ -78,7 +78,6 @@
       rpc-host-whitelist-enabled = false;
     };
   };
-  users.users."transmission".extraGroups = [ "torrenting" ];
 
   # sabnzbd
   services.sabnzbd.enable = true;
