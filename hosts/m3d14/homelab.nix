@@ -80,7 +80,7 @@
   users.users."transmission".extraGroups = [ "torrenting" ];
 
   # sabnzbd
-
-  # gitea
+  services.sabnzbd.enable = true;
+  users.users."sabnzbd".extraGroups = [ "usenet" ];
 
 }

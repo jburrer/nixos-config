@@ -32,6 +32,7 @@
   fileSystems."/srv/storage" = {
     device = "/mnt/disks/*";
     fsType = "fuse.mergerfs";
+    options = [ "category.create=mfs" ];
   };
 
   # change ssh server port to access gitea on port 22
