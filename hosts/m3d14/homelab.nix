@@ -24,8 +24,6 @@
   services.jellyfin = {
     enable = true;
     dataDir = "/srv/state/jellyfin";
-    user = "jellyfin";
-    group = "media";
   };
   users.users."jellyfin".extraGroups = [ "media" ];
 
@@ -42,6 +40,9 @@
     dataDir = "/srv/state/sonarr";
   };
   users.users."sonarr".extraGroups = [ "media" "torrenting" "usenet" ];
+
+  # prowlarr
+  services.prowlarr.enable = true;
 
   # transmission + wireguard
   vpnnamespaces.wg = {
