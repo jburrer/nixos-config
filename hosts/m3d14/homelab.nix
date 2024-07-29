@@ -13,33 +13,32 @@
       uid = 10000;
       group = "media";
     };
-    groups = {
-      "media".gid = 10000;
-      "torrenting".gid = 10001;
-      "usenet".gid = 10002;
-    };
+    groups."media".gid = 10000;
   };
 
   # jellyfin
   services.jellyfin = {
     enable = true;
     dataDir = "/srv/state/jellyfin";
+    user = "media";
+    group = "media";
   };
-  users.users."jellyfin".extraGroups = [ "media" ];
 
   # radarr
   services.radarr = {
     enable = true;
     dataDir = "/srv/state/radarr";
+    user = "media";
+    group = "media";
   };
-  users.users."radarr".extraGroups = [ "media" "torrenting" "usenet" ];
 
   # sonarr 
   services.sonarr = {
     enable = true;
     dataDir = "/srv/state/sonarr";
+    user = "media";
+    group = "media";
   };
-  users.users."sonarr".extraGroups = [ "media" "torrenting" "usenet" ];
 
   # prowlarr
   services.prowlarr.enable = true;
@@ -69,8 +68,8 @@
   services.transmission = {
     enable = true;
     home = "/srv/state/transmission";
-    user = "transmission";
-    group = "torrenting";
+    user = "media";
+    group = "media";
     settings = {
       download-dir = "/srv/storage/torrents";
       incomplete-dir = "/srv/storage/torrents/incomplete";
@@ -83,6 +82,5 @@
 
   # sabnzbd
   services.sabnzbd.enable = true;
-  users.users."sabnzbd".extraGroups = [ "usenet" ];
 
 }
