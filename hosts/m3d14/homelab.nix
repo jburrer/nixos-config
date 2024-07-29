@@ -69,6 +69,8 @@
   services.transmission = {
     enable = true;
     home = "/srv/state/transmission";
+    user = "transmission";
+    group = "torrenting";
     settings = {
       download-dir = "/srv/storage/torrents";
       incomplete-dir = "/srv/storage/torrents/incomplete";
