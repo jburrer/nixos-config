@@ -35,6 +35,9 @@
     options = [ "category.create=mfs" ];
   };
 
+  # something abt mergerfs mfs needs this i think?
+  nixpkgs.config.allowUnfree = true;
+
   # change ssh server port to access gitea on port 22
   sshServer.port = 222;
 
