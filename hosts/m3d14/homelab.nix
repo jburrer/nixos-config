@@ -84,6 +84,7 @@
       download-dir = "/srv/storage/torrents";
       incomplete-dir = "/srv/storage/torrents/incomplete";
       rpc-bind-address = "192.168.15.1"; # Bind RPC/WebUI to bridge address
+      rpc-whitelist = "*";
     };
   };
 
