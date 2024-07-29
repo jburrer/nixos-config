@@ -19,12 +19,12 @@
   # jellyfin
   services.jellyfin = {
     enable = true;
-    user = "jellyfin";
+    user = "media";
     group = "media";
     dataDir = "/srv/state/jellyfin";
     cacheDir = "/srv/state/jellyfin/cache";
   };
-  users.users."jellyfin".extraGroups = [ "media" ];
+  #users.users."jellyfin".extraGroups = [ "media" ];
 
   # radarr
   services.radarr = {
