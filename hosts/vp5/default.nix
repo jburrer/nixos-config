@@ -42,11 +42,22 @@
       };
       # remote jellyfin access 
       "n3mohomelab.xyz" = {
-      #"vp5" = {
         forceSSL = true;
         enableACME = true;
         locations."/" = {
           proxyPass = "http://m3d14:8096";
+          extraConfig = ''
+            proxy_ssl_server_name on;
+            proxy_pass_header Authorization;
+          '';
+        };
+      };
+      # remote jellyseerr access 
+      "jellyseerr.n3mohomelab.xyz" = {
+        forceSSL = true;
+        enableACME = true;
+        locations."/" = {
+          proxyPass = "http://m3d14:5055";
           extraConfig = ''
             proxy_ssl_server_name on;
             proxy_pass_header Authorization;
