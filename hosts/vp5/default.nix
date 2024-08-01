@@ -40,9 +40,27 @@
           '';
         };
       };
+      # remote jellyfin access 
+      "n3mohomelab.xyz" = {
+      #"vp5" = {
+        forceSSL = true;
+        enableACME = true;
+        locations."/" = {
+          proxyPass = "http://m3d14:8096";
+          extraConfig = ''
+            proxy_ssl_server_name on;
+            proxy_pass_header Authorization;
+          '';
+        };
+      };
     };
   };
-  networking.firewall.allowedTCPPorts = [ 80 443 ];
+
+
+  networking.firewall = {
+    enable = true;
+    allowedTCPPorts = [ 80 443 ];
+  };
 
   security.acme = {
     acceptTerms = true;
