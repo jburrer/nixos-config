@@ -26,7 +26,7 @@
   };
 
   # jellyseer
-  services.jellyseer.enable = true;
+  services.jellyseerr.enable = true;
 
   # radarr
   services.radarr = {
