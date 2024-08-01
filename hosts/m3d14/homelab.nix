@@ -24,7 +24,9 @@
     dataDir = "/srv/state/jellyfin";
     cacheDir = "/srv/state/jellyfin/cache";
   };
-  #users.users."jellyfin".extraGroups = [ "media" ];
+
+  # jellyseer
+  services.jellyseer.enable = true;
 
   # radarr
   services.radarr = {
