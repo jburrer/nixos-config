@@ -120,6 +120,10 @@
   };
 
   # sabnzbd
-  services.sabnzbd.enable = true;
+  services.sabnzbd = {
+    enable = true;
+    user = "media";
+    group = "media";
+  };
 
 }
