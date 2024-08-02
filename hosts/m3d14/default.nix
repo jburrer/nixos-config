@@ -42,7 +42,7 @@
   sshServer.port = 222;
 
   # needed to get ssl certs for tailscale address
-  services.tailscale.interfaceName = "userspace-networking";
+  #services.tailscale.interfaceName = "userspace-networking";
 
   system.stateVersion = "23.05";
 
