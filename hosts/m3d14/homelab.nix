@@ -29,8 +29,8 @@
   security.acme = {
     acceptTerms = true;
     defaults.email = "jburrer@purdue.edu";
-    certs."n3mohomelab.xyz" = {
-      domain = "n3mohomelab.xyz";
+    certs."local.n3mohomelab.xyz" = {
+      domain = "local.n3mohomelab.xyz";
       extraDomainNames = [ "*.local.n3mohomelab.xyz" ];
       dnsProvider = "vultr";
       dnsPropagationCheck = true;
@@ -52,7 +52,7 @@
   };
   services.nginx.virtualHosts."jellyfin.local.n3mohomelab.xyz" = {
     forceSSL = true;
-    useACMEHost = "n3mohomelab.xyz";
+    useACMEHost = "local.n3mohomelab.xyz";
     locations."/".proxyPass = "http://localhost:8096";
   };
 
