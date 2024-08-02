@@ -29,8 +29,8 @@
   security.acme = {
     acceptTerms = true;
     defaults.email = "jburrer@purdue.edu";
-    certs."local.n3mohomelab.xyz" = {
-      domain = "local.n3mohomelab.xyz";
+    certs."n3mohomelab.xyz" = {
+      domain = "n3mohomelab.xyz";
       extraDomainNames = [ "*.local.n3mohomelab.xyz" ];
       dnsProvider = "vultr";
       dnsPropagationCheck = true;
@@ -52,7 +52,7 @@
   };
   services.nginx.virtualHosts."jellyfin.local.n3mohomelab.xyz" = {
     forceSSL = true;
-    useACMEHost = "local.n3mohomelab.xyz";
+    useACMEHost = "n3mohomelab.xyz";
     locations."/".proxyPass = "http://localhost:8096";
   };
 
@@ -65,6 +65,11 @@
     dataDir = "/srv/state/radarr";
     user = "media";
     group = "media";
+  };
+  services.nginx.virtualHosts."radarr.local.n3mohomelab.xyz" = {
+    forceSSL = true;
+    useACMEHost = "n3mohomelab.xyz";
+    locations."/".proxyPass = "http://localhost:7878";
   };
 
   # sonarr 
