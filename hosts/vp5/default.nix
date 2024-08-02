@@ -67,6 +67,7 @@
       environmentFile = "${pkgs.writeText "vultr-creds" ''
         VULTR_API_KEY=KYV2E5DMYYWELBZASVAVVKPW7JRVUJF3X6VQ
       ''}";
+      # ^ fix this when secrets implemented ^
     };
   };
   users.users.nginx.extraGroups = [ "acme" ];

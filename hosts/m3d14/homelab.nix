@@ -7,6 +7,8 @@
   };
 
   ### media server ### 
+
+  # set up media user
   users = {
     users."media" = {
       isSystemUser = true;
@@ -16,6 +18,30 @@
     groups."media".gid = 10000;
   };
 
+  # enable nginx for proxying
+  services.nginx = {
+    enable = true;
+    recommendedProxySettings = true;
+    recommendedTlsSettings = true;
+  }
+
+  # acme wildcard certificate
+  security.acme = {
+    acceptTerms = true;
+    defaults.email = "jburrer@purdue.edu";
+    certs."n3mohomelab.xyz" = {
+      domain = "n3mohomelab.xyz";
+      extraDomainNames = [ "*.local.n3mohomelab.xyz" ];
+      dnsProvider = "vultr";
+      dnsPropagationCheck = true;
+      environmentFile = "${pkgs.writeText "vultr-creds" ''
+        VULTR_API_KEY=KYV2E5DMYYWELBZASVAVVKPW7JRVUJF3X6VQ
+      ''}";
+      # ^ fix this when secrets implemented ^
+    };
+  };
+  users.users.nginx.extraGroups = [ "acme" ];
+
   # jellyfin
   services.jellyfin = {
     enable = true;
@@ -23,6 +49,11 @@
     group = "media";
     dataDir = "/srv/state/jellyfin";
     cacheDir = "/srv/state/jellyfin/cache";
+  };
+  services.nginx.virtualHosts."jellyfin.local.n3mohomelab.xyz" = {
+    forceSSL = true;
+    useACMEHost = "n3mohomelab.xyz";
+    locations."/".proxyPass = "http://localhost:8096";
   };
 
   # jellyseer
