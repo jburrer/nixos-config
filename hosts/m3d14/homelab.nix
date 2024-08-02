@@ -23,7 +23,7 @@
     enable = true;
     recommendedProxySettings = true;
     recommendedTlsSettings = true;
-  }
+  };
 
   # acme wildcard certificate
   security.acme = {
