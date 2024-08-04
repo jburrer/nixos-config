@@ -1,23 +1,5 @@
 { pkgs, ... }: {
 
-  # radicale
-  services.radicale = {
-    enable = true;
-    settings.server.hosts = [ "0.0.0.0:5232" ];
-  };
-
-  ### media server ### 
-
-  # set up media user
-  users = {
-    users."media" = {
-      isSystemUser = true;
-      uid = 10000;
-      group = "media";
-    };
-    groups."media".gid = 10000;
-  };
-
   # enable nginx for proxying
   services.nginx = {
     enable = true;
@@ -42,6 +24,31 @@
   };
   users.users.nginx.extraGroups = [ "acme" ];
 
+
+  # radicale
+  services.radicale = {
+    enable = true;
+    settings.server.hosts = [ "0.0.0.0:5232" ];
+  };
+  services.nginx.virtualHosts."radicale.local.n3mohomelab.xyz" = {
+    forceSSL = true;
+    useACMEHost = "local.n3mohomelab.xyz";
+    locations."/".proxyPass = "http://localhost:5232";
+  };
+
+
+  ### media server ### 
+
+  # set up media user
+  users = {
+    users."media" = {
+      isSystemUser = true;
+      uid = 10000;
+      group = "media";
+    };
+    groups."media".gid = 10000;
+  };
+
   # jellyfin
   services.jellyfin = {
     enable = true;
@@ -58,6 +65,11 @@
 
   # jellyseer
   services.jellyseerr.enable = true;
+  services.nginx.virtualHosts."jellyseer.local.n3mohomelab.xyz" = {
+    forceSSL = true;
+    useACMEHost = "local.n3mohomelab.xyz";
+    locations."/".proxyPass = "http://localhost:5055";
+  };
 
   # radarr
   services.radarr = {
@@ -79,9 +91,19 @@
     user = "media";
     group = "media";
   };
+  services.nginx.virtualHosts."sonarr.local.n3mohomelab.xyz" = {
+    forceSSL = true;
+    useACMEHost = "local.n3mohomelab.xyz";
+    locations."/".proxyPass = "http://localhost:8989";
+  };
 
   # prowlarr
   services.prowlarr.enable = true;
+  services.nginx.virtualHosts."prowlarr.local.n3mohomelab.xyz" = {
+    forceSSL = true;
+    useACMEHost = "local.n3mohomelab.xyz";
+    locations."/".proxyPass = "http://localhost:9696";
+  };
 
   # transmission + wireguard
   vpnnamespaces.wg = {
@@ -118,12 +140,22 @@
       rpc-host-whitelist-enabled = false;
     };
   };
+  services.nginx.virtualHosts."transmission.local.n3mohomelab.xyz" = {
+    forceSSL = true;
+    useACMEHost = "local.n3mohomelab.xyz";
+    locations."/".proxyPass = "http://localhost:9091";
+  };
 
   # sabnzbd
   services.sabnzbd = {
     enable = true;
     user = "media";
     group = "media";
+  };
+  services.nginx.virtualHosts."sabnzbd.local.n3mohomelab.xyz" = {
+    forceSSL = true;
+    useACMEHost = "local.n3mohomelab.xyz";
+    locations."/".proxyPass = "http://localhost:8080";
   };
 
 }
