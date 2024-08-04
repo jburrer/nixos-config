@@ -149,7 +149,7 @@
     enable = true;
     user = "media";
     group = "media";
-    configFile = "./sabnzbd.ini";
+    configFile = ./sabnzbd.ini;
   };
   services.nginx.virtualHosts."sabnzbd.local.n3mohomelab.xyz" = {
     forceSSL = true;
