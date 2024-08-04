@@ -138,11 +138,11 @@
       rpc-host-whitelist-enabled = false;
     };
   };
-  services.nginx.virtualHosts."transmission.local.n3mohomelab.xyz" = {
-    forceSSL = true;
-    useACMEHost = "local.n3mohomelab.xyz";
-    locations."/".proxyPass = "http://localhost:9091";
-  };
+  #services.nginx.virtualHosts."transmission.local.n3mohomelab.xyz" = {
+  #  forceSSL = true;
+  #  useACMEHost = "local.n3mohomelab.xyz";
+  #  locations."/".proxyPass = "http://localhost:9091";
+  #};
 
   # sabnzbd
   services.sabnzbd = {
