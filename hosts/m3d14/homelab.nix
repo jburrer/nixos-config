@@ -63,7 +63,7 @@
 
   # jellyseer
   services.jellyseerr.enable = true;
-  services.nginx.virtualHosts."jellyseer.local.n3mohomelab.xyz" = {
+  services.nginx.virtualHosts."jellyseerr.local.n3mohomelab.xyz" = {
     forceSSL = true;
     useACMEHost = "local.n3mohomelab.xyz";
     locations."/".proxyPass = "http://localhost:5055";
@@ -149,6 +149,7 @@
     enable = true;
     user = "media";
     group = "media";
+    configFile = "./sabnzbd.ini";
   };
   services.nginx.virtualHosts."sabnzbd.local.n3mohomelab.xyz" = {
     forceSSL = true;
