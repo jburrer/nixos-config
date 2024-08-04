@@ -33,7 +33,7 @@
       domain = "local.n3mohomelab.xyz";
       extraDomainNames = [ "*.local.n3mohomelab.xyz" ];
       dnsProvider = "vultr";
-      dnsPropagationCheck = true;
+      #dnsPropagationCheck = true;
       environmentFile = "${pkgs.writeText "vultr-creds" ''
         VULTR_API_KEY=KYV2E5DMYYWELBZASVAVVKPW7JRVUJF3X6VQ
       ''}";
