@@ -40,14 +40,12 @@
   ### media server ### 
 
   # set up media user
-  users = {
-    users."media" = {
-      isSystemUser = true;
-      uid = 10000;
-      group = "media";
-    };
-    groups."media".gid = 10000;
+  users.users."media" = {
+    isSystemUser = true;
+    uid = 10000;
+    group = "media";
   };
+  users.groups."media".gid = 10000;
 
   # jellyfin
   services.jellyfin = {
