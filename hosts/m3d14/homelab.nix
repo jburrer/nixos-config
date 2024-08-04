@@ -145,16 +145,16 @@
   #};
 
   # sabnzbd
-  services.sabnzbd = {
-    enable = true;
-    user = "media";
-    group = "media";
-    configFile = /srv/state/sabnzbd/sabnzbd.ini;
-  };
-  services.nginx.virtualHosts."sabnzbd.local.n3mohomelab.xyz" = {
-    forceSSL = true;
-    useACMEHost = "local.n3mohomelab.xyz";
-    locations."/".proxyPass = "http://localhost:8080";
-  };
+  #services.sabnzbd = {
+  #  enable = true;
+  #  user = "media";
+  #  group = "media";
+  #  configFile = /srv/state/sabnzbd/sabnzbd.ini;
+  #};
+  #services.nginx.virtualHosts."sabnzbd.local.n3mohomelab.xyz" = {
+  #  forceSSL = true;
+  #  useACMEHost = "local.n3mohomelab.xyz";
+  #  locations."/".proxyPass = "http://localhost:8080";
+  #};
 
 }
