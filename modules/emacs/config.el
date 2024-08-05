@@ -90,15 +90,23 @@
 
 (setq visible-bell 1)
 
-;(use-package modus-themes
-;             :ensure t
-;             :config
-;             (load-theme 'modus-vivendi :no-confirm))
 (use-package adwaita-dark-theme
              :ensure t
              :config
              (load-theme 'adwaita-dark :no-confirm))
 
+;(use-package modern-tab-bar
+;  :ensure (modern-tab-bar
+;           :host github
+;           :repo "aaronjensen/emacs-modern-tab-bar"
+;           :protocol ssh)
+;  :init
+;  (setq tab-bar-show t
+;        tab-bar-new-button nil
+;        tab-bar-close-button-show nil
+;        tab-bar-new-tab-choice 'multi-vterm)
+;
+;  (modern-tab-bar-mode))
 (defface n3mo-tab-bar-tab
          `((t
             :inherit 'tab-bar-tab
@@ -120,9 +128,10 @@
              (propertize (concat "  " (alist-get 'name tab) "  ") 'face tab-face)))
 
 (setq tab-bar-show 1
-            tab-bar-close-button-show nil
-            tab-bar-new-tab-choice 'multi-vterm
-            tab-bar-tab-name-format-function 'n3mo-tab-bar-tab-name-format-default)
+      tab-bar-new-button nil
+      tab-bar-close-button-show nil
+      tab-bar-new-tab-choice 'multi-vterm
+      tab-bar-tab-name-format-function 'n3mo-tab-bar-tab-name-format-default)
 
 (tab-bar-mode 1)
 

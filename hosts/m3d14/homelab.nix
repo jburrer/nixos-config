@@ -24,6 +24,11 @@
   };
   users.users.nginx.extraGroups = [ "acme" ];
 
+  # filegator
+  virtualisation.oci-containers.containers."filegator" = {
+    image = "filegator/filegator";
+    ports = [ "8080:7070" ];
+  };
 
   # radicale
   services.radicale = {
