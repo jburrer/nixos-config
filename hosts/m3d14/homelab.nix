@@ -153,7 +153,7 @@
   services.nginx.virtualHosts."transmission.local.n3mohomelab.xyz" = {
     forceSSL = true;
     useACMEHost = "local.n3mohomelab.xyz";
-    locations."/".proxyPass = "http://localhost:9091";
+    locations."/".proxyPass = "http://192.168.15.1:9091";
   };
 
   # sabnzbd
