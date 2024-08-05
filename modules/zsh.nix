@@ -1,37 +1,46 @@
 { config, pkgs, ... } :
 
+#PS1='%F{yellow}%([[ -v IN_NIX_SHELL ]].{$NIX_SHELL_PACKAGES}.)%f%F{green}%n%f@%F{magenta}%m%f:%F{blue}%~%f > '
+
 let extraZshConfig = ''
-PS1='%F{green}%n%f@%F{magenta}%m%f:%F{blue}%~%f > '
+  setopt PROMPT_SUBST
 
-set -o vi
+  check_nix_shell() {
+    if [[ -v IN_NIX_SHELL  ]]; then
+      printf '{%s} ' "$NIX_SHELL_PACKAGES"
+    fi
+  }
 
-gpg-connect-agent /bye
-export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
-
-function vterm_printf(){
-    printf "\e]%s\e\\" "$1"
-}
-if [[ "$INSIDE_EMACS" = 'vterm' ]]; then
-    alias clear='vterm_printf "51;Evterm-clear-scrollback";tput clear'
-fi
-vterm_cmd() {
-    local vterm_elisp
-    vterm_elisp=""
-    while [ $# -gt 0 ]; do
-        vterm_elisp="$vterm_elisp""$(printf '"%s" ' "$(printf "%s" "$1" | sed -e 's|\\|\\\\|g' -e 's|"|\\"|g')")"
-        shift
-    done
-    vterm_printf "51;E$vterm_elisp"
-}
-autoload -U add-zsh-hook
-add-zsh-hook -Uz chpwd (){ print -Pn "\e]2;%m:%2~\a" }
-vterm_prompt_end() {
-    vterm_printf "51;A$(whoami)@$(hostname):$(pwd)"
-}
-setopt PROMPT_SUBST
-PROMPT=$PROMPT'%{$(vterm_prompt_end)%}'
-
-eval "$(direnv hook zsh)"
+  PROMPT='%F{yellow}$(check_nix_shell)%f%F{green}%n%f@%F{magenta}%m%f:%F{blue}%~%f > '
+  
+  set -o vi
+  
+  gpg-connect-agent /bye
+  export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
+  
+  function vterm_printf(){
+      printf "\e]%s\e\\" "$1"
+  }
+  if [[ "$INSIDE_EMACS" = 'vterm' ]]; then
+      alias clear='vterm_printf "51;Evterm-clear-scrollback";tput clear'
+  fi
+  vterm_cmd() {
+      local vterm_elisp
+      vterm_elisp=""
+      while [ $# -gt 0 ]; do
+          vterm_elisp="$vterm_elisp""$(printf '"%s" ' "$(printf "%s" "$1" | sed -e 's|\\|\\\\|g' -e 's|"|\\"|g')")"
+          shift
+      done
+      vterm_printf "51;E$vterm_elisp"
+  }
+  autoload -U add-zsh-hook
+  add-zsh-hook -Uz chpwd (){ print -Pn "\e]2;%m:%2~\a" }
+  vterm_prompt_end() {
+      vterm_printf "51;A$(whoami)@$(hostname):$(pwd)"
+  }
+  PROMPT=$PROMPT'%{$(vterm_prompt_end)%}'
+  
+  eval "$(direnv hook zsh)"
 '';
 in {
 
@@ -66,6 +75,18 @@ in {
         mkdir = "mkdir -v";
         neofetch = "echo && ${pkgs.neofetch}/bin/neofetch";
       };
+      plugins = [
+        {
+          name = "zsh-nix-shell";
+          file = "nix-shell.plugin.zsh";
+          src = pkgs.fetchFromGitHub {
+            owner = "chisui";
+            repo = "zsh-nix-shell";
+            rev = "v0.8.0";
+            sha256 = "1lzrn0n4fxfcgg65v0qhnj7wnybybqzs4adz7xsrkgmcsr0ii8b7";
+          };
+        }
+      ];
       syntaxHighlighting.enable = true;
       initExtra = extraZshConfig;
     };
