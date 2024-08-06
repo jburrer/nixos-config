@@ -1,6 +1,4 @@
-{ config, osConfig, pkgs, firefox-gnome-theme, ... }:
-
-{
+{ config, osConfig, pkgs, firefox-gnome-theme, ... }: {
 
   home.file.".mozilla/firefox/${osConfig.username}/chrome/firefox-gnome-theme".source =
       firefox-gnome-theme;

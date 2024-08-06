@@ -59,6 +59,7 @@
     imports = [
       ./emacs
       ./firefox.nix
+      ./gotify-desktop.nix
     ];
 
     xdg.enable = true;
