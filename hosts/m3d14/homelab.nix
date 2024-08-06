@@ -174,4 +174,15 @@
     locations."/".proxyPass = "http://localhost:8080";
   };
 
+  # gotify
+  services.gotify = {
+    enable = true;
+    port = 6060;
+  };
+  services.nginx.virtualHosts."gotify.local.n3mohomelab.xyz" = {
+    forceSSL = true;
+    useACMEHost = "local.n3mohomelab.xyz";
+    locations."/".proxyPass = "http://localhost:6060";
+  };
+
 }
