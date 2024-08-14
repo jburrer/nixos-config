@@ -95,7 +95,7 @@
     imports = [ ../../modules/thunderbird.nix ];
 
     home.packages = with pkgs; [
-      libreoffice amberol foliate
+      libreoffice amberol foliate alpaca
       tor-browser-bundle-bin monero-gui
     ];
 

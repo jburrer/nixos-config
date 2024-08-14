@@ -36,9 +36,8 @@
   environment = {
     gnome.excludePackages = (with pkgs; [
       gnome-tour gnome-connections gnome-text-editor snapshot gnome-console
-    ]) ++ (with pkgs.gnome; [
-      epiphany geary gnome-maps yelp totem gnome-music simple-scan
-    ]);
+      epiphany geary yelp totem simple-scan
+    ]) ++ (with pkgs.gnome; [ gnome-maps gnome-music ]);
   };
 
   # dconf
@@ -59,7 +58,6 @@
     imports = [
       ./emacs
       ./firefox.nix
-      ./gotify-desktop.nix
     ];
 
     xdg.enable = true;
@@ -70,11 +68,9 @@
       deploy-rs pass wl-clipboard gimp cascadia-code adw-gtk3
       gnome3.gnome-tweaks ptyxis celluloid dconf2nix
     ]) ++ (with pkgs.gnomeExtensions; [
-      paperwm dash-to-panel auto-move-windows
-      blur-my-shell rounded-corners
-      tailscale-qs #syncthing-indicator
+      paperwm auto-move-windows blur-my-shell
+      tailscale-qs
     ]);
-
     home.file.".local/share/gnome-shell/extensions/rounded-window-corners@flexagoon.github.com".source = builtins.fetchGit {
       url = "https://github.com/flexagoon/rounded-window-corners";
       rev = "99703159f4343e687c33e6ba6ef1af29e5ac1e34";
@@ -85,12 +81,9 @@
         disable-user-extensions = false;
         enabled-extensions = [
           "paperwm@paperwm.github.com"
-          "dash-to-panel@jderose9.github.com"
-          "rounded-window-corners@flexagoon.github.com"
           "auto-move-windows@gnome-shell-extensions.gcampax.github.com"
           "blur-my-shell@aunetx"
           "tailscale@joaophi.github.com"
-          #"syncthing@gnome.2nv2u.com"
           "system-monitor@gnome-shell-extensions.gcampax.github.com"
           "gsconnect@andyholmes.github.io"
         ];

@@ -22,7 +22,7 @@
     });
   };
 
-  home.packages = with pkgs; [ texliveBasic ];
+  home.packages = with pkgs; [ texliveBasic nixd ];
 
   services.emacs.enable = true;
 
