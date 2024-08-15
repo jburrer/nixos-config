@@ -23,11 +23,7 @@
     # nvidia
     services.xserver.videoDrivers = lib.mkIf config.gaming.nvidia.enable [ "nvidia" ];
     hardware = lib.mkIf config.gaming.nvidia.enable {
-        opengl = {
-        enable = true;
-        driSupport = true;
-        driSupport32Bit = true;
-      };
+      graphics.enable = true;
       nvidia = {
         package = config.boot.kernelPackages.nvidiaPackages.stable;
         modesetting.enable = true;

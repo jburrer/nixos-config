@@ -3,6 +3,7 @@
   imports = [
     ./hardware-configuration.nix
     ../../modules
+    ./hangar6parking.nix
   ];
 
   hostname = "vp5";
@@ -44,12 +45,6 @@
         forceSSL = true;
         enableACME = true;
         root = "/var/www/ydsapurdue.org";
-      };
-      # dispatch dashboard
-      "hangar6parking.online" = {
-        forceSSL = true;
-        enableACME = true;
-        locations."/".proxyPass = "http://127.0.0.1:8080";
       };
       # remote jellyfin access 
       "jellyfin.n3mohomelab.xyz" = {
