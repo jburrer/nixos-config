@@ -38,7 +38,7 @@
 
     # some apps
     home-manager.users.${config.username}.home.packages = with pkgs; [
-      gamemode transmission #lutris
+      gamemode transmission_4 #lutris
     ];
 
   };

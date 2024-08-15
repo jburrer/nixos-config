@@ -269,6 +269,14 @@
              :ensure t
              :mode "\\.nix\\'")
 
+(add-hook 'prog-mode-hook
+          (lambda ()
+          (add-hook 'before-save-hook 'eglot-format nil t)))
+
+(with-eval-after-load 'eglot
+                      (dolist (mode '((nix-ts-mode . ("nixd"))))
+                      (add-to-list 'eglot-server-programs mode)))
+
 (use-package highlight-indent-guides
              :ensure t
              :config

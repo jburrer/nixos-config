@@ -35,8 +35,8 @@
   # exclude unecessary gnome crap
   environment = {
     gnome.excludePackages = (with pkgs; [
-      gnome-tour gnome-connections gnome-text-editor snapshot gnome-console
-      epiphany geary yelp totem simple-scan
+      gnome-tour gnome-connections gnome-text-editor snapshot
+      gnome-console epiphany geary yelp totem simple-scan
     ]) ++ (with pkgs.gnome; [ gnome-maps gnome-music ]);
   };
 
@@ -65,35 +65,12 @@
     fonts.fontconfig.enable = true;
 
     home.packages = (with pkgs; [
-      deploy-rs pass wl-clipboard gimp cascadia-code adw-gtk3
-      gnome3.gnome-tweaks ptyxis celluloid dconf2nix
+      deploy-rs pass wl-clipboard gimp cascadia-code
+      adw-gtk3 gnome-tweaks ptyxis celluloid dconf2nix
     ]) ++ (with pkgs.gnomeExtensions; [
       paperwm auto-move-windows blur-my-shell
-      tailscale-qs
+      rounded-window-corners-reborn tailscale-qs
     ]);
-    home.file.".local/share/gnome-shell/extensions/rounded-window-corners@flexagoon.github.com".source = builtins.fetchGit {
-      url = "https://github.com/flexagoon/rounded-window-corners";
-      rev = "99703159f4343e687c33e6ba6ef1af29e5ac1e34";
-    };
-
-    dconf.settings = lib.mkForce {
-      "org/gnome/shell" = {
-        disable-user-extensions = false;
-        enabled-extensions = [
-          "paperwm@paperwm.github.com"
-          "auto-move-windows@gnome-shell-extensions.gcampax.github.com"
-          "blur-my-shell@aunetx"
-          "tailscale@joaophi.github.com"
-          "system-monitor@gnome-shell-extensions.gcampax.github.com"
-          "gsconnect@andyholmes.github.io"
-        ];
-      };
-      "org/gnome/desktop/peripherals/keyboard" = {
-          delay = 175;
-          repeat-interval = 10; # 18
-          repeat = true;
-      };
-    };
 
   };
 
