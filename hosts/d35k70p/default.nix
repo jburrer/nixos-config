@@ -41,7 +41,16 @@
   };
 
   # enable syncthing with home manager
-  home-manager.users.${config.username}.services.syncthing.enable = true;
+  home-manager.users.${config.username} = {
+
+    home.packages = with pkgs; [ spotify ];
+
+    programs.alacritty.enable = false;
+    programs.thunderbird.enable = false;
+
+    services.syncthing.enable = true;
+    
+  };
 
   system.stateVersion = "22.11";
 

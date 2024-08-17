@@ -96,6 +96,11 @@
   programs.fuse.userAllowOther = true;
   home-manager.users.${config.username} = {
 
+    imports = [
+      ../../modules/desktop/thunderbird.nix
+      ../../modules/desktop/alacritty.nix
+    ];
+
     home.packages = with pkgs; [
       libreoffice tor-browser-bundle-bin monero-gui
     ];

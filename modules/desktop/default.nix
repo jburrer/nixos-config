@@ -80,8 +80,6 @@
       imports = [
         ./emacs
         ./firefox.nix
-        ./thunderbird.nix
-        ./alacritty.nix
       ];
 
       xdg.enable = true;
@@ -117,6 +115,7 @@
             name = "Cantarell";
           };
           sansSerif = {
+
             package = pkgs.cantarell-fonts;
             name = "Cantarell";
           };
