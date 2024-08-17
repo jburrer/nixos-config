@@ -24,6 +24,6 @@
 
   home.packages = with pkgs; [ texliveBasic nixd ];
 
-  services.emacs.enable = true;
+  #services.emacs.enable = true;
 
 }

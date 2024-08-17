@@ -1,10 +1,10 @@
-{ config, pkgs, ... }: {
+{ pkgs, ... }: {
 
   systemd.services."hangar6parking" = {
     description = "Application to Manage Aircraft Locations for Purdue's Flight School";
     after = [ "network.target" ];
     serviceConfig = {
-      ExecStart = "cd /var/www/hangar6parking.xyz/ && npm run start";
+      ExecStart = "${pkgs.nodejs_20}/bin/node /var/www/hangar6parking.xyz/src/index.js";
       User = "n3mo";
       Restart = "always";
     };
