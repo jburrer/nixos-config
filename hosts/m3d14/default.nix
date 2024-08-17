@@ -4,7 +4,9 @@
     ./hardware-configuration.nix
     ../../modules
     ./homelab.nix
-    ./containers
+    #./containers
+    #./nextcloud.nix
+    #./docker-osx.nix
   ];
 
   hostname = "m3d14";
@@ -30,31 +32,17 @@
   fileSystems."/srv/storage" = {
     device = "/mnt/disks/*";
     fsType = "fuse.mergerfs";
+    options = [ "category.create=mfs" ];
   };
 
-  # nginx proxy for qbittorrent
-  services.nginx = {
-    enable = true;
-    virtualHosts."m3d14" = {
-      listen = [
-        {
-          addr = "100.125.106.24";
-          port = 8080;
-        }
-      ];
-      locations."/".proxyPass = "http://127.0.0.1:801";
-      extraConfig = ''
-        proxy_http_version 1.1;
-        proxy_set_header Host 127.0.0.1:30000;
-        proxy_set_header X-Forwarded-Host $http_host;
-        proxy_set_header X-Forwarded-For $remote_addr;
-        client_max_body_size 100M;
-      '';
-    };
-  };
+  # something abt mergerfs mfs needs this i think?
+  nixpkgs.config.allowUnfree = true;
 
   # change ssh server port to access gitea on port 22
   sshServer.port = 222;
+
+  # needed to get ssl certs for tailscale address
+  #services.tailscale.interfaceName = "userspace-networking";
 
   system.stateVersion = "23.05";
 

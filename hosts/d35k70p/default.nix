@@ -3,16 +3,15 @@
   imports = [
     ./hardware-configuration.nix
     ../../modules
+    ../../modules/gnome.nix
+    ../../modules/gaming.nix
+    ../../modules/music-production.nix
   ];
 
   hostname = "d35k70p";
   configDir = "${config.homeDir}/Documents/nixos-config";
-  desktop = "gnome";
-  musicProduction.enable = true;
-  gaming = {
-    enable = true;
-    nvidia = true;
-  };
+
+  gaming.nvidia.enable = true;
 
   # bootloader
   boot = {
@@ -44,9 +43,6 @@
   home-manager.users.${config.username} = {
 
     home.packages = with pkgs; [ spotify ];
-
-    programs.alacritty.enable = false;
-    programs.thunderbird.enable = false;
 
     services.syncthing.enable = true;
     
