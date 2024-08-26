@@ -51,25 +51,45 @@
           default = "DuckDuckGoCustom";
           engines = {
             "DuckDuckGoCustom" = {
-              urls = [{ template = "https://start.duckduckgo.com/?kav=1&kn=1&k1=-1&kaj=u&kay=b&kv=-1&kak=-1&kax=-1&kaq=-1&kap=-1&kao=-1&kau=-1&kae=t&kt=Cantarell&kw=n&km=m&ka=Cantarell&kpsb=-1&kj=1e1e1e&k7=242424&k9=26a269&kaa=3584e4&k8=ffffff&kx=613583&k5=2&kbg=-1&kbd=-1&ko=s&q={searchTerms}"; }];
+              urls = [
+                {
+                  template = "https://start.duckduckgo.com/?kav=1&kn=1&k1=-1&kaj=u&kay=b&kv=-1&kak=-1&kax=-1&kaq=-1&kap=-1&kao=-1&kau=-1&kae=t&kt=Cantarell&kw=n&km=m&ka=Cantarell&kpsb=-1&kj=1e1e1e&k7=242424&k9=26a269&kaa=3584e4&k8=ffffff&kx=613583&k5=2&kbg=-1&kbd=-1&ko=s&q={searchTerms}";
+                }
+              ];
               updateInterval = 24 * 60 * 60 * 1000;
               definedAliases = [ "@ddg" ];
             };
             "Nix Packages" = {
+              urls = [
+                {
+                  template = "https://search.nixos.org/packages";
+                  params = [
+                    { name = "type"; value = "packages"; }
+                    { name = "query"; value = "{searchTerms}"; }
+                  ];
+                }
+              ];
+              icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
+              definedAliases = [ "@np" ];
+            };
+            "Nix Options" = {
               urls = [{
-                template = "https://search.nixos.org/packages";
+                template = "https://search.nixos.org/options";
                 params = [
-                  { name = "type"; value = "packages"; }
+                  { name = "type"; value = "options"; }
                   { name = "query"; value = "{searchTerms}"; }
                 ];
               }];
               icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
-              definedAliases = [ "@np" ];
+              definedAliases = [ "@no" ];
             };
             "NixOS Wiki" = {
-              urls = [{ template = "https://nixos.wiki/index.php?search={searchTerms}"; }];
+              urls = [
+                {
+                  template = "https://nixos.wiki/index.php?search={searchTerms}";
+                }
+              ];
               iconUpdateURL = "https://nixos.wiki/favicon.png";
-              updateInterval = 24 * 60 * 60 * 1000;
               definedAliases = [ "@nw" ];
             };
             "Google".metaData.hidden = true;
