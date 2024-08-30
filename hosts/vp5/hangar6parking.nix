@@ -13,7 +13,14 @@
   services.nginx.virtualHosts."hangar6parking.online" = {
     forceSSL = true;
     enableACME = true;
-    locations."/".proxyPass = "http://127.0.0.1:8080";
+    locations."/" = {
+      proxyPass = "http://127.0.0.1:8080";
+      extraConfig = ''
+        proxy_set_header Connection \'\';
+        proxy_http_version 1.1;
+        chunked_transfer_encoding off;
+      '';
+    };
   };
 
 }
