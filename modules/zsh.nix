@@ -1,16 +1,12 @@
 { config, pkgs, ... } :
 
-#PS1='%F{yellow}%([[ -v IN_NIX_SHELL ]].{$NIX_SHELL_PACKAGES}.)%f%F{green}%n%f@%F{magenta}%m%f:%F{blue}%~%f > '
-
 let extraZshConfig = ''
   setopt PROMPT_SUBST
-
   check_nix_shell() {
     if [[ -v IN_NIX_SHELL  ]]; then
       printf '{%s} ' "$NIX_SHELL_PACKAGES"
     fi
   }
-
   PROMPT='%F{yellow}$(check_nix_shell)%f%F{green}%n%f@%F{magenta}%m%f:%F{blue}%~%f > '
   
   set -o vi
@@ -73,7 +69,7 @@ in {
         rm = "rm -v";
         rmdir = "rmdir -v";
         mkdir = "mkdir -v";
-        neofetch = "echo && ${pkgs.neofetch}/bin/neofetch";
+        neofetch = "echo && ${pkgs.fastfetch}/bin/neofetch";
       };
       plugins = [
         {

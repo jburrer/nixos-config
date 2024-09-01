@@ -42,11 +42,12 @@
         auctex pdf-tools
         pass
         adwaita-dark-theme telephone-line rainbow-delimiters highlight-indent-guides
-        nix-ts-mode treesit-grammars.with-all-grammars
+        nix-ts-mode rustic
+        treesit-grammars.with-all-grammars
       ];
     });
   };
 
-  home.packages = with pkgs; [ texliveMedium nixd ];
+  home.packages = with pkgs; [ texliveMedium nixd rust-analyzer ];
 
 }
