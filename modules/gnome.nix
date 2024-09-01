@@ -10,7 +10,6 @@
       support32Bit = true;
     };
     pulse.enable = true;
-    wireplumber.enable = true;
   };
   hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
