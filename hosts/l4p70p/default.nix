@@ -1,4 +1,4 @@
-{ config, pkgs, ... }: {
+{ config, pkgs, lib, ... }: {
 
   imports = [
     ./hardware-configuration.nix
@@ -40,8 +40,12 @@
     #'';
     # boot loader
     loader = {
-      systemd-boot.enable = true;
+      systemd-boot.enable = lib.mkForce false;
       efi.efiSysMountPoint = "/boot";
+    };
+    lanzaboote = {
+      enable = true;
+      pkiBundle = "/etc/secureboot";
     };
   };
 

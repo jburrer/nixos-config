@@ -67,7 +67,7 @@
       deploy-rs pass wl-clipboard gimp cascadia-code
       adw-gtk3 gnome-tweaks ptyxis celluloid dconf2nix
     ]) ++ (with pkgs.gnomeExtensions; [
-      paperwm auto-move-windows blur-my-shell
+      paperwm auto-move-windows blur-my-shell caffeine
       rounded-window-corners-reborn tailscale-qs
     ]);
 

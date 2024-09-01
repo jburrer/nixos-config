@@ -10,6 +10,10 @@
     };
     deploy-rs.url = "github:serokell/deploy-rs";
     nur.url = "github:nix-community/NUR";
+    lanzaboote = {
+      url = "github:nix-community/lanzaboote";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     disko = {
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -41,6 +45,7 @@
     home-manager,
     deploy-rs,
     nur,
+    lanzaboote,
     disko,
     impermanence, 
     arkenfox,
@@ -84,6 +89,7 @@
           (nixConf pkgs)
 	  ({pkgs, ...}: { nixpkgs.overlays = [ emacs-overlay.overlay ]; })
           disko.nixosModules.disko
+          lanzaboote.nixosModules.lanzaboote
           impermanence.nixosModules.impermanence
           home-manager.nixosModules.home-manager {
             home-manager = {
