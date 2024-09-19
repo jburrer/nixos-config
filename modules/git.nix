@@ -31,6 +31,7 @@ in
     git = {
       enable = true;
       extraConfig = {
+        init.defaultBranch = "master";
         commit.gpgSign = true;
         user = {
           useConfigOnly = true;

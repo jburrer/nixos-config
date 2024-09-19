@@ -19,12 +19,12 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     impermanence.url = "github:nix-community/impermanence";
-    arkenfox.url = "github:dwarfmaster/arkenfox-nixos";
+    betterfox.url = "github:HeitorAugustoLN/betterfox-nix";
     musnix.url = "github:musnix/musnix";
-    vpnconfinement = {
-      url = "github:Maroka-chan/VPN-Confinement";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    #vpnconfinement = {
+    #  url = "github:Maroka-chan/VPN-Confinement";
+    #  inputs.nixpkgs.follows = "nixpkgs";
+    #};
     emacs-overlay = {
       url = "github:nix-community/emacs-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -48,9 +48,9 @@
     lanzaboote,
     disko,
     impermanence, 
-    arkenfox,
+    betterfox,
     musnix,
-    vpnconfinement,
+    #vpnconfinement,
     emacs-overlay,
     firefox-gnome-theme,
     thunderbird-gnome-theme
@@ -100,7 +100,7 @@
                 imports = [
                   impermanence.nixosModules.home-manager.impermanence
                   nur.hmModules.nur
-                  arkenfox.hmModules.arkenfox
+                  betterfox.homeManagerModules.betterfox
                 ];
               };
             };
@@ -122,7 +122,7 @@
               extraSpecialArgs = inputs;
               users."${user}".imports = [
                 nur.hmModules.nur
-                arkenfox.hmModules.arkenfox
+                betterfox.homeManagerModules.betterfox
               ];
             };
           }
@@ -134,7 +134,7 @@
           ./hosts/m3d14
           (nixConf pkgs)
           impermanence.nixosModules.impermanence
-          vpnconfinement.nixosModules.default
+          #vpnconfinement.nixosModules.default
           home-manager.nixosModules.home-manager {
             home-manager = {
               useGlobalPkgs = true;

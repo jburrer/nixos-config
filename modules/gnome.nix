@@ -28,15 +28,16 @@
     };
     displayManager.defaultSession = "gnome";
     dbus.packages = [ pkgs.dconf pkgs.gcr ];
-    udev.packages = [ pkgs.gnome3.gnome-settings-daemon ];
+    udev.packages = [ pkgs.gnome-settings-daemon ];
   };
 
   # exclude unecessary gnome crap
   environment = {
-    gnome.excludePackages = (with pkgs; [
+    gnome.excludePackages = with pkgs; [
       gnome-tour gnome-connections gnome-text-editor snapshot
       gnome-console epiphany geary yelp totem simple-scan
-    ]) ++ (with pkgs.gnome; [ gnome-maps gnome-music ]);
+      gnome-maps gnome-music
+    ];
   };
 
   # dconf

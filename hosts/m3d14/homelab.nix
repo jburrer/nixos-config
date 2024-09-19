@@ -121,27 +121,29 @@
   };
 
   # transmission + wireguard
-  vpnnamespaces.wg = {
-    enable = true;
-    wireguardConfigFile = "/srv/state/transmission/wg0.conf";
-    accessibleFrom = [ "192.168.0.0/24" ];
-    portMappings = [
-      {
-        from = 9091;
-        to = 9091;
-      }
-    ];
-    openVPNPorts = [
-      {
-        port = 60729;
-        protocol = "both";
-      }
-    ];
-  };
-  systemd.services.transmission.vpnconfinement = {
-    enable = true;
-    vpnnamespace = "wg";
-  };
+
+  #vpnnamespaces.wg = {
+  #  enable = true;
+  #  wireguardConfigFile = "/srv/state/transmission/wg0.conf";
+  #  accessibleFrom = [ "192.168.0.0/24" ];
+  #  portMappings = [
+  #    {
+  #      from = 9091;
+  #      to = 9091;
+  #    }
+  #  ];
+  #  openVPNPorts = [
+  #    {
+  #      port = 60729;
+  #      protocol = "both";
+  #    }
+  #  ];
+  #};
+  #systemd.services.transmission.vpnconfinement = {
+  #  enable = true;
+  #  vpnnamespace = "wg";
+  #};
+
   services.transmission = {
     enable = true;
     home = "/srv/state/transmission";

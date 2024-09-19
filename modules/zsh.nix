@@ -69,7 +69,7 @@ in {
         rm = "rm -v";
         rmdir = "rmdir -v";
         mkdir = "mkdir -v";
-        neofetch = "echo && ${pkgs.fastfetch}/bin/neofetch";
+        neofetch = "echo && ${pkgs.fastfetch}/bin/fastfetch";
       };
       plugins = [
         {

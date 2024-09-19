@@ -31,20 +31,25 @@
           };
         };
       };
-      arkenfox = {
-        enable = true;
-        version = "master";
-      };
+      #arkenfox = {
+      #  enable = true;
+      #  version = "master";
+      #};
+      betterfox.enable = true;
       profiles."${osConfig.username}" = {
         id = 0;
         name = "${osConfig.username}";
-        arkenfox = {
+        #arkenfox = {
+        #  enable = true;
+        #  "0000".enable = true;
+        #  "0200".enable = true;
+        #  "0300".enable = true;
+        #  "0600".enable = true;
+        #  "0900".enable = true;
+        #};
+        betterfox = {
           enable = true;
-          "0000".enable = true;
-          "0200".enable = true;
-          "0300".enable = true;
-          "0600".enable = true;
-          "0900".enable = true;
+          enableAllSections = true;
         };
         search = {
           force = true;
