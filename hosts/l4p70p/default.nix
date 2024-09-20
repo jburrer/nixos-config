@@ -6,6 +6,7 @@
     ../../modules
     ../../modules/gnome.nix
     ../../modules/gaming.nix
+    ../../modules/thunderbird.nix
   ];
 
   hostname = "l4p70p";
@@ -95,8 +96,6 @@
   # home manager
   programs.fuse.userAllowOther = true;
   home-manager.users.${config.username} = {
-
-    imports = [ ../../modules/thunderbird.nix ];
 
     home.packages = with pkgs; [
       libreoffice amberol foliate alpaca
