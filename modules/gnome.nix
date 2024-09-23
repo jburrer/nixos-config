@@ -65,11 +65,11 @@
     fonts.fontconfig.enable = true;
 
     home.packages = (with pkgs; [
-      deploy-rs pass wl-clipboard gimp cascadia-code
+      deploy-rs pass wl-clipboard goldwarden gimp cascadia-code
       adw-gtk3 gnome-tweaks ptyxis celluloid dconf2nix
     ]) ++ (with pkgs.gnomeExtensions; [
-      paperwm auto-move-windows blur-my-shell caffeine
-      rounded-window-corners-reborn tailscale-qs
+      paperwm blur-my-shell rounded-window-corners-reborn
+      caffeine tailscale-qs
     ]);
 
   };

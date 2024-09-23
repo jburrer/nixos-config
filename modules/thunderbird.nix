@@ -1,6 +1,13 @@
-{ config, pkgs, thunderbird-gnome-theme, ... }:
+{ config, lib, pkgs, thunderbird-gnome-theme, ... }:
 
-{
+let
+  thunderbirdDaemonShellScript = pkgs.writeShellScriptBin "thunderbirdDaemonShellScript" ''
+    while true; do
+      sleep 10m
+      timeout 10 ${pkgs.thunderbird}/bin/thunderbird --headless
+    done
+  '';
+in {
 
   home-manager.users.${config.username} = {
 
@@ -33,12 +40,7 @@
     description = "Make thunderbird check emails every 5min";
     serviceConfig = {
       Type = "simple";
-      ExecStart = ''
-        while true; do
-          sleep 10m
-          timeout 30 ${pkgs.thunderbird}/bin/thunderbird --headless
-        done
-      '';
+      ExecStart = "${lib.getExe thunderbirdDaemonShellScript}";
     };
   };
 

@@ -31,22 +31,10 @@
           };
         };
       };
-      #arkenfox = {
-      #  enable = true;
-      #  version = "master";
-      #};
       betterfox.enable = true;
       profiles."${osConfig.username}" = {
         id = 0;
         name = "${osConfig.username}";
-        #arkenfox = {
-        #  enable = true;
-        #  "0000".enable = true;
-        #  "0200".enable = true;
-        #  "0300".enable = true;
-        #  "0600".enable = true;
-        #  "0900".enable = true;
-        #};
         betterfox = {
           enable = true;
           enableAllSections = true;
@@ -64,6 +52,15 @@
               updateInterval = 24 * 60 * 60 * 1000;
               definedAliases = [ "@ddg" ];
             };
+            "Youtube" = {
+              urls = [
+                {
+                  template = "https://www.youtube.com/results?search_query={searchTerms}";
+                }
+              ];
+              icon = "https://www.youtube.com/s/desktop/8e0f920c/img/favicon_32x32.png";
+              definedAliases = [ "@yt" ];
+            };
             "Nix Packages" = {
               urls = [
                 {
@@ -78,13 +75,15 @@
               definedAliases = [ "@np" ];
             };
             "Nix Options" = {
-              urls = [{
-                template = "https://search.nixos.org/options";
-                params = [
-                  { name = "type"; value = "options"; }
-                  { name = "query"; value = "{searchTerms}"; }
-                ];
-              }];
+              urls = [
+                {
+                  template = "https://search.nixos.org/options";
+                  params = [
+                    { name = "type"; value = "options"; }
+                    { name = "query"; value = "{searchTerms}"; }
+                  ];
+                }
+              ];
               icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
               definedAliases = [ "@no" ];
             };
@@ -102,6 +101,7 @@
             "Bing".metaData.hidden = true;
             "Amazon.com".metaData.hidden = true;
             "eBay".metaData.hidden = true;
+            "Wikipedia".metaData.hidden = true;
           };
         };
         settings = {
@@ -125,13 +125,12 @@
           "gnomeTheme.hideUnifiedExtensions" = true;
         };
         extensions = with config.nur.repos.rycee.firefox-addons; [
-          ublock-origin
-          istilldontcareaboutcookies
-          sponsorblock
           browserpass
-          new-tab-override
+          istilldontcareaboutcookies
           linkhints
-          privacy-redirect
+          new-tab-override
+          sponsorblock
+          ublock-origin
         ];
         userChrome = ''
           @import "firefox-gnome-theme/userChrome.css";
