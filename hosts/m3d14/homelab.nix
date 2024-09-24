@@ -144,6 +144,12 @@
   #  vpnnamespace = "wg";
   #};
 
+  networking.nat = {
+    enable = true;
+    internalInterfaces = [ "ve-+" ];
+    externalInterface = "enp4s0";
+  };
+
   containers.transmission = {
     autoStart = true;
 
