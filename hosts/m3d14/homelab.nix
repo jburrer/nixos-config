@@ -179,7 +179,10 @@
         useHostResolvConf = lib.mkForce false;
       };
       services = {
-        tailscale.enable = true;
+        tailscale = {
+          enable = true;
+          interfaceName = "userspace-networking";
+        };
         resolved.enable = true;
       };
 
