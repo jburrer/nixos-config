@@ -36,7 +36,7 @@ with lib.hm.gvariant;
     };
 
     "com/github/johnfactotum/Foliate/viewer" = {
-      fold-sidebar = false;
+      fold-sidebar = true;
     };
 
     "com/github/johnfactotum/Foliate/viewer/font" = {
@@ -52,14 +52,26 @@ with lib.hm.gvariant;
 
     "com/github/johnfactotum/Foliate/window" = {
       default-height = 1028;
-      default-width = 930;
+      default-width = 1860;
       fullscreened = false;
     };
 
     "io/bassi/Amberol" = {
       enable-recoloring = false;
       window-height = 1028;
-      window-width = 930;
+      window-width = 1331;
+    };
+
+    "io/github/Foldex/AdwSteamGtk" = {
+      color-theme-options = "Adwaita";
+      hide-whats-new-switch = false;
+      library-sidebar-options = "Show";
+      login-qr-options = "Show";
+      no-rounded-corners-switch = false;
+      prefs-autostart-update-check = true;
+      prefs-beta-support = false;
+      window-controls-options = "Default";
+      window-controls-style-options = "Default";
     };
 
     "io/github/celluloid-player/celluloid/window-state" = {
@@ -128,7 +140,7 @@ with lib.hm.gvariant;
     };
 
     "org/gnome/Loupe" = {
-      show-properties = true;
+      show-properties = false;
     };
 
     "org/gnome/Music" = {
@@ -195,12 +207,22 @@ with lib.hm.gvariant;
     };
 
     "org/gnome/control-center" = {
-      last-panel = "search";
+      last-panel = "power";
       window-state = mkTuple [ 930 1028 false ];
     };
 
     "org/gnome/desktop/app-folders" = {
-      folder-children = [ "Utilities" "YaST" "Pardus" "9fe9dcd5-e355-457b-818a-f4d10b3e67c7" "8cfb47c2-f9f4-4a2c-914d-44c65f23676f" ];
+      folder-children = [ "Utilities" "YaST" "Pardus" "9fe9dcd5-e355-457b-818a-f4d10b3e67c7" "8cfb47c2-f9f4-4a2c-914d-44c65f23676f" "53afa509-2c79-44fb-a856-83e062657f0e" "82448d86-19ad-489e-aaa3-ae16f966d088" ];
+    };
+
+    "org/gnome/desktop/app-folders/folders/53afa509-2c79-44fb-a856-83e062657f0e" = {
+      apps = [ "steam.desktop" "io.github.Foldex.AdwSteamGtk.desktop" "Factorio.desktop" "Nuclear Throne.desktop" ];
+      name = "Games";
+    };
+
+    "org/gnome/desktop/app-folders/folders/82448d86-19ad-489e-aaa3-ae16f966d088" = {
+      apps = [ "torbrowser.desktop" "monero-wallet-gui.desktop" ];
+      name = "Internet";
     };
 
     "org/gnome/desktop/app-folders/folders/8cfb47c2-f9f4-4a2c-914d-44c65f23676f" = {
@@ -261,11 +283,16 @@ with lib.hm.gvariant;
     };
 
     "org/gnome/desktop/notifications" = {
-      application-children = [ "org-gnome-evolution-alarm-notify" "gnome-network-panel" "gnome-power-panel" "thunderbird" "org-gnome-shell-extensions-gsconnect" "firefox" "rstudio" "emacs" "startcenter" "gimp" "org-gnome-evince" "writer" "org-gnome-extensions" "org-gnome-evolution" "steam" "gotify-desktop" ];
+      application-children = [ "org-gnome-evolution-alarm-notify" "gnome-network-panel" "gnome-power-panel" "thunderbird" "org-gnome-shell-extensions-gsconnect" "firefox" "rstudio" "emacs" "startcenter" "gimp" "org-gnome-evince" "writer" "org-gnome-extensions" "org-gnome-evolution" "steam" "gotify-desktop" "com-jeffser-alpaca" "org-gnome-loupe" ];
+      show-banners = true;
     };
 
     "org/gnome/desktop/notifications/application/alacritty" = {
       application-id = "Alacritty.desktop";
+    };
+
+    "org/gnome/desktop/notifications/application/com-jeffser-alpaca" = {
+      application-id = "com.jeffser.Alpaca.desktop";
     };
 
     "org/gnome/desktop/notifications/application/emacs" = {
@@ -310,6 +337,10 @@ with lib.hm.gvariant;
 
     "org/gnome/desktop/notifications/application/org-gnome-extensions" = {
       application-id = "org.gnome.Extensions.desktop";
+    };
+
+    "org/gnome/desktop/notifications/application/org-gnome-loupe" = {
+      application-id = "org.gnome.Loupe.desktop";
     };
 
     "org/gnome/desktop/notifications/application/org-gnome-shell-extensions-gsconnect" = {
@@ -414,7 +445,7 @@ with lib.hm.gvariant;
       sidebar-size = 176;
       sizing-mode = "free";
       window-ratio = mkTuple [ 3.0392156862745097 1.297979797979798 ];
-      zoom = 0.401877572016461;
+      zoom = 0.4822530864197531;
     };
 
     "org/gnome/evolution-data-server" = {
@@ -427,7 +458,7 @@ with lib.hm.gvariant;
       notify-window-width = 930;
       notify-window-x = 102;
       notify-window-y = 102;
-      reminders-past = [];
+      reminders-past = [ "13b8f663e5cc6912c9c77a4fb4ee84c84390a312n64673b1a18ac74758104df38599f5b722e9aa894t20240923T163000n1727122500n1727123400n1727126400nBEGIN:VEVENTrnUID:9c0de672-9e68-4bb0-807f-e904992cdc22rnDTSTART;TZID=America/Indiana/Indianapolis:20240923T163000rnDTEND;TZID=America/Indiana/Indianapolis:20240923T172000rnCLASS:PUBLICrnDTSTAMP:20240826T171418ZrnLOCATION:BRNG 1268rnRRULE:FREQ=WEEKLY;UNTIL=20241207T000000rnSTATUS:TENTATIVErnSUMMARY:HIST 31205 LecturernLAST-MODIFIED:20240903T020131ZrnX-EVOLUTION-CALDAV-ETAG:rn 781ebaf2a1ae1ac9627f820ac403e47cdfba99649e80d79971203372616f6721rnRECURRENCE-ID;TZID=America/Indiana/Indianapolis:20240923T163000rnBEGIN:VALARMrnX-EVOLUTION-ALARM-UID:64673b1a18ac74758104df38599f5b722e9aa894rnACTION:DISPLAYrnDESCRIPTION:HIST 31205 LecturernTRIGGER;RELATED=START:-PT15MrnACKNOWLEDGED:20240903T020131ZrnEND:VALARMrnEND:VEVENTrn" "13b8f663e5cc6912c9c77a4fb4ee84c84390a312nc7af003ca495203c5ce8b5e60d2cd8d91019c14bt20240923T133000n1727111700n1727112600n1727118000nBEGIN:VEVENTrnUID:b8f4d117-af00-4b47-8b32-2e40f371f1cdrnDTSTART;TZID=America/Indiana/Indianapolis:20240923T133000rnDTEND;TZID=America/Indiana/Indianapolis:20240923T150000rnCLASS:PUBLICrnDTSTAMP:20240826T171418ZrnLOCATION:PAO B189rnRRULE:FREQ=WEEKLY;UNTIL=20241207T000000rnSTATUS:TENTATIVErnSUMMARY:MUS 270 LecturernLAST-MODIFIED:20240903T020131ZrnX-EVOLUTION-CALDAV-ETAG:rn b761a61549bd344bdf519efb1ff7d7e3dd55f068d03554f3f5ccee8971ba4ea2rnRECURRENCE-ID;TZID=America/Indiana/Indianapolis:20240923T133000rnBEGIN:VALARMrnX-EVOLUTION-ALARM-UID:c7af003ca495203c5ce8b5e60d2cd8d91019c14brnACTION:DISPLAYrnDESCRIPTION:MUS 270 LecturernTRIGGER;RELATED=START:-PT15MrnACKNOWLEDGED:20240903T020131ZrnEND:VALARMrnEND:VEVENTrn" "13b8f663e5cc6912c9c77a4fb4ee84c84390a312n919736d854b278e66b4023e071f87ebb60a1b4cct20240923T093000n1727097300n1727098200n1727101200nBEGIN:VEVENTrnUID:485ec840-4236-4430-a268-bac54b0e7a2ernDTSTART;TZID=America/Indiana/Indianapolis:20240923T093000rnDTEND;TZID=America/Indiana/Indianapolis:20240923T102000rnCLASS:PUBLICrnDTSTAMP:20240826T171300ZrnLOCATION:BHEE 129rnRRULE:FREQ=WEEKLY;UNTIL=20241207T000000rnSTATUS:TENTATIVErnSUMMARY:CS 251 LecturernLAST-MODIFIED:20240903T020132ZrnX-EVOLUTION-CALDAV-ETAG:rn 5c1a39e462d3e28c49cdf5551849268a0724b4dce6235c472ec591113ebb2b34rnRECURRENCE-ID;TZID=America/Indiana/Indianapolis:20240923T093000rnBEGIN:VALARMrnX-EVOLUTION-ALARM-UID:919736d854b278e66b4023e071f87ebb60a1b4ccrnACTION:DISPLAYrnDESCRIPTION:CS 251 LecturernTRIGGER;RELATED=START:-PT15MrnACKNOWLEDGED:20240903T020132ZrnEND:VALARMrnEND:VEVENTrn" "13b8f663e5cc6912c9c77a4fb4ee84c84390a312n8c13a85ebaf8c1552168cb97281497bedae49e7bt20240917T093000n1726578900n1726579800n1726582800nBEGIN:VEVENTrnUID:a1f3e37e-4fdf-4a96-93dc-b367b0a75a6ernDTSTART;TZID=America/Indiana/Indianapolis:20240917T093000rnDTEND;TZID=America/Indiana/Indianapolis:20240917T102000rnCLASS:PUBLICrnDTSTAMP:20240826T171453ZrnLOCATION:WTHR 420rnRRULE:FREQ=WEEKLY;UNTIL=20241207T000000rnSTATUS:TENTATIVErnSUMMARY:BIOL 110 RecitationrnX-EVOLUTION-CALDAV-ETAG:rn aab1dc3eea83c11ea66244036836a4b8afc8cbcdadf0458a1f334a895762214brnRECURRENCE-ID;TZID=America/Indiana/Indianapolis:20240917T093000rnBEGIN:VALARMrnACTION:DISPLAYrnDESCRIPTION:BIOL 110 RecitationrnTRIGGER:-PT15MrnX-EVOLUTION-ALARM-UID:8c13a85ebaf8c1552168cb97281497bedae49e7brnEND:VALARMrnEND:VEVENTrn" "13b8f663e5cc6912c9c77a4fb4ee84c84390a312n64673b1a18ac74758104df38599f5b722e9aa894t20240916T163000n1726517700n1726518600n1726521600nBEGIN:VEVENTrnUID:9c0de672-9e68-4bb0-807f-e904992cdc22rnDTSTART;TZID=America/Indiana/Indianapolis:20240916T163000rnDTEND;TZID=America/Indiana/Indianapolis:20240916T172000rnCLASS:PUBLICrnDTSTAMP:20240826T171418ZrnLOCATION:BRNG 1268rnRRULE:FREQ=WEEKLY;UNTIL=20241207T000000rnSTATUS:TENTATIVErnSUMMARY:HIST 31205 LecturernLAST-MODIFIED:20240903T020131ZrnX-EVOLUTION-CALDAV-ETAG:rn 781ebaf2a1ae1ac9627f820ac403e47cdfba99649e80d79971203372616f6721rnRECURRENCE-ID;TZID=America/Indiana/Indianapolis:20240916T163000rnBEGIN:VALARMrnX-EVOLUTION-ALARM-UID:64673b1a18ac74758104df38599f5b722e9aa894rnACTION:DISPLAYrnDESCRIPTION:HIST 31205 LecturernTRIGGER;RELATED=START:-PT15MrnACKNOWLEDGED:20240903T020131ZrnEND:VALARMrnEND:VEVENTrn" "13b8f663e5cc6912c9c77a4fb4ee84c84390a312nc7af003ca495203c5ce8b5e60d2cd8d91019c14bt20240916T133000n1726506900n1726507800n1726513200nBEGIN:VEVENTrnUID:b8f4d117-af00-4b47-8b32-2e40f371f1cdrnDTSTART;TZID=America/Indiana/Indianapolis:20240916T133000rnDTEND;TZID=America/Indiana/Indianapolis:20240916T150000rnCLASS:PUBLICrnDTSTAMP:20240826T171418ZrnLOCATION:PAO B189rnRRULE:FREQ=WEEKLY;UNTIL=20241207T000000rnSTATUS:TENTATIVErnSUMMARY:MUS 270 LecturernLAST-MODIFIED:20240903T020131ZrnX-EVOLUTION-CALDAV-ETAG:rn b761a61549bd344bdf519efb1ff7d7e3dd55f068d03554f3f5ccee8971ba4ea2rnRECURRENCE-ID;TZID=America/Indiana/Indianapolis:20240916T133000rnBEGIN:VALARMrnX-EVOLUTION-ALARM-UID:c7af003ca495203c5ce8b5e60d2cd8d91019c14brnACTION:DISPLAYrnDESCRIPTION:MUS 270 LecturernTRIGGER;RELATED=START:-PT15MrnACKNOWLEDGED:20240903T020131ZrnEND:VALARMrnEND:VEVENTrn" "13b8f663e5cc6912c9c77a4fb4ee84c84390a312n919736d854b278e66b4023e071f87ebb60a1b4cct20240916T093000n1726492500n1726493400n1726496400nBEGIN:VEVENTrnUID:485ec840-4236-4430-a268-bac54b0e7a2ernDTSTART;TZID=America/Indiana/Indianapolis:20240916T093000rnDTEND;TZID=America/Indiana/Indianapolis:20240916T102000rnCLASS:PUBLICrnDTSTAMP:20240826T171300ZrnLOCATION:BHEE 129rnRRULE:FREQ=WEEKLY;UNTIL=20241207T000000rnSTATUS:TENTATIVErnSUMMARY:CS 251 LecturernLAST-MODIFIED:20240903T020132ZrnX-EVOLUTION-CALDAV-ETAG:rn 5c1a39e462d3e28c49cdf5551849268a0724b4dce6235c472ec591113ebb2b34rnRECURRENCE-ID;TZID=America/Indiana/Indianapolis:20240916T093000rnBEGIN:VALARMrnX-EVOLUTION-ALARM-UID:919736d854b278e66b4023e071f87ebb60a1b4ccrnACTION:DISPLAYrnDESCRIPTION:CS 251 LecturernTRIGGER;RELATED=START:-PT15MrnACKNOWLEDGED:20240903T020132ZrnEND:VALARMrnEND:VEVENTrn" ];
     };
 
     "org/gnome/evolution" = {
@@ -486,9 +517,22 @@ with lib.hm.gvariant;
       y = 102;
     };
 
+    "org/gnome/file-roller/dialogs/extract" = {
+      height = 800;
+      recreate-folders = true;
+      skip-newer = false;
+      width = 1000;
+    };
+
+    "org/gnome/file-roller/file-selector" = {
+      show-hidden = false;
+      sidebar-size = 300;
+      window-size = mkTuple [ (-1) (-1) ];
+    };
+
     "org/gnome/file-roller/listing" = {
       list-mode = "as-folder";
-      name-column-width = 250;
+      name-column-width = 380;
       show-path = false;
       sort-method = "name";
       sort-type = "ascending";
@@ -496,12 +540,12 @@ with lib.hm.gvariant;
 
     "org/gnome/file-roller/ui" = {
       sidebar-width = 200;
-      window-height = 988;
+      window-height = 1028;
       window-width = 930;
     };
 
     "org/gnome/gnome-system-monitor" = {
-      current-tab = "resources";
+      current-tab = "disks";
       maximized = false;
       network-total-in-bits = false;
       show-dependencies = false;
@@ -513,7 +557,7 @@ with lib.hm.gvariant;
 
     "org/gnome/gnome-system-monitor/disktreenew" = {
       col-6-visible = true;
-      col-6-width = 520;
+      col-6-width = 0;
     };
 
     "org/gnome/mutter" = {
@@ -534,6 +578,11 @@ with lib.hm.gvariant;
 
     "org/gnome/nautilus/compression" = {
       default-compression-format = "zip";
+    };
+
+    "org/gnome/nautilus/list-view" = {
+      default-column-order = [ "name" "size" "type" "owner" "group" "permissions" "date_modified" "date_accessed" "date_created" "recency" "detailed_type" ];
+      default-visible-columns = [ "name" "size" "date_modified" ];
     };
 
     "org/gnome/nautilus/preferences" = {
@@ -581,9 +630,9 @@ with lib.hm.gvariant;
     "org/gnome/shell" = {
       command-history = [ "echo" "lg" ];
       disable-user-extensions = false;
-      disabled-extensions = [ "openbar@neuromorph" "just-perfection-desktop@just-perfection" "gmind@tungstnballon.gitlab.com" "apps-menu@gnome-shell-extensions.gcampax.github.com" "syncthing@gnome.2nv2u.com" "appindicatorsupport@rgcjonas.gmail.com" "workspace-indicator@gnome-shell-extensions.gcampax.github.com" "user-theme@gnome-shell-extensions.gcampax.github.com" "light-style@gnome-shell-extensions.gcampax.github.com" "windowsNavigator@gnome-shell-extensions.gcampax.github.com" "Rounded_Corners@lennart-k" "dash-to-panel@jderose9.github.com" ];
-      enabled-extensions = [ "paperwm@paperwm.github.com" "rounded-window-corners@flexagoon.github.com" "auto-move-windows@gnome-shell-extensions.gcampax.github.com" "blur-my-shell@aunetx" "tailscale@joaophi.github.com" "system-monitor@gnome-shell-extensions.gcampax.github.com" "gsconnect@andyholmes.github.io" ];
-      favorite-apps = [ "firefox.desktop" "thunderbird.desktop" "emacs.desktop" "io.bassi.Amberol.desktop" "org.gnome.Nautilus.desktop" ];
+      disabled-extensions = [ "openbar@neuromorph" "just-perfection-desktop@just-perfection" "gmind@tungstnballon.gitlab.com" "syncthing@gnome.2nv2u.com" "appindicatorsupport@rgcjonas.gmail.com" "workspace-indicator@gnome-shell-extensions.gcampax.github.com" "user-theme@gnome-shell-extensions.gcampax.github.com" "light-style@gnome-shell-extensions.gcampax.github.com" "windowsNavigator@gnome-shell-extensions.gcampax.github.com" "Rounded_Corners@lennart-k" "dash-to-panel@jderose9.github.com" "rounded-window-corners@fxgn" "apps-menu@gnome-shell-extensions.gcampax.github.com" "auto-move-windows@gnome-shell-extensions.gcampax.github.com" ];
+      enabled-extensions = [ "blur-my-shell@aunetx" "tailscale@joaophi.github.com" "system-monitor@gnome-shell-extensions.gcampax.github.com" "gsconnect@andyholmes.github.io" "caffeine@patapon.info" "paperwm@paperwm.github.com" ];
+      favorite-apps = [ "firefox.desktop" "thunderbird.desktop" "emacsclient.desktop" "io.bassi.Amberol.desktop" "org.gnome.Nautilus.desktop" ];
       last-selected-power-profile = "performance";
       welcome-dialog-last-shown-version = "45.3";
     };
@@ -630,6 +679,11 @@ with lib.hm.gvariant;
     "org/gnome/shell/extensions/blur-my-shell/window-list" = {
       brightness = 0.6;
       sigma = 30;
+    };
+
+    "org/gnome/shell/extensions/caffeine" = {
+      countdown-timer = 0;
+      indicator-position-max = 1;
     };
 
     "org/gnome/shell/extensions/dash-to-panel" = {
@@ -685,6 +739,7 @@ with lib.hm.gvariant;
 
     "org/gnome/shell/extensions/gsconnect" = {
       devices = [ "6a0b3c14_12a9_429d_a7c2_ecc4bc676fae" ];
+      enabled = true;
       id = "223f0800-e774-4074-b48d-1b39d63fd130";
       name = "l4p70p";
       show-indicators = false;
@@ -712,7 +767,7 @@ with lib.hm.gvariant;
 
     "org/gnome/shell/extensions/gsconnect/device/6a0b3c14_12a9_429d_a7c2_ecc4bc676fae/plugin/notification" = {
       applications = ''
-        {"Power":{"iconName":"org.gnome.Settings-power-symbolic","enabled":true},"Software":{"iconName":"org.gnome.Software","enabled":true},"Clocks":{"iconName":"org.gnome.clocks","enabled":true},"Color":{"iconName":"org.gnome.Settings-color-symbolic","enabled":true},"Archive Manager":{"iconName":"org.gnome.FileRoller","enabled":true},"Printers":{"iconName":"org.gnome.Settings-printers-symbolic","enabled":true},"Disk Usage Analyzer":{"iconName":"org.gnome.baobab","enabled":true},"Files":{"iconName":"org.gnome.Nautilus","enabled":true},"Disks":{"iconName":"org.gnome.DiskUtility","enabled":true},"Evolution Alarm Notify":{"iconName":"appointment-soon","enabled":true},"Date & Time":{"iconName":"org.gnome.Settings-time-symbolic","enabled":true},"Thunderbird":{"iconName":"","enabled":true},"Argos":{"iconName":"media-optical","enabled":true},"Events and Tasks Reminders":{"iconName":"appointment-soon","enabled":true},"Gotify Desktop":{"iconName":"/home/n3mo/.cache/gotify-desktop/defaultapp.png","enabled":true},"notify-send":{"iconName":"","enabled":true}}
+        {"Power":{"iconName":"org.gnome.Settings-power-symbolic","enabled":true},"Software":{"iconName":"org.gnome.Software","enabled":true},"Clocks":{"iconName":"org.gnome.clocks","enabled":true},"Color":{"iconName":"org.gnome.Settings-color-symbolic","enabled":true},"Archive Manager":{"iconName":"org.gnome.FileRoller","enabled":true},"Printers":{"iconName":"org.gnome.Settings-printers-symbolic","enabled":true},"Disk Usage Analyzer":{"iconName":"org.gnome.baobab","enabled":true},"Files":{"iconName":"org.gnome.Nautilus","enabled":true},"Disks":{"iconName":"org.gnome.DiskUtility","enabled":true},"Evolution Alarm Notify":{"iconName":"appointment-soon","enabled":true},"Date & Time":{"iconName":"org.gnome.Settings-time-symbolic","enabled":true},"Thunderbird":{"iconName":"","enabled":true},"Argos":{"iconName":"media-optical","enabled":true},"Events and Tasks Reminders":{"iconName":"appointment-soon","enabled":true},"Gotify Desktop":{"iconName":"/home/n3mo/.cache/gotify-desktop/defaultapp.png","enabled":true},"notify-send":{"iconName":"","enabled":true},"Alpaca":{"iconName":"emblem-ok-symbolic","enabled":true},"File Roller":{"iconName":"org.gnome.FileRoller","enabled":true},"goldwarden":{"iconName":"","enabled":true}}
       '';
     };
 
@@ -759,7 +814,7 @@ with lib.hm.gvariant;
 
     "org/gnome/shell/extensions/gsconnect/preferences" = {
       window-maximized = false;
-      window-size = mkTuple [ 930 990 ];
+      window-size = mkTuple [ 930 981 ];
     };
 
     "org/gnome/shell/extensions/just-perfection" = {
@@ -820,7 +875,9 @@ with lib.hm.gvariant;
     "org/gnome/shell/extensions/paperwm" = {
       cycle-height-steps = [ 1.0 ];
       cycle-width-steps = [ 0.5 1.0 ];
+      default-focus-mode = 2;
       disable-scratch-in-overview = false;
+      edge-preview-click-enable = true;
       edge-preview-scale = 0.0;
       gesture-workspace-fingers = 3;
       last-used-display-server = "Wayland";
@@ -832,9 +889,13 @@ with lib.hm.gvariant;
         {}
       '';
       restore-workspaces-only-on-primary = "false";
-      show-window-position-bar = false;
-      show-workspace-indicator = true;
+      selection-border-radius-bottom = 12;
+      show-window-position-bar = true;
+      show-workspace-indicator = false;
+      use-default-background = true;
+      vertical-margin = 10;
       vertical-margin-bottom = 10;
+      window-gap = 20;
       winprops = [ ''
         {"wm_class":"*","preferredWidth":"50%"}
       '' ];
@@ -925,6 +986,12 @@ with lib.hm.gvariant;
 
     "org/gnome/shell/extensions/paperwm/workspaces/ff69794e-5bc5-4f98-bd54-299fe378ab2f" = {
       index = 0;
+      show-position-bar = true;
+    };
+
+    "org/gnome/shell/extensions/rounded-window-corners-reborn" = {
+      settings-version = mkUint32 5;
+      skip-libhandy-app = true;
     };
 
     "org/gnome/shell/keybindings" = {
@@ -978,7 +1045,7 @@ with lib.hm.gvariant;
     };
 
     "org/gtk/settings/emoji-chooser" = {
-      recent-emoji = [ (mkTuple [ (mkTuple [ [ (mkUint32 128513) ] "beaming face with smiling eyes" "" ]) (mkUint32 0) ]) (mkTuple [ (mkTuple [ [ 128557 ] "loudly crying face" "" ]) 0 ]) ];
+      recent-emoji = [ (mkTuple [ (mkTuple [ [ (mkUint32 128536) ] "face blowing a kiss" "" ]) (mkUint32 0) ]) (mkTuple [ (mkTuple [ [ 128532 ] "pensive face" "" ]) 0 ]) (mkTuple [ (mkTuple [ [ 128524 ] "relieved face" "" ]) 0 ]) (mkTuple [ (mkTuple [ [ 128128 ] "skull" "" ]) 0 ]) (mkTuple [ (mkTuple [ [ 128520 ] "smiling face with horns" "" ]) 0 ]) (mkTuple [ (mkTuple [ [ 128561 ] "face screaming in fear" "" ]) 0 ]) (mkTuple [ (mkTuple [ [ 128553 ] "weary face" "" ]) 0 ]) (mkTuple [ (mkTuple [ [ 128405 0 ] "middle finger" "" ]) 0 ]) (mkTuple [ (mkTuple [ [ 128064 ] "eyes" "" ]) 0 ]) (mkTuple [ (mkTuple [ [ 128526 ] "smiling face with sunglasses" "" ]) 0 ]) (mkTuple [ (mkTuple [ [ 129314 ] "nauseated face" "" ]) 0 ]) (mkTuple [ (mkTuple [ [ 128591 0 ] "folded hands" "" ]) 0 ]) (mkTuple [ (mkTuple [ [ 128580 ] "face with rolling eyes" "" ]) 0 ]) (mkTuple [ (mkTuple [ [ 128541 ] "squinting face with tongue" "" ]) 0 ]) (mkTuple [ (mkTuple [ [ 128556 ] "grimacing face" "" ]) 0 ]) (mkTuple [ (mkTuple [ [ 129395 ] "partying face" "" ]) 0 ]) (mkTuple [ (mkTuple [ [ 128557 ] "loudly crying face" "" ]) 0 ]) (mkTuple [ (mkTuple [ [ 128293 ] "fire" "" ]) 0 ]) (mkTuple [ (mkTuple [ [ 128513 ] "beaming face with smiling eyes" "" ]) 0 ]) ];
     };
 
     "org/gtk/settings/file-chooser" = {
@@ -991,10 +1058,10 @@ with lib.hm.gvariant;
       sidebar-width = 174;
       sort-column = "name";
       sort-directories-first = false;
-      sort-order = "ascending";
+      sort-order = "descending";
       type-format = "category";
       window-position = mkTuple [ 35 32 ];
-      window-size = mkTuple [ 930 990 ];
+      window-size = mkTuple [ 930 981 ];
     };
 
   };

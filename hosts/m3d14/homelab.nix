@@ -144,19 +144,51 @@
   #  vpnnamespace = "wg";
   #};
 
-  services.transmission = {
-    enable = true;
-    home = "/srv/state/transmission";
-    user = "media";
-    group = "media";
-    settings = {
-      download-dir = "/srv/storage/torrents";
-      incomplete-dir = "/srv/storage/torrents/incomplete";
-      rpc-bind-address = "192.168.15.1";
-      rpc-whitelist-enabled = false;
-      rpc-host-whitelist-enabled = false;
+  containers.transmission = {
+    autostart = true;
+
+    privateNetwork = true;
+    hostAddress = "192.168.100.10";
+    localAddress = "192.168.100.11";
+
+    config = { config, pkgs, lib, ... }: {
+
+      # transmission
+      services.transmission = {
+        enable = true;
+        home = "/srv/state/transmission";
+        user = "media";
+        group = "media";
+        settings = {
+          download-dir = "/srv/storage/torrents";
+          incomplete-dir = "/srv/storage/torrents/incomplete";
+          rpc-bind-address = "192.168.15.1";
+          rpc-whitelist-enabled = false;
+          rpc-host-whitelist-enabled = false;
+        };
+      };
+
+      # networking (firewall + tailscale) 
+      networking = {
+        firewall = {
+          enable = true;
+          checkReversePath = "loose";
+          trustedInterfaces = [ "tailscale0" ];
+          allowedUDPPorts = [ config.services.tailscale.port ];
+        };
+        useHostResolvConf = lib.mkForce false;
+      };
+      services = {
+        tailscale.enable = true;
+        resolved.enable = true;
+      };
+
+      system.stateVersion = "23.05";
+
     };
+    
   };
+
   services.nginx.virtualHosts."transmission.local.n3mohomelab.xyz" = {
     forceSSL = true;
     useACMEHost = "local.n3mohomelab.xyz";

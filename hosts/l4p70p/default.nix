@@ -98,9 +98,14 @@
   home-manager.users.${config.username} = {
 
     home.packages = with pkgs; [
-      libreoffice amberol foliate alpaca
+      libreoffice foliate alpaca
       tor-browser-bundle-bin monero-gui
     ];
+
+    services.amberol = {
+      enable = true; 
+      enableRecoloring = false;
+    };
 
     #services.flatpack = {
     #  enable = true;
