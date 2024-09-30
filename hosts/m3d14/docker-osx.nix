@@ -4,7 +4,7 @@
     backend = "docker";
     containers."dockerOSX" = {
       autoStart = true;
-      image = "sickcodes/docker-osx:ventura";
+      image = "dickhub/docker-osx:ventura";
       ports = [ "50922:10022" ];
       volumes = [ "/tmp/.X11-unix:/tmp/.X11-unix" ];
       environment = {
