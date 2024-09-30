@@ -192,6 +192,8 @@
         resolved.enable = true;
       };
 
+      #tailscale set --exit-node=100.127.203.60 --exit-node-allow-lan-access=true
+
       system.stateVersion = "23.05";
 
     };

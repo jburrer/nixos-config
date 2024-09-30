@@ -97,21 +97,18 @@
   programs.fuse.userAllowOther = true;
   home-manager.users.${config.username} = {
 
-    home.packages = with pkgs; [
-      libreoffice foliate alpaca
-      tor-browser-bundle-bin monero-gui
+    services.flatpak.packages = [
+      "org.libreoffice.LibreOffice"
+      "com.github.johnfactotum.Foliate"
+      "com.jeffser.Alpaca"
+      "org.torproject.torbrowser-launcher"
+      "org.getmonero.Monero"
     ];
 
     services.amberol = {
       enable = true; 
       enableRecoloring = false;
     };
-
-    #services.flatpack = {
-    #  enable = true;
-    #  update.onActivation = true;
-    #  packages = [ "app.bluebubbles.BlueBubbles" ];
-    #};
 
     #home.persistence."/persist/home" = {
     #  directories = [

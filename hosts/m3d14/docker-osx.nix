@@ -1,7 +1,5 @@
 { ... }: {
 
-  #virtualisation.oci-containers.backend = "docker";
-
   virtualisation.oci-containers = {
     backend = "docker";
     containers."dockerOSX" = {

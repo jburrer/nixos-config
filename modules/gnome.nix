@@ -1,6 +1,4 @@
-{ pkgs, lib, config, ... }:
-
-{
+{ config, pkgs, lib, ... }: {
 
   # sound with pipwire
   services.pipewire = {
@@ -29,6 +27,7 @@
     displayManager.defaultSession = "gnome";
     dbus.packages = [ pkgs.dconf pkgs.gcr ];
     udev.packages = [ pkgs.gnome-settings-daemon ];
+    flatpak.enable = true;
   };
 
   # exclude unecessary gnome crap
@@ -36,7 +35,7 @@
     gnome.excludePackages = with pkgs; [
       gnome-tour gnome-connections gnome-text-editor snapshot
       gnome-console epiphany geary yelp totem simple-scan
-      gnome-maps gnome-music
+      gnome-maps gnome-music gnome-software
     ];
   };
 
@@ -60,13 +59,24 @@
       ./firefox.nix
     ];
 
+    services.flatpak = {
+      enable = true;
+      update.auto.enable = true;
+      packages = [
+        "io.github.celluloid_player.Celluloid"
+        "com.quexten.Goldwarden"
+        "org.gimp.GIMP"
+        "app.bluebubbles.BlueBubbles"
+      ];
+    };
+
     xdg.enable = true;
 
     fonts.fontconfig.enable = true;
 
     home.packages = (with pkgs; [
-      deploy-rs pass wl-clipboard goldwarden gimp cascadia-code
-      adw-gtk3 gnome-tweaks ptyxis celluloid dconf2nix
+      deploy-rs pass wl-clipboard cascadia-code
+      adw-gtk3 gnome-tweaks dconf2nix ptyxis
     ]) ++ (with pkgs.gnomeExtensions; [
       paperwm blur-my-shell rounded-window-corners-reborn
       caffeine tailscale-qs

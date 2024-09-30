@@ -19,6 +19,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     impermanence.url = "github:nix-community/impermanence";
+    flatpaks.url = "github:gmodena/nix-flatpak";
     betterfox.url = "github:HeitorAugustoLN/betterfox-nix";
     musnix.url = "github:musnix/musnix";
     #vpnconfinement = {
@@ -48,6 +49,7 @@
     lanzaboote,
     disko,
     impermanence, 
+    flatpaks,
     betterfox,
     musnix,
     #vpnconfinement,
@@ -100,6 +102,7 @@
                 imports = [
                   impermanence.nixosModules.home-manager.impermanence
                   nur.hmModules.nur
+                  flatpaks.homeManagerModules.nix-flatpak
                   betterfox.homeManagerModules.betterfox
                 ];
               };
