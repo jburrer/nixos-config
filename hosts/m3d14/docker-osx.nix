@@ -14,7 +14,7 @@
             "https://raw.githubusercontent.com/sickcodes/osx-serial-generator/master/config-custom.plist";
       };
       extraOptions = [
-        "--device /dev/kvm"
+        "--device=/dev/kvm"
       ];
     };
   };
