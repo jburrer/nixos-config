@@ -41,6 +41,22 @@
     locations."/".proxyPass = "http://localhost:5232";
   };
 
+  # vaultwarden
+  services.vaultwarden = {
+    enable = true;
+    config = {
+      DOMAIN = "https://vaultwarden.local.n3mohomelab.xyz";
+      SIGNUPS_ALLOWED = true;
+      ROCKET_ADDRESS = "127.0.0.1";
+      ROCKET_PORT = 8222;
+    };
+  };
+  services.nginx.virtualHosts."vaultwarden.local.n3mohomelab.xyz" = {
+    forceSSL = true;
+    useACMEHost = "local.n3mohomelab.xyz";
+    locations."/".proxyPass = "http://localhost:8222";
+  };
+
 
   ### media server ### 
 

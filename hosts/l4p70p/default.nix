@@ -105,11 +105,6 @@
       "org.getmonero.Monero"
     ];
 
-    services.amberol = {
-      enable = true; 
-      enableRecoloring = false;
-    };
-
     #home.persistence."/persist/home" = {
     #  directories = [
     #    "Documents"

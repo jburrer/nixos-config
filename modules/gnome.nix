@@ -33,7 +33,7 @@
   # exclude unecessary gnome crap
   environment = {
     gnome.excludePackages = with pkgs; [
-      gnome-tour gnome-connections gnome-text-editor snapshot
+      gnome-tour gnome-text-editor snapshot #gnome-connections
       gnome-console epiphany geary yelp totem simple-scan
       gnome-maps gnome-music gnome-software
     ];
@@ -67,6 +67,7 @@
         "com.quexten.Goldwarden"
         "org.gimp.GIMP"
         "app.bluebubbles.BlueBubbles"
+        "com.github.neithern.g4music"
       ];
     };
 
