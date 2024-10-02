@@ -25,10 +25,10 @@
   users.users.nginx.extraGroups = [ "acme" ];
 
   # filegator
-  virtualisation.oci-containers.containers."filegator" = {
-    image = "filegator/filegator";
-    ports = [ "8080:7070" ];
-  };
+  #virtualisation.oci-containers.containers."filegator" = {
+  #  image = "filegator/filegator";
+  #  ports = [ "8080:7070" ];
+  #};
 
   # radicale
   services.radicale = {
@@ -238,7 +238,7 @@
   # gotify
   services.gotify = {
     enable = true;
-    port = 6060;
+    environment.GOTIFY_SERVER_PORT = 6060;
   };
   services.nginx.virtualHosts."gotify.local.n3mohomelab.xyz" = {
     forceSSL = true;
