@@ -10,22 +10,14 @@
 
   config = {
 
-    # allow proprietary nixpkgs
-    #nixpkgs.config.allowUnfree = true;
-
-    # steam
-    #programs.steam = {
-    #  enable = true;
-    #  remotePlay.openFirewall = true;
-    #  dedicatedServer.openFirewall = true;
-    #};
-
+    # steam flatpak
     home-manager.users.${config.username}.services.flatpak.packages = [
       "com.valvesoftware.Steam" 
       "io.github.Foldex.AdwSteamGtk" 
     ];
 
     # nvidia
+    nixpkgs.config.allowUnfree = lib.mkIf config.gaming.nvidia.enable true;
     services.xserver.videoDrivers = lib.mkIf config.gaming.nvidia.enable [ "nvidia" ];
     hardware = lib.mkIf config.gaming.nvidia.enable {
       graphics.enable = true;
@@ -36,11 +28,6 @@
         nvidiaSettings = false;
       };
     };
-
-    # some apps
-    #home-manager.users.${config.username}.home.packages = with pkgs; [
-    #  adwsteamgtk gamemode transmission_4
-    #];
 
   };
 

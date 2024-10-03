@@ -84,12 +84,12 @@
   in {
     nixosConfigurations = {
       "l4p70p" = nixpkgs.lib.nixosSystem {
-	inherit system;
+        inherit system;
         specialArgs = inputs;
         modules = [
           ./hosts/l4p70p
           (nixConf pkgs)
-	  ({pkgs, ...}: { nixpkgs.overlays = [ emacs-overlay.overlay ]; })
+          ({pkgs, ...}: { nixpkgs.overlays = [ emacs-overlay.overlay ]; })
           disko.nixosModules.disko
           lanzaboote.nixosModules.lanzaboote
           impermanence.nixosModules.impermanence
@@ -98,24 +98,22 @@
               useGlobalPkgs = true;
               useUserPackages = true;
               extraSpecialArgs = inputs;
-              users."${user}" = {
-                imports = [
+              users."${user}".imports = [
                   impermanence.nixosModules.home-manager.impermanence
                   nur.hmModules.nur
                   flatpaks.homeManagerModules.nix-flatpak
                   betterfox.homeManagerModules.betterfox
-                ];
-              };
+              ];
             };
           }
         ];
       };
       "d35k70p" = nixpkgs.lib.nixosSystem {
-	inherit system;
+        inherit system;
         modules = [
           ./hosts/d35k70p
           (nixConf pkgs)
-	  ({pkgs, ...}: { nixpkgs.overlays = [ emacs-overlay.overlay ]; })
+          ({pkgs, ...}: { nixpkgs.overlays = [ emacs-overlay.overlay ]; })
           impermanence.nixosModules.impermanence
           musnix.nixosModules.musnix
           home-manager.nixosModules.home-manager {
@@ -125,6 +123,7 @@
               extraSpecialArgs = inputs;
               users."${user}".imports = [
                 nur.hmModules.nur
+                flatpaks.homeManagerModules.nix-flatpak
                 betterfox.homeManagerModules.betterfox
               ];
             };
@@ -132,7 +131,7 @@
         ];
       };
       "m3d14" = nixpkgs.lib.nixosSystem {
-	inherit system;
+        inherit system;
         modules = [
           ./hosts/m3d14
           (nixConf pkgs)
@@ -148,7 +147,7 @@
         ];
       };
       "vp5" = nixpkgs.lib.nixosSystem {
-	inherit system;
+        inherit system;
         modules = [
           ./hosts/vp5
           (nixConf pkgs)
