@@ -69,21 +69,21 @@
   users.groups."media".gid = 10000;
 
   # jellyfin
-  nixpkgs.overlays = with pkgs; [ (final: prev: {
-    jellyfin-web = prev.jellyfin-web.overrideAttrs (finalAttrs: previousAttrs: {
-      installPhase = ''
-        runHook preInstall
+  #nixpkgs.overlays = with pkgs; [ (final: prev: {
+  #  jellyfin-web = prev.jellyfin-web.overrideAttrs (finalAttrs: previousAttrs: {
+  #    installPhase = ''
+  #      runHook preInstall
 
-        # this is the important line
-        sed -i "s#</body>#<script plugin="Jellyscrub" version="1.0.0.0" src="/Trickplay/ClientScript"></script></body>#" dist/index.html
+  #      # this is the important line
+  #      sed -i "s#</body>#<script plugin="Jellyscrub" version="1.0.0.0" src="/Trickplay/ClientScript"></script></body>#" dist/index.html
 
-        mkdir -p $out/share
-        cp -a dist $out/share/jellyfin-web
+  #      mkdir -p $out/share
+  #      cp -a dist $out/share/jellyfin-web
 
-        runHook postInstall
-      '';
-    });
-  }) ];
+  #      runHook postInstall
+  #    '';
+  #  });
+  #}) ];
   services.jellyfin = {
     enable = true;
     user = "media";
