@@ -6,7 +6,6 @@
     ../../modules
     ../../modules/gnome.nix
     ../../modules/gaming.nix
-    ../../modules/thunderbird.nix
   ];
 
   hostname = "l4p70p";
@@ -97,10 +96,14 @@
   programs.fuse.userAllowOther = true;
   home-manager.users.${config.username} = {
 
+    imports = [ ../../modules/thunderbird.nix ];
+
     services.flatpak.packages = [
       "org.libreoffice.LibreOffice"
       "com.github.johnfactotum.Foliate"
       "com.jeffser.Alpaca"
+      "cafe.avery.Delfin"
+      "com.github.neithern.g4music"
       "org.torproject.torbrowser-launcher"
       "org.getmonero.Monero"
     ];

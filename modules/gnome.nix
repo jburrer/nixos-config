@@ -28,6 +28,11 @@
     dbus.packages = [ pkgs.dconf pkgs.gcr ];
     udev.packages = [ pkgs.gnome-settings-daemon ];
     flatpak.enable = true;
+    xrdp = {
+      enable = true;
+      defaultWindowManager = "${pkgs.gnome-session}/bin/gnome-session";
+      openFirewall = true;
+    };
   };
 
   # exclude unecessary gnome crap
@@ -67,7 +72,6 @@
         "com.quexten.Goldwarden"
         "org.gimp.GIMP"
         "app.bluebubbles.BlueBubbles"
-        "com.github.neithern.g4music"
       ];
     };
 

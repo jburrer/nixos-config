@@ -42,7 +42,7 @@
   # enable syncthing with home manager
   home-manager.users.${config.username} = {
 
-    home.packages = with pkgs; [ spotify ];
+    services.flatpak.packages = [ "com.spotify.Client" ];
 
     services.syncthing.enable = true;
     
