@@ -108,6 +108,8 @@
       "org.getmonero.Monero"
     ];
 
+    home.packages = [ pkgs.prismlauncher ];
+
     #home.persistence."/persist/home" = {
     #  directories = [
     #    "Documents"
