@@ -65,7 +65,8 @@
     serverProperties = {
       gamemode = "survival";
       difficulty = "hard";
-      offline = true;
+      #offline = true;
+      online-mode = false;
     };
   };
   services.nginx.virtualHosts."minecraft.local.n3mohomelab.xyz" = {
