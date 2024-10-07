@@ -10,12 +10,6 @@
 
   config = {
 
-    # steam flatpak
-    home-manager.users.${config.username}.services.flatpak.packages = [
-      "com.valvesoftware.Steam" 
-      "io.github.Foldex.AdwSteamGtk" 
-    ];
-
     # nvidia
     nixpkgs.config.allowUnfree = lib.mkIf config.gaming.nvidia.enable true;
     services.xserver.videoDrivers = lib.mkIf config.gaming.nvidia.enable [ "nvidia" ];
@@ -27,6 +21,19 @@
         open = false;
         nvidiaSettings = false;
       };
+    };
+
+    home-manager.users.${config.username} = {
+
+        # steam flatpak
+        services.flatpak.packages = [
+        "com.valvesoftware.Steam" 
+        "io.github.Foldex.AdwSteamGtk" 
+        ];
+
+        # prism launcher
+        home.packages = [ pkgs.prismlauncher ];
+
     };
 
   };

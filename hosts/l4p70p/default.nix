@@ -103,12 +103,10 @@
       "com.github.johnfactotum.Foliate"
       "com.jeffser.Alpaca"
       "cafe.avery.Delfin"
-      "com.github.neithern.g4music"
+      "io.github.nate_xyz.Resonance"
       "org.torproject.torbrowser-launcher"
       "org.getmonero.Monero"
     ];
-
-    home.packages = [ pkgs.prismlauncher ];
 
     #home.persistence."/persist/home" = {
     #  directories = [
