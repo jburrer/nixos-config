@@ -68,8 +68,8 @@
       enable = true;
       update.auto.enable = true;
       packages = [
-        "io.github.celluloid_player.Celluloid"
         "com.quexten.Goldwarden"
+        "io.github.celluloid_player.Celluloid"
         "org.gimp.GIMP"
         "app.bluebubbles.BlueBubbles"
       ];
@@ -80,8 +80,9 @@
     fonts.fontconfig.enable = true;
 
     home.packages = (with pkgs; [
-      deploy-rs pass wl-clipboard cascadia-code
-      adw-gtk3 gnome-tweaks dconf2nix ptyxis
+      deploy-rs pass wl-clipboard
+      morewaita-icon-theme cascadia-code adw-gtk3
+      gnome-tweaks dconf2nix ptyxis goldwarden
     ]) ++ (with pkgs.gnomeExtensions; [
       paperwm blur-my-shell rounded-window-corners-reborn
       caffeine tailscale-qs

@@ -26,6 +26,7 @@
     #  url = "github:Maroka-chan/VPN-Confinement";
     #  inputs.nixpkgs.follows = "nixpkgs";
     #};
+    nix-minecraft.url = "github:Infinidoge/nix-minecraft";
     emacs-overlay = {
       url = "github:nix-community/emacs-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -53,6 +54,7 @@
     betterfox,
     musnix,
     #vpnconfinement,
+    nix-minecraft,
     emacs-overlay,
     firefox-gnome-theme,
     thunderbird-gnome-theme
@@ -137,6 +139,7 @@
           (nixConf pkgs)
           impermanence.nixosModules.impermanence
           #vpnconfinement.nixosModules.default
+          nix-minecraft.nixosModules.nix-minecraft
           home-manager.nixosModules.home-manager {
             home-manager = {
               useGlobalPkgs = true;

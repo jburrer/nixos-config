@@ -6,7 +6,7 @@ with lib.hm.gvariant;
 {
   dconf.settings = {
     "apps/seahorse/listing" = {
-      keyrings-selected = [ "secret-service:///org/freedesktop/secrets/collection/login" ];
+      keyrings-selected = [ "secret-service:///org/freedesktop/secrets/collection/Anonymous" ];
     };
 
     "apps/seahorse/windows/key-manager" = {
@@ -57,9 +57,11 @@ with lib.hm.gvariant;
     };
 
     "io/bassi/Amberol" = {
+      background-play = true;
       enable-recoloring = false;
+      replay-gain = "track";
       window-height = 1028;
-      window-width = 1331;
+      window-width = 930;
     };
 
     "io/github/Foldex/AdwSteamGtk" = {
@@ -105,6 +107,10 @@ with lib.hm.gvariant;
 
     "org/freedesktop/folks" = {
       primary-store = "eds:9128dcf67fe61c8fd00a5e9699483fc7a85c88b0";
+    };
+
+    "org/gnome/Connections" = {
+      first-run = false;
     };
 
     "org/gnome/Console" = {
@@ -216,12 +222,12 @@ with lib.hm.gvariant;
     };
 
     "org/gnome/desktop/app-folders/folders/53afa509-2c79-44fb-a856-83e062657f0e" = {
-      apps = [ "steam.desktop" "io.github.Foldex.AdwSteamGtk.desktop" "Factorio.desktop" "Nuclear Throne.desktop" ];
+      apps = [ "com.valvesoftware.Steam.desktop" "io.github.Foldex.AdwSteamGtk.desktop" "org.prismlauncher.PrismLauncher.desktop" ];
       name = "Games";
     };
 
     "org/gnome/desktop/app-folders/folders/82448d86-19ad-489e-aaa3-ae16f966d088" = {
-      apps = [ "torbrowser.desktop" "monero-wallet-gui.desktop" ];
+      apps = [ "torbrowser.desktop" "monero-wallet-gui.desktop" "org.torproject.torbrowser-launcher.desktop" "org.torproject.torbrowser-launcher.settings.desktop" "org.getmonero.Monero.desktop" ];
       name = "Internet";
     };
 
@@ -232,7 +238,7 @@ with lib.hm.gvariant;
     };
 
     "org/gnome/desktop/app-folders/folders/9fe9dcd5-e355-457b-818a-f4d10b3e67c7" = {
-      apps = [ "startcenter.desktop" "writer.desktop" "calc.desktop" "impress.desktop" "draw.desktop" "math.desktop" "base.desktop" ];
+      apps = [ "org.libreoffice.LibreOffice.writer.desktop" "org.libreoffice.LibreOffice.calc.desktop" "org.libreoffice.LibreOffice.impress.desktop" "org.libreoffice.LibreOffice.draw.desktop" "org.libreoffice.LibreOffice.math.desktop" "org.libreoffice.LibreOffice.base.desktop" "org.libreoffice.LibreOffice.desktop" ];
       name = "Office";
     };
 
@@ -278,12 +284,13 @@ with lib.hm.gvariant;
       font-antialiasing = "rgba";
       font-hinting = "slight";
       gtk-theme = "adw-gtk3-dark";
+      icon-theme = "MoreWaita";
       show-battery-percentage = true;
       text-scaling-factor = 1.0;
     };
 
     "org/gnome/desktop/notifications" = {
-      application-children = [ "org-gnome-evolution-alarm-notify" "gnome-network-panel" "gnome-power-panel" "thunderbird" "org-gnome-shell-extensions-gsconnect" "firefox" "rstudio" "emacs" "startcenter" "gimp" "org-gnome-evince" "writer" "org-gnome-extensions" "org-gnome-evolution" "steam" "gotify-desktop" "com-jeffser-alpaca" "org-gnome-loupe" ];
+      application-children = [ "org-gnome-evolution-alarm-notify" "gnome-network-panel" "gnome-power-panel" "thunderbird" "org-gnome-shell-extensions-gsconnect" "firefox" "rstudio" "emacs" "startcenter" "gimp" "org-gnome-evince" "writer" "org-gnome-extensions" "org-gnome-evolution" "steam" "gotify-desktop" "com-jeffser-alpaca" "org-gnome-loupe" "com-quexten-goldwarden" "org-gnome-nautilus" "org-prismlauncher-prismlauncher" ];
       show-banners = true;
     };
 
@@ -293,6 +300,10 @@ with lib.hm.gvariant;
 
     "org/gnome/desktop/notifications/application/com-jeffser-alpaca" = {
       application-id = "com.jeffser.Alpaca.desktop";
+    };
+
+    "org/gnome/desktop/notifications/application/com-quexten-goldwarden" = {
+      application-id = "com.quexten.Goldwarden.desktop";
     };
 
     "org/gnome/desktop/notifications/application/emacs" = {
@@ -343,12 +354,20 @@ with lib.hm.gvariant;
       application-id = "org.gnome.Loupe.desktop";
     };
 
+    "org/gnome/desktop/notifications/application/org-gnome-nautilus" = {
+      application-id = "org.gnome.Nautilus.desktop";
+    };
+
     "org/gnome/desktop/notifications/application/org-gnome-shell-extensions-gsconnect" = {
       application-id = "org.gnome.Shell.Extensions.GSConnect.desktop";
     };
 
     "org/gnome/desktop/notifications/application/org-gnome-tweaks" = {
       application-id = "org.gnome.tweaks.desktop";
+    };
+
+    "org/gnome/desktop/notifications/application/org-prismlauncher-prismlauncher" = {
+      application-id = "org.prismlauncher.PrismLauncher.desktop";
     };
 
     "org/gnome/desktop/notifications/application/rstudio" = {
@@ -444,7 +463,7 @@ with lib.hm.gvariant;
       sidebar-page = "thumbnails";
       sidebar-size = 176;
       sizing-mode = "free";
-      window-ratio = mkTuple [ 3.0392156862745097 1.297979797979798 ];
+      window-ratio = mkTuple [ 1.2916666666666667 1.9037037037037037 ];
       zoom = 0.4822530864197531;
     };
 
@@ -458,7 +477,7 @@ with lib.hm.gvariant;
       notify-window-width = 930;
       notify-window-x = 102;
       notify-window-y = 102;
-      reminders-past = [ "13b8f663e5cc6912c9c77a4fb4ee84c84390a312n64673b1a18ac74758104df38599f5b722e9aa894t20240923T163000n1727122500n1727123400n1727126400nBEGIN:VEVENTrnUID:9c0de672-9e68-4bb0-807f-e904992cdc22rnDTSTART;TZID=America/Indiana/Indianapolis:20240923T163000rnDTEND;TZID=America/Indiana/Indianapolis:20240923T172000rnCLASS:PUBLICrnDTSTAMP:20240826T171418ZrnLOCATION:BRNG 1268rnRRULE:FREQ=WEEKLY;UNTIL=20241207T000000rnSTATUS:TENTATIVErnSUMMARY:HIST 31205 LecturernLAST-MODIFIED:20240903T020131ZrnX-EVOLUTION-CALDAV-ETAG:rn 781ebaf2a1ae1ac9627f820ac403e47cdfba99649e80d79971203372616f6721rnRECURRENCE-ID;TZID=America/Indiana/Indianapolis:20240923T163000rnBEGIN:VALARMrnX-EVOLUTION-ALARM-UID:64673b1a18ac74758104df38599f5b722e9aa894rnACTION:DISPLAYrnDESCRIPTION:HIST 31205 LecturernTRIGGER;RELATED=START:-PT15MrnACKNOWLEDGED:20240903T020131ZrnEND:VALARMrnEND:VEVENTrn" "13b8f663e5cc6912c9c77a4fb4ee84c84390a312nc7af003ca495203c5ce8b5e60d2cd8d91019c14bt20240923T133000n1727111700n1727112600n1727118000nBEGIN:VEVENTrnUID:b8f4d117-af00-4b47-8b32-2e40f371f1cdrnDTSTART;TZID=America/Indiana/Indianapolis:20240923T133000rnDTEND;TZID=America/Indiana/Indianapolis:20240923T150000rnCLASS:PUBLICrnDTSTAMP:20240826T171418ZrnLOCATION:PAO B189rnRRULE:FREQ=WEEKLY;UNTIL=20241207T000000rnSTATUS:TENTATIVErnSUMMARY:MUS 270 LecturernLAST-MODIFIED:20240903T020131ZrnX-EVOLUTION-CALDAV-ETAG:rn b761a61549bd344bdf519efb1ff7d7e3dd55f068d03554f3f5ccee8971ba4ea2rnRECURRENCE-ID;TZID=America/Indiana/Indianapolis:20240923T133000rnBEGIN:VALARMrnX-EVOLUTION-ALARM-UID:c7af003ca495203c5ce8b5e60d2cd8d91019c14brnACTION:DISPLAYrnDESCRIPTION:MUS 270 LecturernTRIGGER;RELATED=START:-PT15MrnACKNOWLEDGED:20240903T020131ZrnEND:VALARMrnEND:VEVENTrn" "13b8f663e5cc6912c9c77a4fb4ee84c84390a312n919736d854b278e66b4023e071f87ebb60a1b4cct20240923T093000n1727097300n1727098200n1727101200nBEGIN:VEVENTrnUID:485ec840-4236-4430-a268-bac54b0e7a2ernDTSTART;TZID=America/Indiana/Indianapolis:20240923T093000rnDTEND;TZID=America/Indiana/Indianapolis:20240923T102000rnCLASS:PUBLICrnDTSTAMP:20240826T171300ZrnLOCATION:BHEE 129rnRRULE:FREQ=WEEKLY;UNTIL=20241207T000000rnSTATUS:TENTATIVErnSUMMARY:CS 251 LecturernLAST-MODIFIED:20240903T020132ZrnX-EVOLUTION-CALDAV-ETAG:rn 5c1a39e462d3e28c49cdf5551849268a0724b4dce6235c472ec591113ebb2b34rnRECURRENCE-ID;TZID=America/Indiana/Indianapolis:20240923T093000rnBEGIN:VALARMrnX-EVOLUTION-ALARM-UID:919736d854b278e66b4023e071f87ebb60a1b4ccrnACTION:DISPLAYrnDESCRIPTION:CS 251 LecturernTRIGGER;RELATED=START:-PT15MrnACKNOWLEDGED:20240903T020132ZrnEND:VALARMrnEND:VEVENTrn" "13b8f663e5cc6912c9c77a4fb4ee84c84390a312n8c13a85ebaf8c1552168cb97281497bedae49e7bt20240917T093000n1726578900n1726579800n1726582800nBEGIN:VEVENTrnUID:a1f3e37e-4fdf-4a96-93dc-b367b0a75a6ernDTSTART;TZID=America/Indiana/Indianapolis:20240917T093000rnDTEND;TZID=America/Indiana/Indianapolis:20240917T102000rnCLASS:PUBLICrnDTSTAMP:20240826T171453ZrnLOCATION:WTHR 420rnRRULE:FREQ=WEEKLY;UNTIL=20241207T000000rnSTATUS:TENTATIVErnSUMMARY:BIOL 110 RecitationrnX-EVOLUTION-CALDAV-ETAG:rn aab1dc3eea83c11ea66244036836a4b8afc8cbcdadf0458a1f334a895762214brnRECURRENCE-ID;TZID=America/Indiana/Indianapolis:20240917T093000rnBEGIN:VALARMrnACTION:DISPLAYrnDESCRIPTION:BIOL 110 RecitationrnTRIGGER:-PT15MrnX-EVOLUTION-ALARM-UID:8c13a85ebaf8c1552168cb97281497bedae49e7brnEND:VALARMrnEND:VEVENTrn" "13b8f663e5cc6912c9c77a4fb4ee84c84390a312n64673b1a18ac74758104df38599f5b722e9aa894t20240916T163000n1726517700n1726518600n1726521600nBEGIN:VEVENTrnUID:9c0de672-9e68-4bb0-807f-e904992cdc22rnDTSTART;TZID=America/Indiana/Indianapolis:20240916T163000rnDTEND;TZID=America/Indiana/Indianapolis:20240916T172000rnCLASS:PUBLICrnDTSTAMP:20240826T171418ZrnLOCATION:BRNG 1268rnRRULE:FREQ=WEEKLY;UNTIL=20241207T000000rnSTATUS:TENTATIVErnSUMMARY:HIST 31205 LecturernLAST-MODIFIED:20240903T020131ZrnX-EVOLUTION-CALDAV-ETAG:rn 781ebaf2a1ae1ac9627f820ac403e47cdfba99649e80d79971203372616f6721rnRECURRENCE-ID;TZID=America/Indiana/Indianapolis:20240916T163000rnBEGIN:VALARMrnX-EVOLUTION-ALARM-UID:64673b1a18ac74758104df38599f5b722e9aa894rnACTION:DISPLAYrnDESCRIPTION:HIST 31205 LecturernTRIGGER;RELATED=START:-PT15MrnACKNOWLEDGED:20240903T020131ZrnEND:VALARMrnEND:VEVENTrn" "13b8f663e5cc6912c9c77a4fb4ee84c84390a312nc7af003ca495203c5ce8b5e60d2cd8d91019c14bt20240916T133000n1726506900n1726507800n1726513200nBEGIN:VEVENTrnUID:b8f4d117-af00-4b47-8b32-2e40f371f1cdrnDTSTART;TZID=America/Indiana/Indianapolis:20240916T133000rnDTEND;TZID=America/Indiana/Indianapolis:20240916T150000rnCLASS:PUBLICrnDTSTAMP:20240826T171418ZrnLOCATION:PAO B189rnRRULE:FREQ=WEEKLY;UNTIL=20241207T000000rnSTATUS:TENTATIVErnSUMMARY:MUS 270 LecturernLAST-MODIFIED:20240903T020131ZrnX-EVOLUTION-CALDAV-ETAG:rn b761a61549bd344bdf519efb1ff7d7e3dd55f068d03554f3f5ccee8971ba4ea2rnRECURRENCE-ID;TZID=America/Indiana/Indianapolis:20240916T133000rnBEGIN:VALARMrnX-EVOLUTION-ALARM-UID:c7af003ca495203c5ce8b5e60d2cd8d91019c14brnACTION:DISPLAYrnDESCRIPTION:MUS 270 LecturernTRIGGER;RELATED=START:-PT15MrnACKNOWLEDGED:20240903T020131ZrnEND:VALARMrnEND:VEVENTrn" "13b8f663e5cc6912c9c77a4fb4ee84c84390a312n919736d854b278e66b4023e071f87ebb60a1b4cct20240916T093000n1726492500n1726493400n1726496400nBEGIN:VEVENTrnUID:485ec840-4236-4430-a268-bac54b0e7a2ernDTSTART;TZID=America/Indiana/Indianapolis:20240916T093000rnDTEND;TZID=America/Indiana/Indianapolis:20240916T102000rnCLASS:PUBLICrnDTSTAMP:20240826T171300ZrnLOCATION:BHEE 129rnRRULE:FREQ=WEEKLY;UNTIL=20241207T000000rnSTATUS:TENTATIVErnSUMMARY:CS 251 LecturernLAST-MODIFIED:20240903T020132ZrnX-EVOLUTION-CALDAV-ETAG:rn 5c1a39e462d3e28c49cdf5551849268a0724b4dce6235c472ec591113ebb2b34rnRECURRENCE-ID;TZID=America/Indiana/Indianapolis:20240916T093000rnBEGIN:VALARMrnX-EVOLUTION-ALARM-UID:919736d854b278e66b4023e071f87ebb60a1b4ccrnACTION:DISPLAYrnDESCRIPTION:CS 251 LecturernTRIGGER;RELATED=START:-PT15MrnACKNOWLEDGED:20240903T020132ZrnEND:VALARMrnEND:VEVENTrn" ];
+      reminders-past = [ "13b8f663e5cc6912c9c77a4fb4ee84c84390a312n8c13a85ebaf8c1552168cb97281497bedae49e7bt20241015T093000n1728998100n1728999000n1729002000nBEGIN:VEVENTrnUID:a1f3e37e-4fdf-4a96-93dc-b367b0a75a6ernDTSTART;TZID=America/Indiana/Indianapolis:20241015T093000rnDTEND;TZID=America/Indiana/Indianapolis:20241015T102000rnCLASS:PUBLICrnDTSTAMP:20240826T171453ZrnLOCATION:WTHR 420rnRRULE:FREQ=WEEKLY;UNTIL=20241207T000000rnSTATUS:TENTATIVErnSUMMARY:BIOL 110 RecitationrnLAST-MODIFIED:20241009T160420ZrnX-EVOLUTION-CALDAV-ETAG:rn c93ac372784b4a251bd51140d3977ea75a8da0c3ddd2cf176a7972d65c51fa1drnRECURRENCE-ID;TZID=America/Indiana/Indianapolis:20241015T093000rnBEGIN:VALARMrnX-EVOLUTION-ALARM-UID:8c13a85ebaf8c1552168cb97281497bedae49e7brnACTION:DISPLAYrnDESCRIPTION:BIOL 110 RecitationrnTRIGGER;RELATED=START:-PT15MrnACKNOWLEDGED:20241009T160420ZrnEND:VALARMrnEND:VEVENTrn" "13b8f663e5cc6912c9c77a4fb4ee84c84390a312n64673b1a18ac74758104df38599f5b722e9aa894t20241014T163000n1728936900n1728937800n1728940800nBEGIN:VEVENTrnUID:9c0de672-9e68-4bb0-807f-e904992cdc22rnDTSTART;TZID=America/Indiana/Indianapolis:20241014T163000rnDTEND;TZID=America/Indiana/Indianapolis:20241014T172000rnCLASS:PUBLICrnDTSTAMP:20240826T171418ZrnLOCATION:BRNG 1268rnRRULE:FREQ=WEEKLY;UNTIL=20241207T000000rnSTATUS:TENTATIVErnSUMMARY:HIST 31205 LecturernLAST-MODIFIED:20240903T020131ZrnX-EVOLUTION-CALDAV-ETAG:rn 781ebaf2a1ae1ac9627f820ac403e47cdfba99649e80d79971203372616f6721rnRECURRENCE-ID;TZID=America/Indiana/Indianapolis:20241014T163000rnBEGIN:VALARMrnX-EVOLUTION-ALARM-UID:64673b1a18ac74758104df38599f5b722e9aa894rnACTION:DISPLAYrnDESCRIPTION:HIST 31205 LecturernTRIGGER;RELATED=START:-PT15MrnACKNOWLEDGED:20240903T020131ZrnEND:VALARMrnEND:VEVENTrn" "13b8f663e5cc6912c9c77a4fb4ee84c84390a312nc7af003ca495203c5ce8b5e60d2cd8d91019c14bt20241014T133000n1728926100n1728927000n1728932400nBEGIN:VEVENTrnUID:b8f4d117-af00-4b47-8b32-2e40f371f1cdrnDTSTART;TZID=America/Indiana/Indianapolis:20241014T133000rnDTEND;TZID=America/Indiana/Indianapolis:20241014T150000rnCLASS:PUBLICrnDTSTAMP:20240826T171418ZrnLOCATION:PAO B189rnRRULE:FREQ=WEEKLY;UNTIL=20241207T000000rnSTATUS:TENTATIVErnSUMMARY:MUS 270 LecturernLAST-MODIFIED:20240903T020131ZrnX-EVOLUTION-CALDAV-ETAG:rn b761a61549bd344bdf519efb1ff7d7e3dd55f068d03554f3f5ccee8971ba4ea2rnRECURRENCE-ID;TZID=America/Indiana/Indianapolis:20241014T133000rnBEGIN:VALARMrnX-EVOLUTION-ALARM-UID:c7af003ca495203c5ce8b5e60d2cd8d91019c14brnACTION:DISPLAYrnDESCRIPTION:MUS 270 LecturernTRIGGER;RELATED=START:-PT15MrnACKNOWLEDGED:20240903T020131ZrnEND:VALARMrnEND:VEVENTrn" "13b8f663e5cc6912c9c77a4fb4ee84c84390a312n919736d854b278e66b4023e071f87ebb60a1b4cct20241014T093000n1728911700n1728912600n1728915600nBEGIN:VEVENTrnUID:485ec840-4236-4430-a268-bac54b0e7a2ernDTSTART;TZID=America/Indiana/Indianapolis:20241014T093000rnDTEND;TZID=America/Indiana/Indianapolis:20241014T102000rnCLASS:PUBLICrnDTSTAMP:20240826T171300ZrnLOCATION:BHEE 129rnRRULE:FREQ=WEEKLY;UNTIL=20241207T000000rnSTATUS:TENTATIVErnSUMMARY:CS 251 LecturernLAST-MODIFIED:20240903T020132ZrnX-EVOLUTION-CALDAV-ETAG:rn 5c1a39e462d3e28c49cdf5551849268a0724b4dce6235c472ec591113ebb2b34rnRECURRENCE-ID;TZID=America/Indiana/Indianapolis:20241014T093000rnBEGIN:VALARMrnX-EVOLUTION-ALARM-UID:919736d854b278e66b4023e071f87ebb60a1b4ccrnACTION:DISPLAYrnDESCRIPTION:CS 251 LecturernTRIGGER;RELATED=START:-PT15MrnACKNOWLEDGED:20240903T020132ZrnEND:VALARMrnEND:VEVENTrn" "13b8f663e5cc6912c9c77a4fb4ee84c84390a312nb4c738c5190cf29bef7c02214285f5df259b7b8bt20241011T110000n1728657900n1728658800n1728660600nBEGIN:VEVENTrnUID:7e1549f3-f56d-4ef2-b522-020b5124c1d5rnDTSTART;TZID=America/New_York:20241011T110000rnDTEND;TZID=America/New_York:20241011T113000rnDTSTAMP:20240918T011619ZrnSTATUS:CONFIRMEDrnSUMMARY:COUNSELOR MEETINGrnX-EVOLUTION-CALDAV-ETAG:rn d0753efd3bf28d47ac31763c43ac5ee5f720bda3b239641c3bd8518f7067854drnBEGIN:VALARMrnACTION:DISPLAYrnDESCRIPTION:COUNSELOR MEETINGrnTRIGGER:-PT15MrnX-EVOLUTION-ALARM-UID:b4c738c5190cf29bef7c02214285f5df259b7b8brnEND:VALARMrnEND:VEVENTrn" "13b8f663e5cc6912c9c77a4fb4ee84c84390a312n64673b1a18ac74758104df38599f5b722e9aa894t20241007T163000n1728332100n1728333000n1728336000nBEGIN:VEVENTrnUID:9c0de672-9e68-4bb0-807f-e904992cdc22rnDTSTART;TZID=America/Indiana/Indianapolis:20241007T163000rnDTEND;TZID=America/Indiana/Indianapolis:20241007T172000rnCLASS:PUBLICrnDTSTAMP:20240826T171418ZrnLOCATION:BRNG 1268rnRRULE:FREQ=WEEKLY;UNTIL=20241207T000000rnSTATUS:TENTATIVErnSUMMARY:HIST 31205 LecturernLAST-MODIFIED:20240903T020131ZrnX-EVOLUTION-CALDAV-ETAG:rn 781ebaf2a1ae1ac9627f820ac403e47cdfba99649e80d79971203372616f6721rnRECURRENCE-ID;TZID=America/Indiana/Indianapolis:20241007T163000rnBEGIN:VALARMrnX-EVOLUTION-ALARM-UID:64673b1a18ac74758104df38599f5b722e9aa894rnACTION:DISPLAYrnDESCRIPTION:HIST 31205 LecturernTRIGGER;RELATED=START:-PT15MrnACKNOWLEDGED:20240903T020131ZrnEND:VALARMrnEND:VEVENTrn" "13b8f663e5cc6912c9c77a4fb4ee84c84390a312nc7af003ca495203c5ce8b5e60d2cd8d91019c14bt20241007T133000n1728321300n1728322200n1728327600nBEGIN:VEVENTrnUID:b8f4d117-af00-4b47-8b32-2e40f371f1cdrnDTSTART;TZID=America/Indiana/Indianapolis:20241007T133000rnDTEND;TZID=America/Indiana/Indianapolis:20241007T150000rnCLASS:PUBLICrnDTSTAMP:20240826T171418ZrnLOCATION:PAO B189rnRRULE:FREQ=WEEKLY;UNTIL=20241207T000000rnSTATUS:TENTATIVErnSUMMARY:MUS 270 LecturernLAST-MODIFIED:20240903T020131ZrnX-EVOLUTION-CALDAV-ETAG:rn b761a61549bd344bdf519efb1ff7d7e3dd55f068d03554f3f5ccee8971ba4ea2rnRECURRENCE-ID;TZID=America/Indiana/Indianapolis:20241007T133000rnBEGIN:VALARMrnX-EVOLUTION-ALARM-UID:c7af003ca495203c5ce8b5e60d2cd8d91019c14brnACTION:DISPLAYrnDESCRIPTION:MUS 270 LecturernTRIGGER;RELATED=START:-PT15MrnACKNOWLEDGED:20240903T020131ZrnEND:VALARMrnEND:VEVENTrn" ];
     };
 
     "org/gnome/evolution" = {
@@ -609,6 +628,14 @@ with lib.hm.gvariant;
       last-folder-path = "/home/n3mo/Books";
     };
 
+    "org/gnome/portal/filechooser/com/github/neithern/g4music" = {
+      last-folder-path = "/home/n3mo/Music";
+    };
+
+    "org/gnome/portal/filechooser/io/github/nate_xyz/Resonance" = {
+      last-folder-path = "/home/n3mo/Music";
+    };
+
     "org/gnome/portal/filechooser/org/gnome/Settings" = {
       last-folder-path = "/home/n3mo/Documents/nixos-config";
     };
@@ -632,8 +659,8 @@ with lib.hm.gvariant;
       disable-user-extensions = false;
       disabled-extensions = [ "openbar@neuromorph" "just-perfection-desktop@just-perfection" "gmind@tungstnballon.gitlab.com" "syncthing@gnome.2nv2u.com" "appindicatorsupport@rgcjonas.gmail.com" "workspace-indicator@gnome-shell-extensions.gcampax.github.com" "user-theme@gnome-shell-extensions.gcampax.github.com" "light-style@gnome-shell-extensions.gcampax.github.com" "windowsNavigator@gnome-shell-extensions.gcampax.github.com" "Rounded_Corners@lennart-k" "dash-to-panel@jderose9.github.com" "rounded-window-corners@fxgn" "apps-menu@gnome-shell-extensions.gcampax.github.com" "auto-move-windows@gnome-shell-extensions.gcampax.github.com" ];
       enabled-extensions = [ "blur-my-shell@aunetx" "tailscale@joaophi.github.com" "system-monitor@gnome-shell-extensions.gcampax.github.com" "gsconnect@andyholmes.github.io" "caffeine@patapon.info" "paperwm@paperwm.github.com" ];
-      favorite-apps = [ "firefox.desktop" "thunderbird.desktop" "emacsclient.desktop" "io.bassi.Amberol.desktop" "org.gnome.Nautilus.desktop" ];
-      last-selected-power-profile = "performance";
+      favorite-apps = [ "firefox.desktop" "thunderbird.desktop" "emacsclient.desktop" "org.gnome.Nautilus.desktop" "io.github.nate_xyz.Resonance.desktop" ];
+      last-selected-power-profile = "power-saver";
       welcome-dialog-last-shown-version = "45.3";
     };
 
@@ -767,7 +794,7 @@ with lib.hm.gvariant;
 
     "org/gnome/shell/extensions/gsconnect/device/6a0b3c14_12a9_429d_a7c2_ecc4bc676fae/plugin/notification" = {
       applications = ''
-        {"Power":{"iconName":"org.gnome.Settings-power-symbolic","enabled":true},"Software":{"iconName":"org.gnome.Software","enabled":true},"Clocks":{"iconName":"org.gnome.clocks","enabled":true},"Color":{"iconName":"org.gnome.Settings-color-symbolic","enabled":true},"Archive Manager":{"iconName":"org.gnome.FileRoller","enabled":true},"Printers":{"iconName":"org.gnome.Settings-printers-symbolic","enabled":true},"Disk Usage Analyzer":{"iconName":"org.gnome.baobab","enabled":true},"Files":{"iconName":"org.gnome.Nautilus","enabled":true},"Disks":{"iconName":"org.gnome.DiskUtility","enabled":true},"Evolution Alarm Notify":{"iconName":"appointment-soon","enabled":true},"Date & Time":{"iconName":"org.gnome.Settings-time-symbolic","enabled":true},"Thunderbird":{"iconName":"","enabled":true},"Argos":{"iconName":"media-optical","enabled":true},"Events and Tasks Reminders":{"iconName":"appointment-soon","enabled":true},"Gotify Desktop":{"iconName":"/home/n3mo/.cache/gotify-desktop/defaultapp.png","enabled":true},"notify-send":{"iconName":"","enabled":true},"Alpaca":{"iconName":"emblem-ok-symbolic","enabled":true},"File Roller":{"iconName":"org.gnome.FileRoller","enabled":true},"goldwarden":{"iconName":"","enabled":true}}
+        {"Power":{"iconName":"org.gnome.Settings-power-symbolic","enabled":true},"Software":{"iconName":"org.gnome.Software","enabled":true},"Clocks":{"iconName":"org.gnome.clocks","enabled":true},"Color":{"iconName":"org.gnome.Settings-color-symbolic","enabled":true},"Archive Manager":{"iconName":"org.gnome.FileRoller","enabled":true},"Printers":{"iconName":"org.gnome.Settings-printers-symbolic","enabled":true},"Disk Usage Analyzer":{"iconName":"org.gnome.baobab","enabled":true},"Files":{"iconName":"org.gnome.Nautilus","enabled":true},"Disks":{"iconName":"org.gnome.DiskUtility","enabled":true},"Evolution Alarm Notify":{"iconName":"appointment-soon","enabled":true},"Date & Time":{"iconName":"org.gnome.Settings-time-symbolic","enabled":true},"Thunderbird":{"iconName":"","enabled":true},"Argos":{"iconName":"media-optical","enabled":true},"Events and Tasks Reminders":{"iconName":"appointment-soon","enabled":true},"Gotify Desktop":{"iconName":"/home/n3mo/.cache/gotify-desktop/defaultapp.png","enabled":true},"notify-send":{"iconName":"","enabled":true},"Alpaca":{"iconName":"emblem-ok-symbolic","enabled":true},"File Roller":{"iconName":"org.gnome.FileRoller","enabled":true},"goldwarden":{"iconName":"","enabled":true},"Goldwarden":{"iconName":"com.quexten.Goldwarden","enabled":true}}
       '';
     };
 
@@ -1011,9 +1038,9 @@ with lib.hm.gvariant;
     };
 
     "org/gnome/software" = {
-      check-timestamp = mkInt64 1721931028;
+      check-timestamp = mkInt64 1727453798;
       first-run = false;
-      flatpak-purge-timestamp = mkInt64 1705512518;
+      flatpak-purge-timestamp = mkInt64 1727312850;
     };
 
     "org/gnome/tweaks" = {
@@ -1022,6 +1049,10 @@ with lib.hm.gvariant;
 
     "org/gtk/gtk4/settings/color-chooser" = {
       selected-color = mkTuple [ true 1.0 1.0 1.0 1.0 ];
+    };
+
+    "org/gtk/gtk4/settings/debug" = {
+      inspector-warning = false;
     };
 
     "org/gtk/gtk4/settings/file-chooser" = {
@@ -1045,7 +1076,7 @@ with lib.hm.gvariant;
     };
 
     "org/gtk/settings/emoji-chooser" = {
-      recent-emoji = [ (mkTuple [ (mkTuple [ [ (mkUint32 128536) ] "face blowing a kiss" "" ]) (mkUint32 0) ]) (mkTuple [ (mkTuple [ [ 128532 ] "pensive face" "" ]) 0 ]) (mkTuple [ (mkTuple [ [ 128524 ] "relieved face" "" ]) 0 ]) (mkTuple [ (mkTuple [ [ 128128 ] "skull" "" ]) 0 ]) (mkTuple [ (mkTuple [ [ 128520 ] "smiling face with horns" "" ]) 0 ]) (mkTuple [ (mkTuple [ [ 128561 ] "face screaming in fear" "" ]) 0 ]) (mkTuple [ (mkTuple [ [ 128553 ] "weary face" "" ]) 0 ]) (mkTuple [ (mkTuple [ [ 128405 0 ] "middle finger" "" ]) 0 ]) (mkTuple [ (mkTuple [ [ 128064 ] "eyes" "" ]) 0 ]) (mkTuple [ (mkTuple [ [ 128526 ] "smiling face with sunglasses" "" ]) 0 ]) (mkTuple [ (mkTuple [ [ 129314 ] "nauseated face" "" ]) 0 ]) (mkTuple [ (mkTuple [ [ 128591 0 ] "folded hands" "" ]) 0 ]) (mkTuple [ (mkTuple [ [ 128580 ] "face with rolling eyes" "" ]) 0 ]) (mkTuple [ (mkTuple [ [ 128541 ] "squinting face with tongue" "" ]) 0 ]) (mkTuple [ (mkTuple [ [ 128556 ] "grimacing face" "" ]) 0 ]) (mkTuple [ (mkTuple [ [ 129395 ] "partying face" "" ]) 0 ]) (mkTuple [ (mkTuple [ [ 128557 ] "loudly crying face" "" ]) 0 ]) (mkTuple [ (mkTuple [ [ 128293 ] "fire" "" ]) 0 ]) (mkTuple [ (mkTuple [ [ 128513 ] "beaming face with smiling eyes" "" ]) 0 ]) ];
+      recent-emoji = [ (mkTuple [ (mkTuple [ [ (mkUint32 128532) ] "pensive face" "" ]) (mkUint32 0) ]) (mkTuple [ (mkTuple [ [ 128580 ] "face with rolling eyes" "" ]) 0 ]) (mkTuple [ (mkTuple [ [ 129782 0 ] "heart hands" "" ]) 0 ]) (mkTuple [ (mkTuple [ [ 128565 8205 128171 ] "face with spiral eyes" "" ]) 0 ]) (mkTuple [ (mkTuple [ [ 128524 ] "relieved face" "" ]) 0 ]) (mkTuple [ (mkTuple [ [ 128553 ] "weary face" "" ]) 0 ]) (mkTuple [ (mkTuple [ [ 128536 ] "face blowing a kiss" "" ]) 0 ]) (mkTuple [ (mkTuple [ [ 128128 ] "skull" "" ]) 0 ]) (mkTuple [ (mkTuple [ [ 128520 ] "smiling face with horns" "" ]) 0 ]) (mkTuple [ (mkTuple [ [ 128561 ] "face screaming in fear" "" ]) 0 ]) (mkTuple [ (mkTuple [ [ 128405 0 ] "middle finger" "" ]) 0 ]) (mkTuple [ (mkTuple [ [ 128064 ] "eyes" "" ]) 0 ]) (mkTuple [ (mkTuple [ [ 128526 ] "smiling face with sunglasses" "" ]) 0 ]) (mkTuple [ (mkTuple [ [ 129314 ] "nauseated face" "" ]) 0 ]) (mkTuple [ (mkTuple [ [ 128591 0 ] "folded hands" "" ]) 0 ]) (mkTuple [ (mkTuple [ [ 128541 ] "squinting face with tongue" "" ]) 0 ]) (mkTuple [ (mkTuple [ [ 128556 ] "grimacing face" "" ]) 0 ]) (mkTuple [ (mkTuple [ [ 129395 ] "partying face" "" ]) 0 ]) (mkTuple [ (mkTuple [ [ 128557 ] "loudly crying face" "" ]) 0 ]) (mkTuple [ (mkTuple [ [ 128293 ] "fire" "" ]) 0 ]) (mkTuple [ (mkTuple [ [ 128513 ] "beaming face with smiling eyes" "" ]) 0 ]) ];
     };
 
     "org/gtk/settings/file-chooser" = {

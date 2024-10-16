@@ -61,14 +61,22 @@
   services.minecraft-server = {
     enable = true;
     eula = true;
-    declarative = true;
-    serverProperties = {
-      gamemode = "survival";
-      difficulty = "hard";
-      #offline = true;
-      online-mode = false;
+    servers."tekkit" = {
+      enable = true;
+      package = pkgs.fabricServers.fabric;
+      #symlinks."mods" = "${modpack}/mods";
     };
   };
+  #services.minecraft-server = {
+  #  enable = true;
+  #  eula = true;
+  #  declarative = true;
+  #  serverProperties = {
+  #    gamemode = "survival";
+  #    difficulty = "hard";
+  #    online-mode = false;
+  #  };
+  #};
   services.nginx.virtualHosts."minecraft.local.n3mohomelab.xyz" = {
     forceSSL = true;
     useACMEHost = "local.n3mohomelab.xyz";
@@ -151,6 +159,18 @@
     forceSSL = true;
     useACMEHost = "local.n3mohomelab.xyz";
     locations."/".proxyPass = "http://localhost:9696";
+  };
+
+  services.syncthing = {
+    enable = true;
+    user = "n3mo";
+    dataDir = "/srv/storage/";
+    configDir = "/srv/state/syncthing/";
+  };
+  services.nginx.virtualHosts."syncthing.local.n3mohomelab.xyz" = {
+    forceSSL = true;
+    useACMEHost = "local.n3mohomelab.xyz";
+    locations."/".proxyPass = "http://localhost:8384";
   };
 
   # transmission + wireguard
