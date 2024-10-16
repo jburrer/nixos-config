@@ -141,6 +141,19 @@
     locations."/".proxyPass = "http://localhost:8989";
   };
 
+  # lidarr
+  services.lidarr = {
+    enable = true;
+    dataDir = "/srv/state/lidarr";
+    user = "media";
+    group = "media";
+  };
+  services.nginx.virtualHosts."lidarr.local.n3mohomelab.xyz" = {
+    forceSSL = true;
+    useACMEHost = "local.n3mohomelab.xyz";
+    locations."/".proxyPass = "http://localhost:8686";
+  };
+
   # bazarr
   services.bazarr = {
     enable = true;
