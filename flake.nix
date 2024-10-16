@@ -139,7 +139,8 @@
           (nixConf pkgs)
           impermanence.nixosModules.impermanence
           #vpnconfinement.nixosModules.default
-          #nix-minecraft.nixosModules.nix-minecraft
+          ({pkgs, ...}: { nixpkgs.overlays = [ nix-minecraft.overlay ]; })
+          nix-minecraft.nixosModules.minecraft-servers
           home-manager.nixosModules.home-manager {
             home-manager = {
               useGlobalPkgs = true;
