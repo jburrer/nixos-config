@@ -139,7 +139,7 @@
           (nixConf pkgs)
           impermanence.nixosModules.impermanence
           #vpnconfinement.nixosModules.default
-          nix-minecraft.nixosModules.nix-minecraft
+          #nix-minecraft.nixosModules.nix-minecraft
           home-manager.nixosModules.home-manager {
             home-manager = {
               useGlobalPkgs = true;
