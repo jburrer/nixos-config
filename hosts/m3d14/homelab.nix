@@ -163,7 +163,7 @@
 
   services.syncthing = {
     enable = true;
-    user = "n3mo";
+    user = "media";
     dataDir = "/srv/storage/";
     configDir = "/srv/state/syncthing/";
   };
