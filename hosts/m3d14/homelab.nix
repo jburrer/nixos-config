@@ -58,25 +58,25 @@
   };
 
   # minecraft
-  services.minecraft-server = {
-    enable = true;
-    eula = true;
-    servers."tekkit" = {
-      enable = true;
-      package = pkgs.fabricServers.fabric;
-      #symlinks."mods" = "${modpack}/mods";
-    };
-  };
   #services.minecraft-server = {
   #  enable = true;
   #  eula = true;
-  #  declarative = true;
-  #  serverProperties = {
-  #    gamemode = "survival";
-  #    difficulty = "hard";
-  #    online-mode = false;
+  #  servers."tekkit" = {
+  #    enable = true;
+  #    package = pkgs.fabricServers.fabric;
+  #    #symlinks."mods" = "${modpack}/mods";
   #  };
   #};
+  services.minecraft-server = {
+    enable = true;
+    eula = true;
+    declarative = true;
+    serverProperties = {
+      gamemode = "survival";
+      difficulty = "hard";
+      online-mode = false;
+    };
+  };
   services.nginx.virtualHosts."minecraft.local.n3mohomelab.xyz" = {
     forceSSL = true;
     useACMEHost = "local.n3mohomelab.xyz";
