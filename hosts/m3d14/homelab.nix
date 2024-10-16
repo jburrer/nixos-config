@@ -166,6 +166,7 @@
     user = "media";
     dataDir = "/srv/storage/";
     configDir = "/srv/state/syncthing/";
+    settings.gui.insecureSkipHostcheck = true;
   };
   services.nginx.virtualHosts."syncthing.local.n3mohomelab.xyz" = {
     forceSSL = true;
