@@ -6,6 +6,7 @@
     ../../modules
     ../../modules/gnome.nix
     ../../modules/gaming.nix
+    ../../modules/printing.nix
   ];
 
   hostname = "l4p70p";
