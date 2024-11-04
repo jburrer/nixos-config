@@ -104,7 +104,8 @@
       "com.github.johnfactotum.Foliate"
       "com.jeffser.Alpaca"
       "cafe.avery.Delfin"
-      "io.github.nate_xyz.Resonance"
+      "org.gnome.Lollypop"
+      "app.drey.EarTag"
       "org.torproject.torbrowser-launcher"
       "org.getmonero.Monero"
     ];

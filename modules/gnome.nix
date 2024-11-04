@@ -38,7 +38,7 @@
   # exclude unecessary gnome crap
   environment = {
     gnome.excludePackages = with pkgs; [
-      gnome-tour gnome-text-editor snapshot #gnome-connections
+      gnome-tour gnome-text-editor snapshot
       gnome-console epiphany geary yelp totem simple-scan
       gnome-maps gnome-music gnome-software
     ];
@@ -68,7 +68,6 @@
       enable = true;
       update.auto.enable = true;
       packages = [
-        "com.quexten.Goldwarden"
         "io.github.celluloid_player.Celluloid"
         "org.gimp.GIMP"
         "app.bluebubbles.BlueBubbles"
@@ -82,7 +81,7 @@
     home.packages = (with pkgs; [
       deploy-rs pass wl-clipboard
       morewaita-icon-theme cascadia-code adw-gtk3
-      gnome-tweaks dconf2nix ptyxis goldwarden
+      gnome-tweaks dconf2nix ptyxis
     ]) ++ (with pkgs.gnomeExtensions; [
       paperwm blur-my-shell rounded-window-corners-reborn
       caffeine tailscale-qs

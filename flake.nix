@@ -68,7 +68,7 @@
     };
     nixConf = pkgs: {
       nix = {
-        package = pkgs.nixFlakes;
+        package = pkgs.nixVersions.stable;
         settings = {
           auto-optimise-store = true;
           experimental-features = [ "nix-command" "flakes" ];
