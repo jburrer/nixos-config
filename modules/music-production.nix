@@ -31,6 +31,7 @@
   # add programs with home manager
   home-manager.users.${config.username}.home.packages = with pkgs; [
     ardour obs-studio helvum qpwgraph hydrogen audacity
+    x42-avldrums
     (
       pkgs.stdenv.mkDerivation {
         name = "xruncounter";
