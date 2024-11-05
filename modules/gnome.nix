@@ -87,6 +87,10 @@
       caffeine tailscale-qs
     ]);
 
+    # disable extension version validation to let gsconnect work
+    # hopefully remove this soon when its updated
+    dconf.settings."org.gnome.shell"."disable-extension.version.validation" = true;
+
   };
 
 }
