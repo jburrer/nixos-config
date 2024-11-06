@@ -25,14 +25,14 @@
 
     home-manager.users.${config.username} = {
 
-        # steam flatpak
-        services.flatpak.packages = [
+      # steam flatpak
+      services.flatpak.packages = [
         "com.valvesoftware.Steam" 
         "io.github.Foldex.AdwSteamGtk" 
-        ];
+      ];
 
-        # prism launcher
-        home.packages = [ pkgs.prismlauncher ];
+      # prism launcher
+      home.packages = with pkgs; [ prismlauncher jdk8 ];
 
     };
 

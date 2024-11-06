@@ -38,7 +38,7 @@
   # exclude unecessary gnome crap
   environment = {
     gnome.excludePackages = with pkgs; [
-      gnome-tour gnome-text-editor snapshot #gnome-connections
+      gnome-tour gnome-text-editor snapshot
       gnome-console epiphany geary yelp totem simple-scan
       gnome-maps gnome-music gnome-software
     ];
@@ -69,7 +69,6 @@
       update.auto.enable = true;
       packages = [
         "io.github.celluloid_player.Celluloid"
-        "com.quexten.Goldwarden"
         "org.gimp.GIMP"
         "app.bluebubbles.BlueBubbles"
       ];
@@ -80,12 +79,17 @@
     fonts.fontconfig.enable = true;
 
     home.packages = (with pkgs; [
-      deploy-rs pass wl-clipboard cascadia-code
-      adw-gtk3 gnome-tweaks dconf2nix ptyxis
+      deploy-rs pass wl-clipboard
+      morewaita-icon-theme cascadia-code adw-gtk3
+      gnome-tweaks dconf2nix ptyxis
     ]) ++ (with pkgs.gnomeExtensions; [
       paperwm blur-my-shell rounded-window-corners-reborn
       caffeine tailscale-qs
     ]);
+
+    # disable extension version validation to let gsconnect work
+    # hopefully remove this soon when its updated
+    dconf.settings."org.gnome.shell"."disable-extension.version.validation" = true;
 
   };
 

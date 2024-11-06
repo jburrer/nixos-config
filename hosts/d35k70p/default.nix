@@ -39,6 +39,12 @@
     };
   };
 
+  # disabling autosuspend for remote desktop
+  systemd.targets.sleep.enable = false;
+  systemd.targets.suspend.enable = false;
+  systemd.targets.hibernate.enable = false;
+  systemd.targets.hybrid-sleep.enable = false;
+
   # enable syncthing with home manager
   home-manager.users.${config.username} = {
 

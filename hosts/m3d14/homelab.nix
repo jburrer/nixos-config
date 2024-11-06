@@ -58,6 +58,15 @@
   };
 
   # minecraft
+  #services.minecraft-server = {
+  #  enable = true;
+  #  eula = true;
+  #  servers."tekkit" = {
+  #    enable = true;
+  #    package = pkgs.fabricServers.fabric;
+  #    #symlinks."mods" = "${modpack}/mods";
+  #  };
+  #};
   services.minecraft-server = {
     enable = true;
     eula = true;
@@ -65,7 +74,6 @@
     serverProperties = {
       gamemode = "survival";
       difficulty = "hard";
-      #offline = true;
       online-mode = false;
     };
   };
@@ -133,6 +141,19 @@
     locations."/".proxyPass = "http://localhost:8989";
   };
 
+  # lidarr
+  services.lidarr = {
+    enable = true;
+    dataDir = "/srv/state/lidarr";
+    user = "media";
+    group = "media";
+  };
+  services.nginx.virtualHosts."lidarr.local.n3mohomelab.xyz" = {
+    forceSSL = true;
+    useACMEHost = "local.n3mohomelab.xyz";
+    locations."/".proxyPass = "http://localhost:8686";
+  };
+
   # bazarr
   services.bazarr = {
     enable = true;
@@ -151,6 +172,19 @@
     forceSSL = true;
     useACMEHost = "local.n3mohomelab.xyz";
     locations."/".proxyPass = "http://localhost:9696";
+  };
+
+  services.syncthing = {
+    enable = true;
+    user = "media";
+    dataDir = "/srv/storage/";
+    configDir = "/srv/state/syncthing/";
+    settings.gui.insecureSkipHostcheck = true;
+  };
+  services.nginx.virtualHosts."syncthing.local.n3mohomelab.xyz" = {
+    forceSSL = true;
+    useACMEHost = "local.n3mohomelab.xyz";
+    locations."/".proxyPass = "http://localhost:8384";
   };
 
   # transmission + wireguard

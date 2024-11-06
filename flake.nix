@@ -26,6 +26,7 @@
     #  url = "github:Maroka-chan/VPN-Confinement";
     #  inputs.nixpkgs.follows = "nixpkgs";
     #};
+    nix-minecraft.url = "github:Infinidoge/nix-minecraft";
     emacs-overlay = {
       url = "github:nix-community/emacs-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -53,6 +54,7 @@
     betterfox,
     musnix,
     #vpnconfinement,
+    nix-minecraft,
     emacs-overlay,
     firefox-gnome-theme,
     thunderbird-gnome-theme
@@ -66,7 +68,7 @@
     };
     nixConf = pkgs: {
       nix = {
-        package = pkgs.nixFlakes;
+        package = pkgs.nixVersions.stable;
         settings = {
           auto-optimise-store = true;
           experimental-features = [ "nix-command" "flakes" ];
@@ -137,6 +139,8 @@
           (nixConf pkgs)
           impermanence.nixosModules.impermanence
           #vpnconfinement.nixosModules.default
+          ({pkgs, ...}: { nixpkgs.overlays = [ nix-minecraft.overlay ]; })
+          nix-minecraft.nixosModules.minecraft-servers
           home-manager.nixosModules.home-manager {
             home-manager = {
               useGlobalPkgs = true;
