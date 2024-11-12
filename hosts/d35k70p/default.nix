@@ -45,7 +45,6 @@
   systemd.targets.hibernate.enable = false;
   systemd.targets.hybrid-sleep.enable = false;
 
-  # enable syncthing with home manager
   home-manager.users.${config.username} = {
 
     services.flatpak.packages = [ "com.spotify.Client" ];

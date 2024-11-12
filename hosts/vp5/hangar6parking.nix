@@ -4,7 +4,7 @@
     description = "Application to Manage Aircraft Locations for Purdue's Flight School";
     after = [ "network.target" ];
     serviceConfig = {
-      ExecStart = "${pkgs.nodejs}/bin/node /var/www/hangar6parking.xyz/src/index.js";
+      ExecStart = "cd /var/www/hangar6parking.xyz && ${pkgs.nodejs}/bin/node /var/www/hangar6parking.xyz/src/index.js";
       User = "n3mo";
       Restart = "always";
     };
