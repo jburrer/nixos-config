@@ -29,8 +29,8 @@
   users.users."${config.username}".extraGroups = [ "audio" "video" ];
 
   # add programs with home manager
-  home-manager.users.${config.username}.home.packages = with pkgs; [
-    ardour obs-studio helvum qpwgraph hydrogen audacity supercollider
+  home-manager.users.${config.username}.home.packages = with pkgs.stable; [
+    ardour obs-studio helvum hydrogen audacity supercollider
     (
       pkgs.stdenv.mkDerivation {
         name = "xruncounter";
