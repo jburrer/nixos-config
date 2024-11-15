@@ -31,7 +31,7 @@ in {
     package = emacsPackage;
   };
 
-  home.packages = with pkgs; [ texliveMedium nixd rust-analyzer maven ];
+  home.packages = with pkgs; [ texliveFull texlivePackages.wrapfig2 nixd rust-analyzer maven ];
 
   xdg.desktopEntries."emacsclient" = {
     name = "Emacs Client";

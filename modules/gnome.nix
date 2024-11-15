@@ -28,6 +28,7 @@
     dbus.packages = [ pkgs.dconf pkgs.gcr ];
     udev.packages = [ pkgs.gnome-settings-daemon ];
     flatpak.enable = true;
+    # remote desktop
     xrdp = {
       enable = true;
       defaultWindowManager = "${pkgs.gnome-session}/bin/gnome-session";

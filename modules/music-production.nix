@@ -29,8 +29,8 @@
   users.users."${config.username}".extraGroups = [ "audio" "video" ];
 
   # add programs with home manager
-  home-manager.users.${config.username}.home.packages = with pkgs; [
-    ardour helvum hydrogen audacity x42-avldrums
+  home-manager.users.${config.username}.home.packages = with pkgs.stable; [
+    ardour helvum hydrogen audacity x42-avldrums supercollider
     obs-studio pitivi
     (
       pkgs.stdenv.mkDerivation {
