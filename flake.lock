@@ -380,6 +380,22 @@
         "type": "github"
       }
     },
+    "nixpkgs-stable_3": {
+      "locked": {
+        "lastModified": 1731684989,
+        "narHash": "sha256-FQdoHR4vqYZlk2qp1jD3rtKufseLiPFr8rctGNY0d5Y=",
+        "owner": "NixOs",
+        "repo": "nixpkgs",
+        "rev": "1c6112d535e8f51e40d8f68eb0565afb2944ebba",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOs",
+        "ref": "release-24.05",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "nixpkgs_2": {
       "locked": {
         "lastModified": 1702272962,
@@ -500,6 +516,7 @@
         "musnix": "musnix",
         "nix-minecraft": "nix-minecraft",
         "nixpkgs": "nixpkgs_5",
+        "nixpkgs-stable": "nixpkgs-stable_3",
         "nur": "nur",
         "thunderbird-gnome-theme": "thunderbird-gnome-theme"
       }

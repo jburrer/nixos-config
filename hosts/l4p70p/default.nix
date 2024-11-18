@@ -106,6 +106,7 @@
       "cafe.avery.Delfin"
       "org.gnome.Lollypop"
       "app.drey.EarTag"
+      "de.haeckerfelix.Fragments"
       "org.torproject.torbrowser-launcher"
       "org.getmonero.Monero"
     ];
