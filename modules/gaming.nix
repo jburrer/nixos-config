@@ -10,17 +10,19 @@
 
   config = {
 
+    nixpkgs.config.allowUnfree = true;
+
+    # enable steam hardware
+    hardware.steam-hardware.enable = true;
+
     # nvidia
-    nixpkgs.config.allowUnfree = lib.mkIf config.gaming.nvidia.enable true;
     services.xserver.videoDrivers = lib.mkIf config.gaming.nvidia.enable [ "nvidia" ];
-    hardware = lib.mkIf config.gaming.nvidia.enable {
-      graphics.enable = true;
-      nvidia = {
-        package = config.boot.kernelPackages.nvidiaPackages.stable;
-        modesetting.enable = true;
-        open = false;
-        nvidiaSettings = false;
-      };
+    hardware.graphics.enable = lib.mkIf config.gaming.nvidia.enable true;
+    hardware.nvidia = lib.mkIf config.gaming.nvidia.enable {
+      package = config.boot.kernelPackages.nvidiaPackages.stable;
+      modesetting.enable = true;
+      open = false;
+      nvidiaSettings = false;
     };
 
     home-manager.users.${config.username} = {

@@ -7,6 +7,7 @@
     ../../modules/gnome.nix
     ../../modules/gaming.nix
     ../../modules/printing.nix
+    ../../modules/music-production.nix
   ];
 
   hostname = "l4p70p";
@@ -99,6 +100,8 @@
 
     imports = [ ../../modules/thunderbird.nix ];
 
+    home.packages = with pkgs; [ fragments ];
+
     services.flatpak.packages = [
       "org.libreoffice.LibreOffice"
       "com.github.johnfactotum.Foliate"
@@ -106,7 +109,6 @@
       "cafe.avery.Delfin"
       "org.gnome.Lollypop"
       "app.drey.EarTag"
-      "de.haeckerfelix.Fragments"
       "org.torproject.torbrowser-launcher"
       "org.getmonero.Monero"
     ];

@@ -105,6 +105,7 @@
           disko.nixosModules.disko
           lanzaboote.nixosModules.lanzaboote
           impermanence.nixosModules.impermanence
+          musnix.nixosModules.musnix
           home-manager.nixosModules.home-manager {
             home-manager = {
               useGlobalPkgs = true;
