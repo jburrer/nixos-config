@@ -46,11 +46,21 @@
     enable = true;
     package = pkgs.searxng;
     redisCreateLocally = true;
+
+    #settings.server = {
+    #  bind_address = "::1";
+    #  port = "1234";
+    #  secret_key = "superDuperSecret";
+    #};
+
     settings.server = {
-      bind_address = "::1";
-      port = "1234";
+      base_url = "https://searx.local.n3mohomelab.xyz";
+      port = 1234;
+      bind_address = "127.0.0.1";
       secret_key = "superDuperSecret";
+      method = "GET";
     };
+    
   };
   services.nginx.virtualHosts."searx.local.n3mohomelab.xyz" = {
     forceSSL = true;

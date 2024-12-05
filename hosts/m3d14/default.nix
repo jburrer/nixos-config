@@ -3,7 +3,7 @@
   imports = [
     ./hardware-configuration.nix
     ../../modules
-    #./homelab.nix
+    ./homelab.nix
     #./docker-osx.nix
   ];
 
