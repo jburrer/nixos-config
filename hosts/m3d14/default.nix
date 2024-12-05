@@ -34,7 +34,10 @@
   };
 
   # something abt mergerfs mfs needs this i think?
-  nixpkgs.config.allowUnfree = true;
+  nixpkgs.config = {
+    allowUnfree = true; 
+    permittedInsecurePackages = [ "aspnetcore-runtime-wrapped-6.0.36" ];
+  }
 
   # change ssh server port to access gitea on port 22
   sshServer.port = 222;
