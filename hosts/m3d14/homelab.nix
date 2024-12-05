@@ -41,20 +41,21 @@
     locations."/".proxyPass = "http://localhost:5232";
   };
 
-  # vaultwarden
-  services.vaultwarden = {
+  # searxng 
+  services.searx = {
     enable = true;
-    config = {
-      DOMAIN = "https://vaultwarden.local.n3mohomelab.xyz";
-      SIGNUPS_ALLOWED = true;
-      ROCKET_ADDRESS = "127.0.0.1";
-      ROCKET_PORT = 8222;
+    package = pkgs.searxng;
+    redisCreateLocally = true;
+    settings.server = {
+      bind_address = "::1";
+      port = "1234";
+      secret_key = "superDuperSecret";
     };
   };
-  services.nginx.virtualHosts."vaultwarden.local.n3mohomelab.xyz" = {
+  services.nginx.virtualHosts."searx.local.n3mohomelab.xyz" = {
     forceSSL = true;
     useACMEHost = "local.n3mohomelab.xyz";
-    locations."/".proxyPass = "http://localhost:8222";
+    locations."/".proxyPass = "http://localhost:1234";
   };
 
   # minecraft
