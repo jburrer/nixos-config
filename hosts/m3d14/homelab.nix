@@ -199,6 +199,20 @@
     locations."/".proxyPass = "http://localhost:9696";
   };
 
+  # immich
+  services.immich = {
+    enable = true;
+    user = "media";
+    group = "media";
+    mediaLocation = "/srv/storage/media/photos/";
+  };
+  services.nginx.virtualHosts."immich.local.n3mohomelab.xyz" = {
+    forceSSL = true;
+    useACMEHost = "local.n3mohomelab.xyz";
+    locations."/".proxyPass = "http://localhost:2283";
+  };
+
+  # syncthing
   services.syncthing = {
     enable = true;
     user = "media";
