@@ -53,7 +53,7 @@
         query_in_title = true;
         infinite_scroll = true;
         center_alignment = true;
-        default_theme = "Simple";
+        default_theme = "simple";
         theme_args.simple_style = "dark";
         results_on_new_tab = true;
         hotkeys = "vim";
