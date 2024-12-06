@@ -218,7 +218,16 @@
     user = "media";
     dataDir = "/srv/storage/";
     configDir = "/srv/state/syncthing/";
-    settings.gui.insecureSkipHostcheck = true;
+    overrideDevices = true;
+    overrideFolders = true;
+    settings = {
+      devices."l4p70p".id = "KGVUOGB-QHWXGNM-HU5FOLN-U6G27HF-TBOIWGF-HFLINIT-CY7KW3L-GAMUVA7";
+      folders."Music" = {
+        path = "/srv/storage/media/music";
+        devices = [ "l4p70p" ];
+      };
+      gui.insecureSkipHostcheck = true;
+    };
   };
   services.nginx.virtualHosts."syncthing.local.n3mohomelab.xyz" = {
     forceSSL = true;
