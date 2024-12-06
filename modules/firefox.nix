@@ -41,8 +41,16 @@
         };
         search = {
           force = true;
-          default = "DuckDuckGoCustom";
+          default = "Searx";
           engines = {
+            "Searx" = {
+              urls = [
+                {
+                  template = "https://searx.local.n3mohomelab.xyz/search?q={searchTerms}";
+                }
+              ];
+              definedAliases = [ "@s" ];
+            };
             "DuckDuckGoCustom" = {
               urls = [
                 {
@@ -106,7 +114,7 @@
         };
         settings = {
           "general.smoothScroll" = true;
-          "browser.startup.homepage" = "https://start.duckduckgo.com/?kav=1&kn=1&k1=-1&kaj=u&kay=b&kv=-1&kak=-1&kax=-1&kaq=-1&kap=-1&kao=-1&kau=-1&kae=t&kt=Cantarell&kw=n&km=m&ka=Cantarell&kpsb=-1&kj=1e1e1e&k7=242424&k9=26a269&kaa=3584e4&k8=ffffff&kx=613583&k5=2&kbg=-1&kbd=-1&ko=s";
+          "browser.startup.homepage" = "searx.local.n3mohomelab.xyz";
           "dom.security.https_only_mode" = true;
           "dom.security.https_only_mode_ever_enabled" = true;
           "privacy.donottrackheader.enabled" = true;

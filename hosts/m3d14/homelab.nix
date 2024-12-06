@@ -46,21 +46,35 @@
     enable = true;
     package = pkgs.searxng;
     redisCreateLocally = true;
-
-    #settings.server = {
-    #  bind_address = "::1";
-    #  port = "1234";
-    #  secret_key = "superDuperSecret";
-    #};
-
-    settings.server = {
-      base_url = "https://searx.local.n3mohomelab.xyz";
-      port = 1234;
-      bind_address = "127.0.0.1";
-      secret_key = "superDuperSecret";
-      method = "GET";
+    settings = {
+      general.instance_name = "n3mo's searx";
+      ui = {
+        default_locale = "en";
+        query_in_title = true;
+        infinite_scroll = true;
+        center_alignment = true;
+        default_theme = "Simple";
+        theme_args.simple_style = "dark";
+        results_on_new_tab = true;
+        hotkeys = "vim";
+      };
+      server = {
+        base_url = "https://searx.local.n3mohomelab.xyz";
+        port = 1234;
+        bind_address = "127.0.0.1";
+        secret_key = "superDuperSecret";
+        method = "GET";
+      };
+      enabled_plugins = [
+        "Basic Calculator"
+        "Hash plugin"
+        "Tor check plugin"
+        "Open Access DOI rewrite"
+        "Hostnames plugin"
+        "Unit converter plugin"
+        "Tracker URL remover"
+      ];
     };
-    
   };
   services.nginx.virtualHosts."searx.local.n3mohomelab.xyz" = {
     forceSSL = true;
