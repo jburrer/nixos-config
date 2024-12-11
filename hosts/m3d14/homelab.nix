@@ -202,9 +202,9 @@
   # immich
   services.immich = {
     enable = true;
-    user = "media";
+    #user = "media";
     group = "media";
-    database.user = "media";
+    #database.user = "media";
     host = "immich.local.n3mohomelab.xyz";
     mediaLocation = "/srv/storage/media/photos/";
   };
