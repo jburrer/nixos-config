@@ -204,7 +204,7 @@
     enable = true;
     user = "media";
     group = "media";
-    database.user = "immich";
+    database.user = "media";
     host = "immich.local.n3mohomelab.xyz";
     mediaLocation = "/srv/storage/media/photos/";
   };
