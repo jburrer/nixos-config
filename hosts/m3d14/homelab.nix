@@ -204,6 +204,8 @@
     enable = true;
     user = "media";
     group = "media";
+    database.user = "immich";
+    host = "immich.local.n3mohomelab.xyz";
     mediaLocation = "/srv/storage/media/photos/";
   };
   services.nginx.virtualHosts."immich.local.n3mohomelab.xyz" = {
