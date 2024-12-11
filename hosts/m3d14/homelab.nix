@@ -202,10 +202,8 @@
   # immich
   services.immich = {
     enable = true;
-    #user = "media";
     group = "media";
-    #database.user = "media";
-    host = "immich.local.n3mohomelab.xyz";
+    host = "0.0.0.0";
     mediaLocation = "/srv/storage/media/photos/";
   };
   services.nginx.virtualHosts."immich.local.n3mohomelab.xyz" = {
