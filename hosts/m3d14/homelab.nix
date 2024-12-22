@@ -32,9 +32,25 @@
       p = "3210";
     };
     accounts."n3mo".passwordFile = "/srv/state/copyparty/n3mo_password";
-    volumes."/" = {
-      path  = "/srv/storage";
-      access.rw = [ "n3mo" ];
+    volumes = {
+      "/" = {
+        path  = "/srv/storage";
+        access.rw = [ "n3mo" ];
+      };
+      "/shows" = {
+        path = "/srv/storage/nest/shows";
+        access = {
+          "r" = "*";
+          "rw" = "n3mo";
+        };
+      };
+      "/bands" = {
+        path = "/srv/storage/nest/bands";
+        access = {
+          "r" = "*";
+          "rw" = "n3mo";
+        };
+      };
     };
   };
   services.nginx.virtualHosts."copyparty.local.n3mohomelab.xyz" = {
