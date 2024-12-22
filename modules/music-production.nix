@@ -36,7 +36,7 @@
     home.packages = with pkgs.stable; [
       ardour helvum supercollider
     ] ++ lib.lists.optionals (config.hostname == "d35k70p") [
-      hydrogen audacity x42-avldrums pitivi
+      hydrogen audacity
       (
         pkgs.stdenv.mkDerivation {
           name = "xruncounter";
@@ -61,7 +61,9 @@
     ];
 
     # add obs flatpak
-    services.flatpak.packages = lib.mkIf (config.hostname == "d35k70p") [
+    services.flatpak.packages = [
+      "org.kde.kdenlive"
+    ] ++ lib.lists.optionals (config.hostname == "d35k70p") [
       "com.obsproject.Studio"
     ];
     

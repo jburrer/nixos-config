@@ -24,11 +24,24 @@
   };
   users.users.nginx.extraGroups = [ "acme" ];
 
-  # filegator
-  #virtualisation.oci-containers.containers."filegator" = {
-  #  image = "filegator/filegator";
-  #  ports = [ "8080:7070" ];
-  #};
+  # copyparty 
+  services.copyparty = {
+    enable = true;
+    settings = {
+      i = "0.0.0.0";
+      p = "3210";
+    };
+    accounts."n3mo".passwordFile = "/srv/state/copyparty/n3mo_password";
+    volumes."/" = {
+      path  = "/srv/storage";
+      access.rw = [ "n3mo" ];
+    };
+  };
+  services.nginx.virtualHosts."copyparty.local.n3mohomelab.xyz" = {
+    forceSSL = true;
+    useACMEHost = "local.n3mohomelab.xyz";
+    locations."/".proxyPass = "http://localhost:3210";
+  };
 
   # radicale
   services.radicale = {

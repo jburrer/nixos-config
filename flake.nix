@@ -23,6 +23,7 @@
     flatpaks.url = "github:gmodena/nix-flatpak";
     betterfox.url = "github:HeitorAugustoLN/betterfox-nix";
     musnix.url = "github:musnix/musnix";
+    copyparty.url = "github:9001/copyparty";
     #vpnconfinement = {
     #  url = "github:Maroka-chan/VPN-Confinement";
     #  inputs.nixpkgs.follows = "nixpkgs";
@@ -55,6 +56,7 @@
     flatpaks,
     betterfox,
     musnix,
+    copyparty,
     #vpnconfinement,
     nix-minecraft,
     emacs-overlay,
@@ -152,8 +154,12 @@
           (nixConf pkgs)
           impermanence.nixosModules.impermanence
           #vpnconfinement.nixosModules.default
-          ({pkgs, ...}: { nixpkgs.overlays = [ nix-minecraft.overlay ]; })
+          ({pkgs, ...}: { nixpkgs.overlays = [
+            nix-minecraft.overlay
+            copyparty.overlays.default
+          ]; })
           nix-minecraft.nixosModules.minecraft-servers
+          copyparty.nixosModules.default
           home-manager.nixosModules.home-manager {
             home-manager = {
               useGlobalPkgs = true;
