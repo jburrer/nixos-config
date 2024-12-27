@@ -40,7 +40,7 @@
   };
 
   # mount external hard drive
-  fileSystems."/home/${config.username}/Documents/recordings/" = {
+  fileSystems."/home/${config.username}/Documents/recordings" = {
     device = "/dev/disk/by-uuid/b6ec6e48-994a-4941-998b-d4533990d52c";
     fsType = "ext4";
   };
