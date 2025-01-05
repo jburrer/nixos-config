@@ -129,7 +129,15 @@
         modules = [
           ./hosts/d35k70p
           (nixConf pkgs)
-          ({pkgs, ...}: { nixpkgs.overlays = [ emacs-overlay.overlay ]; })
+          ({pkgs, ...}: { nixpkgs.overlays = [
+            emacs-overlay.overlay
+            (final: _: {
+              stable = import inputs.nixpkgs-stable {
+                inherit (final.stdenv.hostPlatform) system;
+                inherit (final) config;
+              };
+            })
+          ]; })
           impermanence.nixosModules.impermanence
           musnix.nixosModules.musnix
           home-manager.nixosModules.home-manager {
