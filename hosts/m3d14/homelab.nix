@@ -37,15 +37,8 @@
         path  = "/srv/storage";
         access.rw = [ "n3mo" ];
       };
-      "/shows" = {
-        path = "/srv/storage/nest/shows";
-        access = {
-          "r" = "*";
-          "rw" = "n3mo";
-        };
-      };
-      "/bands" = {
-        path = "/srv/storage/nest/bands";
+      "/nest" = {
+        path = "/srv/storage/nest";
         access = {
           "r" = "*";
           "rw" = "n3mo";
@@ -250,10 +243,19 @@
     overrideDevices = true;
     overrideFolders = true;
     settings = {
-      devices."l4p70p".id = "KGVUOGB-QHWXGNM-HU5FOLN-U6G27HF-TBOIWGF-HFLINIT-CY7KW3L-GAMUVA7";
-      folders."Music" = {
-        path = "/srv/storage/media/music";
-        devices = [ "l4p70p" ];
+      devices = {
+        "l4p70p".id = "KGVUOGB-QHWXGNM-HU5FOLN-U6G27HF-TBOIWGF-HFLINIT-CY7KW3L-GAMUVA7";
+        "d35k70p".id = "AT4R74X-WFCYYHF-UDWSNSW-E3EAVR4-D3PQAG4-HHWTMNU-4444DTN-OWSS2QR";
+      };
+      folders = {
+        "Music" = {
+            path = "/srv/storage/media/music";
+            devices = [ "l4p70p" ];
+        };
+        "Nest" = {
+            path = "/srv/storage/nest";
+            devices = [ "d35k70p" ];
+        };
       };
       gui.insecureSkipHostcheck = true;
     };
