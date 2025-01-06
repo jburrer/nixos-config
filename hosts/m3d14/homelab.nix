@@ -34,15 +34,15 @@
     accounts."n3mo".passwordFile = "/srv/state/copyparty/n3mo_password";
     volumes = {
       "/" = {
-        path  = "/srv/storage";
-        access.rw = [ "n3mo" ];
-      };
-      "/nest" = {
         path = "/srv/storage/nest";
         access = {
-          "r" = "*";
+          "g" = "*";
           "rw" = "n3mo";
         };
+      };
+      "/media" = {
+        path  = "/srv/storage";
+        access.rw = [ "n3mo" ];
       };
     };
   };
