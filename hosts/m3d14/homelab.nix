@@ -36,13 +36,17 @@
       "/" = {
         path = "/srv/storage/nest";
         access = {
-          "g" = "*";
-          "rw" = "n3mo";
+          g = "*";
+          rw = "n3mo";
         };
+      };
+      "/*" = {
+        path = "/srv/storage/nest";
+        access.r = "*";
       };
       "/media" = {
         path  = "/srv/storage";
-        access.rw = [ "n3mo" ];
+        access.rw = "n3mo";
       };
     };
   };
