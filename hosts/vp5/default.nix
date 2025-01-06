@@ -62,7 +62,7 @@
         forceSSL = true;
         enableACME = true;
         root = "/var/www/thenest207.live";
-        locations."~/(.*)$".proxyPass = "http://m3d14:3210$1";
+        locations."~ /[^.]+$".proxyPass = "http://m3d14:3210/$1";
       };
     };
   };
