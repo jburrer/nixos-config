@@ -40,7 +40,7 @@
           rw = "n3mo";
         };
       };
-      "/media" = {
+      "/storage" = {
         path  = "/srv/storage";
         access.rw = "n3mo";
       };
