@@ -100,7 +100,7 @@
 
     imports = [ ../../modules/thunderbird.nix ];
 
-    home.packages = with pkgs; [ fragments ];
+    home.packages = with pkgs; [ distrobox podman ];
 
     services.flatpak.packages = [
       "org.libreoffice.LibreOffice"
@@ -110,6 +110,8 @@
       "app.drey.EarTag"
       "org.torproject.torbrowser-launcher"
       "org.getmonero.Monero"
+      "page.kramo.Cartridges"
+      "de.haeckerfelix.Fragments"
     ];
 
     #home.persistence."/persist/home" = {
