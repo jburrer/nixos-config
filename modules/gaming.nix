@@ -31,10 +31,14 @@
       services.flatpak.packages = [
         "com.valvesoftware.Steam" 
         "io.github.Foldex.AdwSteamGtk" 
+        "page.kramo.Cartridges"
+        "de.haeckerfelix.Fragments"
       ];
 
-      # prism launcher
-      home.packages = with pkgs; [ prismlauncher jdk8 ];
+      home.packages = with pkgs; [
+        prismlauncher jdk8 # for prism launcher
+        distrobox podman # for jc141 games
+      ];
 
     };
 

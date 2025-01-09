@@ -100,8 +100,6 @@
 
     imports = [ ../../modules/thunderbird.nix ];
 
-    home.packages = with pkgs; [ distrobox podman ];
-
     services.flatpak.packages = [
       "org.libreoffice.LibreOffice"
       "com.github.johnfactotum.Foliate"
@@ -110,8 +108,6 @@
       "app.drey.EarTag"
       "org.torproject.torbrowser-launcher"
       "org.getmonero.Monero"
-      "page.kramo.Cartridges"
-      "de.haeckerfelix.Fragments"
     ];
 
     #home.persistence."/persist/home" = {
