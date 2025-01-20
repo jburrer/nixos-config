@@ -15,15 +15,27 @@
   security.acme = {
     acceptTerms = true;
     defaults.email = "jburrer@purdue.edu";
-    certs."n3mohomelab.xyz" = {
-      domain = "n3mohomelab.xyz";
-      extraDomainNames = [ "*.n3mohomelab.xyz" ];
-      dnsProvider = "vultr";
-      dnsPropagationCheck = true;
-      environmentFile = "${pkgs.writeText "vultr-creds" ''
-        VULTR_API_KEY=KYV2E5DMYYWELBZASVAVVKPW7JRVUJF3X6VQ
-      ''}";
-      # ^ fix this when secrets implemented ^
+    certs = {
+      "n3mohomelab.xyz" = {
+        domain = "n3mohomelab.xyz";
+        extraDomainNames = [ "*.n3mohomelab.xyz" ];
+        dnsProvider = "vultr";
+        dnsPropagationCheck = true;
+        environmentFile = "${pkgs.writeText "vultr-creds" ''
+          VULTR_API_KEY=KYV2E5DMYYWELBZASVAVVKPW7JRVUJF3X6VQ
+        ''}";
+        # ^ fix this when secrets implemented ^
+      };
+      #"thenest207.live" = {
+      #  domain = "thenest207.live";
+      #  extraDomainNames = [ "files.thenest207.live" ];
+      #  dnsProvider = "vultr";
+      #  dnsPropagationCheck = true;
+      #  environmentFile = "${pkgs.writeText "vultr-creds" ''
+      #    VULTR_API_KEY=KYV2E5DMYYWELBZASVAVVKPW7JRVUJF3X6VQ
+      #  ''}";
+      #  # ^ fix this when secrets implemented ^
+      #};
     };
   };
   users.users.nginx.extraGroups = [ "acme" ];
@@ -62,7 +74,11 @@
         forceSSL = true;
         enableACME = true;
         root = "/var/www/thenest207.live";
-        locations."/files".proxyPass = "http://m3d14:3210";
+      };
+      "files.thenest207.live" = {
+        forceSSL = true;
+        enableACME = true;
+        locations."/".proxyPass = "http://m3d14:3210";
       };
     };
   };
