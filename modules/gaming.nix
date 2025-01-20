@@ -31,8 +31,8 @@
       services.flatpak.packages = [
         "com.valvesoftware.Steam" 
         "io.github.Foldex.AdwSteamGtk" 
-        "page.kramo.Cartridges"
         "de.haeckerfelix.Fragments"
+        "net.lutris.Lutris"
       ];
 
       home.packages = with pkgs; [

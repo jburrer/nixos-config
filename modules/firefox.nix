@@ -130,7 +130,7 @@
           "layers.acceleration.force-enabled" = true;
           "gnomeTheme.tabsAsHeaderbar" = false;
           "gnomeTheme.hideSingleTab" = true;
-          "gnomeTheme.hideUnifiedExtensions" = true;
+          "gnomeTheme.hideUnifiedExtensions" = false;
         };
         extensions = with config.nur.repos.rycee.firefox-addons; [
           browserpass
