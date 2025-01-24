@@ -26,16 +26,6 @@
         ''}";
         # ^ fix this when secrets implemented ^
       };
-      #"thenest207.live" = {
-      #  domain = "thenest207.live";
-      #  extraDomainNames = [ "files.thenest207.live" ];
-      #  dnsProvider = "vultr";
-      #  dnsPropagationCheck = true;
-      #  environmentFile = "${pkgs.writeText "vultr-creds" ''
-      #    VULTR_API_KEY=KYV2E5DMYYWELBZASVAVVKPW7JRVUJF3X6VQ
-      #  ''}";
-      #  # ^ fix this when secrets implemented ^
-      #};
     };
   };
   users.users.nginx.extraGroups = [ "acme" ];
@@ -70,15 +60,23 @@
         useACMEHost = "n3mohomelab.xyz";
         locations."/".proxyPass = "http://m3d14:5055";
       };
+      # nest website
       "thenest207.live" = {
         forceSSL = true;
         enableACME = true;
         root = "/var/www/thenest207.live";
       };
+      # nest file server
       "files.thenest207.live" = {
         forceSSL = true;
         enableACME = true;
         locations."/".proxyPass = "http://m3d14:3210";
+      };
+      # row website
+      "rowpurdue.org" = {
+        forceSSL = true;
+        enableACME = true;
+        root = "/var/www/rowpurdue.org";
       };
     };
   };
