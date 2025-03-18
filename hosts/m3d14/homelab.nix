@@ -150,7 +150,7 @@
   };
 
   # transmission
-  virtualization.oci-containers.containers."transmission" = {
+  virtualisation.oci-containers.containers."transmission" = {
     image = "lscr.io/linuxserver/transmission:latest";
     hostname = "transmissionContainer";
     volumes = [
