@@ -125,9 +125,13 @@
   # tailscale
   virtualisation.oci-containers.containers."tailscaleWithMullvad" = {
     image = "tailscale/tailscale:latest";
-    #hostname = "tailscaleWithMullvad";
     volumes = [
       "/srv/state/tailscale:/var/lib/tailscale"
+    ];
+    ports = [ # for transmission
+      "9091:9091"
+      "51413:51413"
+      "51413:51413/udp"
     ];
     environment = {
       "TS_AUTHKEY" = "tskey-auth-k11e8QBcpC11CNTRL-8D2hWayRGk9H9FazgqdKk9aoT65e1DGm9";
@@ -152,16 +156,10 @@
   # transmission
   virtualisation.oci-containers.containers."transmission" = {
     image = "lscr.io/linuxserver/transmission:latest";
-    #hostname = "transmission";
     volumes = [
       "/srv/state/transmission:/config"
       "/srv/storage/torrents:/downloads"
     ];
-    #ports = [
-    #  "9091:9091"
-    #  "51413:51413"
-    #  "51413:51413/udp"
-    #];
     dependsOn = [ "tailscaleWithMullvad" ];
     extraOptions = [
       "--network=container:tailscaleWithMullvad"
