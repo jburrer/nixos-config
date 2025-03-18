@@ -138,7 +138,7 @@
     extraOptions = [
       "--cap-add=NET_ADMIN"
       "--cap-add=NET_RAW"
-      "-d '/dev/net/tun:/dev/net/tun'"
+      "--device=/dev/net/tun:/dev/net/tun"
     ];
   };
 
