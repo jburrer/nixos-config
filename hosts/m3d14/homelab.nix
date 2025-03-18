@@ -113,14 +113,14 @@
   virtualisation = {
     docker = {
       enable = true;
-      rootless = {
-        enable = true;
-        setSocketVariable = true;
-      };
+      #rootless = {
+      #  enable = true;
+      #  setSocketVariable = true;
+      #};
     };
     oci-containers.backend = "docker"; 
   };
-  users.extraGroups.docker.members = [ "n3mo" ];
+  #users.extraGroups.docker.members = [ "n3mo" ];
 
   # tailscale
   virtualisation.oci-containers.containers."tailscaleWithMullvad" = {
