@@ -131,6 +131,7 @@
       "/srv/state/tailscale:/var/lib/tailscale"
     ];
     environment = {
+      "TS_AUTHKEY" = "tskey-auth-k11e8QBcpC11CNTRL-8D2hWayRGk9H9FazgqdKk9aoT65e1DGm9";
       "TS_EXTRA_ARGS" = "--advertise-tags=tag:container --exit-node=100.117.167.110 --exit-node-allow-lan-access=false";
       "TS_STATE_DIR" = "/var/lib/tailscale";
       "TS_USERSPACE" = "false";
