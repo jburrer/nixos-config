@@ -129,7 +129,6 @@
     volumes = [
       #"host path:container path"
       "/srv/state/tailscale:/var/lib/tailscale"
-      "/dev/net/tun:/dev/net/tun"
     ];
     environment = {
       "TS_EXTRA_ARGS" = "--advertise-tags=tag:container --exit-node=100.117.167.110 --exit-node-allow-lan-access=false";
@@ -139,6 +138,7 @@
     extraOptions = [
       "--cap-add=NET_ADMIN"
       "--cap-add=NET_RAW"
+      "-d '/dev/net/tun:/dev/net/tun'"
     ];
   };
 
