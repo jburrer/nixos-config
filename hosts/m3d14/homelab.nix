@@ -135,12 +135,12 @@
       "TS_EXTRA_ARGS" = ''
         --reset
         --advertise-tags=tag:container
-        --stateful-filtering=false
         --exit-node=100.117.167.110
         --exit-node-allow-lan-access=false
       ''; 
       #"TS_EXTRA_ARGS" = ''
       #  --reset
+      #  --stateful-filtering=false
       #  --advertise-tags=tag:container
       #''; 
       "TS_STATE_DIR" = "/var/lib/tailscale";
@@ -150,6 +150,8 @@
       "--cap-add=NET_ADMIN"
       "--cap-add=NET_RAW"
       "--device=/dev/net/tun:/dev/net/tun"
+      "--dns=1.1.1.1"
+      "--dns=100.100.100.100"
     ];
   };
 
