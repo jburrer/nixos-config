@@ -296,28 +296,25 @@
   };
 
   # sabnzbd
-  #virtualisation.oci-containers.containers."sabnzbd" = {
-  #  image = "lscr.io/linuxserver/transmission:latest";
-  #  volumes = [
-  #    "/srv/state/transmission:/config"
-  #    "/srv/storage/torrents:/downloads"
-  #  ];
-  #  dependsOn = [ "tailscaleWithMullvad" ];
-  #  extraOptions = [
-  #    "--network=container:tailscaleWithMullvad"
-  #  ];
-  #};
-  #services.sabnzbd = {
-  #  enable = true;
-  #  user = "media";
-  #  group = "media";
-  #  #configFile = /srv/state/sabnzbd/sabnzbd.ini;
-  #};
-  #services.nginx.virtualHosts."sabnzbd.local.n3mohomelab.xyz" = {
-  #  forceSSL = true;
-  #  useACMEHost = "local.n3mohomelab.xyz";
-  #  locations."/".proxyPass = "http://localhost:8080";
-  #};
+  virtualisation.oci-containers.containers."sabnzbd" = {
+    image = "lscr.io/linuxserver/sabnzbd:latest";
+    volumes = [
+      "/srv/state/sabnzbd:/config"
+      "/srv/storage/usenet:/downloads"
+    ];
+    ports = [
+      "8080:8080"
+    ];
+    environment = {
+      "PUID" = "10000";
+      "PGID" = "10000";
+    };
+  };
+  services.nginx.virtualHosts."sabnzbd.local.n3mohomelab.xyz" = {
+    forceSSL = true;
+    useACMEHost = "local.n3mohomelab.xyz";
+    locations."/".proxyPass = "http://localhost:8080";
+  };
 
   # gotify
   services.gotify = {
