@@ -124,10 +124,9 @@
 
   # tailscale
   virtualisation.oci-containers.containers."tailscaleWithMullvad" = {
-    image = "tailscale/tailscale:latest";
     hostname = "tailscaleWithMullvadContainer";
+    image = "tailscale/tailscale:latest";
     volumes = [
-      #"host path:container path"
       "/srv/state/tailscale:/var/lib/tailscale"
     ];
     environment = {
@@ -138,11 +137,6 @@
         --exit-node=100.117.167.110
         --exit-node-allow-lan-access=false
       ''; 
-      #"TS_EXTRA_ARGS" = ''
-      #  --reset
-      #  --stateful-filtering=false
-      #  --advertise-tags=tag:container
-      #''; 
       "TS_STATE_DIR" = "/var/lib/tailscale";
       "TS_USERSPACE" = "false";
     };
@@ -156,17 +150,28 @@
   };
 
   # transmission
-  #virtualization.oci-containers.containers."transmission" = {
-  #  image = "lscr.io/linuxserver/transmission:latest";
-  #  hostname = "transmissionContainer";
-  #  volumes = [];
-  #  ports = [];
-  #};
-  #services.nginx.virtualHosts."transmission.local.n3mohomelab.xyz" = {
-  #  forceSSL = true;
-  #  useACMEHost = "local.n3mohomelab.xyz";
-  #  locations."/".proxyPass = "http://192.168.15.1:9091";
-  #};
+  virtualization.oci-containers.containers."transmission" = {
+    image = "lscr.io/linuxserver/transmission:latest";
+    hostname = "transmissionContainer";
+    volumes = [
+      "/srv/state/transmission:/config"
+      "/srv/storage/torrents:/downloads"
+    ];
+    ports = [
+      "9091:9091"
+      "51413:51413"
+      "51413:51413/udp"
+    ];
+    dependsOn = [ "tailscaleWithMullvad" ];
+    extraOptions = [
+      "--network='service:tailscaleWithMullvadContainer'"
+    ];
+  };
+  services.nginx.virtualHosts."transmission.local.n3mohomelab.xyz" = {
+    forceSSL = true;
+    useACMEHost = "local.n3mohomelab.xyz";
+    locations."/".proxyPass = "http://192.168.15.1:9091";
+  };
 
   # jellyfin
   services.jellyfin = {
