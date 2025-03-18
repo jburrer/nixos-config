@@ -164,7 +164,8 @@
     ];
     dependsOn = [ "tailscaleWithMullvad" ];
     extraOptions = [
-      "--network=container:tailscaleWithMullvad"
+      #"--network=container:tailscaleWithMullvad"
+      "--network=service:tailscaleWithMullvad"
     ];
   };
   services.nginx.virtualHosts."transmission.local.n3mohomelab.xyz" = {
