@@ -135,6 +135,7 @@
       "TS_EXTRA_ARGS" = ''
         --reset
         --advertise-tags=tag:container
+        --stateful-filtering=false
         --exit-node=100.117.167.110
         --exit-node-allow-lan-access=false
       ''; 
