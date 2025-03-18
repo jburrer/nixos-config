@@ -124,8 +124,8 @@
 
   # tailscale
   virtualisation.oci-containers.containers."tailscaleWithMullvad" = {
-    hostname = "tailscaleWithMullvad";
     image = "tailscale/tailscale:latest";
+    #hostname = "tailscaleWithMullvad";
     volumes = [
       "/srv/state/tailscale:/var/lib/tailscale"
     ];
@@ -152,7 +152,7 @@
   # transmission
   virtualisation.oci-containers.containers."transmission" = {
     image = "lscr.io/linuxserver/transmission:latest";
-    hostname = "transmission";
+    #hostname = "transmission";
     volumes = [
       "/srv/state/transmission:/config"
       "/srv/storage/torrents:/downloads"
