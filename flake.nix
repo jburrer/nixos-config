@@ -24,11 +24,6 @@
     betterfox.url = "github:HeitorAugustoLN/betterfox-nix";
     musnix.url = "github:musnix/musnix";
     copyparty.url = "github:9001/copyparty";
-    #vpnconfinement = {
-    #  url = "github:Maroka-chan/VPN-Confinement";
-    #  inputs.nixpkgs.follows = "nixpkgs";
-    #};
-    nix-minecraft.url = "github:Infinidoge/nix-minecraft";
     emacs-overlay = {
       url = "github:nix-community/emacs-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -57,8 +52,6 @@
     betterfox,
     musnix,
     copyparty,
-    #vpnconfinement,
-    nix-minecraft,
     emacs-overlay,
     firefox-gnome-theme,
     thunderbird-gnome-theme
@@ -161,12 +154,9 @@
           ./hosts/m3d14
           (nixConf pkgs)
           impermanence.nixosModules.impermanence
-          #vpnconfinement.nixosModules.default
           ({pkgs, ...}: { nixpkgs.overlays = [
-            nix-minecraft.overlay
             copyparty.overlays.default
           ]; })
-          nix-minecraft.nixosModules.minecraft-servers
           copyparty.nixosModules.default
           home-manager.nixosModules.home-manager {
             home-manager = {

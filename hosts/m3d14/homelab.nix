@@ -123,7 +123,7 @@
   users.extraGroups.docker.members = [ "n3mo" ];
 
   # tailscale
-  virtualization.oci-containers.containers."tailscaleWithMullvad" = {
+  virtualisation.oci-containers.containers."tailscaleWithMullvad" = {
     image = "tailscale/tailscale:latest";
     hostname = "tailscaleWithMullvadContainer";
     volumes = [
