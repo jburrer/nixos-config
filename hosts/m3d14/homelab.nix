@@ -110,7 +110,7 @@
   users.groups."media".gid = 10000;
 
   # set up docker
-  virtualization = {
+  virtualisation = {
     docker = {
       enable = true;
       rootless = {
@@ -148,6 +148,11 @@
   #  hostname = "transmissionContainer";
   #  volumes = [];
   #  ports = [];
+  #};
+  #services.nginx.virtualHosts."transmission.local.n3mohomelab.xyz" = {
+  #  forceSSL = true;
+  #  useACMEHost = "local.n3mohomelab.xyz";
+  #  locations."/".proxyPass = "http://192.168.15.1:9091";
   #};
 
   # jellyfin
@@ -274,92 +279,6 @@
     forceSSL = true;
     useACMEHost = "local.n3mohomelab.xyz";
     locations."/".proxyPass = "http://localhost:8384";
-  };
-
-  # transmission + wireguard
-
-  #vpnnamespaces.wg = {
-  #  enable = true;
-  #  wireguardConfigFile = "/srv/state/transmission/wg0.conf";
-  #  accessibleFrom = [ "192.168.0.0/24" ];
-  #  portMappings = [
-  #    {
-  #      from = 9091;
-  #      to = 9091;
-  #    }
-  #  ];
-  #  openVPNPorts = [
-  #    {
-  #      port = 60729;
-  #      protocol = "both";
-  #    }
-  #  ];
-  #};
-  #systemd.services.transmission.vpnconfinement = {
-  #  enable = true;
-  #  vpnnamespace = "wg";
-  #};
-
-  networking.nat = {
-    enable = true;
-    internalInterfaces = [ "ve-+" ];
-    externalInterface = "enp4s0";
-  };
-
-  containers.transmission = {
-    autoStart = true;
-
-    privateNetwork = true;
-    hostAddress = "192.168.100.10";
-    localAddress = "192.168.100.11";
-
-    config = { config, pkgs, lib, ... }: {
-
-      # transmission
-      services.transmission = {
-        enable = true;
-        home = "/srv/state/transmission";
-        user = "media";
-        group = "media";
-        settings = {
-          download-dir = "/srv/storage/torrents";
-          incomplete-dir = "/srv/storage/torrents/incomplete";
-          rpc-bind-address = "192.168.15.1";
-          rpc-whitelist-enabled = false;
-          rpc-host-whitelist-enabled = false;
-        };
-      };
-
-      # networking (firewall + tailscale) 
-      networking = {
-        firewall = {
-          enable = true;
-          checkReversePath = "loose";
-          trustedInterfaces = [ "tailscale0" ];
-          allowedUDPPorts = [ config.services.tailscale.port ];
-        };
-        useHostResolvConf = lib.mkForce false;
-      };
-      services = {
-        tailscale = {
-          enable = true;
-          interfaceName = "userspace-networking";
-        };
-        resolved.enable = true;
-      };
-
-      #tailscale set --exit-node=100.127.203.60 --exit-node-allow-lan-access=true
-
-      system.stateVersion = "23.05";
-
-    };
-    
-  };
-
-  services.nginx.virtualHosts."transmission.local.n3mohomelab.xyz" = {
-    forceSSL = true;
-    useACMEHost = "local.n3mohomelab.xyz";
-    locations."/".proxyPass = "http://192.168.15.1:9091";
   };
 
   # sabnzbd
