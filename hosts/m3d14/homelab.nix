@@ -111,20 +111,14 @@
 
   # set up docker
   virtualisation = {
-    docker = {
-      enable = true;
-      #rootless = {
-      #  enable = true;
-      #  setSocketVariable = true;
-      #};
-    };
+    docker.enable = true;
     oci-containers.backend = "docker"; 
   };
-  #users.extraGroups.docker.members = [ "n3mo" ];
 
   # tailscale
   virtualisation.oci-containers.containers."tailscaleWithMullvad" = {
     image = "tailscale/tailscale:latest";
+    hostname = "transmission-container";
     volumes = [
       "/srv/state/tailscale:/var/lib/tailscale"
     ];
@@ -168,7 +162,7 @@
   services.nginx.virtualHosts."transmission.local.n3mohomelab.xyz" = {
     forceSSL = true;
     useACMEHost = "local.n3mohomelab.xyz";
-    locations."/".proxyPass = "http://192.168.15.1:9091";
+    locations."/".proxyPass = "http://transmission-container:9091";
   };
 
   # jellyfin
