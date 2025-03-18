@@ -124,7 +124,7 @@
 
   # tailscale
   virtualisation.oci-containers.containers."tailscaleWithMullvad" = {
-    hostname = "tailscaleWithMullvadContainer";
+    hostname = "tailscaleWithMullvad";
     image = "tailscale/tailscale:latest";
     volumes = [
       "/srv/state/tailscale:/var/lib/tailscale"
@@ -152,7 +152,7 @@
   # transmission
   virtualisation.oci-containers.containers."transmission" = {
     image = "lscr.io/linuxserver/transmission:latest";
-    hostname = "transmissionContainer";
+    hostname = "transmission";
     volumes = [
       "/srv/state/transmission:/config"
       "/srv/storage/torrents:/downloads"
@@ -164,7 +164,7 @@
     ];
     dependsOn = [ "tailscaleWithMullvad" ];
     extraOptions = [
-      "--network='service:tailscaleWithMullvadContainer'"
+      "--network='service:tailscaleWithMullvad'"
     ];
   };
   services.nginx.virtualHosts."transmission.local.n3mohomelab.xyz" = {
