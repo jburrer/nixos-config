@@ -115,56 +115,6 @@
     oci-containers.backend = "docker"; 
   };
 
-  # tailscale
-  virtualisation.oci-containers.containers."tailscaleWithMullvad" = {
-    image = "tailscale/tailscale:latest";
-    hostname = "transmission-container";
-    volumes = [
-      "/srv/state/tailscale:/var/lib/tailscale"
-    ];
-    ports = [ # for transmission
-      "9091:9091"
-      "51413:51413"
-      "51413:51413/udp"
-    ];
-    environment = {
-      "TS_AUTHKEY" = "tskey-auth-k11e8QBcpC11CNTRL-8D2hWayRGk9H9FazgqdKk9aoT65e1DGm9";
-      "TS_EXTRA_ARGS" = ''
-        --reset
-        --advertise-tags=tag:container
-        --exit-node=100.117.167.110
-        --exit-node-allow-lan-access=false
-      ''; 
-      "TS_STATE_DIR" = "/var/lib/tailscale";
-      "TS_USERSPACE" = "false";
-    };
-    extraOptions = [
-      "--cap-add=NET_ADMIN"
-      "--cap-add=NET_RAW"
-      "--device=/dev/net/tun:/dev/net/tun"
-      "--dns=1.1.1.1"
-      "--dns=100.100.100.100"
-    ];
-  };
-
-  # transmission
-  virtualisation.oci-containers.containers."transmission" = {
-    image = "lscr.io/linuxserver/transmission:latest";
-    volumes = [
-      "/srv/state/transmission:/config"
-      "/srv/storage/torrents:/downloads"
-    ];
-    dependsOn = [ "tailscaleWithMullvad" ];
-    extraOptions = [
-      "--network=container:tailscaleWithMullvad"
-    ];
-  };
-  services.nginx.virtualHosts."transmission.local.n3mohomelab.xyz" = {
-    forceSSL = true;
-    useACMEHost = "local.n3mohomelab.xyz";
-    locations."/".proxyPass = "http://transmission-container:9091";
-  };
-
   # jellyfin
   services.jellyfin = {
     enable = true;
@@ -291,18 +241,83 @@
     locations."/".proxyPass = "http://localhost:8384";
   };
 
-  # sabnzbd
-  services.sabnzbd = {
-    enable = true;
-    user = "media";
-    group = "media";
-    #configFile = /srv/state/sabnzbd/sabnzbd.ini;
+  # tailscale
+  virtualisation.oci-containers.containers."tailscaleWithMullvad" = {
+    image = "tailscale/tailscale:latest";
+    hostname = "transmission-container";
+    volumes = [
+      "/srv/state/tailscale:/var/lib/tailscale"
+    ];
+    ports = [ # for transmission
+      "9091:9091"
+      "51413:51413"
+      "51413:51413/udp"
+    ];
+    environment = {
+      "TS_AUTHKEY" = "tskey-auth-k11e8QBcpC11CNTRL-8D2hWayRGk9H9FazgqdKk9aoT65e1DGm9";
+      "TS_EXTRA_ARGS" = ''
+        --reset
+        --advertise-tags=tag:container
+        --exit-node=100.117.167.110
+        --exit-node-allow-lan-access=false
+      ''; 
+      "TS_STATE_DIR" = "/var/lib/tailscale";
+      "TS_USERSPACE" = "false";
+    };
+    extraOptions = [
+      "--cap-add=NET_ADMIN"
+      "--cap-add=NET_RAW"
+      "--device=/dev/net/tun:/dev/net/tun"
+      "--dns=1.1.1.1"
+      "--dns=100.100.100.100"
+    ];
   };
-  services.nginx.virtualHosts."sabnzbd.local.n3mohomelab.xyz" = {
+
+  # transmission
+  virtualisation.oci-containers.containers."transmission" = {
+    image = "lscr.io/linuxserver/transmission:latest";
+    volumes = [
+      "/srv/state/transmission:/config"
+      "/srv/storage/torrents:/downloads"
+    ];
+    environment = {
+      "PUID" = "10000";
+      "PGID" = "10000";
+    };
+    dependsOn = [ "tailscaleWithMullvad" ];
+    extraOptions = [
+      "--network=container:tailscaleWithMullvad"
+    ];
+  };
+  services.nginx.virtualHosts."transmission.local.n3mohomelab.xyz" = {
     forceSSL = true;
     useACMEHost = "local.n3mohomelab.xyz";
-    locations."/".proxyPass = "http://localhost:8080";
+    locations."/".proxyPass = "http://transmission-container:9091";
   };
+
+  # sabnzbd
+  #virtualisation.oci-containers.containers."sabnzbd" = {
+  #  image = "lscr.io/linuxserver/transmission:latest";
+  #  volumes = [
+  #    "/srv/state/transmission:/config"
+  #    "/srv/storage/torrents:/downloads"
+  #  ];
+  #  dependsOn = [ "tailscaleWithMullvad" ];
+  #  extraOptions = [
+  #    "--network=container:tailscaleWithMullvad"
+  #  ];
+  #};
+  #services.sabnzbd = {
+  #  enable = true;
+  #  user = "media";
+  #  group = "media";
+  #  #configFile = /srv/state/sabnzbd/sabnzbd.ini;
+  #};
+  #services.nginx.virtualHosts."sabnzbd.local.n3mohomelab.xyz" = {
+  #  forceSSL = true;
+  #  useACMEHost = "local.n3mohomelab.xyz";
+  #  locations."/".proxyPass = "http://localhost:8080";
+  #};
 
   # gotify
   services.gotify = {
