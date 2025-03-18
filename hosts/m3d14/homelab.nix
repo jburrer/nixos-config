@@ -157,15 +157,14 @@
       "/srv/state/transmission:/config"
       "/srv/storage/torrents:/downloads"
     ];
-    ports = [
-      "9091:9091"
-      "51413:51413"
-      "51413:51413/udp"
-    ];
+    #ports = [
+    #  "9091:9091"
+    #  "51413:51413"
+    #  "51413:51413/udp"
+    #];
     dependsOn = [ "tailscaleWithMullvad" ];
     extraOptions = [
-      #"--network=container:tailscaleWithMullvad"
-      "--network=service:tailscaleWithMullvad"
+      "--network=container:tailscaleWithMullvad"
     ];
   };
   services.nginx.virtualHosts."transmission.local.n3mohomelab.xyz" = {
