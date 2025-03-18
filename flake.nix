@@ -97,6 +97,7 @@
           (nixConf pkgs)
           ({pkgs, ...}: { nixpkgs.overlays = [
             emacs-overlay.overlay
+            nur.overlays.default
             (final: _: {
               stable = import inputs.nixpkgs-stable {
                 inherit (final.stdenv.hostPlatform) system;
@@ -115,7 +116,6 @@
               extraSpecialArgs = inputs;
               users."${user}".imports = [
                 impermanence.nixosModules.home-manager.impermanence
-                nur.hmModules.nur
                 flatpaks.homeManagerModules.nix-flatpak
                 betterfox.homeManagerModules.betterfox
               ];
@@ -131,6 +131,7 @@
           (nixConf pkgs)
           ({pkgs, ...}: { nixpkgs.overlays = [
             emacs-overlay.overlay
+            nur.overlays.default
             (final: _: {
               stable = import inputs.nixpkgs-stable {
                 inherit (final.stdenv.hostPlatform) system;
@@ -146,7 +147,6 @@
               useUserPackages = true;
               extraSpecialArgs = inputs;
               users."${user}".imports = [
-                nur.hmModules.nur
                 flatpaks.homeManagerModules.nix-flatpak
                 betterfox.homeManagerModules.betterfox
               ];

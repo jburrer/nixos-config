@@ -5,7 +5,7 @@ let
 emacsPackage = (pkgs.emacsWithPackagesFromUsePackage {
   config = ./init.el;
   defaultInitFile = true;
-  package = pkgs.emacs-pgtk.override {
+  package = pkgs.emacs-git-pgtk.override {
     withTreeSitter = true;
   };
   extraEmacsPackages = epkgs: with epkgs; [
@@ -15,7 +15,7 @@ emacsPackage = (pkgs.emacsWithPackagesFromUsePackage {
     auctex pdf-tools
     pass
     adwaita-dark-theme telephone-line rainbow-delimiters highlight-indent-guides
-    nix-ts-mode rustic
+    nix-ts-mode #rustic
     quickrun yasnippet dap-mode lsp-treemacs treemacs lsp-ui lsp-mode lsp-java
     treesit-grammars.with-all-grammars
   ];

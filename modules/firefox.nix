@@ -51,15 +51,6 @@
               ];
               definedAliases = [ "@s" ];
             };
-            "DuckDuckGoCustom" = {
-              urls = [
-                {
-                  template = "https://start.duckduckgo.com/?kav=1&kn=1&k1=-1&kaj=u&kay=b&kv=-1&kak=-1&kax=-1&kaq=-1&kap=-1&kao=-1&kau=-1&kae=t&kt=Cantarell&kw=n&km=m&ka=Cantarell&kpsb=-1&kj=1e1e1e&k7=242424&k9=26a269&kaa=3584e4&k8=ffffff&kx=613583&k5=2&kbg=-1&kbd=-1&ko=s&q={searchTerms}";
-                }
-              ];
-              updateInterval = 24 * 60 * 60 * 1000;
-              definedAliases = [ "@ddg" ];
-            };
             "Youtube" = {
               urls = [
                 {
@@ -132,7 +123,7 @@
           "gnomeTheme.hideSingleTab" = true;
           "gnomeTheme.hideUnifiedExtensions" = false;
         };
-        extensions = with config.nur.repos.rycee.firefox-addons; [
+        extensions.packages = with pkgs.nur.repos.rycee.firefox-addons; [
           browserpass
           istilldontcareaboutcookies
           linkhints

@@ -99,32 +99,6 @@
     locations."/".proxyPass = "http://localhost:1234";
   };
 
-  # minecraft
-  #services.minecraft-server = {
-  #  enable = true;
-  #  eula = true;
-  #  servers."tekkit" = {
-  #    enable = true;
-  #    package = pkgs.fabricServers.fabric;
-  #    #symlinks."mods" = "${modpack}/mods";
-  #  };
-  #};
-  services.minecraft-server = {
-    enable = true;
-    eula = true;
-    declarative = true;
-    serverProperties = {
-      gamemode = "survival";
-      difficulty = "hard";
-      online-mode = false;
-    };
-  };
-  services.nginx.virtualHosts."minecraft.local.n3mohomelab.xyz" = {
-    forceSSL = true;
-    useACMEHost = "local.n3mohomelab.xyz";
-    locations."/".proxyPass = "http://localhost:25565";
-  };
-
   ### media server ### 
 
   # set up media user
@@ -134,6 +108,47 @@
     group = "media";
   };
   users.groups."media".gid = 10000;
+
+  # set up docker
+  virtualization = {
+    docker = {
+      enable = true;
+      rootless = {
+        enable = true;
+        setSocketVariable = true;
+      };
+    };
+    oci-containers.backend = "docker"; 
+  };
+  users.extraGroups.docker.members = [ "n3mo" ];
+
+  # tailscale
+  virtualization.oci-containers.containers."tailscaleWithMullvad" = {
+    image = "tailscale/tailscale:latest";
+    hostname = "tailscaleWithMullvadContainer";
+    volumes = [
+      #"host path:container path"
+      "/srv/state/tailscale:/var/lib/tailscale"
+      "/dev/net/tun:/dev/net/tun"
+    ];
+    environment = {
+      "TS_EXTRA_ARGS" = "--advertise-tags=tag:container --exit-node=100.117.167.110 --exit-node-allow-lan-access=false";
+      "TS_STATE_DIR" = "/var/lib/tailscale";
+      "TS_USERSPACE" = false;
+    };
+    extraOptions = [
+      "--cap-add=NET_ADMIN"
+      "--cap-add=NET_RAW"
+    ];
+  };
+
+  # transmission
+  #virtualization.oci-containers.containers."transmission" = {
+  #  image = "lscr.io/linuxserver/transmission:latest";
+  #  hostname = "transmissionContainer";
+  #  volumes = [];
+  #  ports = [];
+  #};
 
   # jellyfin
   services.jellyfin = {
