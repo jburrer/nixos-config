@@ -134,7 +134,7 @@
     environment = {
       "TS_EXTRA_ARGS" = "--advertise-tags=tag:container --exit-node=100.117.167.110 --exit-node-allow-lan-access=false";
       "TS_STATE_DIR" = "/var/lib/tailscale";
-      "TS_USERSPACE" = false;
+      "TS_USERSPACE" = "false";
     };
     extraOptions = [
       "--cap-add=NET_ADMIN"
