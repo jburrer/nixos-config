@@ -164,12 +164,27 @@
   };
 
   # lidarr
-  services.lidarr = {
-    enable = true;
-    dataDir = "/srv/state/lidarr";
-    user = "media";
-    group = "media";
+  #services.lidarr = {
+  #  enable = true;
+  #  dataDir = "/srv/state/lidarr";
+  #  user = "media";
+  #  group = "media";
+  #};
+  virtualisation.oci-containers.containers."lidarr" = {
+    image = "lscr.io/linuxserver/lidarr:latest";
+    volumes = [
+      "/srv/state/lidarr:/config"
+      "/srv/storage:/storage"
+    ];
+    ports = [
+      "8686:8686"
+    ];
+    environment = {
+      "PUID" = "10000";
+      "PGID" = "10000";
+    };
   };
+
   services.nginx.virtualHosts."lidarr.local.n3mohomelab.xyz" = {
     forceSSL = true;
     useACMEHost = "local.n3mohomelab.xyz";
