@@ -164,17 +164,13 @@
   };
 
   # lidarr
-  #services.lidarr = {
-  #  enable = true;
-  #  dataDir = "/srv/state/lidarr";
-  #  user = "media";
-  #  group = "media";
-  #};
   virtualisation.oci-containers.containers."lidarr" = {
     image = "lscr.io/linuxserver/lidarr:latest";
     volumes = [
       "/srv/state/lidarr:/config"
       "/srv/storage:/storage"
+      "/srv/state/lidarr/custom-services.d:/custom-services.d"
+      "/srv/state/lidarr/custom-cont-init.d:/custom-cont-init.d"
     ];
     ports = [
       "8686:8686"
