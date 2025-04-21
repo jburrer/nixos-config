@@ -32,7 +32,6 @@
         "com.valvesoftware.Steam" 
         "io.github.Foldex.AdwSteamGtk" 
         "de.haeckerfelix.Fragments"
-        "net.lutris.Lutris"
       ];
 
       home.packages = with pkgs; [

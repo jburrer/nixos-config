@@ -81,7 +81,7 @@
 
     home.packages = (with pkgs; [
       deploy-rs pass wl-clipboard
-      morewaita-icon-theme cascadia-code adw-gtk3
+      morewaita-icon-theme adwaita-fonts adw-gtk3
       gnome-tweaks dconf2nix ptyxis
     ]) ++ (with pkgs.gnomeExtensions; [
       paperwm blur-my-shell rounded-window-corners-reborn

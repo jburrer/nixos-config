@@ -104,12 +104,10 @@
       "org.libreoffice.LibreOffice"
       "com.github.johnfactotum.Foliate"
       "com.jeffser.Alpaca"
-      "de.schmidhuberj.tubefeeder"
       "org.gnome.Lollypop"
       "app.drey.EarTag"
       "org.torproject.torbrowser-launcher"
       "org.getmonero.Monero"
-      "com.slack.Slack"
     ];
 
     #home.persistence."/persist/home" = {
