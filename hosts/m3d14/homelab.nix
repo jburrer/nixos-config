@@ -168,12 +168,11 @@
 
   # lidarr
   virtualisation.oci-containers.containers."lidarr" = {
-    image = "lscr.io/linuxserver/lidarr:latest";
+    #image = "lscr.io/linuxserver/lidarr:latest";
+    image = "ghcr.io/linuxserver-labs/prarr:lidarr-plugins";
     volumes = [
       "/srv/state/lidarr:/config"
       "/srv/storage:/storage"
-      "/srv/state/lidarr/custom-services.d:/custom-services.d"
-      "/srv/state/lidarr/custom-cont-init.d:/custom-cont-init.d"
     ];
     ports = [
       "8686:8686"
@@ -354,17 +353,17 @@
   };
 
   # soularr
-  virtualisation.oci-containers.containers."soularr" = {
-    image = "mrusse08/soularr:latest";
-    volumes = [
-      "/srv/state/soularr:/data"
-      "/srv/storage/soulseek:/downloads"
-    ];
-    user = "10000:10000";
-    environment = {
-      "SCRIPT_INTERVAL" = "300";
-    };
-  };
+  #virtualisation.oci-containers.containers."soularr" = {
+  #  image = "mrusse08/soularr:latest";
+  #  volumes = [
+  #    "/srv/state/soularr:/data"
+  #    "/srv/storage/soulseek:/downloads"
+  #  ];
+  #  user = "10000:10000";
+  #  environment = {
+  #    "SCRIPT_INTERVAL" = "300";
+  #  };
+  #};
 
   # gotify
   services.gotify = {
