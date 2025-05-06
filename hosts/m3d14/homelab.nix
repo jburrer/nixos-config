@@ -51,6 +51,7 @@
   services.radicale = {
     enable = true;
     settings.server.hosts = [ "0.0.0.0:5232" ];
+    auth.type = "none";
   };
   services.nginx.virtualHosts."radicale.local.n3mohomelab.xyz" = {
     forceSSL = true;
