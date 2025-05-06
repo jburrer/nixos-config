@@ -106,6 +106,7 @@
       "com.jeffser.Alpaca"
       "org.gnome.Lollypop"
       "app.drey.EarTag"
+      "org.nicotine_plus.Nicotine"
       "org.torproject.torbrowser-launcher"
       "org.getmonero.Monero"
     ];

@@ -92,15 +92,15 @@
                   template = "https://nixos.wiki/index.php?search={searchTerms}";
                 }
               ];
-              iconUpdateURL = "https://nixos.wiki/favicon.png";
+              icon = "https://nixos.wiki/favicon.png";
               definedAliases = [ "@nw" ];
             };
-            "Google".metaData.hidden = true;
-            "DuckDuckGo".metaData.hidden = true;
-            "Bing".metaData.hidden = true;
-            "Amazon.com".metaData.hidden = true;
-            "eBay".metaData.hidden = true;
-            "Wikipedia".metaData.hidden = true;
+            "google".metaData.hidden = true;
+            "ddg".metaData.hidden = true;
+            "bing".metaData.hidden = true;
+            "amazondotcom-us".metaData.hidden = true;
+            "ebay".metaData.hidden = true;
+            "wikipedia".metaData.hidden = true;
           };
         };
         settings = {

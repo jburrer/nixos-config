@@ -327,6 +327,29 @@
     locations."/".proxyPass = "http://localhost:8080";
   };
 
+  # slskd
+  virtualisation.oci-containers.containers."slskd" = {
+    image = "slskd/slskd:latest";
+    volumes = [
+      "/srv/state/slskd:/app"
+      "/srv/storage/soulseek:/downloads"
+    ];
+    ports = [
+      "5030:5030"
+      "5031:5031"
+      "50300:50300"
+    ];
+    user = "1000:1000";
+    environment = {
+      "SLSKD_REMOTE_CONFIGURATION" = true;
+    };
+  };
+  services.nginx.virtualHosts."slskd.local.n3mohomelab.xyz" = {
+    forceSSL = true;
+    useACMEHost = "local.n3mohomelab.xyz";
+    locations."/".proxyPass = "http://localhost:5030";
+  };
+
   # gotify
   services.gotify = {
     enable = true;

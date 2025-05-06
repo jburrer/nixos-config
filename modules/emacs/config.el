@@ -55,7 +55,7 @@
 (setenv "SSH_AUTH_SOCK" "/run/user/1000/gnupg/S.gpg-agent.ssh")
 
 (set-face-attribute 'default nil
-                    :font "Cascadia Mono"
+                    :font "Adwaita Mono Bold"
                     :height 110
                     :weight 'medium)
 (set-face-attribute 'variable-pitch nil
