@@ -353,6 +353,19 @@
     locations."/".proxyPass = "http://localhost:5030";
   };
 
+  # soularr
+  virtualisation.oci-containers.containers."soularr" = {
+    image = "mrusse08/soularr:latest";
+    volumes = [
+      "/srv/state/soularr:/data"
+      "/srv/storage/soulseek:/downloads"
+    ];
+    user = "10000:10000";
+    environment = {
+      "SCRIPT_INTERVAL" = "300";
+    };
+  };
+
   # gotify
   services.gotify = {
     enable = true;
