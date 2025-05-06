@@ -342,7 +342,7 @@
       "5031:5031"
       "50300:50300"
     ];
-    user = "1000:1000";
+    user = "10000:10000";
     environment = {
       "SLSKD_REMOTE_CONFIGURATION" = "true";
     };
