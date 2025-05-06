@@ -344,7 +344,7 @@
     ];
     user = "1000:1000";
     environment = {
-      "SLSKD_REMOTE_CONFIGURATION" = true;
+      "SLSKD_REMOTE_CONFIGURATION" = "true";
     };
   };
   services.nginx.virtualHosts."slskd.local.n3mohomelab.xyz" = {
