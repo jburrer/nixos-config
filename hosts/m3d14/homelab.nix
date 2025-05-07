@@ -30,6 +30,12 @@
     environmentFile = builtins.toFile "homepage-dashboard-environment-file" "
       HOMEPAGE_ALLOWED_HOSTS=homepage.local.n3mohomelab.xyz
     ";
+    customCSS = """
+      .services-group {
+        margin-top: 5%;
+        margin-bottom: 5%;
+      }
+    """;
     settings = {
       title = "n3mo's homepage";
       description = "landing page for all my services :P";
@@ -59,7 +65,7 @@
           "provider" = "custom";
           "url" = "https://searx.local.n3mohomelab.xyz/search?category_general=1&language=auto&time_range=&safesearch=0&theme=simple&q=";
           "target" = "_self";
-	}; 
+	  "focus" = true; }; 
       }
     ];
     services = [
