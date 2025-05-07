@@ -168,15 +168,11 @@
 
   # lidarr
   virtualisation.oci-containers.containers."lidarr" = {
-    #image = "lscr.io/linuxserver/lidarr:latest";
     image = "ghcr.io/linuxserver-labs/prarr:lidarr-plugins";
     volumes = [
       "/srv/state/lidarr:/config"
       "/srv/storage:/storage"
     ];
-    #ports = [
-    #  "8686:8686"
-    #];
     environment = {
       "PUID" = "10000";
       "PGID" = "10000";
@@ -264,10 +260,15 @@
     volumes = [
       "/srv/state/tailscale:/var/lib/tailscale"
     ];
-    ports = [ # for transmission
+    ports = [
+      # for transmission
       "9091:9091"
       "51413:51413"
       "51413:51413/udp"
+      # for slskd
+      "5030:5030"
+      "5031:5031"
+      "50300:50300"
     ];
     environment = {
       "TS_AUTHKEY" = "tskey-auth-k11e8QBcpC11CNTRL-8D2hWayRGk9H9FazgqdKk9aoT65e1DGm9";
@@ -338,21 +339,27 @@
     volumes = [
       "/srv/state/slskd:/app"
       "/srv/storage/soulseek:/downloads"
+      "/srv/storage/media/music:/music"
     ];
-    ports = [
-      "5030:5030"
-      "5031:5031"
-      "50300:50300"
-    ];
+    #ports = [
+    #  "5030:5030"
+    #  "5031:5031"
+    #  "50300:50300"
+    #];
     user = "10000:10000";
     environment = {
       "SLSKD_REMOTE_CONFIGURATION" = "true";
     };
+    dependsOn = [ "tailscaleWithMullvad" ];
+    extraOptions = [
+      "--network=container:tailscaleWithMullvad"
+    ];
   };
   services.nginx.virtualHosts."slskd.local.n3mohomelab.xyz" = {
     forceSSL = true;
     useACMEHost = "local.n3mohomelab.xyz";
-    locations."/".proxyPass = "http://localhost:5030";
+    #locations."/".proxyPass = "http://localhost:5030";
+    locations."/".proxyPass = "http://transmission-container:5030";
   };
 
   # soularr
