@@ -27,16 +27,17 @@
   # homepage
   services.homepage-dashboard =
   let
-    background = pkgs.fetchurl {
-      name = "homepage-background.jpeg";
-      # background image in the official documentation
-      url = "https://images.unsplash.com/photo-1502790671504-542ad42d5189?auto=format&fm=jpg&fit=crop&w=2560&q=80";
-      hash = "sha256-ixg2MEbI/0tvJXAQ9V2JB9yyiUrOPgIE5QNtpahIIQE=";
-    };
+    #background = pkgs.fetchurl {
+    #  name = "homepage-background.jpeg";
+    #  # background image in the official documentation
+    #  url = "https://images.unsplash.com/photo-1502790671504-542ad42d5189?auto=format&fm=jpg&fit=crop&w=2560&q=80";
+    #  hash = "sha256-ixg2MEbI/0tvJXAQ9V2JB9yyiUrOPgIE5QNtpahIIQE=";
+    #};
+    background = ../../wallpaper.jpg
     package = pkgs.homepage-dashboard.overrideAttrs (oldAttrs: {
       postInstall = ''
         mkdir -p $out/share/homepage/public/images
-        ln -s ${background} $out/share/homepage/public/images/background.jpeg
+        ln -s ${background} $out/share/homepage/public/images/wallpaper.jpg
       '';
     });
   in
@@ -50,11 +51,14 @@
       .services-group {
         margin-top: 2%;
       }
+      #footer {
+        display: none;
+      }
     ";
     settings = {
       title = "n3mo's homepage";
       description = "landing page for all my services :P";
-      background = "/images/background.jpeg";
+      background = "/images/wallpaper.jpg";
       theme = "dark";
       color = "neutral";
       headerStyle = "clean";
