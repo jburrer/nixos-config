@@ -27,6 +27,9 @@
   # homepage
   services.homepage-dashboard = {
     enable = true;
+    environmentFile = builtins.toFile "homepage-dashboard-environment-file" "
+      HOMEPAGE_ALLOWED_HOSTS=homepage.local.n3mohomelab.xyz
+    ";
     services = [
       {
       	"Media & Requests" = [
