@@ -25,186 +25,202 @@
   users.users.nginx.extraGroups = [ "acme" ];
 
   # homepage
-  services.homepage-dashboard = {
-    enable = true;
-    environmentFile = builtins.toFile "homepage-dashboard-environment-file" "
-      HOMEPAGE_ALLOWED_HOSTS=homepage.local.n3mohomelab.xyz
-    ";
-    customCSS = "
-      .services-group {
-        margin-top: 2%;
-      }
-    ";
-    settings = {
-      title = "n3mo's homepage";
-      description = "landing page for all my services :P";
-      background = ../../wallpaper.jpg;
-      theme = "dark";
-      color = "neutral";
-      headerStyle = "clean";
-      layout = {
-        "Media & Requests" = {
-	  style = "row";
-	  columns = 3;
-	};
-	"Middle Group" = {
-	  "style" = "row";
-	  columns = 3;
-	  header = false;
-	};
-        "Syncthing" = {
-	  style = "row";
-	  columns = 2;
-	};
-      };
+  let
+    background = pkgs.fetchurl {
+      name = "homepage-background.jpeg";
+      # background image in the official documentation
+      url = "https://images.unsplash.com/photo-1502790671504-542ad42d5189?auto=format&fm=jpg&fit=crop&w=2560&q=80";
+      hash = "sha256-ixg2MEbI/0tvJXAQ9V2JB9yyiUrOPgIE5QNtpahIIQE=";
     };
-    widgets = [
-      {
-        search = {
-          "provider" = "custom";
-          "url" = "https://searx.local.n3mohomelab.xyz/search?category_general=1&language=auto&time_range=&safesearch=0&theme=simple&q=";
-          "target" = "_self";
-	  "focus" = true; }; 
-      }
-    ];
-    services = [
-      {
-      	"Media & Requests" = [
-	  {
-	    "Jellyfin" = {
-	      description = "Media Viewer";
-	      icon = "jellyfin.png";
-	      href = "https://jellyfin.local.n3mohomelab.xyz";
-	    };
-	  }
-	  {
-	    "Immich" = {
-	      description = "Photo Viewer";
-	      icon = "immich.png";
-	      href = "https://immich.local.n3mohomelab.xyz";
-	    };
-	  }
-	  {
-	    "Jellyseerr" = {
-	      description = "Movie & TV Requests";
-	      icon = "jellyseerr.png";
-	      href = "https://jellyseerr.local.n3mohomelab.xyz";
-	    };
-	  }
-	];
-      }
-      {
-        "Middle Group" = [
-          {
-            "Media Management" = [
-              {
-                "Radarr" = {
-                  description = "Movie Management";
-                  icon = "radarr.png";
-                  href = "https://radarr.local.n3mohomelab.xyz";
-                };
-              }
-              {
-                "Sonarr" = {
-                  description = "TV Show Management";
-                  icon = "sonarr.png";
-                  href = "https://sonarr.local.n3mohomelab.xyz";
-                };
-              }
-              {
-                "Lidarr" = {
-                  description = "Music Management";
-                  icon = "lidarr.png";
-                  href = "https://lidarr.local.n3mohomelab.xyz";
-                };
-              }
-              {
-                "Bazarr" = {
-                  description = "Subtitle Management";
-                  icon = "bazarr.png";
-                  href = "https://bazarr.local.n3mohomelab.xyz";
-                };
-              }
-              {
-                "Prowlarr" = {
-                  description = "Torrent Indexer Management";
-                  icon = "prowlarr.png";
-                  href = "https://prowlarr.local.n3mohomelab.xyz";
-                };
-              }
-            ];
-          }
-          {
-            "Download Clients" = [
-              {
-                "Transmission" = {
-                  description = "Torrent Client";
-                  icon = "transmission.png";
-                  href = "https://transmission.local.n3mohomelab.xyz";
-                };
-              }
-              {
-                "Sabnzbd" = {
-                  description = "Usenet Client";
-                  icon = "sabnzbd.png";
-                  href = "https://sabnzbd.local.n3mohomelab.xyz";
-                };
-              }
-              {
-                "Slskd" = {
-                  description = "Soulseek Client";
-                  icon = "slskd.png";
-                  href = "https://slskd.local.n3mohomelab.xyz";
-                };
-              }
-            ];
-          }
-          {
-            "Other" = [
-              {
-                "SearXNG" = {
-                  description = "Search Engine";
-                  icon = "searx.png";
-                  href = "https://searx.local.n3mohomelab.xyz";
-                };
-              }
-              {
-                "Gotify" = {
-                  description = "Notifications";
-                  icon = "gotify.png";
-                  href = "https://gotify.local.n3mohomelab.xyz";
-                };
-              }
-              {
-                "Radicale" = {
-                  description = "Contacts and Calendar Sync";
-                  icon = "radicale.png";
-                  href = "https://radicale.local.n3mohomelab.xyz";
-                };
-              }
-            ];
-          }
-	];
-      }
-      {
-      	"Syncthing" = [
-	  {
-	    "Local" = {
-	      description = "Local Instance of Syncthing";
-	      icon = "syncthing.png";
-	      href = "http://127.0.0.1:8384";
-            };
-	  }
-	  {
-	    "M3d14" = {
-	      description = "Syncthing Running on M3d14";
-	      icon = "syncthing.png";
-	      href = "https://syncthing.local.n3mohomelab.xyz";
-            };
-	  }
-	];
-      }
-    ];
+    package = pkgs.homepage-dashboard.overrideAttrs (oldAttrs: {
+      postInstall = ''
+        mkdir -p $out/share/homepage/public/images
+        ln -s ${background} $out/share/homepage/public/images/background.jpeg
+      '';
+    });
+  in
+  {
+    services.homepage-dashboard = {
+      enable = true;
+      environmentFile = builtins.toFile "homepage-dashboard-environment-file" "
+        HOMEPAGE_ALLOWED_HOSTS=homepage.local.n3mohomelab.xyz
+      ";
+      customCSS = "
+        .services-group {
+          margin-top: 2%;
+        }
+      ";
+      settings = {
+        title = "n3mo's homepage";
+        description = "landing page for all my services :P";
+        background = "/images/background.jpeg";
+        theme = "dark";
+        color = "neutral";
+        headerStyle = "clean";
+        layout = {
+          "Media & Requests" = {
+            style = "row";
+            columns = 3;
+          };
+          "Middle Group" = {
+            "style" = "row";
+            columns = 3;
+            header = false;
+          };
+          "Syncthing" = {
+            style = "row";
+            columns = 2;
+          };
+        };
+      };
+      widgets = [
+        {
+          search = {
+            "provider" = "custom";
+            "url" = "https://searx.local.n3mohomelab.xyz/search?category_general=1&language=auto&time_range=&safesearch=0&theme=simple&q=";
+            "target" = "_self";
+            "focus" = true; }; 
+        }
+      ];
+      services = [
+        {
+        	"Media & Requests" = [
+            {
+              "Jellyfin" = {
+                description = "Media Viewer";
+                icon = "jellyfin.png";
+                href = "https://jellyfin.local.n3mohomelab.xyz";
+              };
+            }
+            {
+              "Immich" = {
+                description = "Photo Viewer";
+                icon = "immich.png";
+                href = "https://immich.local.n3mohomelab.xyz";
+              };
+            }
+            {
+              "Jellyseerr" = {
+                description = "Movie & TV Requests";
+                icon = "jellyseerr.png";
+                href = "https://jellyseerr.local.n3mohomelab.xyz";
+              };
+            }
+          ];
+        }
+        {
+          "Middle Group" = [
+            {
+              "Media Management" = [
+                {
+                  "Radarr" = {
+                    description = "Movie Management";
+                    icon = "radarr.png";
+                    href = "https://radarr.local.n3mohomelab.xyz";
+                  };
+                }
+                {
+                  "Sonarr" = {
+                    description = "TV Show Management";
+                    icon = "sonarr.png";
+                    href = "https://sonarr.local.n3mohomelab.xyz";
+                  };
+                }
+                {
+                  "Lidarr" = {
+                    description = "Music Management";
+                    icon = "lidarr.png";
+                    href = "https://lidarr.local.n3mohomelab.xyz";
+                  };
+                }
+                {
+                  "Bazarr" = {
+                    description = "Subtitle Management";
+                    icon = "bazarr.png";
+                    href = "https://bazarr.local.n3mohomelab.xyz";
+                  };
+                }
+                {
+                  "Prowlarr" = {
+                    description = "Torrent Indexer Management";
+                    icon = "prowlarr.png";
+                    href = "https://prowlarr.local.n3mohomelab.xyz";
+                  };
+                }
+              ];
+            }
+            {
+              "Download Clients" = [
+                {
+                  "Transmission" = {
+                    description = "Torrent Client";
+                    icon = "transmission.png";
+                    href = "https://transmission.local.n3mohomelab.xyz";
+                  };
+                }
+                {
+                  "Sabnzbd" = {
+                    description = "Usenet Client";
+                    icon = "sabnzbd.png";
+                    href = "https://sabnzbd.local.n3mohomelab.xyz";
+                  };
+                }
+                {
+                  "Slskd" = {
+                    description = "Soulseek Client";
+                    icon = "slskd.png";
+                    href = "https://slskd.local.n3mohomelab.xyz";
+                  };
+                }
+              ];
+            }
+            {
+              "Other" = [
+                {
+                  "SearXNG" = {
+                    description = "Search Engine";
+                    icon = "searx.png";
+                    href = "https://searx.local.n3mohomelab.xyz";
+                  };
+                }
+                {
+                  "Gotify" = {
+                    description = "Notifications";
+                    icon = "gotify.png";
+                    href = "https://gotify.local.n3mohomelab.xyz";
+                  };
+                }
+                {
+                  "Radicale" = {
+                    description = "Contacts and Calendar Sync";
+                    icon = "radicale.png";
+                    href = "https://radicale.local.n3mohomelab.xyz";
+                  };
+                }
+              ];
+            }
+          ];
+        }
+        {
+          "Syncthing" = [
+            {
+              "Local" = {
+                description = "Local Instance of Syncthing";
+                icon = "syncthing.png";
+                href = "http://127.0.0.1:8384";
+              };
+            }
+            {
+              "M3d14" = {
+                description = "Syncthing Running on M3d14";
+                icon = "syncthing.png";
+                href = "https://syncthing.local.n3mohomelab.xyz";
+              };
+            }
+          ];
+        }
+      ];
+    };
   };
   services.nginx.virtualHosts."homepage.local.n3mohomelab.xyz" = {
     forceSSL = true;
