@@ -36,7 +36,7 @@
       background = ../../wallpaper.jpg;
       theme = "dark";
       color = "neutral";
-      headerStyle = "clean";
+      headerStyle = "boxed";
       layout = {
         "Media & Requests" = {
 	  style = "row";
@@ -49,7 +49,7 @@
         search = {
           "provider" = "custom";
           "url" = "https://searx.local.n3mohomelab.xyz/search?category_general=1&language=auto&time_range=&safesearch=0&theme=simple&q=";
-          "target" = "_blank";
+          "target" = "_self";
 	}; 
       }
     ];
