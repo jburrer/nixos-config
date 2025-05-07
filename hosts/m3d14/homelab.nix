@@ -32,8 +32,7 @@
     ";
     customCSS = "
       .services-group {
-        margin-top: 5%;
-        margin-bottom: 5%;
+        margin-top: 2%;
       }
     ";
     settings = {
