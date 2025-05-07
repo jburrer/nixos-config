@@ -36,11 +36,16 @@
       background = ../../wallpaper.jpg;
       theme = "dark";
       color = "neutral";
-      #headerStyle = "clean";
+      headerStyle = "clean";
       layout = {
         "Media & Requests" = {
 	  style = "row";
 	  columns = 3;
+	};
+	"Middle Group" = {
+	  "style" = "row";
+	  columns = 3;
+	  header = false;
 	};
         "Syncthing" = {
 	  style = "row";
@@ -84,92 +89,96 @@
 	];
       }
       {
-      	"Media Management" = [
-	  {
-	    "Radarr" = {
-	      description = "Movie Management";
-	      icon = "radarr.png";
-	      href = "https://radarr.local.n3mohomelab.xyz";
-            };
-	  }
-	  {
-	    "Sonarr" = {
-	      description = "TV Show Management";
-	      icon = "sonarr.png";
-	      href = "https://sonarr.local.n3mohomelab.xyz";
-            };
-	  }
-	  {
-	    "Lidarr" = {
-	      description = "Music Management";
-	      icon = "lidarr.png";
-	      href = "https://lidarr.local.n3mohomelab.xyz";
-            };
-	  }
-	  {
-	    "Bazarr" = {
-	      description = "Subtitle Management";
-	      icon = "bazarr.png";
-	      href = "https://bazarr.local.n3mohomelab.xyz";
-            };
-	  }
-	  {
-	    "Prowlarr" = {
-	      description = "Torrent Indexer Management";
-	      icon = "prowlarr.png";
-	      href = "https://prowlarr.local.n3mohomelab.xyz";
-            };
-	  }
-	];
-      }
-      {
-      	"Download Clients" = [
-	  {
-	    "Transmission" = {
-	      description = "Torrent Client";
-	      icon = "transmission.png";
-	      href = "https://transmission.local.n3mohomelab.xyz";
-            };
-	  }
-	  {
-	    "Sabnzbd" = {
-	      description = "Usenet Client";
-	      icon = "sabnzbd.png";
-	      href = "https://sabnzbd.local.n3mohomelab.xyz";
-            };
-	  }
-	  {
-	    "Slskd" = {
-	      description = "Soulseek Client";
-	      icon = "slskd.png";
-	      href = "https://slskd.local.n3mohomelab.xyz";
-            };
-	  }
-	];
-      }
-      {
-      	"Other" = [
-	  {
-	    "SearXNG" = {
-	      description = "Search Engine";
-	      icon = "searx.png";
-	      href = "https://searx.local.n3mohomelab.xyz";
-            };
-	  }
-	  {
-	    "Gotify" = {
-	      description = "Notifications";
-	      icon = "gotify.png";
-	      href = "https://gotify.local.n3mohomelab.xyz";
-            };
-	  }
-	  {
-	    "Radicale" = {
-	      description = "Contacts and Calendar Sync";
-	      icon = "radicale.png";
-	      href = "https://radicale.local.n3mohomelab.xyz";
-            };
-	  }
+        "Middle Group" = [
+          {
+            "Media Management" = [
+              {
+                "Radarr" = {
+                  description = "Movie Management";
+                  icon = "radarr.png";
+                  href = "https://radarr.local.n3mohomelab.xyz";
+                };
+              }
+              {
+                "Sonarr" = {
+                  description = "TV Show Management";
+                  icon = "sonarr.png";
+                  href = "https://sonarr.local.n3mohomelab.xyz";
+                };
+              }
+              {
+                "Lidarr" = {
+                  description = "Music Management";
+                  icon = "lidarr.png";
+                  href = "https://lidarr.local.n3mohomelab.xyz";
+                };
+              }
+              {
+                "Bazarr" = {
+                  description = "Subtitle Management";
+                  icon = "bazarr.png";
+                  href = "https://bazarr.local.n3mohomelab.xyz";
+                };
+              }
+              {
+                "Prowlarr" = {
+                  description = "Torrent Indexer Management";
+                  icon = "prowlarr.png";
+                  href = "https://prowlarr.local.n3mohomelab.xyz";
+                };
+              }
+            ];
+          }
+          {
+            "Download Clients" = [
+              {
+                "Transmission" = {
+                  description = "Torrent Client";
+                  icon = "transmission.png";
+                  href = "https://transmission.local.n3mohomelab.xyz";
+                };
+              }
+              {
+                "Sabnzbd" = {
+                  description = "Usenet Client";
+                  icon = "sabnzbd.png";
+                  href = "https://sabnzbd.local.n3mohomelab.xyz";
+                };
+              }
+              {
+                "Slskd" = {
+                  description = "Soulseek Client";
+                  icon = "slskd.png";
+                  href = "https://slskd.local.n3mohomelab.xyz";
+                };
+              }
+            ];
+          }
+          {
+            "Other" = [
+              {
+                "SearXNG" = {
+                  description = "Search Engine";
+                  icon = "searx.png";
+                  href = "https://searx.local.n3mohomelab.xyz";
+                };
+              }
+              {
+                "Gotify" = {
+                  description = "Notifications";
+                  icon = "gotify.png";
+                  href = "https://gotify.local.n3mohomelab.xyz";
+                };
+              }
+              {
+                "Radicale" = {
+                  description = "Contacts and Calendar Sync";
+                  icon = "radicale.png";
+                  href = "https://radicale.local.n3mohomelab.xyz";
+                };
+              }
+            ];
+          }
 	];
       }
       {
