@@ -36,11 +36,15 @@
       background = ../../wallpaper.jpg;
       theme = "dark";
       color = "neutral";
-      headerStyle = "boxed";
+      #headerStyle = "clean";
       layout = {
         "Media & Requests" = {
 	  style = "row";
 	  columns = 3;
+	};
+        "Syncthing" = {
+	  style = "row";
+	  columns = 2;
 	};
       };
     };
@@ -164,6 +168,24 @@
 	      description = "Contacts and Calendar Sync";
 	      icon = "radicale.png";
 	      href = "https://radicale.local.n3mohomelab.xyz";
+            };
+	  }
+	];
+      }
+      {
+      	"Syncthing" = [
+	  {
+	    "Local" = {
+	      description = "Local Instance of Syncthing";
+	      icon = "syncthing.png";
+	      href = "http://127.0.0.1:8384";
+            };
+	  }
+	  {
+	    "M3d14" = {
+	      description = "Syncthing Running on M3d14";
+	      icon = "syncthing.png";
+	      href = "https://syncthing.local.n3mohomelab.xyz";
             };
 	  }
 	];
