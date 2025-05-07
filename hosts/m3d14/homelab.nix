@@ -24,6 +24,43 @@
   };
   users.users.nginx.extraGroups = [ "acme" ];
 
+  # homepage
+  services.homepage-dashboard = {
+    enable = true;
+    services = [
+      {
+      	"Media & Requests" = [
+	  "Jellyfin" = {
+	    description = "Media Viewer";
+	    href = "jellyfin.local.n3mohomelab.xyz";
+	  };
+	  "Immich" = {
+	    description = "Photo Viewer";
+	    href = "immich.local.n3mohomelab.xyz";
+	  };
+	  "Jellyseerr" = {
+	    description = "Movie & TV Requests";
+	    href = "jellyseerr.local.n3mohomelab.xyz";
+	  };
+	];
+      }
+      {
+      	"Media Management" = [];
+      }
+      {
+      	"Download Clients" = [];
+      }
+      {
+      	"Other" = [];
+      }
+    ];
+  };
+  services.nginx.virtualHosts."homepage.local.n3mohomelab.xyz" = {
+    forceSSL = true;
+    useACMEHost = "local.n3mohomelab.xyz";
+    locations."/".proxyPass = "http://localhost:8082";
+  };
+
   # copyparty 
   services.copyparty = {
     enable = true;
@@ -132,7 +169,7 @@
     locations."/".proxyPass = "http://localhost:8096";
   };
 
-  # jellyseer
+  # jellyseerr
   services.jellyseerr.enable = true;
   services.nginx.virtualHosts."jellyseerr.local.n3mohomelab.xyz" = {
     forceSSL = true;
@@ -181,7 +218,6 @@
       "--network=host"
     ];
   };
-
   services.nginx.virtualHosts."lidarr.local.n3mohomelab.xyz" = {
     forceSSL = true;
     useACMEHost = "local.n3mohomelab.xyz";
@@ -341,11 +377,6 @@
       "/srv/storage/soulseek:/downloads"
       "/srv/storage/media/music:/music"
     ];
-    #ports = [
-    #  "5030:5030"
-    #  "5031:5031"
-    #  "50300:50300"
-    #];
     user = "10000:10000";
     environment = {
       "SLSKD_REMOTE_CONFIGURATION" = "true";
@@ -358,22 +389,8 @@
   services.nginx.virtualHosts."slskd.local.n3mohomelab.xyz" = {
     forceSSL = true;
     useACMEHost = "local.n3mohomelab.xyz";
-    #locations."/".proxyPass = "http://localhost:5030";
     locations."/".proxyPass = "http://transmission-container:5030";
   };
-
-  # soularr
-  #virtualisation.oci-containers.containers."soularr" = {
-  #  image = "mrusse08/soularr:latest";
-  #  volumes = [
-  #    "/srv/state/soularr:/data"
-  #    "/srv/storage/soulseek:/downloads"
-  #  ];
-  #  user = "10000:10000";
-  #  environment = {
-  #    "SCRIPT_INTERVAL" = "300";
-  #  };
-  #};
 
   # gotify
   services.gotify = {
