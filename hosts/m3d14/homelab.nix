@@ -36,18 +36,21 @@
 	  {
 	    "Jellyfin" = {
 	      description = "Media Viewer";
+	      icon = "jellyfin.png";
 	      href = "https://jellyfin.local.n3mohomelab.xyz";
 	    };
 	  }
 	  {
 	    "Immich" = {
 	      description = "Photo Viewer";
+	      icon = "immich.png";
 	      href = "https://immich.local.n3mohomelab.xyz";
 	    };
 	  }
 	  {
 	    "Jellyseerr" = {
 	      description = "Movie & TV Requests";
+	      icon = "jellyseerr.png";
 	      href = "https://jellyseerr.local.n3mohomelab.xyz";
 	    };
 	  }
