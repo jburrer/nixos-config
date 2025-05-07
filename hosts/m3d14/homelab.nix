@@ -30,18 +30,24 @@
     services = [
       {
       	"Media & Requests" = [
-	  "Jellyfin" = {
-	    description = "Media Viewer";
-	    href = "jellyfin.local.n3mohomelab.xyz";
-	  };
-	  "Immich" = {
-	    description = "Photo Viewer";
-	    href = "immich.local.n3mohomelab.xyz";
-	  };
-	  "Jellyseerr" = {
-	    description = "Movie & TV Requests";
-	    href = "jellyseerr.local.n3mohomelab.xyz";
-	  };
+	  {
+	    "Jellyfin" = {
+	      description = "Media Viewer";
+	      href = "jellyfin.local.n3mohomelab.xyz";
+	    };
+	  }
+	  {
+	    "Immich" = {
+	      description = "Photo Viewer";
+	      href = "immich.local.n3mohomelab.xyz";
+	    };
+	  }
+	  {
+	    "Jellyseerr" = {
+	      description = "Movie & TV Requests";
+	      href = "jellyseerr.local.n3mohomelab.xyz";
+	    };
+	  }
 	];
       }
       {
