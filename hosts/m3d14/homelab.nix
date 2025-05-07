@@ -174,13 +174,16 @@
       "/srv/state/lidarr:/config"
       "/srv/storage:/storage"
     ];
-    ports = [
-      "8686:8686"
-    ];
+    #ports = [
+    #  "8686:8686"
+    #];
     environment = {
       "PUID" = "10000";
       "PGID" = "10000";
     };
+    extraOptions = [
+      "--network=host"
+    ];
   };
 
   services.nginx.virtualHosts."lidarr.local.n3mohomelab.xyz" = {
