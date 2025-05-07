@@ -27,12 +27,6 @@
   # homepage
   services.homepage-dashboard =
   let
-    #background = pkgs.fetchurl {
-    #  name = "homepage-background.jpeg";
-    #  # background image in the official documentation
-    #  url = "https://images.unsplash.com/photo-1502790671504-542ad42d5189?auto=format&fm=jpg&fit=crop&w=2560&q=80";
-    #  hash = "sha256-ixg2MEbI/0tvJXAQ9V2JB9yyiUrOPgIE5QNtpahIIQE=";
-    #};
     background = ../../wallpaper.jpg;
     package = pkgs.homepage-dashboard.overrideAttrs (oldAttrs: {
       postInstall = ''
@@ -58,7 +52,14 @@
     settings = {
       title = "n3mo's homepage";
       description = "landing page for all my services :P";
-      background = "/images/wallpaper.jpg";
+      #background = "/images/wallpaper.jpg";
+      background = {
+        image = "/images/wallpaper.jpg";
+	blur = "sm";
+	saturate = 50;
+	brightness = 50;
+	opacity = 50;
+      };
       theme = "dark";
       color = "neutral";
       headerStyle = "clean";
