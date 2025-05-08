@@ -52,7 +52,6 @@
     settings = {
       title = "n3mo's homepage";
       description = "landing page for all my services :P";
-      #background = "/images/wallpaper.jpg";
       background = {
         image = "/images/wallpaper.jpg";
 	blur = "sm";
@@ -96,6 +95,15 @@
               description = "Media Viewer";
               icon = "jellyfin.png";
               href = "https://jellyfin.local.n3mohomelab.xyz";
+	      widget = {
+                type = "jellyfin";
+                url = "https://jellyfin.local.n3mohomelab.xyz";
+                key = "672d53d86ace410996f00341ca6e4112";
+                enableBlocks = true;
+                enableUser = true;
+                showEpisodeNumber = true;
+                expandOneStreamToTwoRows = false;
+	      };
             };
           }
           {

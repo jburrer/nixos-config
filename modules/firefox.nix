@@ -105,7 +105,7 @@
         };
         settings = {
           "general.smoothScroll" = true;
-          "browser.startup.homepage" = "searx.local.n3mohomelab.xyz";
+          "browser.startup.homepage" = "homepage.local.n3mohomelab.xyz";
           "dom.security.https_only_mode" = true;
           "dom.security.https_only_mode_ever_enabled" = true;
           "privacy.donottrackheader.enabled" = true;
