@@ -43,10 +43,7 @@
     ";
     customCSS = "
       .services-group {
-        margin-top: 1%;
-      }
-      #layout-groups {
-        margin-bottom: 100px;
+        margin-bottom: 1%;
       }
       #footer {
         display: none;
