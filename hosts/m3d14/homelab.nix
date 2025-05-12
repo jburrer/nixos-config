@@ -45,6 +45,9 @@
       .services-group {
         margin-top: 2%;
       }
+      #layout-groups {
+        margin-bottom: 2%;
+      }
       #footer {
         display: none;
       }
@@ -71,7 +74,7 @@
           style = "row";
           columns = 5;
         };
-        "Download Clients" = {
+        "Zownload Clients" = {
           style = "row";
           columns = 3;
         };
@@ -91,7 +94,8 @@
           "provider" = "custom";
           "url" = "https://searx.local.n3mohomelab.xyz/search?category_general=1&language=auto&time_range=&safesearch=0&theme=simple&q=";
           "target" = "_self";
-          "focus" = true; }; 
+          "focus" = true;
+	}; 
       }
     ];
     services = [
@@ -115,6 +119,18 @@
             };
           }
           {
+            "Jellyseerr" = {
+              description = "Movie & TV Requests";
+              icon = "jellyseerr.png";
+              href = "https://jellyseerr.local.n3mohomelab.xyz";
+	      widget = {
+	      	type = "jellyseerr";
+		url = "https://jellyseerr.local.n3mohomelab.xyz";
+		key = "MTc0MjI3NzM2MzgzOGExYzQyMjVmLTQ3MTctNDUzZi1iM2M4LWE1NDA1NDM0ZDI3Zg==";
+	      };
+            };
+          }
+          {
             "Immich" = {
               description = "Photo Viewer";
               icon = "immich.png";
@@ -124,18 +140,6 @@
 		url = "https://immich.local.n3mohomelab.xyz";
   		key = "9RFiyFCqtqmOpuEs1LgxjW5yG7LU2ltbuIKGhIy7ohQ";
 		version = 2;
-	      };
-            };
-          }
-          {
-            "Jellyseerr" = {
-              description = "Movie & TV Requests";
-              icon = "jellyseerr.png";
-              href = "https://jellyseerr.local.n3mohomelab.xyz";
-	      widget = {
-	      	type = "jellyseerr";
-		url = "https://jellyseerr.local.n3mohomelab.xyz";
-		key = "MTc0MjI3NzM2MzgzOGExYzQyMjVmLTQ3MTctNDUzZi1iM2M4LWE1NDA1NDM0ZDI3Zg==";
 	      };
             };
           }
@@ -208,7 +212,7 @@
         ];
       }
       {
-        "Download Clients" = [
+        "Zownload Clients" = [
           {
             "Transmission" = {
               description = "Torrent Client";
@@ -254,6 +258,13 @@
             };
           }
           {
+            "Radicale" = {
+              description = "Contacts and Calendar Sync";
+              icon = "radicale.png";
+              href = "https://radicale.local.n3mohomelab.xyz";
+            };
+          }
+          {
             "Gotify" = {
               description = "Notifications";
               icon = "gotify.png";
@@ -263,13 +274,6 @@
                 url = "https://gotify.local.n3mohomelab.xyz";
                 key = "CGX6CNj6cdM_X8V";
               };
-            };
-          }
-          {
-            "Radicale" = {
-              description = "Contacts and Calendar Sync";
-              icon = "radicale.png";
-              href = "https://radicale.local.n3mohomelab.xyz";
             };
           }
         ];
