@@ -124,6 +124,11 @@
               description = "Movie & TV Requests";
               icon = "jellyseerr.png";
               href = "https://jellyseerr.local.n3mohomelab.xyz";
+	      widget = {
+	      	type = "jellyseerr";
+		url = "https://jellyseerr.local.n3mohomelab.xyz";
+		key = "MTc0MjI3NzM2MzgzOGExYzQyMjVmLTQ3MTctNDUzZi1iM2M4LWE1NDA1NDM0ZDI3Zg==";
+	      };
             };
           }
         ];
@@ -137,6 +142,12 @@
                   description = "Movie Management";
                   icon = "radarr.png";
                   href = "https://radarr.local.n3mohomelab.xyz";
+	          widget = {
+	            type = "radarr";
+	            url = "https://radarr.local.n3mohomelab.xyz";
+	            key = "05b2359314844434be39b5e05f4d7195";
+                    enableQueue = true;
+	          };
                 };
               }
               {
@@ -144,6 +155,12 @@
                   description = "TV Show Management";
                   icon = "sonarr.png";
                   href = "https://sonarr.local.n3mohomelab.xyz";
+	          widget = {
+	            type = "sonarr";
+	            url = "https://sonarr.local.n3mohomelab.xyz";
+	            key = "05b2359314844434be39b5e05f4d7195";
+                    enableQueue = true;
+	          };
                 };
               }
               {
@@ -151,6 +168,11 @@
                   description = "Music Management";
                   icon = "lidarr.png";
                   href = "https://lidarr.local.n3mohomelab.xyz";
+	          widget = {
+	            type = "lidarr";
+	            url = "https://lidarr.local.n3mohomelab.xyz";
+	            key = "60859e8a08f847aea9e7416cf276247f";
+	          };
                 };
               }
               {
@@ -158,6 +180,11 @@
                   description = "Subtitle Management";
                   icon = "bazarr.png";
                   href = "https://bazarr.local.n3mohomelab.xyz";
+	          widget = {
+	            type = "bazarr";
+	            url = "https://bazarr.local.n3mohomelab.xyz";
+	            key = "01442f2b9df9a4f7859bd92bcac143f1";
+	          };
                 };
               }
               {
@@ -165,6 +192,11 @@
                   description = "Torrent Indexer Management";
                   icon = "prowlarr.png";
                   href = "https://prowlarr.local.n3mohomelab.xyz";
+	          widget = {
+	            type = "prowlarr";
+	            url = "https://prowlarr.local.n3mohomelab.xyz";
+	            key = "bfa27d6ebfab4a50b10d344ef2a942e1";
+	          };
                 };
               }
             ];
@@ -176,6 +208,13 @@
                   description = "Torrent Client";
                   icon = "transmission.png";
                   href = "https://transmission.local.n3mohomelab.xyz";
+	          widget = {
+	            type = "transmission";
+	            url = "https://transmission.local.n3mohomelab.xyz";
+		    username = "n3mo";
+		    password = "J0hn 0316";
+  	            #rpcUrl = "/transmission/"; # Optional. Matches the value of "rpc-url" in your Transmission's settings.json file
+	          };
                 };
               }
               {
@@ -183,6 +222,11 @@
                   description = "Usenet Client";
                   icon = "sabnzbd.png";
                   href = "https://sabnzbd.local.n3mohomelab.xyz";
+	          widget = {
+	            type = "sabnzbd";
+	            url = "https://sabnzbd.local.n3mohomelab.xyz";
+	            key = "57d5128d18774aa6a517b4a4ea996911";
+	          };
                 };
               }
               {
@@ -208,6 +252,11 @@
                   description = "Notifications";
                   icon = "gotify.png";
                   href = "https://gotify.local.n3mohomelab.xyz";
+	          widget = {
+	            type = "gotify";
+	            url = "https://gotify.local.n3mohomelab.xyz";
+	            key = "AbD89t8TWXhl5ni";
+	          };
                 };
               }
               {
