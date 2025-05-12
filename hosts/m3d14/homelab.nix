@@ -101,14 +101,22 @@
     bookmarks = [
       {
         "School" = [
-	  "Brightspace".href = "https://purdue.brightspace.com/d2l/login";
-	  "MyPurdue".href = "https://sso.purdue.edu/idp/profile/SAML2/Redirect/SSO?execution=e1s2";
+	  {
+	    "Brightspace".href = "https://purdue.brightspace.com/d2l/login";
+	  }
+	  {
+	    "MyPurdue".href = "https://sso.purdue.edu/idp/profile/SAML2/Redirect/SSO?execution=e1s2";
+	  }
 	];
       }
       {
         "Homelab" = [
-	  "Brightspace".href = "https://purdue.brightspace.com/d2l/login";
-	  "MyPurdue".href = "https://sso.purdue.edu/idp/profile/SAML2/Redirect/SSO?execution=e1s2";
+	  {
+	    "Brightspace".href = "https://purdue.brightspace.com/d2l/login";
+	  }
+	  {
+	    "MyPurdue".href = "https://sso.purdue.edu/idp/profile/SAML2/Redirect/SSO?execution=e1s2";
+	  }
 	];
       }
     ];
