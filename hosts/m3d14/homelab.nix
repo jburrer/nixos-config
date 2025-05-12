@@ -67,7 +67,7 @@
           style = "row";
           columns = 3;
         };
-        "Middle Management" = {
+        "Media Management" = {
           style = "row";
           columns = 5;
         };
