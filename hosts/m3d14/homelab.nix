@@ -66,8 +66,8 @@
       color = "neutral";
       headerStyle = "clean";
       layout = [ 
-        { "School" = {} }
-	{ "Homelab" = {} }
+        { "School" = {}; }
+	{ "Homelab" = {}; }
         {
 	  "Media & Requests" = {
             style = "row";
