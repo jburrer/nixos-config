@@ -66,28 +66,38 @@
       color = "neutral";
       headerStyle = "clean";
       layout = [ 
-        "School"
-	"Homelab"
-        "Media & Requests" = {
-          style = "row";
-          columns = 3;
-        }
-        "Media Management" = {
-          style = "row";
-          columns = 5;
-        }
-        "Download Clients" = {
-          style = "row";
-          columns = 3;
-        }
-        "Other" = {
-          style = "row";
-          columns = 3;
-        }
-        "Syncthing" = {
-          style = "row";
-          columns = 2;
-        }
+        { "School" = {} }
+	{ "Homelab" = {} }
+        {
+	  "Media & Requests" = {
+            style = "row";
+            columns = 3;
+          };
+	}
+	{
+          "Media Management" = {
+            style = "row";
+            columns = 5;
+          };
+	}
+	{
+          "Download Clients" = {
+            style = "row";
+            columns = 3;
+          };
+	}
+	{
+          "Other" = {
+            style = "row";
+            columns = 3;
+          };
+	}
+	{
+          "Syncthing" = {
+            style = "row";
+            columns = 2;
+          };
+	}
       ];
     };
     widgets = [
