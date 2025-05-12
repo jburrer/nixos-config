@@ -62,21 +62,21 @@
       theme = "dark";
       color = "neutral";
       headerStyle = "clean";
-      #layout = {
-      #  "Media & Requests" = {
-      #    style = "row";
-      #    columns = 3;
-      #  };
-      #  "Middle Group" = {
-      #    "style" = "row";
-      #    columns = 3;
-      #    header = false;
-      #  };
-      #  "Syncthing" = {
-      #    style = "row";
-      #    columns = 2;
-      #  };
-      #};
+      layout = {
+        "Media & Requests" = {
+          style = "row";
+          columns = 3;
+        };
+        #"Middle Group" = {
+        #  "style" = "row";
+        #  columns = 3;
+        #  header = false;
+        #};
+        "Syncthing" = {
+          style = "row";
+          columns = 2;
+        };
+      };
     };
     widgets = [
       {
@@ -135,139 +135,135 @@
         ];
       }
       {
-        "Middle Group" = [
+        "Media Management" = [
           {
-            "Media Management" = [
-              {
-                "Radarr" = {
-                  description = "Movie Management";
-                  icon = "radarr.png";
-                  href = "https://radarr.local.n3mohomelab.xyz";
-	          widget = {
-	            type = "radarr";
-	            url = "https://radarr.local.n3mohomelab.xyz";
-	            key = "05b2359314844434be39b5e05f4d7195";
-                    enableQueue = true;
-	          };
-                };
-              }
-              {
-                "Sonarr" = {
-                  description = "TV Show Management";
-                  icon = "sonarr.png";
-                  href = "https://sonarr.local.n3mohomelab.xyz";
-	          widget = {
-	            type = "sonarr";
-	            url = "https://sonarr.local.n3mohomelab.xyz";
-	            key = "b16bb26b3db641e99403d55c693b8987";
-                    enableQueue = true;
-	          };
-                };
-              }
-              {
-                "Lidarr" = {
-                  description = "Music Management";
-                  icon = "lidarr.png";
-                  href = "https://lidarr.local.n3mohomelab.xyz";
-	          widget = {
-	            type = "lidarr";
-	            url = "https://lidarr.local.n3mohomelab.xyz";
-	            key = "60859e8a08f847aea9e7416cf276247f";
-	          };
-                };
-              }
-              {
-                "Bazarr" = {
-                  description = "Subtitle Management";
-                  icon = "bazarr.png";
-                  href = "https://bazarr.local.n3mohomelab.xyz";
-	          widget = {
-	            type = "bazarr";
-	            url = "https://bazarr.local.n3mohomelab.xyz";
-	            key = "01442f2b9df9a4f7859bd92bcac143f1";
-	          };
-                };
-              }
-              {
-                "Prowlarr" = {
-                  description = "Torrent Indexer Management";
-                  icon = "prowlarr.png";
-                  href = "https://prowlarr.local.n3mohomelab.xyz";
-	          widget = {
-	            type = "prowlarr";
-	            url = "https://prowlarr.local.n3mohomelab.xyz";
-	            key = "bfa27d6ebfab4a50b10d344ef2a942e1";
-	          };
-                };
-              }
-            ];
+            "Radarr" = {
+              description = "Movie Management";
+              icon = "radarr.png";
+              href = "https://radarr.local.n3mohomelab.xyz";
+              widget = {
+                type = "radarr";
+                url = "https://radarr.local.n3mohomelab.xyz";
+                key = "05b2359314844434be39b5e05f4d7195";
+                enableQueue = true;
+              };
+            };
           }
           {
-            "Download Clients" = [
-              {
-                "Transmission" = {
-                  description = "Torrent Client";
-                  icon = "transmission.png";
-                  href = "https://transmission.local.n3mohomelab.xyz";
-	          widget = {
-	            type = "transmission";
-	            url = "https://transmission.local.n3mohomelab.xyz";
-		    username = "n3mo";
-		    password = "J0hn 0316";
-  	            #rpcUrl = "/transmission/"; # Optional. Matches the value of "rpc-url" in your Transmission's settings.json file
-	          };
-                };
-              }
-              {
-                "Sabnzbd" = {
-                  description = "Usenet Client";
-                  icon = "sabnzbd.png";
-                  href = "https://sabnzbd.local.n3mohomelab.xyz";
-	          widget = {
-	            type = "sabnzbd";
-	            url = "https://sabnzbd.local.n3mohomelab.xyz";
-	            key = "57d5128d18774aa6a517b4a4ea996911";
-	          };
-                };
-              }
-              {
-                "Slskd" = {
-                  description = "Soulseek Client";
-                  icon = "slskd.png";
-                  href = "https://slskd.local.n3mohomelab.xyz";
-                };
-              }
-            ];
+            "Sonarr" = {
+              description = "TV Show Management";
+              icon = "sonarr.png";
+              href = "https://sonarr.local.n3mohomelab.xyz";
+              widget = {
+                type = "sonarr";
+                url = "https://sonarr.local.n3mohomelab.xyz";
+                key = "b16bb26b3db641e99403d55c693b8987";
+                enableQueue = true;
+              };
+            };
           }
           {
-            "Other" = [
-              {
-                "SearXNG" = {
-                  description = "Search Engine";
-                  icon = "searx.png";
-                  href = "https://searx.local.n3mohomelab.xyz";
-                };
-              }
-              {
-                "Gotify" = {
-                  description = "Notifications";
-                  icon = "gotify.png";
-                  href = "https://gotify.local.n3mohomelab.xyz";
-	          widget = {
-	            type = "gotify";
-	            url = "https://gotify.local.n3mohomelab.xyz";
-	            key = "CGX6CNj6cdM_X8V";
-	          };
-                };
-              }
-              {
-                "Radicale" = {
-                  description = "Contacts and Calendar Sync";
-                  icon = "radicale.png";
-                  href = "https://radicale.local.n3mohomelab.xyz";
-                };
-              }
-            ];
+            "Lidarr" = {
+              description = "Music Management";
+              icon = "lidarr.png";
+              href = "https://lidarr.local.n3mohomelab.xyz";
+              widget = {
+                type = "lidarr";
+                url = "https://lidarr.local.n3mohomelab.xyz";
+                key = "60859e8a08f847aea9e7416cf276247f";
+              };
+            };
+          }
+          {
+            "Bazarr" = {
+              description = "Subtitle Management";
+              icon = "bazarr.png";
+              href = "https://bazarr.local.n3mohomelab.xyz";
+              widget = {
+                type = "bazarr";
+                url = "https://bazarr.local.n3mohomelab.xyz";
+                key = "01442f2b9df9a4f7859bd92bcac143f1";
+              };
+            };
+          }
+          {
+            "Prowlarr" = {
+              description = "Torrent Indexer Management";
+              icon = "prowlarr.png";
+              href = "https://prowlarr.local.n3mohomelab.xyz";
+              widget = {
+                type = "prowlarr";
+                url = "https://prowlarr.local.n3mohomelab.xyz";
+                key = "bfa27d6ebfab4a50b10d344ef2a942e1";
+              };
+            };
+          }
+        ];
+      }
+      {
+        "Download Clients" = [
+          {
+            "Transmission" = {
+              description = "Torrent Client";
+              icon = "transmission.png";
+              href = "https://transmission.local.n3mohomelab.xyz";
+              widget = {
+                type = "transmission";
+                url = "https://transmission.local.n3mohomelab.xyz";
+                username = "n3mo";
+                password = "J0hn 0316";
+                #rpcUrl = "/transmission/"; # Optional. Matches the value of "rpc-url" in your Transmission's settings.json file
+              };
+            };
+          }
+          {
+            "Sabnzbd" = {
+              description = "Usenet Client";
+              icon = "sabnzbd.png";
+              href = "https://sabnzbd.local.n3mohomelab.xyz";
+              widget = {
+                type = "sabnzbd";
+                url = "https://sabnzbd.local.n3mohomelab.xyz";
+                key = "57d5128d18774aa6a517b4a4ea996911";
+              };
+            };
+          }
+          {
+            "Slskd" = {
+              description = "Soulseek Client";
+              icon = "slskd.png";
+              href = "https://slskd.local.n3mohomelab.xyz";
+            };
+          }
+        ];
+      }
+      {
+        "Other" = [
+          {
+            "SearXNG" = {
+              description = "Search Engine";
+              icon = "searx.png";
+              href = "https://searx.local.n3mohomelab.xyz";
+            };
+          }
+          {
+            "Gotify" = {
+              description = "Notifications";
+              icon = "gotify.png";
+              href = "https://gotify.local.n3mohomelab.xyz";
+              widget = {
+                type = "gotify";
+                url = "https://gotify.local.n3mohomelab.xyz";
+                key = "CGX6CNj6cdM_X8V";
+              };
+            };
+          }
+          {
+            "Radicale" = {
+              description = "Contacts and Calendar Sync";
+              icon = "radicale.png";
+              href = "https://radicale.local.n3mohomelab.xyz";
+            };
           }
         ];
       }
