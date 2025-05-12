@@ -41,17 +41,17 @@
     environmentFile = builtins.toFile "homepage-dashboard-environment-file" "
       HOMEPAGE_ALLOWED_HOSTS=homepage.local.n3mohomelab.xyz
     ";
-    customCSS = "
-      .services-group {
-        margin-top: 1%;
-      }
-      #layout-groups {
-        margin-bottom: 1%;
-      }
-      #footer {
-        display: none;
-      }
-    ";
+    #customCSS = "
+    #  .services-group {
+    #    margin-top: 1%;
+    #  }
+    #  #layout-groups {
+    #    margin-bottom: 1%;
+    #  }
+    #  #footer {
+    #    display: none;
+    #  }
+    #";
     settings = {
       title = "n3mo's homepage";
       description = "landing page for all my services :P";
@@ -102,7 +102,7 @@
       {
         "School" = [
 	  {
-	    "Brightspace".href = "https://purdue.brightspace.com/d2l/login";
+	    "Brightspace".href = "https://purdue.brightspace.com/d2l/login/";
 	  }
 	  {
 	    "MyPurdue".href = "https://sso.purdue.edu/idp/profile/SAML2/Redirect/SSO?execution=e1s2";
@@ -112,7 +112,7 @@
       {
         "Homelab" = [
 	  {
-	    "Brightspace".href = "https://purdue.brightspace.com/d2l/login";
+	    "Brightspace".href = "https://purdue.brightspace.com/d2l/login/";
 	  }
 	  {
 	    "MyPurdue".href = "https://sso.purdue.edu/idp/profile/SAML2/Redirect/SSO?execution=e1s2";
