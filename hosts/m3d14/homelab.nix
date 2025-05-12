@@ -43,10 +43,10 @@
     ";
     customCSS = "
       .services-group {
-        margin-top: 2%;
+        margin-top: 1%;
       }
       #layout-groups {
-        margin-bottom: 2%;
+        margin-bottom: 1%;
       }
       #footer {
         display: none;
@@ -59,7 +59,7 @@
         image = "/images/wallpaper.jpg";
 	blur = "sm";
 	saturate = 50;
-	brightness = 50;
+	brightness = 75;
 	opacity = 50;
       };
       theme = "dark";
@@ -74,7 +74,7 @@
           style = "row";
           columns = 5;
         };
-        "Zownload Clients" = {
+        "Download Clients" = {
           style = "row";
           columns = 3;
         };
@@ -96,6 +96,20 @@
           "target" = "_self";
           "focus" = true;
 	}; 
+      }
+    ];
+    bookmarks = [
+      {
+        "School" = [
+	  "Brightspace".href = "https://purdue.brightspace.com/d2l/login";
+	  "MyPurdue".href = "https://sso.purdue.edu/idp/profile/SAML2/Redirect/SSO?execution=e1s2";
+	];
+      }
+      {
+        "Homelab" = [
+	  "Brightspace".href = "https://purdue.brightspace.com/d2l/login";
+	  "MyPurdue".href = "https://sso.purdue.edu/idp/profile/SAML2/Redirect/SSO?execution=e1s2";
+	];
       }
     ];
     services = [
@@ -212,7 +226,7 @@
         ];
       }
       {
-        "Zownload Clients" = [
+        "Download Clients" = [
           {
             "Transmission" = {
               description = "Torrent Client";
@@ -223,7 +237,6 @@
                 url = "https://transmission.local.n3mohomelab.xyz";
                 username = "n3mo";
                 password = "J0hn 0316";
-                #rpcUrl = "/transmission/"; # Optional. Matches the value of "rpc-url" in your Transmission's settings.json file
               };
             };
           }
