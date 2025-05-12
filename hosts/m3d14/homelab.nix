@@ -62,21 +62,21 @@
       theme = "dark";
       color = "neutral";
       headerStyle = "clean";
-      layout = {
-        "Media & Requests" = {
-          style = "row";
-          columns = 3;
-        };
-        "Middle Group" = {
-          "style" = "row";
-          columns = 3;
-          header = false;
-        };
-        "Syncthing" = {
-          style = "row";
-          columns = 2;
-        };
-      };
+      #layout = {
+      #  "Media & Requests" = {
+      #    style = "row";
+      #    columns = 3;
+      #  };
+      #  "Middle Group" = {
+      #    "style" = "row";
+      #    columns = 3;
+      #    header = false;
+      #  };
+      #  "Syncthing" = {
+      #    style = "row";
+      #    columns = 2;
+      #  };
+      #};
     };
     widgets = [
       {
