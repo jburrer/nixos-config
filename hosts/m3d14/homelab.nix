@@ -67,11 +67,18 @@
           style = "row";
           columns = 3;
         };
-        #"Middle Group" = {
-        #  "style" = "row";
-        #  columns = 3;
-        #  header = false;
-        #};
+        "Middle Management" = {
+          style = "row";
+          columns = 5;
+        };
+        "Download Clients" = {
+          style = "row";
+          columns = 3;
+        };
+        "Other" = {
+          style = "row";
+          columns = 3;
+        };
         "Syncthing" = {
           style = "row";
           columns = 2;
