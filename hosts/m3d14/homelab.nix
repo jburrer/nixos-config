@@ -46,7 +46,7 @@
         margin-top: 1%;
       }
       #layout-groups {
-        margin-bottom: 1%;
+        margin-bottom: 100px;
       }
       #footer {
         display: none;
