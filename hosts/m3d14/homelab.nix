@@ -100,6 +100,7 @@
                 url = "https://jellyfin.local.n3mohomelab.xyz";
                 key = "672d53d86ace410996f00341ca6e4112";
                 enableBlocks = true;
+                enableNowPlaying = false;
                 enableUser = true;
                 showEpisodeNumber = true;
                 expandOneStreamToTwoRows = false;
@@ -158,7 +159,7 @@
 	          widget = {
 	            type = "sonarr";
 	            url = "https://sonarr.local.n3mohomelab.xyz";
-	            key = "05b2359314844434be39b5e05f4d7195";
+	            key = "b16bb26b3db641e99403d55c693b8987";
                     enableQueue = true;
 	          };
                 };
