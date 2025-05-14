@@ -159,6 +159,31 @@
               }
 	    ];
           }
+	  {
+	    "Work" = [
+	      {
+		"MFT" = [
+		  {
+		    href = "https://mft.mfs.polytechnic.purdue.edu/";
+		  }
+		]; 
+	      }
+	      {
+		"Humanity" = [
+		  {
+		    href = "https://purdueuniversity1.humanity.com/app/dashboard/";
+		  }
+		]; 
+	      }
+	      {
+		"SuccessFactors" = [
+		  {
+		    href = "https://one.purdue.edu/task/all/successfactors-employee";
+		  }
+		]; 
+	      }
+	    ];
+	  }
 	];
       }
     ];
