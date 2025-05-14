@@ -111,7 +111,11 @@
       {
         "School" = [
           {
-            "Example".href = "https://example.com";
+            "Example" = [
+	      {
+	        href = "https://example.com/";
+              }
+	    ];
           }
 	];
       }
