@@ -111,9 +111,51 @@
       {
         "School" = [
           {
-            "Example" = [
+            "Brightspace" = [
 	      {
-	        href = "https://example.com/";
+	        href = "https://purdue.brightspace.com/d2l/login";
+              }
+	    ];
+          }
+          {
+            "MyPurdue" = [
+	      {
+	        href = "https://wl.mypurdue.purdue.edu/";
+              }
+	    ];
+          }
+          {
+            "Gradescope" = [
+	      {
+	        href = "https://www.gradescope.com/";
+              }
+	    ];
+          }
+          {
+            "Pearson" = [
+	      {
+	        href = "https://mycourses.pearson.com/course-home#/tab/active";
+              }
+	    ];
+          }
+          {
+            "Ed" = [
+	      {
+	        href = "https://edstem.org/us/dashboard";
+              }
+	    ];
+          }
+          {
+            "Boilerexams" = [
+	      {
+	        href = "https://www.boilerexams.com/";
+              }
+	    ];
+          }
+          {
+            "Deepseek" = [
+	      {
+	        href = "https://www.boilerexams.com/";
               }
 	    ];
           }
