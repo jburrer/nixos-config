@@ -60,6 +60,12 @@
         useACMEHost = "n3mohomelab.xyz";
         locations."/".proxyPass = "http://m3d14:5055";
       };
+      # remote immich access 
+      "immich.n3mohomelab.xyz" = {
+        forceSSL = true;
+        useACMEHost = "n3mohomelab.xyz";
+        locations."/".proxyPass = "http://m3d14:2283";
+      };
       # nest website
       "thenest207.live" = {
         forceSSL = true;

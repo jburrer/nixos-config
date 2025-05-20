@@ -159,30 +159,28 @@
               }
 	    ];
           }
+	];
+	"Work" = [
 	  {
-	    "Work" = [
+	    "MFT" = [
 	      {
-		"MFT" = [
-		  {
-		    href = "https://mft.mfs.polytechnic.purdue.edu/";
-		  }
-		]; 
+	        href = "https://mft.mfs.polytechnic.purdue.edu/";
 	      }
+	    ]; 
+	  }
+	  {
+	    "Humanity" = [
 	      {
-		"Humanity" = [
-		  {
-		    href = "https://purdueuniversity1.humanity.com/app/dashboard/";
-		  }
-		]; 
+	        href = "https://purdueuniversity1.humanity.com/app/dashboard/";
 	      }
+	    ]; 
+	  }
+	  {
+	    "SuccessFactors" = [
 	      {
-		"SuccessFactors" = [
-		  {
-		    href = "https://one.purdue.edu/task/all/successfactors-employee";
-		  }
-		]; 
+	        href = "https://one.purdue.edu/task/all/successfactors-employee";
 	      }
-	    ];
+	    ]; 
 	  }
 	];
       }
