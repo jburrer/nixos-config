@@ -24,10 +24,10 @@
     betterfox.url = "github:HeitorAugustoLN/betterfox-nix";
     musnix.url = "github:musnix/musnix";
     copyparty.url = "github:9001/copyparty";
-    emacs-overlay = {
-      url = "github:nix-community/emacs-overlay";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    #emacs-overlay = {
+    #  url = "github:nix-community/emacs-overlay";
+    #  inputs.nixpkgs.follows = "nixpkgs";
+    #};
     firefox-gnome-theme = {
       url = "github:rafaelmardojai/firefox-gnome-theme";
       flake = false;
@@ -52,7 +52,7 @@
     betterfox,
     musnix,
     copyparty,
-    emacs-overlay,
+    #emacs-overlay,
     firefox-gnome-theme,
     thunderbird-gnome-theme
   }:
@@ -89,7 +89,7 @@
           ./hosts/l4p70p
           (nixConf pkgs)
           ({pkgs, ...}: { nixpkgs.overlays = [
-            emacs-overlay.overlay
+            #emacs-overlay.overlay
             nur.overlays.default
             (final: _: {
               stable = import inputs.nixpkgs-stable {
@@ -123,7 +123,7 @@
           ./hosts/d35k70p
           (nixConf pkgs)
           ({pkgs, ...}: { nixpkgs.overlays = [
-            emacs-overlay.overlay
+            #emacs-overlay.overlay
             nur.overlays.default
             (final: _: {
               stable = import inputs.nixpkgs-stable {

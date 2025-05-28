@@ -573,6 +573,31 @@
     locations."/".proxyPass = "http://localhost:9696";
   };
 
+  # recyclarr 
+  services.recyclarr = {
+    enable = true;
+    user = "media";
+    group = "media";
+    command = "sync";
+    schedule = "daily";
+    configuration = {
+      radarr = [
+        {
+          api_key = "05b2359314844434be39b5e05f4d7195";
+	  base_url = "http//localhost:7878";
+          instance_name = "main";
+        }
+      ];
+      sonarr = [
+        {
+          api_key = "b16bb26b3db641e99403d55c693b8987";
+	  base_url = "http://localhost:8989";
+          instance_name = "main";
+        }
+      ];
+    }; 
+  };
+
   # immich
   services.immich = {
     enable = true;

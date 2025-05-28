@@ -1,37 +1,43 @@
 { pkgs, ... }:
 
-let
-
-emacsPackage = (pkgs.emacsWithPackagesFromUsePackage {
-  config = ./init.el;
-  defaultInitFile = true;
-  package = pkgs.emacs-git-pgtk.override {
-    withTreeSitter = true;
-  };
-  extraEmacsPackages = epkgs: with epkgs; [
-    evil evil-collection general which-key
-    vterm multi-vterm eat
-    org-bullets toc-org org-roam org-roam-ui
-    auctex pdf-tools
-    pass
-    adwaita-dark-theme telephone-line rainbow-delimiters highlight-indent-guides
-    nix-ts-mode
-    quickrun yasnippet dap-mode lsp-treemacs treemacs lsp-ui lsp-mode lsp-java
-    treesit-grammars.with-all-grammars
-  ];
-});
-
-in {
+#let
+#
+#emacsPackage = (pkgs.emacsWithPackagesFromUsePackage {
+#  config = ./init.el;
+#  defaultInitFile = true;
+#  package = pkgs.emacs-git-pgtk.override {
+#    withTreeSitter = true;
+#  };
+#  extraEmacsPackages = epkgs: with epkgs; [
+#    evil evil-collection general which-key
+#    vterm multi-vterm eat
+#    org-bullets toc-org org-roam org-roam-ui
+#    auctex pdf-tools
+#    pass
+#    adwaita-dark-theme telephone-line rainbow-delimiters highlight-indent-guides
+#    nix-ts-mode
+#    quickrun yasnippet dap-mode lsp-treemacs treemacs lsp-ui lsp-mode lsp-java
+#    treesit-grammars.with-all-grammars
+#  ];
+#});
+#
+#in {
+{
 
   services.emacs = {
     enable = true;
+    package = pkgs.emacs-gtk;
     defaultEditor = true;
+    client = {
+      enable = true;
+      arguments = [
+        "-c"
+      ];
+    };
     startWithUserSession = "graphical";
     socketActivation.enable = true;
     package = emacsPackage;
   };
-
-  programs.emacs.enable = true;
 
   home.packages = with pkgs; [ texliveFull texlivePackages.wrapfig2 nixd ];
 
