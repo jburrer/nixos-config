@@ -63,12 +63,12 @@
                     :height 120
                     :weight 'medium)
 (set-face-attribute 'fixed-pitch nil
-                    :font "Cascadia Mono"
+                    :font "Adwaita Mono"
                     :height 110
                     :weight 'medium)
 (set-face-attribute 'font-lock-comment-face nil :slant 'italic)
 (set-face-attribute 'font-lock-keyword-face nil :slant 'italic)
-(add-to-list 'default-frame-alist '(font . "Cascadia Mono-11"))
+(add-to-list 'default-frame-alist '(font . "Adwaita Mono-11"))
 
 (setq frame-resize-pixelwise t)
 (add-to-list 'default-frame-alist '(internal-border-width . 10))
