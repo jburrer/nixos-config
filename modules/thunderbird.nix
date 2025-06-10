@@ -9,8 +9,7 @@ let
   '';
 in {
 
-  home.file.".thunderbird/${osConfig.username}/chrome/thunderbird-gnome-theme".source =
-    thunderbird-gnome-theme;
+  home.file.".thunderbird/${osConfig.username}/chrome/thunderbird-gnome-theme".source = thunderbird-gnome-theme;
 
   programs.thunderbird = {
     enable = true;
@@ -27,6 +26,7 @@ in {
         @import "thunderbird-gnome-theme/userContent.css";
       '';
     };
+
   };
 
   systemd.user.services."thunderbird-daemon" = {
@@ -39,6 +39,57 @@ in {
       Type = "simple";
       ExecStart = "${lib.getExe thunderbirdDaemonShellScript}";
     };
+  };
+
+  accounts.email.accounts = {
+
+    "jburrer@purdue.edu" = {
+      primary = true;
+      address = "jburrer@purdue.edu";
+      userName = "jburrer@purdue.edu";
+      realName = "Jonathan Burrer";
+      flavor = "outlook.office365.com";
+      imap = {
+        host = "outlook.office365.com";
+        port = 993;
+        tls.enable = true;
+      };
+      smtp = {
+        host = "smtp.office365.com";
+        port = 587;
+        tls.useStartTls= true;
+      };
+      thunderbird = {
+        enable = true;
+        settings = id: {
+          "mail.smtpserver.smtp_${id}.authMethod" = 10;
+          "mail.server.server_${id}.authMethod" = 10;
+        };
+      };
+    };
+
+    "n3mo@startmail.com" = {
+      address = "n3mo@startmail.com";
+      thunderbird.enable = true;
+      userName = "n3mo@startmail.com";
+      passwordCommand = """
+        pass personal/startmail.com | \
+        grep ${osConfig.hostname} | \
+        awf -F': ' '{print $2}'
+      """;
+      realName = "n3mo";
+      imap = {
+        host = "imap.startmail.com";
+        port = 993;
+        tls.enable = true;
+      };
+      smtp = {
+        host = "smtp.startmail.com";
+        port = 465;
+        tls.enable = true;
+      };
+    };
+
   };
 
 }

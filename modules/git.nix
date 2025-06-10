@@ -42,7 +42,7 @@ in
           };
           personal = {
             name = "n3mo";
-            email = "n3mo@no.one";
+            email = "n3mo@startmail.com";
             signingkey = "0F0B80DCA5FC0EE6";
           };
         };

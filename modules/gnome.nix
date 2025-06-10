@@ -69,28 +69,23 @@
       enable = true;
       update.auto.enable = true;
       packages = [
-        "io.github.celluloid_player.Celluloid"
         "org.gimp.GIMP"
-        "app.bluebubbles.BlueBubbles"
+        "page.tesk.Refine"
+        "app.devsuite.Ptyxis"
+        "io.github.celluloid_player.Celluloid"
       ];
     };
 
-    xdg.enable = true;
-
-    fonts.fontconfig.enable = true;
-
     home.packages = (with pkgs; [
-      deploy-rs pass wl-clipboard
+      pass wl-clipboard dconf2nix
       morewaita-icon-theme adwaita-fonts adw-gtk3
-      gnome-tweaks dconf2nix ptyxis
     ]) ++ (with pkgs.gnomeExtensions; [
       paperwm blur-my-shell rounded-window-corners-reborn
       caffeine tailscale-qs
     ]);
 
-    # disable extension version validation to let gsconnect work
-    # hopefully remove this soon when its updated
-    dconf.settings."org.gnome.shell"."disable-extension.version.validation" = true;
+    xdg.enable = true;
+    fonts.fontconfig.enable = true;
 
   };
 

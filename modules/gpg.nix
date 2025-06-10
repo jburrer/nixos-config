@@ -10,7 +10,10 @@
 
   config = {
 
-    programs.gpg.enable = true;
+    programs.gpg = {
+      enable = true;
+      settings.keyserver = "hkps://keys.openpgp.org";
+    };
 
     services.gpg-agent = {
       enable = true;

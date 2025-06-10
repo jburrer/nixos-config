@@ -102,8 +102,6 @@
 
     services.flatpak.packages = [
       "org.libreoffice.LibreOffice"
-      "com.github.johnfactotum.Foliate"
-      "com.jeffser.Alpaca"
       "org.gnome.Lollypop"
       "app.drey.EarTag"
       "org.torproject.torbrowser-launcher"
