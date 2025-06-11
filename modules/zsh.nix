@@ -84,7 +84,7 @@ in {
         }
       ];
       syntaxHighlighting.enable = true;
-      initExtra = extraZshConfig;
+      initContent = extraZshConfig;
     };
 
     direnv = {

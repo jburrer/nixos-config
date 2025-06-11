@@ -18,10 +18,10 @@
     services.gpg-agent = {
       enable = true;
       enableSshSupport = true;
-      pinentryPackage = osConfig.pinentryPackage;
+      pinentry.package = osConfig.pinentryPackage;
       sshKeys = [
-        "7EAB46835347B4F951790A55E7BC6E0CE03B6A23"
-        "B670794B2AE2CD76555645219D6767A7188CA08F"
+        "D1957E7F42F26CFF3ABE6E85E0D1D9CA823FC878"
+        "0F3652794185092A050DD6C37A7A3AC17B8B5A89"
       ];
     };
 
