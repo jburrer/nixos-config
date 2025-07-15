@@ -18,13 +18,11 @@
 
   # gnome
   services = {
-    xserver = {
-      enable = true;
-      displayManager.gdm.enable = true;
-      desktopManager.gnome.enable = true;
-      excludePackages = [ pkgs.xterm ];
+    desktopManager.gnome.enable = true;
+    displayManager = {
+      gdm.enable = true;
+      defaultSession = "gnome";
     };
-    displayManager.defaultSession = "gnome";
     dbus.packages = [ pkgs.dconf pkgs.gcr ];
     udev.packages = [ pkgs.gnome-settings-daemon ];
     flatpak.enable = true;

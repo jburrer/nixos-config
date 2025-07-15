@@ -25,6 +25,16 @@
       nvidiaSettings = false;
     };
 
+    #security.lsm = lib.mkForce [ ]; # workaround while podman's broken for distrobox
+    virtualisation.podman = {
+      enable = true;
+      dockerCompat = true;
+    };
+
+    services.dbus.enable = true;
+    services.dbus.packages = [ pkgs.dconf ];
+    programs.dconf.enable = true;
+
     home-manager.users.${config.username} = {
 
       # steam flatpak
@@ -32,6 +42,7 @@
         "com.valvesoftware.Steam" 
         "io.github.Foldex.AdwSteamGtk" 
         "de.haeckerfelix.Fragments"
+        "page.kramo.Cartridges"
       ];
 
       home.packages = with pkgs; [

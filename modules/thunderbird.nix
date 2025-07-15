@@ -90,6 +90,35 @@ in {
       };
     };
 
+    "thenestvenue207@gmail.com" = {
+      address = "thenestvenue207@gmail.com";
+      thunderbird.enable = true;
+      userName = "thenestvenue207@gmail.com";
+      flavor = "gmail.com";
+      #passwordCommand = """
+      #  pass personal/nest/gmail.com | \
+      #  grep ${osConfig.hostname} | \
+      #  awf -F': ' '{print $2}'
+      #""";
+      realName = "Johnny Burrer";
+      #imap = {
+      #  host = "imap.startmail.com";
+      #  port = 993;
+      #  tls.enable = true;
+      #};
+      #smtp = {
+      #  host = "smtp.startmail.com";
+      #  port = 465;
+      #  tls.enable = true;
+      #};
+      thunderbird = {
+        settings = id: {
+          "mail.smtpserver.smtp_${id}.authMethod" = 10;
+          "mail.server.server_${id}.authMethod" = 10;
+        };
+      };
+    };
+
   };
 
 }

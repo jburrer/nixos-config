@@ -134,7 +134,7 @@
         userChrome = ''
           @import "firefox-gnome-theme/userChrome.css";
           * {
-            font-family: Cantarell !important;
+            font-family: Adwaita Sans !important;
           }
           #urlbar {
             font-weight: bold !important;
