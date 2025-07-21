@@ -63,7 +63,12 @@
       color = "neutral";
       headerStyle = "clean";
       layout = [ 
-        #{ "School" = {}; }
+        {
+          "School" = {
+            style = "row";
+            columns = 3;
+          };
+        }
 	#{ "Homelab" = {}; }
         {
 	  "Media & Requests" = {
@@ -155,7 +160,7 @@
           {
             "Deepseek" = [
 	      {
-	        href = "https://www.boilerexams.com/";
+	        href = "https://chat.deepseek.com/";
               }
 	    ];
           }
