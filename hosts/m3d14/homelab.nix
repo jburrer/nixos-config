@@ -68,6 +68,8 @@
             style = "column";
             initiallyCollapsed = true;
           };
+        }
+        {
           "Work" = {
             style = "column";
             initiallyCollapsed = true;
