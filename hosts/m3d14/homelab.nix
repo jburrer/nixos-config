@@ -550,6 +550,33 @@
     locations."/".proxyPass = "http://localhost:5232";
   };
 
+  # traccar
+
+#docker run \
+#--name traccar \
+#--hostname traccar \
+#--detach --restart unless-stopped \
+#--publish 80:8082 \
+#--publish 5000-5300:5000-5300 \
+#--publish 5000-5300:5000-5300/udp \
+
+  virtualisation.oci-containers.containers."traccar" = {
+    image="traccar/traccar:latest";
+    ports = [
+      "8083:8082"
+      "5000-5300:5000-5300"
+      "5000-5300:5000-5300/udp"
+    ];
+    volumes = [
+      "/srv/state/traccar:/opt/traccar"
+    ];
+  };
+  services.nginx.virtualHosts."traccar.local.n3mohomelab.xyz" = {
+    forceSSL = true;
+    useACMEHost = "local.n3mohomelab.xyz";
+    locations."/".proxyPass = "http://localhost:8083";
+  };
+
   # searxng 
   services.searx = {
     enable = true;
