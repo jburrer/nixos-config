@@ -82,7 +82,7 @@
           };
         }
         {
-          "Other" = {
+          "Misc" = {
             style = "column";
             initiallyCollapsed = true;
           };
@@ -262,7 +262,7 @@
         ];
       }
       {
-        "Other" = [
+        "Misc" = [
           {
             "BK Management" = [
               {
@@ -551,22 +551,22 @@
   };
 
   # traccar
-  #virtualisation.oci-containers.containers."traccar" = {
-  #  image="traccar/traccar:latest";
-  #  ports = [
-  #    "8083:8082"
-  #    "5000-5300:5000-5300"
-  #    "5000-5300:5000-5300/udp"
-  #  ];
-  #  volumes = [
-  #    "/srv/state/traccar:/opt/traccar"
-  #  ];
-  #};
-  #services.nginx.virtualHosts."traccar.local.n3mohomelab.xyz" = {
-  #  forceSSL = true;
-  #  useACMEHost = "local.n3mohomelab.xyz";
-  #  locations."/".proxyPass = "http://localhost:8083";
-  #};
+  virtualisation.oci-containers.containers."traccar" = {
+    image="traccar/traccar:latest";
+    ports = [
+      "8083:8082"
+      "5000-5300:5000-5300"
+      "5000-5300:5000-5300/udp"
+    ];
+    volumes = [
+      "/srv/state/traccar:/opt/traccar"
+    ];
+  };
+  services.nginx.virtualHosts."traccar.local.n3mohomelab.xyz" = {
+    forceSSL = true;
+    useACMEHost = "local.n3mohomelab.xyz";
+    locations."/".proxyPass = "http://localhost:8083";
+  };
 
   # searxng 
   services.searx = {
