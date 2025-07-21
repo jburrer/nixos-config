@@ -64,27 +64,29 @@
       headerStyle = "clean";
       layout = [ 
         {
+          "BookmarksBlock" = {
+            style = "row";
+            columns = 4;
+          };
+        }
+        {
           "School" = {
             style = "column";
-            initiallyCollapsed = true;
           };
         }
         {
           "Work" = {
             style = "column";
-            initiallyCollapsed = true;
           };
         }
         {
           "Homelab" = {
             style = "column";
-            initiallyCollapsed = true;
           };
         }
         {
           "Misc" = {
             style = "column";
-            initiallyCollapsed = true;
           };
         }
         {
@@ -131,182 +133,188 @@
     ];
     bookmarks = [
       {
-        "School" = [
+        "BookmarksBlock" = [
           {
-            "Brightspace" = [
-	      {
-	        href = "https://purdue.brightspace.com/d2l/login";
-              }
-	    ];
-          }
-          {
-            "MyPurdue" = [
-	      {
-	        href = "https://wl.mypurdue.purdue.edu/";
-              }
-	    ];
-          }
-          {
-            "Gradescope" = [
-	      {
-	        href = "https://www.gradescope.com/";
-              }
-	    ];
-          }
-          {
-            "Pearson" = [
-	      {
-	        href = "https://mycourses.pearson.com/course-home#/tab/active";
-              }
-	    ];
-          }
-          {
-            "Ed" = [
-	      {
-	        href = "https://edstem.org/us/dashboard";
-              }
-	    ];
-          }
-          {
-            "Boilerexams" = [
-	      {
-	        href = "https://www.boilerexams.com/";
-              }
-	    ];
-          }
-          {
-            "Deepseek" = [
-	      {
-	        href = "https://chat.deepseek.com/";
-              }
-	    ];
-          }
-	];
-      }
-      {
-	"Work" = [
-	  {
-	    "MFT" = [
-	      {
-	        href = "https://mft.mfs.polytechnic.purdue.edu/";
-	      }
-	    ]; 
-	  }
-	  {
-	    "Humanity" = [
-	      {
-	        href = "https://purdueuniversity1.humanity.com/app/dashboard/";
-	      }
-	    ]; 
-	  }
-	  {
-	    "SuccessFactors" = [
-	      {
-	        href = "https://one.purdue.edu/task/all/successfactors-employee";
-	      }
-	    ]; 
-	  }
-	];
-      }
-      {
-        "Homelab" = [
-          {
-            "Vultr" = [
+            "School" = [
               {
-                href = "https://my.vultr.com/";
+                "Brightspace" = [
+                  {
+                    href = "https://purdue.brightspace.com/d2l/login";
+                  }
+                ];
+              }
+              {
+                "MyPurdue" = [
+                  {
+                    href = "https://wl.mypurdue.purdue.edu/";
+                  }
+                ];
+              }
+              {
+                "Gradescope" = [
+                  {
+                    href = "https://www.gradescope.com/";
+                  }
+                ];
+              }
+              {
+                "Pearson" = [
+                  {
+                    href = "https://mycourses.pearson.com/course-home#/tab/active";
+                  }
+                ];
+              }
+              {
+                "Ed" = [
+                  {
+                    href = "https://edstem.org/us/dashboard";
+                  }
+                ];
+              }
+              {
+                "Boilerexams" = [
+                  {
+                    href = "https://www.boilerexams.com/";
+                  }
+                ];
+              }
+              {
+                "Deepseek" = [
+                  {
+                    href = "https://chat.deepseek.com/";
+                  }
+                ];
               }
             ];
           }
           {
-            "Namecheap" = [
+            "Work" = [
               {
-                href = "https://ap.www.namecheap.com/";
+                "MFT" = [
+                  {
+                    href = "https://mft.mfs.polytechnic.purdue.edu/";
+                  }
+                ]; 
+              }
+              {
+                "Humanity" = [
+                  {
+                    href = "https://purdueuniversity1.humanity.com/app/dashboard/";
+                  }
+                ]; 
+              }
+              {
+                "SuccessFactors" = [
+                  {
+                    href = "https://one.purdue.edu/task/all/successfactors-employee";
+                  }
+                ]; 
               }
             ];
           }
           {
-            "FreeDNS" = [
+            "Homelab" = [
               {
-                href = "https://freedns.afraid.org/";
+                "Vultr" = [
+                  {
+                    href = "https://my.vultr.com/";
+                  }
+                ];
+              }
+              {
+                "Namecheap" = [
+                  {
+                    href = "https://ap.www.namecheap.com/";
+                  }
+                ];
+              }
+              {
+                "FreeDNS" = [
+                  {
+                    href = "https://freedns.afraid.org/";
+                  }
+                ];
+              }
+              {
+                "Tailscale" = [
+                  {
+                    href = "https://login.tailscale.com/login?next_url=%2Fwelcome";
+                  }
+                ];
+              }
+              {
+                "Mullvad" = [
+                  {
+                    href = "https://mullvad.net/en/account";
+                  }
+                ];
+              }
+              {
+                "NZBFinder" = [
+                  {
+                    href = "https://nzbfinder.ws/";
+                  }
+                ];
+              }
+              {
+                "OpenSubtitles" = [
+                  {
+                    href = "https://www.opensubtitles.com/";
+                  }
+                ];
               }
             ];
           }
           {
-            "Tailscale" = [
+            "Misc" = [
               {
-                href = "https://login.tailscale.com/login?next_url=%2Fwelcome";
+                "BK Management" = [
+                  {
+                    href="https://bkmgmt.appfolio.com/connect/users/sign_in";
+                  }
+                ];
               }
-            ];
-          }
-          {
-            "Mullvad" = [
               {
-                href = "https://mullvad.net/en/account";
+                "XFinity" = [
+                  {
+                    href="https://www.xfinity.com/auth";
+                  }
+                ];
               }
-            ];
-          }
-          {
-            "NZBFinder" = [
               {
-                href = "https://nzbfinder.ws/";
+                "Nest Google Drive" = [
+                  {
+                    href="https://drive.google.com/drive/folders/1eIce57HC0UjhaLZxHRgjpywna1UrCdyX?usp=drive_link";
+                  }
+                ];
               }
-            ];
-          }
-          {
-            "OpenSubtitles" = [
               {
-                href = "https://www.opensubtitles.com/";
+                "YDSA Google Drive" = [
+                  {
+                    href="https://drive.google.com/drive/folders/1mkJ45FK3aNnQ9_azKFORF9J9PcKVxWWe";
+                  }
+                ];
+              }
+              {
+                "YDSA List Work" = [
+                  {
+                    href="https://docs.google.com/spreadsheets/d/1qHGTbTrxVpzbJhj36niVEvdDHf426U9Qsbpo2R2DNuE/edit?gid=929027438#gid=929027438";
+                  }
+                ];
+              }
+              {
+                "Org Roam" = [
+                  {
+                    href="http://localhost:35901/";
+                  }
+                ];
               }
             ];
           }
         ];
       }
-      {
-        "Misc" = [
-          {
-            "BK Management" = [
-              {
-                href="https://bkmgmt.appfolio.com/connect/users/sign_in";
-              }
-            ];
-          }
-          {
-            "XFinity" = [
-              {
-                href="https://www.xfinity.com/auth";
-              }
-            ];
-          }
-          {
-            "Nest Google Drive" = [
-              {
-                href="https://drive.google.com/drive/folders/1eIce57HC0UjhaLZxHRgjpywna1UrCdyX?usp=drive_link";
-              }
-            ];
-          }
-          {
-            "YDSA Google Drive" = [
-              {
-                href="https://drive.google.com/drive/folders/1mkJ45FK3aNnQ9_azKFORF9J9PcKVxWWe";
-              }
-            ];
-          }
-          {
-            "YDSA List Work" = [
-              {
-                href="https://docs.google.com/spreadsheets/d/1qHGTbTrxVpzbJhj36niVEvdDHf426U9Qsbpo2R2DNuE/edit?gid=929027438#gid=929027438";
-              }
-            ];
-          }
-          {
-            "Org Roam" = [
-              {
-                href="http://localhost:35901/";
-              }
-            ];
-          }
-        ];
-      }
+    ];
+      
     ];
     services = [
       {
