@@ -76,6 +76,12 @@
           };
         }
         {
+          "Homelab" = {
+            style = "column";
+            initiallyCollapsed = true;
+          };
+        }
+        {
 	  "Media & Requests" = {
             style = "row";
             columns = 3;
@@ -195,6 +201,45 @@
 	    ]; 
 	  }
 	];
+      }
+      {
+        "Homelab" = [
+          {
+            "Vultr" = [
+              href = "https://my.vultr.com/";
+            ];
+          }
+          {
+            "Namecheap" = [
+              href = "https://ap.www.namecheap.com/";
+            ];
+          }
+          {
+            "FreeDNS" = [
+              href = "https://freedns.afraid.org/";
+            ];
+          }
+          {
+            "Tailscale" = [
+              href = "https://login.tailscale.com/login?next_url=%2Fwelcome";
+            ];
+          }
+          {
+            "Mullvad" = [
+              href = "https://mullvad.net/en/account";
+            ];
+          }
+          {
+            "NZBFinder" = [
+              href = "https://nzbfinder.ws/";
+            ];
+          }
+          {
+            "OpenSubtitles" = [
+              href = "https://www.opensubtitles.com/";
+            ];
+          }
+        ]
       }
     ];
     services = [
