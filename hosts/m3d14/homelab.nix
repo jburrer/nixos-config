@@ -82,6 +82,12 @@
           };
         }
         {
+          "Other" = {
+            style = "column";
+            initiallyCollapsed = true;
+          };
+        }
+        {
 	  "Media & Requests" = {
             style = "row";
             columns = 3;
@@ -250,6 +256,52 @@
             "OpenSubtitles" = [
               {
                 href = "https://www.opensubtitles.com/";
+              }
+            ];
+          }
+        ];
+      }
+      {
+        "Other" = [
+          {
+            "BK Management" = [
+              {
+                href="https://bkmgmt.appfolio.com/connect/users/sign_in";
+              }
+            ];
+          }
+          {
+            "XFinity" = [
+              {
+                href="https://www.xfinity.com/auth";
+              }
+            ];
+          }
+          {
+            "Nest Google Drive" = [
+              {
+                href="https://drive.google.com/drive/folders/1eIce57HC0UjhaLZxHRgjpywna1UrCdyX?usp=drive_link";
+              }
+            ];
+          }
+          {
+            "YDSA Google Drive" = [
+              {
+                href="https://drive.google.com/drive/folders/1mkJ45FK3aNnQ9_azKFORF9J9PcKVxWWe";
+              }
+            ];
+          }
+          {
+            "YDSA List Work" = [
+              {
+                href="https://docs.google.com/spreadsheets/d/1qHGTbTrxVpzbJhj36niVEvdDHf426U9Qsbpo2R2DNuE/edit?gid=929027438#gid=929027438";
+              }
+            ];
+          }
+          {
+            "Org Roam" = [
+              {
+                href="http://localhost:35901/";
               }
             ];
           }
