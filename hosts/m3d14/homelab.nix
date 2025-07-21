@@ -314,8 +314,6 @@
         ];
       }
     ];
-      
-    ];
     services = [
       {
       	"Media & Requests" = [
