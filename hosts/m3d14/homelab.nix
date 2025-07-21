@@ -73,7 +73,6 @@
             initiallyCollapsed = true;
           };
         }
-	#{ "Homelab" = {}; }
         {
 	  "Media & Requests" = {
             style = "row";
@@ -169,6 +168,8 @@
 	    ];
           }
 	];
+      }
+      {
 	"Work" = [
 	  {
 	    "MFT" = [
