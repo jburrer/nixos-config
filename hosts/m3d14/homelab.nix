@@ -65,8 +65,12 @@
       layout = [ 
         {
           "School" = {
-            style = "row";
-            columns = 3;
+            style = "column";
+            initiallyCollapsed = true;
+          };
+          "Work" = {
+            style = "column";
+            initiallyCollapsed = true;
           };
         }
 	#{ "Homelab" = {}; }
