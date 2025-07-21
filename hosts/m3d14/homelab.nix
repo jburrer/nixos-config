@@ -206,37 +206,51 @@
         "Homelab" = [
           {
             "Vultr" = [
-              href = "https://my.vultr.com/";
+              {
+                href = "https://my.vultr.com/";
+              }
             ];
           }
           {
             "Namecheap" = [
-              href = "https://ap.www.namecheap.com/";
+              {
+                href = "https://ap.www.namecheap.com/";
+              }
             ];
           }
           {
             "FreeDNS" = [
-              href = "https://freedns.afraid.org/";
+              {
+                href = "https://freedns.afraid.org/";
+              }
             ];
           }
           {
             "Tailscale" = [
-              href = "https://login.tailscale.com/login?next_url=%2Fwelcome";
+              {
+                href = "https://login.tailscale.com/login?next_url=%2Fwelcome";
+              }
             ];
           }
           {
             "Mullvad" = [
-              href = "https://mullvad.net/en/account";
+              {
+                href = "https://mullvad.net/en/account";
+              }
             ];
           }
           {
             "NZBFinder" = [
-              href = "https://nzbfinder.ws/";
+              {
+                href = "https://nzbfinder.ws/";
+              }
             ];
           }
           {
             "OpenSubtitles" = [
-              href = "https://www.opensubtitles.com/";
+              {
+                href = "https://www.opensubtitles.com/";
+              }
             ];
           }
         ]
