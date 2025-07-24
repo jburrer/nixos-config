@@ -4,7 +4,7 @@
     ./hardware-configuration.nix
     ../../modules
     ./homelab.nix
-    #./docker-osx.nix
+    ./homepage.nix
   ];
 
   hostname = "m3d14";
