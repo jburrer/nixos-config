@@ -413,13 +413,6 @@
             };
           }
           {
-            "Calibre" = {
-              description = "EBook Server";
-              icon = "calibre.png";
-              href = "https://calibre.local.n3mohomelab.xyz";
-            };
-          }
-          {
             "Calibre Web" = {
               description = "EReader";
               icon = "calibre-web.png";
@@ -430,6 +423,13 @@
                 username = "n3mo";
                 password = "J0hn:0316";
               };
+            };
+          }
+          {
+            "Calibre" = {
+              description = "EBook Server";
+              icon = "calibre.png";
+              href = "https://calibre.local.n3mohomelab.xyz";
             };
           }
         ];
