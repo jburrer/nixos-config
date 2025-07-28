@@ -5,6 +5,7 @@
     ../../modules
     ./homelab.nix
     ./homepage.nix
+    ./lidarr.nix
   ];
 
   hostname = "m3d14";

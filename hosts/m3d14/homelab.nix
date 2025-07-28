@@ -208,6 +208,19 @@
     locations."/".proxyPass = "http://localhost:8686";
   };
 
+  # readarr
+  services.readarr = {
+    enable = true;
+    dataDir = "/srv/state/readarr";
+    user = "media";
+    group = "media";
+  };
+  services.nginx.virtualHosts."readarr.local.n3mohomelab.xyz" = {
+    forceSSL = true;
+    useACMEHost = "local.n3mohomelab.xyz";
+    locations."/".proxyPass = "http://localhost:8787";
+  };
+
   # bazarr
   services.bazarr = {
     enable = true;
