@@ -70,6 +70,12 @@
             columns = 5;
           };
 	}
+        {
+	  "Books" = {
+            style = "row";
+            columns = 3;
+          };
+        }
 	{
           "Download Clients" = {
             style = "row";
@@ -387,6 +393,42 @@
                 type = "prowlarr";
                 url = "https://prowlarr.local.n3mohomelab.xyz";
                 key = "bfa27d6ebfab4a50b10d344ef2a942e1";
+              };
+            };
+          }
+        ];
+      }
+      {
+        "Books" = [
+          {
+            "Readarr" = {
+              description = "EBook Management";
+              icon = "readarr.png";
+              href = "https://readarr.local.n3mohomelab.xyz";
+              widget = {
+                type = "readarr";
+                url = "https://readarr.local.n3mohomelab.xyz";
+                key = "504b20d276e94d27a55aabefa03a4491";
+              };
+            };
+          }
+          {
+            "Calibre" = {
+              description = "EBook Server";
+              icon = "calibre.png";
+              href = "https://calibre.local.n3mohomelab.xyz";
+            };
+          }
+          {
+            "Calibre Web" = {
+              description = "EReader";
+              icon = "calibre-web.png";
+              href = "https://calibre-web.local.n3mohomelab.xyz";
+              widget = {
+                type = "calibreweb";
+                url = "https://calibre-web.local.n3mohomelab.xyz";
+                username = "n3mo";
+                password = "J0hn:0316";
               };
             };
           }
