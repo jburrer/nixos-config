@@ -214,6 +214,7 @@
     dataDir = "/srv/state/readarr";
     user = "media";
     group = "media";
+    settings.AuthenticationMethod = "none";
   };
   services.nginx.virtualHosts."readarr.local.n3mohomelab.xyz" = {
     forceSSL = true;
