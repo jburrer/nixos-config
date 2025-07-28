@@ -220,11 +220,12 @@
     useACMEHost = "local.n3mohomelab.xyz";
     locations."/".proxyPass = "http://localhost:8787";
   };
-  services.calibre-server= {
+  services.calibre-server = {
     enable = true;
     user = "media";
     group = "media";
     port = 9081;
+    libraries = [ "/srv/storage/media/books" ];
   };
   services.nginx.virtualHosts."calibre.local.n3mohomelab.xyz" = {
     forceSSL = true;
