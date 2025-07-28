@@ -225,6 +225,10 @@
     user = "media";
     group = "media";
     port = 9081;
+    auth = {
+      enable = true;
+      userDb = "/srv/storage/media/books/user.sqlite"; 
+    };
     libraries = [ "/srv/storage/media/books" ];
   };
   services.nginx.virtualHosts."calibre.local.n3mohomelab.xyz" = {
