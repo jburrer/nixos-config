@@ -214,12 +214,22 @@
     dataDir = "/srv/state/readarr";
     user = "media";
     group = "media";
-    settings.AuthenticationMethod = "none";
   };
   services.nginx.virtualHosts."readarr.local.n3mohomelab.xyz" = {
     forceSSL = true;
     useACMEHost = "local.n3mohomelab.xyz";
     locations."/".proxyPass = "http://localhost:8787";
+  };
+  services.calibre-server= {
+    enable = true;
+    user = "media";
+    group = "media";
+    port = 9081;
+  };
+  services.nginx.virtualHosts."calibre.local.n3mohomelab.xyz" = {
+    forceSSL = true;
+    useACMEHost = "local.n3mohomelab.xyz";
+    locations."/".proxyPass = "http://localhost:9081";
   };
 
   # bazarr
