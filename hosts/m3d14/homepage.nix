@@ -29,8 +29,7 @@
       description = "landing page for all my services :P";
       background = {
         image = "/images/wallpaper.jpg";
-	cardBlur = "sm";
-	#blur = "sm";
+	blur = "sm";
 	saturate = 50;
 	brightness = 75;
 	opacity = 50;
