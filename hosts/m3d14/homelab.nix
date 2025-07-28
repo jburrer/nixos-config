@@ -236,6 +236,17 @@
     useACMEHost = "local.n3mohomelab.xyz";
     locations."/".proxyPass = "http://localhost:9081";
   };
+  services.calibre-web = {
+    enable = true;
+    user = "media";
+    group = "media";
+    options.calibreLibrary = "/srv/storage/media/books";
+  };
+  services.nginx.virtualHosts."calibre-web.local.n3mohomelab.xyz" = {
+    forceSSL = true;
+    useACMEHost = "local.n3mohomelab.xyz";
+    locations."/".proxyPass = "http://localhost:8083";
+  };
 
   # bazarr
   services.bazarr = {
