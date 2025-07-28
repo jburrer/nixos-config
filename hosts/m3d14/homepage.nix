@@ -29,7 +29,8 @@
       description = "landing page for all my services :P";
       background = {
         image = "/images/wallpaper.jpg";
-	blur = "sm";
+	cardBlur = "sm";
+	#blur = "sm";
 	saturate = 50;
 	brightness = 75;
 	opacity = 50;
@@ -473,10 +474,15 @@
       {
         "Other" = [
           {
-            "SearXNG" = {
-              description = "Search Engine";
-              icon = "searx.png";
-              href = "https://searx.local.n3mohomelab.xyz";
+            "Gotify" = {
+              description = "Notifications";
+              icon = "gotify.png";
+              href = "https://gotify.local.n3mohomelab.xyz";
+              widget = {
+                type = "gotify";
+                url = "https://gotify.local.n3mohomelab.xyz";
+                key = "CGX6CNj6cdM_X8V";
+              };
             };
           }
           {
@@ -487,15 +493,10 @@
             };
           }
           {
-            "Gotify" = {
-              description = "Notifications";
-              icon = "gotify.png";
-              href = "https://gotify.local.n3mohomelab.xyz";
-              widget = {
-                type = "gotify";
-                url = "https://gotify.local.n3mohomelab.xyz";
-                key = "CGX6CNj6cdM_X8V";
-              };
+            "SearXNG" = {
+              description = "Search Engine";
+              icon = "searx.png";
+              href = "https://searx.local.n3mohomelab.xyz";
             };
           }
         ];
