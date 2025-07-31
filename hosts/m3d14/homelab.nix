@@ -8,7 +8,7 @@
   };
 
   # acme wildcard certificate
-  security.acme = {sudo netstat -tulpn
+  security.acme = {
     acceptTerms = true;
     defaults.email = "jburrer@purdue.edu";
     certs."local.n3mohomelab.xyz" = {
