@@ -104,6 +104,7 @@
       "org.libreoffice.LibreOffice"
       "org.gnome.Lollypop"
       "app.drey.EarTag"
+      "org.gnome.Polari"
       "org.torproject.torbrowser-launcher"
       "org.getmonero.Monero"
     ];

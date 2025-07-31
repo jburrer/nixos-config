@@ -1,7 +1,5 @@
 { pkgs, ... }: {
 
-
-
   # enable nginx for proxying
   services.nginx = {
     enable = true;
@@ -10,7 +8,7 @@
   };
 
   # acme wildcard certificate
-  security.acme = {
+  security.acme = {sudo netstat -tulpn
     acceptTerms = true;
     defaults.email = "jburrer@purdue.edu";
     certs."local.n3mohomelab.xyz" = {
@@ -64,22 +62,22 @@
   };
 
   # traccar
-  virtualisation.oci-containers.containers."traccar" = {
-    image="traccar/traccar:latest";
-    ports = [
-      "8083:8082"
-      "5000-5300:5000-5300"
-      "5000-5300:5000-5300/udp"
-    ];
-    volumes = [
-      "/srv/state/traccar:/opt/traccar"
-    ];
-  };
-  services.nginx.virtualHosts."traccar.local.n3mohomelab.xyz" = {
-    forceSSL = true;
-    useACMEHost = "local.n3mohomelab.xyz";
-    locations."/".proxyPass = "http://localhost:8083";
-  };
+  #virtualisation.oci-containers.containers."traccar" = {
+  #  image="traccar/traccar:latest";
+  #  ports = [
+  #    "8083:8082"
+  #    "5000-5300:5000-5300"
+  #    "5000-5300:5000-5300/udp"
+  #  ];
+  #  volumes = [
+  #    "/srv/state/traccar:/opt/traccar"
+  #  ];
+  #};
+  #services.nginx.virtualHosts."traccar.local.n3mohomelab.xyz" = {
+  #  forceSSL = true;
+  #  useACMEHost = "local.n3mohomelab.xyz";
+  #  locations."/".proxyPass = "http://localhost:8083";
+  #};
 
   # searxng 
   services.searx = {
@@ -279,14 +277,14 @@
       radarr = [
         {
           api_key = "05b2359314844434be39b5e05f4d7195";
-	  base_url = "http//localhost:7878";
+          base_url = "http//localhost:7878";
           instance_name = "main";
         }
       ];
       sonarr = [
         {
           api_key = "b16bb26b3db641e99403d55c693b8987";
-	  base_url = "http://localhost:8989";
+          base_url = "http://localhost:8989";
           instance_name = "main";
         }
       ];
