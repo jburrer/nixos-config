@@ -207,11 +207,25 @@
   #};
 
   # readarr
-  services.readarr = {
-    enable = true;
-    dataDir = "/srv/state/readarr";
-    user = "media";
-    group = "media";
+  #services.readarr = {
+  #  enable = true;
+  #  dataDir = "/srv/state/readarr";
+  #  user = "media";
+  #  group = "media";
+  #};
+  virtualisation.oci-containers.containers."readarr-ebooks" = {
+    image = "lscr.io/linuxserver/readarr:develop";
+    volumes = [
+      "/srv/state/readarr:/config"
+      "/srv/storage:/storage"
+    ];
+    ports = [
+      "8787:8787"
+    ];
+    environment = {
+      "PUID" = "10000";
+      "PGID" = "10000";
+    };
   };
   services.nginx.virtualHosts."readarr.local.n3mohomelab.xyz" = {
     forceSSL = true;
@@ -316,6 +330,7 @@
       devices = {
         "l4p70p".id = "KGVUOGB-QHWXGNM-HU5FOLN-U6G27HF-TBOIWGF-HFLINIT-CY7KW3L-GAMUVA7";
         "d35k70p".id = "AT4R74X-WFCYYHF-UDWSNSW-E3EAVR4-D3PQAG4-HHWTMNU-4444DTN-OWSS2QR";
+        "ph0n3".id = "6UXKBRR-DEEFFKO-YFD4WTR-EZCVVCN-CXKRVYE-J7D5XOH-HBLODJC-TT3ZVAE";
       };
       folders = {
         "Music" = {
@@ -325,6 +340,10 @@
         "Nest" = {
             path = "/srv/storage/nest";
             devices = [ "d35k70p" ];
+        };
+        "Books" = {
+            path = "/srv/storage/media/books";
+            devices = [ "l4p70p" "ph0n3" ];
         };
       };
       gui.insecureSkipHostcheck = true;
