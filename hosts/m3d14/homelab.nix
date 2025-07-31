@@ -403,9 +403,9 @@
       "/srv/storage/torrents:/downloads"
     ];
     ports = [
-      "9091:9091"
-      "51413:51413"
-      "51413:51413/udp"
+      "8091:9091"
+      "41413:51413"
+      "41413:51413/udp"
     ];
     environment = {
       "PUID" = "10000";
@@ -415,7 +415,7 @@
   services.nginx.virtualHosts."transmission1.local.n3mohomelab.xyz" = {
     forceSSL = true;
     useACMEHost = "local.n3mohomelab.xyz";
-    locations."/".proxyPass = "http://localhost:9091";
+    locations."/".proxyPass = "http://localhost:8091";
   };
 
   # sabnzbd
