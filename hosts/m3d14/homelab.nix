@@ -373,7 +373,7 @@
     ];
   };
 
-  # transmission
+  # transmission (with vpn for public trackers)
   virtualisation.oci-containers.containers."transmission" = {
     image = "lscr.io/linuxserver/transmission:latest";
     volumes = [
@@ -393,6 +393,29 @@
     forceSSL = true;
     useACMEHost = "local.n3mohomelab.xyz";
     locations."/".proxyPass = "http://transmission-container:9091";
+  };
+
+  # transmission (without vpn for private trackers)
+  virtualisation.oci-containers.containers."transmission1" = {
+    image = "lscr.io/linuxserver/transmission:latest";
+    volumes = [
+      "/srv/state/transmission1:/config"
+      "/srv/storage/torrents:/downloads"
+    ];
+    ports = [
+      "9091:9091"
+      "51413:51413"
+      "51413:51413/udp"
+    ];
+    environment = {
+      "PUID" = "10000";
+      "PGID" = "10000";
+    };
+  };
+  services.nginx.virtualHosts."transmission1.local.n3mohomelab.xyz" = {
+    forceSSL = true;
+    useACMEHost = "local.n3mohomelab.xyz";
+    locations."/".proxyPass = "http://localhost:9091";
   };
 
   # sabnzbd
