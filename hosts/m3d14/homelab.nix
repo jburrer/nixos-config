@@ -214,7 +214,7 @@
   #  group = "media";
   #};
   virtualisation.oci-containers.containers."readarr-ebooks" = {
-    image = "lscr.io/linuxserver/readarr:develop";
+    image = "lscr.io/linuxserver/readarr:nightly";
     volumes = [
       "/srv/state/readarr:/config"
       "/srv/storage:/storage"
