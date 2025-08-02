@@ -226,6 +226,7 @@
       "PUID" = "10000";
       "PGID" = "10000";
     };
+    extraOptions = [ "--add-host=host.docker.internal:host-gateway" ];
   };
   services.nginx.virtualHosts."readarr.local.n3mohomelab.xyz" = {
     forceSSL = true;
