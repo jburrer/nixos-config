@@ -136,6 +136,16 @@
     oci-containers.backend = "docker"; 
   };
 
+  system.activationScripts.mkDockerNetwork =
+    let
+      docker = config.virtualisation.oci-containers.backend;
+      dockerBin = "${pkgs.${docker}}/bin/${docker}";
+    in
+      ''
+     ${dockerBin} network inspect medianet >/dev/null 2>&1 || \\
+     ${dockerBin} network create medianet
+     '';
+
   # jellyfin
   services.jellyfin = {
     enable = true;
@@ -226,7 +236,7 @@
       "PUID" = "10000";
       "PGID" = "10000";
     };
-    extraOptions = [ "--add-host=host.docker.internal:host-gateway" ];
+    extraOptions = [ "--network=medianet" ];
   };
   services.nginx.virtualHosts."readarr.local.n3mohomelab.xyz" = {
     forceSSL = true;
@@ -431,6 +441,7 @@
       "PUID" = "10000";
       "PGID" = "10000";
     };
+    extraOptions = [ "--network=medianet" ];
   };
   services.nginx.virtualHosts."transmission1.local.n3mohomelab.xyz" = {
     forceSSL = true;
