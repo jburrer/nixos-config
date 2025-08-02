@@ -260,7 +260,7 @@
       "/srv/storage/media/books:/config"
     ];
     ports = [
-      "8081:9081"
+      "9081:8081"
     ];
     environment = {
       "PUID" = "10000";
