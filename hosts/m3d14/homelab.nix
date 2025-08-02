@@ -243,16 +243,30 @@
     useACMEHost = "local.n3mohomelab.xyz";
     locations."/".proxyPass = "http://localhost:8787";
   };
-  services.calibre-server = {
-    enable = true;
-    user = "media";
-    group = "media";
-    port = 9081;
-    auth = {
-      enable = true;
-      userDb = "/srv/storage/media/books/user.sqlite"; 
+  #services.calibre-server = {
+  #  enable = true;
+  #  user = "media";
+  #  group = "media";
+  #  port = 9081;
+  #  auth = {
+  #    enable = true;
+  #    userDb = "/srv/storage/media/books/user.sqlite"; 
+  #  };
+  #  libraries = [ "/srv/storage/media/books" ];
+  #};
+  virtualisation.oci-containers.containers."calibre" = {
+    image = "lscr.io/linuxserver/calibre:latest";
+    volumes = [
+      "/srv/storage/media/books:/config"
+    ];
+    ports = [
+      "8081:9081"
+    ];
+    environment = {
+      "PUID" = "10000";
+      "PGID" = "10000";
     };
-    libraries = [ "/srv/storage/media/books" ];
+    extraOptions = [ "--network=medianet" ];
   };
   services.nginx.virtualHosts."calibre.local.n3mohomelab.xyz" = {
     forceSSL = true;
