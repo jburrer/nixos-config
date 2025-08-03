@@ -226,7 +226,7 @@
   virtualisation.oci-containers.containers."readarr-ebooks" = {
     image = "lscr.io/linuxserver/readarr:develop";
     volumes = [
-      "/srv/state/readarr:/config"
+      "/srv/state/readarr-ebooks:/config"
       "/srv/storage:/storage"
     ];
     ports = [
@@ -238,10 +238,30 @@
     };
     extraOptions = [ "--network=medianet" ];
   };
-  services.nginx.virtualHosts."readarr.local.n3mohomelab.xyz" = {
+  services.nginx.virtualHosts."readarr-ebooks.local.n3mohomelab.xyz" = {
     forceSSL = true;
     useACMEHost = "local.n3mohomelab.xyz";
     locations."/".proxyPass = "http://localhost:8787";
+  };
+  virtualisation.oci-containers.containers."readarr-audiobooks" = {
+    image = "lscr.io/linuxserver/readarr:develop";
+    volumes = [
+      "/srv/state/readarr-audiobooks:/config"
+      "/srv/storage:/storage"
+    ];
+    ports = [
+      "9797:8787"
+    ];
+    environment = {
+      "PUID" = "10000";
+      "PGID" = "10000";
+    };
+    extraOptions = [ "--network=medianet" ];
+  };
+  services.nginx.virtualHosts."readarr-audiobooks.local.n3mohomelab.xyz" = {
+    forceSSL = true;
+    useACMEHost = "local.n3mohomelab.xyz";
+    locations."/".proxyPass = "http://localhost:9797";
   };
   #services.calibre-server = {
   #  enable = true;
@@ -254,40 +274,40 @@
   #  };
   #  libraries = [ "/srv/storage/media/books" ];
   #};
-  virtualisation.oci-containers.containers."calibre" = {
-    image = "lscr.io/linuxserver/calibre:latest";
-    volumes = [
-      "/srv/state/calibre:/config"
-      "/srv/storage/media/books:/books"
-    ];
-    ports = [
-      "8082:8082"
-      "9081:8081"
-      "9080:8080"
-      "8181:8181"
-    ];
-    environment = {
-      "PUID" = "10000";
-      "PGID" = "10000";
-    };
-    extraOptions = [ "--network=medianet" ];
-  };
-  services.nginx.virtualHosts."calibre.local.n3mohomelab.xyz" = {
-    forceSSL = true;
-    useACMEHost = "local.n3mohomelab.xyz";
-    locations."/".proxyPass = "http://localhost:9081";
-  };
-  services.calibre-web = {
-    enable = true;
-    user = "media";
-    group = "media";
-    options.calibreLibrary = "/srv/storage/media/books";
-  };
-  services.nginx.virtualHosts."calibre-web.local.n3mohomelab.xyz" = {
-    forceSSL = true;
-    useACMEHost = "local.n3mohomelab.xyz";
-    locations."/".proxyPass = "http://localhost:8083";
-  };
+  #virtualisation.oci-containers.containers."calibre" = {
+  #  image = "lscr.io/linuxserver/calibre:latest";
+  #  volumes = [
+  #    "/srv/state/calibre:/config"
+  #    "/srv/storage/media/books:/books"
+  #  ];
+  #  ports = [
+  #    "8082:8082"
+  #    "9081:8081"
+  #    "9080:8080"
+  #    "8181:8181"
+  #  ];
+  #  environment = {
+  #    "PUID" = "10000";
+  #    "PGID" = "10000";
+  #  };
+  #  extraOptions = [ "--network=medianet" ];
+  #};
+  #services.nginx.virtualHosts."calibre.local.n3mohomelab.xyz" = {
+  #  forceSSL = true;
+  #  useACMEHost = "local.n3mohomelab.xyz";
+  #  locations."/".proxyPass = "http://localhost:9081";
+  #};
+  #services.calibre-web = {
+  #  enable = true;
+  #  user = "media";
+  #  group = "media";
+  #  options.calibreLibrary = "/srv/storage/media/books";
+  #};
+  #services.nginx.virtualHosts."calibre-web.local.n3mohomelab.xyz" = {
+  #  forceSSL = true;
+  #  useACMEHost = "local.n3mohomelab.xyz";
+  #  locations."/".proxyPass = "http://localhost:8083";
+  #};
 
   # bazarr
   services.bazarr = {
