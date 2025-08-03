@@ -223,7 +223,7 @@
   #  user = "media";
   #  group = "media";
   #};
-  virtualisation.oci-containers.containers."readarr-ebooks" = {
+  virtualisation.oci-containers.containers."readarrebooks" = {
     image = "lscr.io/linuxserver/readarr:develop";
     volumes = [
       "/srv/state/readarr-ebooks:/config"
@@ -243,7 +243,7 @@
     useACMEHost = "local.n3mohomelab.xyz";
     locations."/".proxyPass = "http://localhost:8787";
   };
-  virtualisation.oci-containers.containers."readarr-audiobooks" = {
+  virtualisation.oci-containers.containers."readarraudiobooks" = {
     image = "lscr.io/linuxserver/readarr:develop";
     volumes = [
       "/srv/state/readarr-audiobooks:/config"
