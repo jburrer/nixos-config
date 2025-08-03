@@ -216,13 +216,7 @@
   #  locations."/".proxyPass = "http://localhost:8686";
   #};
 
-  # readarr
-  #services.readarr = {
-  #  enable = true;
-  #  dataDir = "/srv/state/readarr";
-  #  user = "media";
-  #  group = "media";
-  #};
+  # readarr for ebooks
   virtualisation.oci-containers.containers."readarr-ebooks" = {
     image = "lscr.io/linuxserver/readarr:develop";
     volumes = [
@@ -243,6 +237,8 @@
     useACMEHost = "local.n3mohomelab.xyz";
     locations."/".proxyPass = "http://localhost:8787";
   };
+
+  # readarr for audiobooks
   virtualisation.oci-containers.containers."readarr-audiobooks" = {
     image = "lscr.io/linuxserver/readarr:develop";
     volumes = [
@@ -263,51 +259,19 @@
     useACMEHost = "local.n3mohomelab.xyz";
     locations."/".proxyPass = "http://localhost:9797";
   };
-  #services.calibre-server = {
-  #  enable = true;
-  #  user = "media";
-  #  group = "media";
-  #  port = 9081;
-  #  auth = {
-  #    enable = true;
-  #    userDb = "/srv/storage/media/books/user.sqlite"; 
-  #  };
-  #  libraries = [ "/srv/storage/media/books" ];
-  #};
-  #virtualisation.oci-containers.containers."calibre" = {
-  #  image = "lscr.io/linuxserver/calibre:latest";
-  #  volumes = [
-  #    "/srv/state/calibre:/config"
-  #    "/srv/storage/media/books:/books"
-  #  ];
-  #  ports = [
-  #    "8082:8082"
-  #    "9081:8081"
-  #    "9080:8080"
-  #    "8181:8181"
-  #  ];
-  #  environment = {
-  #    "PUID" = "10000";
-  #    "PGID" = "10000";
-  #  };
-  #  extraOptions = [ "--network=medianet" ];
-  #};
-  #services.nginx.virtualHosts."calibre.local.n3mohomelab.xyz" = {
-  #  forceSSL = true;
-  #  useACMEHost = "local.n3mohomelab.xyz";
-  #  locations."/".proxyPass = "http://localhost:9081";
-  #};
-  #services.calibre-web = {
-  #  enable = true;
-  #  user = "media";
-  #  group = "media";
-  #  options.calibreLibrary = "/srv/storage/media/books";
-  #};
-  #services.nginx.virtualHosts."calibre-web.local.n3mohomelab.xyz" = {
-  #  forceSSL = true;
-  #  useACMEHost = "local.n3mohomelab.xyz";
-  #  locations."/".proxyPass = "http://localhost:8083";
-  #};
+
+  # audiobookshelf
+  services.audiobookshelf = {
+    enable = true;
+    user = "media";
+    group = "media";
+    dataDir = "/srv/state/audiobookshelf";
+  };
+  services.nginx.virtualHosts."audiobookshelf.local.n3mohomelab.xyz" = {
+    forceSSL = true;
+    useACMEHost = "local.n3mohomelab.xyz";
+    locations."/".proxyPass = "http://localhost:8000";
+  };
 
   # bazarr
   services.bazarr = {
