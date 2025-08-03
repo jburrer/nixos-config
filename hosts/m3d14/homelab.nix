@@ -322,7 +322,20 @@
   };
 
   # prowlarr
-  services.prowlarr.enable = true;
+  virtualisation.oci-containers.containers."prowlarr" = {
+    image = "lscr.io/linuxserver/prowlarr:latest";
+    volumes = [
+      "/srv/state/prowlarr:/config"
+    ];
+    ports = [
+      "9696:9696"
+    ];
+    environment = {
+      "PUID" = "10000";
+      "PGID" = "10000";
+    };
+    extraOptions = [ "--network=medianet" ];
+  };
   services.nginx.virtualHosts."prowlarr.local.n3mohomelab.xyz" = {
     forceSSL = true;
     useACMEHost = "local.n3mohomelab.xyz";
