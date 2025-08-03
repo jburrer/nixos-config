@@ -257,12 +257,13 @@
   virtualisation.oci-containers.containers."calibre" = {
     image = "lscr.io/linuxserver/calibre:latest";
     volumes = [
-      "/srv/storage/media/books:/config"
+      "/srv/state/calibre:/config"
+      "/srv/storage/media/books:/books"
     ];
     ports = [
       "9081:8081"
       "9080:8080"
-      "9181:8181"
+      "8181:8181"
     ];
     environment = {
       "PUID" = "10000";
