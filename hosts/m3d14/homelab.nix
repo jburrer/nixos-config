@@ -265,7 +265,6 @@
     enable = true;
     user = "media";
     group = "media";
-    dataDir = "/srv/state/audiobookshelf";
   };
   services.nginx.virtualHosts."audiobookshelf.local.n3mohomelab.xyz" = {
     forceSSL = true;
