@@ -206,9 +206,7 @@
       "PUID" = "10000";
       "PGID" = "10000";
     };
-    extraOptions = [
-      "--network=host"
-    ];
+    extraOptions = [ "--network=medianet" ];
   };
   services.nginx.virtualHosts."lidarr.local.n3mohomelab.xyz" = {
     forceSSL = true;
