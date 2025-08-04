@@ -79,7 +79,7 @@
 	{
           "Download Clients" = {
             style = "row";
-            columns = 3;
+            columns = 4;
           };
 	}
 	{
@@ -441,13 +441,26 @@
       {
         "Download Clients" = [
           {
-            "Transmission" = {
+            "Transmission (for Public Trackers)" = {
               description = "Torrent Client";
               icon = "transmission.png";
               href = "https://transmission.local.n3mohomelab.xyz";
               widget = {
                 type = "transmission";
                 url = "https://transmission.local.n3mohomelab.xyz";
+                username = "n3mo";
+                password = "J0hn 0316";
+              };
+            };
+          }
+          {
+            "Transmission (for Private Trackers)" = {
+              description = "Torrent Client";
+              icon = "transmission.png";
+              href = "https://transmission1.local.n3mohomelab.xyz";
+              widget = {
+                type = "transmission";
+                url = "https://transmission1.local.n3mohomelab.xyz";
                 username = "n3mo";
                 password = "J0hn 0316";
               };
