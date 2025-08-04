@@ -392,7 +392,7 @@
               widget = {
                 type = "prowlarr";
                 url = "https://prowlarr.local.n3mohomelab.xyz";
-                key = "bfa27d6ebfab4a50b10d344ef2a942e1";
+                key = "b1efbc2a2f784d4ca8d6f5d1b98254f9";
               };
             };
           }
