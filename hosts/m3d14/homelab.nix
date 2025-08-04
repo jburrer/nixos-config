@@ -195,26 +195,26 @@
   };
 
   # lidarr
-  #virtualisation.oci-containers.containers."lidarr" = {
-  #  #image = "ghcr.io/linuxserver-labs/prarr:lidarr-plugins";
-  #  image="blampe/lidarr:lidarr-plugins-2.13.1.4678";
-  #  volumes = [
-  #    "/srv/state/lidarr:/config"
-  #    "/srv/storage:/storage"
-  #  ];
-  #  environment = {
-  #    "PUID" = "10000";
-  #    "PGID" = "10000";
-  #  };
-  #  extraOptions = [
-  #    "--network=host"
-  #  ];
-  #};
-  #services.nginx.virtualHosts."lidarr.local.n3mohomelab.xyz" = {
-  #  forceSSL = true;
-  #  useACMEHost = "local.n3mohomelab.xyz";
-  #  locations."/".proxyPass = "http://localhost:8686";
-  #};
+  virtualisation.oci-containers.containers."lidarr" = {
+    image = "ghcr.io/linuxserver-labs/prarr:lidarr-plugins";
+    #image="blampe/lidarr:lidarr-plugins-2.13.1.4678";
+    volumes = [
+      "/srv/state/lidarr:/config"
+      "/srv/storage:/storage"
+    ];
+    environment = {
+      "PUID" = "10000";
+      "PGID" = "10000";
+    };
+    extraOptions = [
+      "--network=host"
+    ];
+  };
+  services.nginx.virtualHosts."lidarr.local.n3mohomelab.xyz" = {
+    forceSSL = true;
+    useACMEHost = "local.n3mohomelab.xyz";
+    locations."/".proxyPass = "http://localhost:8686";
+  };
 
   # readarr for ebooks
   virtualisation.oci-containers.containers."readarr-ebooks" = {
