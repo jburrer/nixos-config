@@ -401,35 +401,39 @@
       {
         "Books" = [
           {
-            "Readarr" = {
+            "Readarr (Ebooks)" = {
               description = "EBook Management";
               icon = "readarr.png";
-              href = "https://readarr.local.n3mohomelab.xyz";
+              href = "https://readarr-ebooks.local.n3mohomelab.xyz";
               widget = {
                 type = "readarr";
-                url = "https://readarr.local.n3mohomelab.xyz";
-                key = "504b20d276e94d27a55aabefa03a4491";
+                url = "https://readarr-ebooks.local.n3mohomelab.xyz";
+                key = "fd55c5772e7441e4beac81004cc4a719";
               };
             };
           }
           {
-            "Calibre Web" = {
-              description = "EReader";
-              icon = "calibre-web.png";
-              href = "https://calibre-web.local.n3mohomelab.xyz";
+            "Readarr (Audiobooks)" = {
+              description = "Audiobook Management";
+              icon = "readarr.png";
+              href = "https://readarr-audiobooks.local.n3mohomelab.xyz";
               widget = {
-                type = "calibreweb";
-                url = "https://calibre-web.local.n3mohomelab.xyz";
-                username = "n3mo";
-                password = "J0hn:0316";
+                type = "readarr";
+                url = "https://readarr-audiobooks.local.n3mohomelab.xyz";
+                key = "37e9665c46db46419adfac2df4182e23";
               };
             };
           }
           {
-            "Calibre" = {
-              description = "EBook Server";
-              icon = "calibre.png";
-              href = "https://calibre.local.n3mohomelab.xyz";
+            "Audiobookshelf" = {
+              description = "Audiobook Player";
+              icon = "audiobookshelf.png";
+              href = "https://audiobookshelf.local.n3mohomelab.xyz";
+              widget = {
+                type = "audiobookshelf";
+                url = "https://audiobookshelf.local.n3mohomelab.xyz";
+                key = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI5YjRkZDBlYS01YjU3LTRmZDEtYTYxZC01ZDI2MzIyY2Y5NzMiLCJ1c2VybmFtZSI6Im4zbW8iLCJpYXQiOjE3NTQyNjUyNjN9.Y7j7a71CFRL7IBEiFeG0o8nDHi4QANCCzz6x7MCdQVw";
+              };
             };
           }
         ];
