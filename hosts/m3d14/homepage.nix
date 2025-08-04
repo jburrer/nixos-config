@@ -368,7 +368,7 @@
               widget = {
                 type = "lidarr";
                 url = "https://lidarr.local.n3mohomelab.xyz";
-                key = "60859e8a08f847aea9e7416cf276247f";
+                key = "8a473e3df5ed4622a13faadbca4a66e6";
               };
             };
           }
