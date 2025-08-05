@@ -498,6 +498,7 @@
     };
     dependsOn = [ "tailscaleWithMullvad" ];
     extraOptions = [
+      "--network=medianet"
       "--network=container:tailscaleWithMullvad"
     ];
   };
