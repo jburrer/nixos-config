@@ -499,7 +499,18 @@
     };
     dependsOn = [ "tailscalewithmullvad" ];
     extraOptions = [
-      "--network=container:tailscalewithmullvad"
+      "--cap-add=NET_ADMIN"
+      "--network=medianet"
+      #"--network=container:tailscalewithmullvad"
+    ];
+    cmd = [
+      "sh"
+      "-c"
+      ''
+        ip route add 172.0.0.0/8 via $(ip route | grep 'default via' | awk '{print $3}')
+        ip route replace default via $(getent hosts tailscalewithmullvad | awk '{ print $1 }')
+        exec slskd
+      ''
     ];
   };
   services.nginx.virtualHosts."slskd.local.n3mohomelab.xyz" = {
