@@ -413,6 +413,7 @@
       "--cap-add=NET_ADMIN"
       "--cap-add=NET_RAW"
       "--device=/dev/net/tun:/dev/net/tun"
+      "--dns=127.0.0.11"
       "--dns=1.1.1.1"
       "--dns=100.100.100.100"
     ];
