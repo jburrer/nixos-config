@@ -66,6 +66,12 @@
         useACMEHost = "n3mohomelab.xyz";
         locations."/".proxyPass = "http://m3d14:2283";
       };
+      # remote hauk access 
+      "hauk.n3mohomelab.xyz" = {
+        forceSSL = true;
+        useACMEHost = "n3mohomelab.xyz";
+        locations."/".proxyPass = "http://m3d14:8082";
+      };
       # nest website
       "thenest207.live" = {
         forceSSL = true;
