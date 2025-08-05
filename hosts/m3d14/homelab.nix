@@ -409,12 +409,12 @@
       "TS_USERSPACE" = "false";
     };
     extraOptions = [
+      "--network=medianet"
       "--cap-add=NET_ADMIN"
       "--cap-add=NET_RAW"
       "--device=/dev/net/tun:/dev/net/tun"
       "--dns=1.1.1.1"
       "--dns=100.100.100.100"
-      "--network=medianet"
     ];
   };
 
@@ -499,18 +499,7 @@
     };
     dependsOn = [ "tailscalewithmullvad" ];
     extraOptions = [
-      "--cap-add=NET_ADMIN"
-      "--network=medianet"
-      #"--network=container:tailscalewithmullvad"
-    ];
-    cmd = [
-      "sh"
-      "-c"
-      ''
-        ip route add 172.0.0.0/8 via $(ip route | grep 'default via' | awk '{print $3}')
-        ip route replace default via $(getent hosts tailscalewithmullvad | awk '{ print $1 }')
-        exec slskd
-      ''
+      "--network=container:tailscalewithmullvad"
     ];
   };
   services.nginx.virtualHosts."slskd.local.n3mohomelab.xyz" = {
