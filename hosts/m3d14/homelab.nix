@@ -414,6 +414,7 @@
       "--device=/dev/net/tun:/dev/net/tun"
       "--dns=1.1.1.1"
       "--dns=100.100.100.100"
+      "--network=medianet"
     ];
   };
 
@@ -498,7 +499,6 @@
     };
     dependsOn = [ "tailscaleWithMullvad" ];
     extraOptions = [
-      "--network=medianet"
       "--network=container:tailscaleWithMullvad"
     ];
   };
