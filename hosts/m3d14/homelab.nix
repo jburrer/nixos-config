@@ -381,7 +381,7 @@
   };
 
   # tailscale
-  virtualisation.oci-containers.containers."tailscaleWithMullvad" = {
+  virtualisation.oci-containers.containers."tailscalewithmullvad" = {
     image = "tailscale/tailscale:latest";
     hostname = "transmission-container";
     volumes = [
@@ -429,9 +429,9 @@
       "PUID" = "10000";
       "PGID" = "10000";
     };
-    dependsOn = [ "tailscaleWithMullvad" ];
+    dependsOn = [ "tailscalewithmullvad" ];
     extraOptions = [
-      "--network=container:tailscaleWithMullvad"
+      "--network=container:tailscalewithmullvad"
     ];
   };
   services.nginx.virtualHosts."transmission.local.n3mohomelab.xyz" = {
@@ -497,9 +497,9 @@
     environment = {
       "SLSKD_REMOTE_CONFIGURATION" = "true";
     };
-    dependsOn = [ "tailscaleWithMullvad" ];
+    dependsOn = [ "tailscalewithmullvad" ];
     extraOptions = [
-      "--network=container:tailscaleWithMullvad"
+      "--network=container:tailscalewithmullvad"
     ];
   };
   services.nginx.virtualHosts."slskd.local.n3mohomelab.xyz" = {
