@@ -84,11 +84,14 @@
   #    "/srv/state/traccar:/opt/traccar"
   #  ];
   #};
-  services.traccar.enable = true;
+  services.traccar = {
+    enable = true;
+    settings.port = 8083;
+  };
   services.nginx.virtualHosts."traccar.local.n3mohomelab.xyz" = {
     forceSSL = true;
     useACMEHost = "local.n3mohomelab.xyz";
-    locations."/".proxyPass = "http://localhost:8082";
+    locations."/".proxyPass = "http://localhost:8083";
   };
 
   # searxng 
