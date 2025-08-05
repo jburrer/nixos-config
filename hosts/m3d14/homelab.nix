@@ -86,7 +86,7 @@
   #};
   services.traccar = {
     enable = true;
-    settings.port = 8083;
+    settings.port = "8083";
   };
   services.nginx.virtualHosts."traccar.local.n3mohomelab.xyz" = {
     forceSSL = true;
