@@ -72,20 +72,17 @@
   #  locations."/".proxyPass = "http://localhost:3000";
   #};
 
-  # traccar
-  #virtualisation.oci-containers.containers."traccar" = {
-  #  image="traccar/traccar:latest";
-  #  ports = [
-  #    "8083:8082"
-  #    "5000-5300:5000-5300"
-  #    "5000-5300:5000-5300/udp"
-  #  ];
-  #  volumes = [
-  #    "/srv/state/traccar:/opt/traccar"
-  #  ];
-  #};
-  services.traccar.enable = true;
-  services.nginx.virtualHosts."traccar.local.n3mohomelab.xyz" = {
+  # hauk 
+  virtualisation.oci-containers.containers."hauk" = {
+    image="bilde2910/hauk:latest";
+    ports = [
+      "8082:80"
+    ];
+    volumes = [
+      "/srv/state/hauk:/etc/hauk"
+    ];
+  };
+  services.nginx.virtualHosts."hauk.local.n3mohomelab.xyz" = {
     forceSSL = true;
     useACMEHost = "local.n3mohomelab.xyz";
     locations."/".proxyPass = "http://localhost:8082";
