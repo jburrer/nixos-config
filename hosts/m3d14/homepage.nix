@@ -12,6 +12,7 @@
   in
   {
     enable = true;
+    listenPort = 8083;
     package = package;
     environmentFile = builtins.toFile "homepage-dashboard-environment-file" "
       HOMEPAGE_ALLOWED_HOSTS=homepage.local.n3mohomelab.xyz
@@ -541,7 +542,7 @@
   services.nginx.virtualHosts."homepage.local.n3mohomelab.xyz" = {
     forceSSL = true;
     useACMEHost = "local.n3mohomelab.xyz";
-    locations."/".proxyPass = "http://localhost:8082";
+    locations."/".proxyPass = "http://localhost:8083";
   };
 
 }

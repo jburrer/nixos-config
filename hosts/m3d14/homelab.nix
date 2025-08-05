@@ -84,10 +84,7 @@
   #    "/srv/state/traccar:/opt/traccar"
   #  ];
   #};
-  services.traccar = {
-    enable = true;
-    settings.port = "8083";
-  };
+  services.traccar.enable = true;
   services.nginx.virtualHosts."traccar.local.n3mohomelab.xyz" = {
     forceSSL = true;
     useACMEHost = "local.n3mohomelab.xyz";
