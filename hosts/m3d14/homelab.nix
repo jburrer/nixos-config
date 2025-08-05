@@ -88,7 +88,7 @@
   services.nginx.virtualHosts."traccar.local.n3mohomelab.xyz" = {
     forceSSL = true;
     useACMEHost = "local.n3mohomelab.xyz";
-    locations."/".proxyPass = "http://localhost:8083";
+    locations."/".proxyPass = "http://localhost:8082";
   };
 
   # searxng 
