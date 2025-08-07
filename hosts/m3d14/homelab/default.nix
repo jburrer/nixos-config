@@ -289,7 +289,7 @@
     ports = [
       "7474:7474"
     ];
-    user = "media:media";
+    user = "10000:10000";
     extraOptions = [ "--network=medianet" ];
   };
   services.nginx.virtualHosts."autobrr.local.n3mohomelab.xyz" = {
