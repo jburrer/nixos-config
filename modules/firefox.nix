@@ -130,6 +130,7 @@
           new-tab-override
           sponsorblock
           ublock-origin
+          violentmonkey
         ];
         userChrome = ''
           @import "firefox-gnome-theme/userChrome.css";

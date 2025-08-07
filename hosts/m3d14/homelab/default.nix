@@ -182,12 +182,6 @@
   };
 
   # radarr
-  #services.radarr = {
-  #  enable = true;
-  #  dataDir = "/srv/state/radarr";
-  #  user = "media";
-  #  group = "media";
-  #};
   virtualisation.oci-containers.containers."radarr" = {
     image = "lscr.io/linuxserver/radarr:latest";
     volumes = [
@@ -286,6 +280,22 @@
     forceSSL = true;
     useACMEHost = "local.n3mohomelab.xyz";
     locations."/".proxyPass = "http://localhost:9797";
+  };
+
+  # autobrr
+  virtualisation.oci-containers.containers."autobrr" = {
+    image = "ghcr.io/autobrr/autobrr:latest";
+    volumes = [ "/srv/state/autobrr:/config" ];
+    ports = [
+      "7474:7474"
+    ];
+    user = "media:media";
+    extraOptions = [ "--network=medianet" ];
+  };
+  services.nginx.virtualHosts."autobrr.local.n3mohomelab.xyz" = {
+    forceSSL = true;
+    useACMEHost = "local.n3mohomelab.xyz";
+    locations."/".proxyPass = "http://localhost:7474";
   };
 
   # audiobookshelf
