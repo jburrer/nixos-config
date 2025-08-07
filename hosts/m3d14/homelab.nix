@@ -178,11 +178,26 @@
   };
 
   # radarr
-  services.radarr = {
-    enable = true;
-    dataDir = "/srv/state/radarr";
-    user = "media";
-    group = "media";
+  #services.radarr = {
+  #  enable = true;
+  #  dataDir = "/srv/state/radarr";
+  #  user = "media";
+  #  group = "media";
+  #};
+  virtualisation.oci-containers.containers."radarr" = {
+    image = "lscr.io/linuxserver/radarr:latest";
+    volumes = [
+      "/srv/state/radarr:/config"
+      "/srv/storage:/storage"
+    ];
+    ports = [
+      "7878:7878"
+    ];
+    environment = {
+      "PUID" = "10000";
+      "PGID" = "10000";
+    };
+    extraOptions = [ "--network=medianet" ];
   };
   services.nginx.virtualHosts."radarr.local.n3mohomelab.xyz" = {
     forceSSL = true;
