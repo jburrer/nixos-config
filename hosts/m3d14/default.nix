@@ -3,9 +3,7 @@
   imports = [
     ./hardware-configuration.nix
     ../../modules
-    ./homelab.nix
-    ./homepage.nix
-    #./lidarr.nix
+    ./homelab
   ];
 
   hostname = "m3d14";

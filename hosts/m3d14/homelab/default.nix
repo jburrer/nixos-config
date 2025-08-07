@@ -1,5 +1,9 @@
 { pkgs, config, ... }: {
 
+  imports = [
+    ./homepage.nix
+  ];
+
   # enable nginx for proxying
   services.nginx = {
     enable = true;

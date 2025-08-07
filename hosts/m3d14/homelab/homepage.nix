@@ -343,7 +343,7 @@
               widget = {
                 type = "radarr";
                 url = "https://radarr.local.n3mohomelab.xyz";
-                key = "05b2359314844434be39b5e05f4d7195";
+                key = "";
                 enableQueue = true;
               };
             };
