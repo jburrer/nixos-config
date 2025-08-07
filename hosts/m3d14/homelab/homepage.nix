@@ -2,7 +2,7 @@
 
   services.homepage-dashboard =
   let
-    background = ../../wallpaper.jpg;
+    background = ../../../wallpaper.jpg;
     package = pkgs.homepage-dashboard.overrideAttrs (oldAttrs: {
       postInstall = ''
         mkdir -p $out/share/homepage/public/images
