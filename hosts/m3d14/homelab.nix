@@ -503,6 +503,7 @@
       "PUID" = "10000";
       "PGID" = "10000";
     };
+    extraOptions = [ "--network=medianet" ];
   };
   services.nginx.virtualHosts."sabnzbd.local.n3mohomelab.xyz" = {
     forceSSL = true;
