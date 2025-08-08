@@ -60,21 +60,26 @@
           };
         }
         {
+          "Trackers" = {
+            style = "column";
+          };
+        }
+        {
 	  "Media & Requests" = {
-            style = "row";
-            columns = 3;
+            style = "column";
+            #columns = 3;
           };
 	}
 	{
           "Media Management" = {
-            style = "row";
-            columns = 6;
+            style = "column";
+            #columns = 6;
           };
 	}
         {
 	  "Books" = {
-            style = "row";
-            columns = 3;
+            style = "column";
+            #columns = 3;
           };
         }
 	{
