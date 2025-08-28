@@ -311,16 +311,16 @@
   };
 
   # bazarr
-  services.bazarr = {
-    enable = true;
-    user = "media";
-    group = "media";
-  };
-  services.nginx.virtualHosts."bazarr.local.n3mohomelab.xyz" = {
-    forceSSL = true;
-    useACMEHost = "local.n3mohomelab.xyz";
-    locations."/".proxyPass = "http://localhost:6767";
-  };
+  #services.bazarr = {
+  #  enable = true;
+  #  user = "media";
+  #  group = "media";
+  #};
+  #services.nginx.virtualHosts."bazarr.local.n3mohomelab.xyz" = {
+  #  forceSSL = true;
+  #  useACMEHost = "local.n3mohomelab.xyz";
+  #  locations."/".proxyPass = "http://localhost:6767";
+  #};
 
   # prowlarr
   virtualisation.oci-containers.containers."prowlarr" = {

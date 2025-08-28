@@ -67,33 +67,36 @@
         {
 	  "Media & Requests" = {
             style = "column";
-            #columns = 3;
           };
 	}
 	{
           "Media Management" = {
             style = "column";
-            #columns = 6;
+          };
+	}
+	{
+          "Extra" = {
+            style = "column";
           };
 	}
         {
 	  "Books" = {
             style = "column";
-            #columns = 3;
+            rows = 3;
           };
         }
-	{
+        {
           "Download Clients" = {
             style = "row";
             columns = 4;
           };
-	}
-	{
+        }
+        {
           "Other" = {
             style = "row";
             columns = 4;
           };
-	}
+        }
 	{
           "Syncthing" = {
             style = "row";
@@ -130,19 +133,33 @@
             ];
           }
           {
-            "Gradescope" = [
+            "CS 252" = [
               {
-                href = "https://www.gradescope.com/";
+                href = "https://www.cs.purdue.edu/homes/cs252/";
               }
             ];
           }
           {
-            "Pearson" = [
+            "CS 307" = [
               {
-                href = "https://mycourses.pearson.com/course-home#/tab/active";
+                href = "https://mandalore.cs.purdue.edu/~cs307/";
               }
             ];
           }
+          #{
+          #  "Gradescope" = [
+          #    {
+          #      href = "https://www.gradescope.com/";
+          #    }
+          #  ];
+          #}
+          #{
+          #  "Pearson" = [
+          #    {
+          #      href = "https://mycourses.pearson.com/course-home#/tab/active";
+          #    }
+          #  ];
+          #}
           {
             "Ed" = [
               {
@@ -150,13 +167,13 @@
               }
             ];
           }
-          {
-            "Boilerexams" = [
-              {
-                href = "https://www.boilerexams.com/";
-              }
-            ];
-          }
+          #{
+          #  "Boilerexams" = [
+          #    {
+          #      href = "https://www.boilerexams.com/";
+          #    }
+          #  ];
+          #}
           {
             "Deepseek" = [
               {
@@ -396,18 +413,10 @@
               };
             };
           }
-          {
-            "Bazarr" = {
-              description = "Subtitle Management";
-              icon = "bazarr.png";
-              href = "https://bazarr.local.n3mohomelab.xyz";
-              widget = {
-                type = "bazarr";
-                url = "https://bazarr.local.n3mohomelab.xyz";
-                key = "01442f2b9df9a4f7859bd92bcac143f1";
-              };
-            };
-          }
+        ];
+      }
+      {
+        "Extra" = [
           {
             "Prowlarr" = {
               description = "Torrent Indexer Management";
@@ -432,7 +441,18 @@
               };
             };
           }
-
+          {
+            "Bazarr" = {
+              description = "Subtitle Management";
+              icon = "bazarr.png";
+              href = "https://bazarr.local.n3mohomelab.xyz";
+              widget = {
+                type = "bazarr";
+                url = "https://bazarr.local.n3mohomelab.xyz";
+                key = "01442f2b9df9a4f7859bd92bcac143f1";
+              };
+            };
+          }
         ];
       }
       {
@@ -555,7 +575,6 @@
           {
             "Hauk" = {
               description = "Location Sharing";
-              icon = "hauk.png";
               href = "https://hauk.local.n3mohomelab.xyz";
             };
           }
