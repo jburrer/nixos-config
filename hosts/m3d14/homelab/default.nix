@@ -540,9 +540,7 @@
       "/srv/state/sabnzbd:/config"
       "/srv/storage/usenet:/downloads"
     ];
-    ports = [
-      "8080:8080"
-    ];
+    ports = [ "8080:8080" ];
     environment = {
       "PUID" = "10000";
       "PGID" = "10000";
@@ -579,9 +577,14 @@
   };
 
   # gotify
-  services.gotify = {
-    enable = true;
-    environment.GOTIFY_SERVER_PORT = 6060;
+  #services.gotify = {
+  #  enable = true;
+  #  environment.GOTIFY_SERVER_PORT = 6060;
+  #};
+  virtualisation.oci-containers.containers."gotify" = {
+    image = "gotify/server";
+    ports = [ "80:6060" ];
+    extraOptions = [ "--network=medianet" ];
   };
   services.nginx.virtualHosts."gotify.local.n3mohomelab.xyz" = {
     forceSSL = true;
