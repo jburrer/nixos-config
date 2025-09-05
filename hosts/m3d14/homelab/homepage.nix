@@ -366,15 +366,16 @@
             };
           }
           {
-            "Immich" = {
-              description = "Photo Viewer";
-              icon = "immich.png";
-              href = "https://immich.local.n3mohomelab.xyz";
+            "Navidrome" = {
+              description = "Music Streaming";
+              icon = "navidrome.png";
+              href = "https://navidrome.local.n3mohomelab.xyz";
 	      widget = {
-  		type = "immich";
-		url = "https://immich.local.n3mohomelab.xyz";
-  		key = "9RFiyFCqtqmOpuEs1LgxjW5yG7LU2ltbuIKGhIy7ohQ";
-		version = 2;
+	      	type = "navidrome";
+		url = "https://navidrome.local.n3mohomelab.xyz";
+                user = "n3mo";
+                token = "c0ad550919ed75e7aa5ba7ea171d844f";
+                salt = "randomsalt";
 	      };
             };
           }
@@ -583,6 +584,19 @@
             "Hauk" = {
               description = "Location Sharing";
               href = "https://hauk.local.n3mohomelab.xyz";
+            };
+          }
+          {
+            "Immich" = {
+              description = "Photo Viewer";
+              icon = "immich.png";
+              href = "https://immich.local.n3mohomelab.xyz";
+	      widget = {
+  		type = "immich";
+		url = "https://immich.local.n3mohomelab.xyz";
+  		key = "9RFiyFCqtqmOpuEs1LgxjW5yG7LU2ltbuIKGhIy7ohQ";
+		version = 2;
+	      };
             };
           }
         ];
