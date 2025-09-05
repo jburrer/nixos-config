@@ -168,13 +168,6 @@
   };
 
   # jellyfin
-  #services.jellyfin = {
-  #  enable = true;
-  #  user = "media";
-  #  group = "media";
-  #  dataDir = "/srv/state/jellyfin";
-  #  cacheDir = "/srv/state/jellyfin/cache";
-  #};
   virtualisation.oci-containers.containers."jellyfin" = {
     image = "jellyfin/jellyfin";
     user = "10000:10000";
@@ -195,7 +188,14 @@
   };
 
   # jellyseerr
-  services.jellyseerr.enable = true;
+  #services.jellyseerr.enable = true;
+  virtualisation.oci-containers.containers."jellyseerr" = {
+    image = "fallenbagel/jellyseerr";
+    user = "10000:10000";
+    volumes = [ "/srv/state/jellyseerr:/app/config" ];
+    ports = [ "5055:5055" ];
+    extraOptions = [ "--network=medianet" ];
+  };
   services.nginx.virtualHosts."jellyseerr.local.n3mohomelab.xyz" = {
     forceSSL = true;
     useACMEHost = "local.n3mohomelab.xyz";
