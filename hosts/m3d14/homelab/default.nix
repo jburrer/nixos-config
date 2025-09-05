@@ -177,7 +177,7 @@
   #};
   virtualisation.oci-containers.containers."jellyfin" = {
     image = "jellyfin/jellyfin";
-    user = "10000:10000"
+    user = "10000:10000";
     volumes = [
       "/srv/state/jellyfin:/config"
       "/srv/state/jellyfin/cache:/cache"
