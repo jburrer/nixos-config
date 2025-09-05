@@ -207,8 +207,8 @@
     user = "10000:10000";
     ports = [ "4533:4533" ];
     volumes = [
-      - "/srv/state/navidrome:/data"
-      - "/srv/storage/media/music:/music:ro"
+      "/srv/state/navidrome:/data"
+      "/srv/storage/media/music:/music:ro"
     ];
     extraOptions = [ "--network=medianet" ];
   };
