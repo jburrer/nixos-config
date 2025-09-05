@@ -140,6 +140,13 @@
             ];
           }
           {
+            "Partake" = [
+              {
+                href = "http://data.cs.purdue.edu:3000/";
+              }
+            ];
+          }
+          {
             "CS 307" = [
               {
                 href = "https://mandalore.cs.purdue.edu/~cs307/";

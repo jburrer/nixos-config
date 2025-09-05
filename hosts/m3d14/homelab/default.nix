@@ -148,7 +148,6 @@
     docker.enable = true;
     oci-containers.backend = "docker"; 
   };
-
   system.activationScripts.mkDockerNetwork =
     let
       docker = config.virtualisation.oci-containers.backend;
@@ -158,6 +157,15 @@
      ${dockerBin} network inspect medianet >/dev/null 2>&1 || \\
      ${dockerBin} network create medianet
      '';
+
+  # watchtower
+  virtualisation.oci-containers.containers."watchtower" = {
+    autoStart = true;
+    image = "containrrr/watchtower";
+    volumes = [
+      "/var/run/docker.sock:/var/run/docker.sock"
+    ]; 
+  };
 
   # jellyfin
   services.jellyfin = {

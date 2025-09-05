@@ -55,6 +55,9 @@
   # pinentry
   pinentryPackage = pkgs.pinentry-gnome3;
 
+  # allows system fonts to work with flatpak
+  fonts.fontDir.enable = true;
+
   # home manager
   home-manager.users.${config.username} = {
 

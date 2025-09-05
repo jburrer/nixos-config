@@ -43,6 +43,8 @@
     ];
   };
 
+  # advertise as tailscale exit node
+
   # change ssh server port to access gitea on port 22
   sshServer.port = 222;
 
