@@ -168,12 +168,25 @@
   };
 
   # jellyfin
-  services.jellyfin = {
-    enable = true;
-    user = "media";
-    group = "media";
-    dataDir = "/srv/state/jellyfin";
-    cacheDir = "/srv/state/jellyfin/cache";
+  #services.jellyfin = {
+  #  enable = true;
+  #  user = "media";
+  #  group = "media";
+  #  dataDir = "/srv/state/jellyfin";
+  #  cacheDir = "/srv/state/jellyfin/cache";
+  #};
+  virtualisation.oci-containers.containers."jellyfin" = {
+    image = "jellyfin/jellyfin";
+    user = "10000:10000"
+    volumes = [
+      "/srv/state/jellyfin:/config"
+      "/srv/state/jellyfin/cache:/cache"
+      "/srv/storage/media:/media"
+    ];
+    ports = [
+      "8096:8096"
+    ];
+    extraOptions = [ "--network=medianet" ];
   };
   services.nginx.virtualHosts."jellyfin.local.n3mohomelab.xyz" = {
     forceSSL = true;
