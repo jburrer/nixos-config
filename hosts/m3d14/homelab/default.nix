@@ -194,6 +194,8 @@
     user = "10000:10000";
     volumes = [ "/srv/state/jellyseerr:/app/config" ];
     ports = [ "5055:5055" ];
+    git pull
+    nh os switch
     extraOptions = [ "--network=medianet" ];
   };
   services.nginx.virtualHosts."jellyseerr.local.n3mohomelab.xyz" = {
@@ -225,11 +227,26 @@
   };
 
   # sonarr 
-  services.sonarr = {
-    enable = true;
-    dataDir = "/srv/state/sonarr";
-    user = "media";
-    group = "media";
+  #services.sonarr = {
+  #  enable = true;
+  #  dataDir = "/srv/state/sonarr";
+  #  user = "media";
+  #  group = "media";
+  #};
+  virtualisation.oci-containers.containers."sonarr" = {
+    image = "lscr.io/linuxserver/sonarr:latest";
+    volumes = [
+      "/srv/state/sonarr:/config"
+      "/srv/storage:/storage"
+    ];
+    ports = [
+      "8989:8989"
+    ];
+    environment = {
+      "PUID" = "10000";
+      "PGID" = "10000";
+    };
+    extraOptions = [ "--network=medianet" ];
   };
   services.nginx.virtualHosts."sonarr.local.n3mohomelab.xyz" = {
     forceSSL = true;
