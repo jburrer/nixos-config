@@ -361,7 +361,7 @@
 	      widget = {
 	      	type = "jellyseerr";
 		url = "https://jellyseerr.local.n3mohomelab.xyz";
-		key = "MTc0MjI3NzM2MzgzOGExYzQyMjVmLTQ3MTctNDUzZi1iM2M4LWE1NDA1NDM0ZDI3Zg==";
+		key = "MTc1NzA5MTQ5Nzg3NDRkMzA0ZTZiLTRhMDAtNGM4NS1iYTk5LWFlODM3NDFiMzc1NQ==";
 	      };
             };
           }
@@ -403,7 +403,7 @@
               widget = {
                 type = "sonarr";
                 url = "https://sonarr.local.n3mohomelab.xyz";
-                key = "b16bb26b3db641e99403d55c693b8987";
+                key = "f36406fd9cce4222899c5cd2404140bf";
                 enableQueue = true;
               };
             };

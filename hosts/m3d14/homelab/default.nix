@@ -225,12 +225,6 @@
   };
 
   # sonarr 
-  #services.sonarr = {
-  #  enable = true;
-  #  dataDir = "/srv/state/sonarr";
-  #  user = "media";
-  #  group = "media";
-  #};
   virtualisation.oci-containers.containers."sonarr" = {
     image = "lscr.io/linuxserver/sonarr:latest";
     volumes = [
