@@ -94,7 +94,7 @@
         {
           "Other" = {
             style = "row";
-            columns = 4;
+            columns = 5;
           };
         }
 	{
@@ -555,6 +555,19 @@
       {
         "Other" = [
           {
+            "Immich" = {
+              description = "Photo Viewer";
+              icon = "immich.png";
+              href = "https://immich.local.n3mohomelab.xyz";
+	      widget = {
+  		type = "immich";
+		url = "https://immich.local.n3mohomelab.xyz";
+  		key = "9RFiyFCqtqmOpuEs1LgxjW5yG7LU2ltbuIKGhIy7ohQ";
+		version = 2;
+	      };
+            };
+          }
+          {
             "Gotify" = {
               description = "Notifications";
               icon = "gotify.png";
@@ -584,19 +597,6 @@
             "Hauk" = {
               description = "Location Sharing";
               href = "https://hauk.local.n3mohomelab.xyz";
-            };
-          }
-          {
-            "Immich" = {
-              description = "Photo Viewer";
-              icon = "immich.png";
-              href = "https://immich.local.n3mohomelab.xyz";
-	      widget = {
-  		type = "immich";
-		url = "https://immich.local.n3mohomelab.xyz";
-  		key = "9RFiyFCqtqmOpuEs1LgxjW5yG7LU2ltbuIKGhIy7ohQ";
-		version = 2;
-	      };
             };
           }
         ];
