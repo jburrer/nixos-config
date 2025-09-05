@@ -584,7 +584,7 @@
   virtualisation.oci-containers.containers."gotify" = {
     image = "gotify/server";
     volumes = [ "/srv/state/gotify:/app/data" ];
-    ports = [ "80:6060" ];
+    ports = [ "6060:80" ];
     extraOptions = [ "--network=medianet" ];
   };
   services.nginx.virtualHosts."gotify.local.n3mohomelab.xyz" = {
