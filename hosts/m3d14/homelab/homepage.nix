@@ -344,7 +344,7 @@
 	      widget = {
                 type = "jellyfin";
                 url = "https://jellyfin.local.n3mohomelab.xyz";
-                key = "672d53d86ace410996f00341ca6e4112";
+                key = "a9293ec2633d4d879cb16b1dfa7b00bf";
                 enableBlocks = true;
                 enableNowPlaying = false;
                 enableUser = true;
