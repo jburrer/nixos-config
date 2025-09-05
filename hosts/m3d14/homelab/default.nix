@@ -194,8 +194,6 @@
     user = "10000:10000";
     volumes = [ "/srv/state/jellyseerr:/app/config" ];
     ports = [ "5055:5055" ];
-    git pull
-    nh os switch
     extraOptions = [ "--network=medianet" ];
   };
   services.nginx.virtualHosts."jellyseerr.local.n3mohomelab.xyz" = {
