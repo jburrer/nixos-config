@@ -581,10 +581,6 @@
     image = "gotify/server";
     volumes = [ "/srv/state/gotify:/app/data" ];
     ports = [ "6060:80" ];
-    environment = {
-      "GOTIFY_DEFAULTUSER_NAME" = "n3mo";
-      "GOTIFY_DEFAULTUSER_PASS" = "J0hn 0316";
-    };
     extraOptions = [ "--network=medianet" ];
   };
   services.nginx.virtualHosts."gotify.local.n3mohomelab.xyz" = {

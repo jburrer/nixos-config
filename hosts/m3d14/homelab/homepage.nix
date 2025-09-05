@@ -561,7 +561,7 @@
               widget = {
                 type = "gotify";
                 url = "https://gotify.local.n3mohomelab.xyz";
-                key = "CGX6CNj6cdM_X8V";
+                key = "C56b4eahOw3jAih";
               };
             };
           }
