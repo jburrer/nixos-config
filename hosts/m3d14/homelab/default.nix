@@ -188,7 +188,6 @@
   };
 
   # jellyseerr
-  #services.jellyseerr.enable = true;
   virtualisation.oci-containers.containers."jellyseerr" = {
     image = "fallenbagel/jellyseerr";
     user = "10000:10000";
@@ -200,6 +199,23 @@
     forceSSL = true;
     useACMEHost = "local.n3mohomelab.xyz";
     locations."/".proxyPass = "http://localhost:5055";
+  };
+
+  # navidrome
+  virtualisation.oci-containers.containers."navidrome" = {
+    image = "deluan/navidrome:latest";
+    user = "10000:10000";
+    ports = [ "4533:4533" ];
+    volumes = [
+      - "/srv/state/navidrome:/data"
+      - "/srv/storage/media/music:/music:ro"
+    ];
+    extraOptions = [ "--network=medianet" ];
+  };
+  services.nginx.virtualHosts."navidrome.local.n3mohomelab.xyz" = {
+    forceSSL = true;
+    useACMEHost = "local.n3mohomelab.xyz";
+    locations."/".proxyPass = "http://localhost:4533";
   };
 
   # radarr
