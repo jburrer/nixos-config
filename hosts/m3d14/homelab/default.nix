@@ -583,6 +583,7 @@
   #};
   virtualisation.oci-containers.containers."gotify" = {
     image = "gotify/server";
+    volumes = [ "/srv/state/gotify:/app/data" ];
     ports = [ "80:6060" ];
     extraOptions = [ "--network=medianet" ];
   };
