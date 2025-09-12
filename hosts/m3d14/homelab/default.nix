@@ -28,113 +28,6 @@
   };
   users.users.nginx.extraGroups = [ "acme" ];
 
-  # copyparty 
-  services.copyparty = {
-    enable = true;
-    settings = {
-      i = "0.0.0.0";
-      p = "3210";
-    };
-    accounts."n3mo".passwordFile = "/srv/state/copyparty/n3mo_password";
-    volumes = {
-      "/" = {
-        path = "/srv/storage/nest";
-        access = {
-          r = "*";
-          rw = "n3mo";
-        };
-      };
-      "/storage" = {
-        path  = "/srv/storage";
-        access.rw = "n3mo";
-      };
-    };
-  };
-
-  # radicale
-  services.radicale = {
-    enable = true;
-    settings = {
-      server.hosts = [ "0.0.0.0:5232" ];
-      auth.type = "none";
-    };
-  };
-  services.nginx.virtualHosts."radicale.local.n3mohomelab.xyz" = {
-    forceSSL = true;
-    useACMEHost = "local.n3mohomelab.xyz";
-    locations."/".proxyPass = "http://localhost:5232";
-  };
-
-  # forgejo
-  #services.forgejo = {
-  #  enable = true;
-  #  settings.server.ROOT_URL = "forgejo.local.n3mohomelab.xyz";
-  #};
-  #services.nginx.virtualHosts."forgejo.local.n3mohomelab.xyz" = {
-  #  forceSSL = true;
-  #  useACMEHost = "local.n3mohomelab.xyz";
-  #  locations."/".proxyPass = "http://localhost:3000";
-  #};
-
-  # hauk 
-  virtualisation.oci-containers.containers."hauk" = {
-    image="bilde2910/hauk:latest";
-    ports = [
-      "8082:80"
-    ];
-    volumes = [
-      "/srv/state/hauk:/etc/hauk"
-    ];
-  };
-  services.nginx.virtualHosts."hauk.local.n3mohomelab.xyz" = {
-    forceSSL = true;
-    useACMEHost = "local.n3mohomelab.xyz";
-    locations."/".proxyPass = "http://localhost:8082";
-  };
-
-  # searxng 
-  services.searx = {
-    enable = true;
-    package = pkgs.searxng;
-    redisCreateLocally = true;
-    settings = {
-      general.instance_name = "n3mo's searx";
-      ui = {
-        default_locale = "en";
-        query_in_title = true;
-        infinite_scroll = true;
-        center_alignment = true;
-        default_theme = "simple";
-        theme_args.simple_style = "dark";
-        results_on_new_tab = true;
-        hotkeys = "vim";
-      };
-      server = {
-        base_url = "https://searx.local.n3mohomelab.xyz";
-        port = 1234;
-        bind_address = "127.0.0.1";
-        secret_key = "superDuperSecret";
-        method = "GET";
-      };
-      enabled_plugins = [
-        "Basic Calculator"
-        "Hash plugin"
-        "Tor check plugin"
-        "Open Access DOI rewrite"
-        "Hostnames plugin"
-        "Unit converter plugin"
-        "Tracker URL remover"
-      ];
-    };
-  };
-  services.nginx.virtualHosts."searx.local.n3mohomelab.xyz" = {
-    forceSSL = true;
-    useACMEHost = "local.n3mohomelab.xyz";
-    locations."/".proxyPass = "http://localhost:1234";
-  };
-
-  ### media server ### 
-
   # set up media user
   users.users."media" = {
     isSystemUser = true;
@@ -166,6 +59,40 @@
       "/var/run/docker.sock:/var/run/docker.sock"
     ]; 
   };
+
+  # copyparty 
+  services.copyparty = {
+    enable = true;
+    settings = {
+      i = "0.0.0.0";
+      p = "3210";
+    };
+    accounts."n3mo".passwordFile = "/srv/state/copyparty/n3mo_password";
+    volumes = {
+      "/" = {
+        path = "/srv/storage/nest";
+        access = {
+          r = "*";
+          rw = "n3mo";
+        };
+      };
+      "/storage" = {
+        path  = "/srv/storage";
+        access.rw = "n3mo";
+      };
+    };
+  };
+
+  # forgejo
+  #services.forgejo = {
+  #  enable = true;
+  #  settings.server.ROOT_URL = "forgejo.local.n3mohomelab.xyz";
+  #};
+  #services.nginx.virtualHosts."forgejo.local.n3mohomelab.xyz" = {
+  #  forceSSL = true;
+  #  useACMEHost = "local.n3mohomelab.xyz";
+  #  locations."/".proxyPass = "http://localhost:3000";
+  #};
 
   # jellyfin
   virtualisation.oci-containers.containers."jellyfin" = {
@@ -284,6 +211,66 @@
     locations."/".proxyPass = "http://localhost:8686";
   };
 
+  # prowlarr
+  virtualisation.oci-containers.containers."prowlarr" = {
+    image = "lscr.io/linuxserver/prowlarr:latest";
+    volumes = [
+      "/srv/state/prowlarr:/config"
+    ];
+    ports = [
+      "9696:9696"
+    ];
+    environment = {
+      "PUID" = "10000";
+      "PGID" = "10000";
+    };
+    extraOptions = [ "--network=medianet" ];
+  };
+  services.nginx.virtualHosts."prowlarr.local.n3mohomelab.xyz" = {
+    forceSSL = true;
+    useACMEHost = "local.n3mohomelab.xyz";
+    locations."/".proxyPass = "http://localhost:9696";
+  };
+
+  # autobrr
+  virtualisation.oci-containers.containers."autobrr" = {
+    image = "ghcr.io/autobrr/autobrr:latest";
+    volumes = [ "/srv/state/autobrr:/config" ];
+    ports = [
+      "7474:7474"
+    ];
+    user = "10000:10000";
+    extraOptions = [ "--network=medianet" ];
+  };
+  services.nginx.virtualHosts."autobrr.local.n3mohomelab.xyz" = {
+    forceSSL = true;
+    useACMEHost = "local.n3mohomelab.xyz";
+    locations."/".proxyPass = "http://localhost:7474";
+  };
+
+  # bazarr
+  virtualisation.oci-containers.containers."bazarr" = {
+    image = "lscr.io/linuxserver/bazarr:latest";
+    volumes = [
+      "/srv/state/bazarr:/config"
+      "/srv/storage/media/movies:/movies"
+      "/srv/storage/media/tv:/tv"
+    ];
+    ports = [
+      "6767:6767"
+    ];
+    environment = {
+      "PUID" = "10000";
+      "PGID" = "10000";
+    };
+    extraOptions = [ "--network=medianet" ];
+  };
+  services.nginx.virtualHosts."bazarr.local.n3mohomelab.xyz" = {
+    forceSSL = true;
+    useACMEHost = "local.n3mohomelab.xyz";
+    locations."/".proxyPass = "http://localhost:6767";
+  };
+
   # readarr for ebooks
   virtualisation.oci-containers.containers."readarr-ebooks" = {
     image = "lscr.io/linuxserver/readarr:develop";
@@ -328,22 +315,6 @@
     locations."/".proxyPass = "http://localhost:9797";
   };
 
-  # autobrr
-  virtualisation.oci-containers.containers."autobrr" = {
-    image = "ghcr.io/autobrr/autobrr:latest";
-    volumes = [ "/srv/state/autobrr:/config" ];
-    ports = [
-      "7474:7474"
-    ];
-    user = "10000:10000";
-    extraOptions = [ "--network=medianet" ];
-  };
-  services.nginx.virtualHosts."autobrr.local.n3mohomelab.xyz" = {
-    forceSSL = true;
-    useACMEHost = "local.n3mohomelab.xyz";
-    locations."/".proxyPass = "http://localhost:7474";
-  };
-
   # audiobookshelf
   services.audiobookshelf = {
     enable = true;
@@ -354,39 +325,6 @@
     forceSSL = true;
     useACMEHost = "local.n3mohomelab.xyz";
     locations."/".proxyPass = "http://localhost:8000";
-  };
-
-  # bazarr
-  #services.bazarr = {
-  #  enable = true;
-  #  user = "media";
-  #  group = "media";
-  #};
-  #services.nginx.virtualHosts."bazarr.local.n3mohomelab.xyz" = {
-  #  forceSSL = true;
-  #  useACMEHost = "local.n3mohomelab.xyz";
-  #  locations."/".proxyPass = "http://localhost:6767";
-  #};
-
-  # prowlarr
-  virtualisation.oci-containers.containers."prowlarr" = {
-    image = "lscr.io/linuxserver/prowlarr:latest";
-    volumes = [
-      "/srv/state/prowlarr:/config"
-    ];
-    ports = [
-      "9696:9696"
-    ];
-    environment = {
-      "PUID" = "10000";
-      "PGID" = "10000";
-    };
-    extraOptions = [ "--network=medianet" ];
-  };
-  services.nginx.virtualHosts."prowlarr.local.n3mohomelab.xyz" = {
-    forceSSL = true;
-    useACMEHost = "local.n3mohomelab.xyz";
-    locations."/".proxyPass = "http://localhost:9696";
   };
 
   # recyclarr 
@@ -412,56 +350,6 @@
         }
       ];
     }; 
-  };
-
-  # immich
-  services.immich = {
-    enable = true;
-    group = "media";
-    host = "0.0.0.0";
-    mediaLocation = "/srv/storage/media/photos/";
-  };
-  services.nginx.virtualHosts."immich.local.n3mohomelab.xyz" = {
-    forceSSL = true;
-    useACMEHost = "local.n3mohomelab.xyz";
-    locations."/".proxyPass = "http://localhost:2283";
-  };
-
-  # syncthing
-  services.syncthing = {
-    enable = true;
-    user = "media";
-    dataDir = "/srv/storage/";
-    configDir = "/srv/state/syncthing/";
-    overrideDevices = true;
-    overrideFolders = true;
-    settings = {
-      devices = {
-        "l4p70p".id = "KGVUOGB-QHWXGNM-HU5FOLN-U6G27HF-TBOIWGF-HFLINIT-CY7KW3L-GAMUVA7";
-        "d35k70p".id = "AT4R74X-WFCYYHF-UDWSNSW-E3EAVR4-D3PQAG4-HHWTMNU-4444DTN-OWSS2QR";
-        "ph0n3".id = "6UXKBRR-DEEFFKO-YFD4WTR-EZCVVCN-CXKRVYE-J7D5XOH-HBLODJC-TT3ZVAE";
-      };
-      folders = {
-        "Music" = {
-            path = "/srv/storage/media/music";
-            devices = [ "l4p70p" ];
-        };
-        "Nest" = {
-            path = "/srv/storage/nest";
-            devices = [ "d35k70p" ];
-        };
-        "Books" = {
-            path = "/srv/storage/media/books";
-            devices = [ "l4p70p" "ph0n3" ];
-        };
-      };
-      gui.insecureSkipHostcheck = true;
-    };
-  };
-  services.nginx.virtualHosts."syncthing.local.n3mohomelab.xyz" = {
-    forceSSL = true;
-    useACMEHost = "local.n3mohomelab.xyz";
-    locations."/".proxyPass = "http://localhost:8384";
   };
 
   # tailscale
@@ -592,6 +480,19 @@
     locations."/".proxyPass = "http://transmission-container:5030";
   };
 
+  # immich
+  services.immich = {
+    enable = true;
+    group = "media";
+    host = "0.0.0.0";
+    mediaLocation = "/srv/storage/media/photos/";
+  };
+  services.nginx.virtualHosts."immich.local.n3mohomelab.xyz" = {
+    forceSSL = true;
+    useACMEHost = "local.n3mohomelab.xyz";
+    locations."/".proxyPass = "http://localhost:2283";
+  };
+
   # gotify
   virtualisation.oci-containers.containers."gotify" = {
     image = "gotify/server";
@@ -603,6 +504,114 @@
     forceSSL = true;
     useACMEHost = "local.n3mohomelab.xyz";
     locations."/".proxyPass = "http://localhost:6060";
+  };
+
+  # radicale
+  services.radicale = {
+    enable = true;
+    settings = {
+      server.hosts = [ "0.0.0.0:5232" ];
+      auth.type = "none";
+    };
+  };
+  services.nginx.virtualHosts."radicale.local.n3mohomelab.xyz" = {
+    forceSSL = true;
+    useACMEHost = "local.n3mohomelab.xyz";
+    locations."/".proxyPass = "http://localhost:5232";
+  };
+
+  # searxng 
+  services.searx = {
+    enable = true;
+    package = pkgs.searxng;
+    redisCreateLocally = true;
+    settings = {
+      general.instance_name = "n3mo's searx";
+      ui = {
+        default_locale = "en";
+        query_in_title = true;
+        infinite_scroll = true;
+        center_alignment = true;
+        default_theme = "simple";
+        theme_args.simple_style = "dark";
+        results_on_new_tab = true;
+        hotkeys = "vim";
+      };
+      server = {
+        base_url = "https://searx.local.n3mohomelab.xyz";
+        port = 1234;
+        bind_address = "127.0.0.1";
+        secret_key = "superDuperSecret";
+        method = "GET";
+      };
+      enabled_plugins = [
+        "Basic Calculator"
+        "Hash plugin"
+        "Tor check plugin"
+        "Open Access DOI rewrite"
+        "Hostnames plugin"
+        "Unit converter plugin"
+        "Tracker URL remover"
+      ];
+    };
+  };
+  services.nginx.virtualHosts."searx.local.n3mohomelab.xyz" = {
+    forceSSL = true;
+    useACMEHost = "local.n3mohomelab.xyz";
+    locations."/".proxyPass = "http://localhost:1234";
+  };
+
+  # hauk 
+  virtualisation.oci-containers.containers."hauk" = {
+    image="bilde2910/hauk:latest";
+    ports = [
+      "8082:80"
+    ];
+    volumes = [
+      "/srv/state/hauk:/etc/hauk"
+    ];
+  };
+  services.nginx.virtualHosts."hauk.local.n3mohomelab.xyz" = {
+    forceSSL = true;
+    useACMEHost = "local.n3mohomelab.xyz";
+    locations."/".proxyPass = "http://localhost:8082";
+  };
+
+  # syncthing
+  services.syncthing = {
+    enable = true;
+    user = "media";
+    dataDir = "/srv/storage/";
+    configDir = "/srv/state/syncthing/";
+    overrideDevices = true;
+    overrideFolders = true;
+    settings = {
+      devices = {
+        "l4p70p".id = "KGVUOGB-QHWXGNM-HU5FOLN-U6G27HF-TBOIWGF-HFLINIT-CY7KW3L-GAMUVA7";
+        "d35k70p".id = "AT4R74X-WFCYYHF-UDWSNSW-E3EAVR4-D3PQAG4-HHWTMNU-4444DTN-OWSS2QR";
+        "ph0n3".id = "6UXKBRR-DEEFFKO-YFD4WTR-EZCVVCN-CXKRVYE-J7D5XOH-HBLODJC-TT3ZVAE";
+      };
+      folders = {
+        "Music" = {
+            path = "/srv/storage/media/music";
+            devices = [ "l4p70p" ];
+        };
+        "Nest" = {
+            path = "/srv/storage/nest";
+            devices = [ "d35k70p" ];
+        };
+        "Books" = {
+            path = "/srv/storage/media/books";
+            devices = [ "l4p70p" "ph0n3" ];
+        };
+      };
+      gui.insecureSkipHostcheck = true;
+    };
+  };
+  services.nginx.virtualHosts."syncthing.local.n3mohomelab.xyz" = {
+    forceSSL = true;
+    useACMEHost = "local.n3mohomelab.xyz";
+    locations."/".proxyPass = "http://localhost:8384";
   };
 
 }

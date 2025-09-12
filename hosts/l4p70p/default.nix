@@ -94,6 +94,9 @@
     powerOnBoot = true;
   };
 
+  # run non-nix executables
+  programs.nix-ld.enable = true;
+
   # home manager
   programs.fuse.userAllowOther = true;
   home-manager.users.${config.username} = {
