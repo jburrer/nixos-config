@@ -253,8 +253,7 @@
     image = "lscr.io/linuxserver/bazarr:latest";
     volumes = [
       "/srv/state/bazarr:/config"
-      "/srv/storage/media/movies:/movies"
-      "/srv/storage/media/tv:/tv"
+      "/srv/storage:/storage"
     ];
     ports = [
       "6767:6767"
