@@ -457,7 +457,7 @@
               widget = {
                 type = "bazarr";
                 url = "https://bazarr.local.n3mohomelab.xyz";
-                key = "01442f2b9df9a4f7859bd92bcac143f1";
+                key = "bb0549247185ccf7c93bdddd45eb5086";
               };
             };
           }
