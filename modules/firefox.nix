@@ -33,7 +33,6 @@
       };
       betterfox.enable = true;
       profiles = {
-
         "${osConfig.username}" = {
           id = 0;
           name = "${osConfig.username}";
@@ -133,6 +132,7 @@
             sponsorblock
             ublock-origin
             violentmonkey
+            bitwarden
           ];
           userChrome = ''
             @import "firefox-gnome-theme/userChrome.css";
