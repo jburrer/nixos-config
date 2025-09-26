@@ -94,7 +94,7 @@
       "/srv/state/vaultwarden-nest:/data"
     ]; 
     ports = [
-      "8001:8000"
+      "8001:80"
     ];
   };
   services.nginx.virtualHosts."vaultwarden-nest.local.n3mohomelab.xyz" = {
