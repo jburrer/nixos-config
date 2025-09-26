@@ -82,7 +82,7 @@
       morewaita-icon-theme adwaita-fonts adw-gtk3
     ]) ++ (with pkgs.gnomeExtensions; [
       paperwm blur-my-shell rounded-window-corners-reborn
-      caffeine tailscale-qs
+      caffeine tailscale-qs resource-monitor
     ]);
 
     xdg.enable = true;

@@ -108,8 +108,6 @@
       "org.gnome.Lollypop"
       "app.drey.EarTag"
       "org.gnome.Polari"
-      "com.obsproject.Studio"
-      "org.inkscape.Inkscape"
       "org.torproject.torbrowser-launcher"
       "org.getmonero.Monero"
     ];

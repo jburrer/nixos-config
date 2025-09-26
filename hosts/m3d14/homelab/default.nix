@@ -83,6 +83,26 @@
     };
   };
 
+  # nest vaultwarden
+  virtualisation.oci-containers.containers."vaultwarden-nest" = {
+    image = "vaultwarden/server:latest";
+    user = "10000:10000";
+    #environment = {
+    #  "DOMAIN" = "*";
+    #};
+    volumes = [
+      "/srv/state/vaultwarden-nest:/data"
+    ]; 
+    ports = [
+      "8000:8000"
+    ];
+  };
+  services.nginx.virtualHosts."vaultwarden-nest.local.n3mohomelab.xyz" = {
+    forceSSL = true;
+    useACMEHost = "local.n3mohomelab.xyz";
+    locations."/".proxyPass = "http://localhost:8000";
+  };
+
   # forgejo
   #services.forgejo = {
   #  enable = true;
