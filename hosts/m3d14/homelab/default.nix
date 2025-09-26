@@ -94,13 +94,13 @@
       "/srv/state/vaultwarden-nest:/data"
     ]; 
     ports = [
-      "8000:8000"
+      "8001:8000"
     ];
   };
   services.nginx.virtualHosts."vaultwarden-nest.local.n3mohomelab.xyz" = {
     forceSSL = true;
     useACMEHost = "local.n3mohomelab.xyz";
-    locations."/".proxyPass = "http://localhost:8000";
+    locations."/".proxyPass = "http://localhost:8001";
   };
 
   # forgejo
