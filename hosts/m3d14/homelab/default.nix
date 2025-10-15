@@ -94,7 +94,7 @@
       "8001:80"
     ];
   };
-  services.nginx.virtualHosts."vaultwarden-nest.local.n3mohomelab.xyz" = {
+  services.nginx.virtualHosts."vaultwarden.local.n3mohomelab.xyz" = {
     forceSSL = true;
     useACMEHost = "local.n3mohomelab.xyz";
     locations."/".proxyPass = "http://localhost:8001";
