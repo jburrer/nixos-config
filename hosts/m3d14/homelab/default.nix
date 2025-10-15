@@ -83,15 +83,12 @@
     };
   };
 
-  # nest vaultwarden
-  virtualisation.oci-containers.containers."vaultwarden-nest" = {
+  # vaultwarden
+  virtualisation.oci-containers.containers."vaultwarden" = {
     image = "vaultwarden/server:latest";
     user = "10000:10000";
-    #environment = {
-    #  "DOMAIN" = "*";
-    #};
     volumes = [
-      "/srv/state/vaultwarden-nest:/data"
+      "/srv/state/vaultwarden:/data"
     ]; 
     ports = [
       "8001:80"
