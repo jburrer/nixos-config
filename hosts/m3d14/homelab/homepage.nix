@@ -583,13 +583,6 @@
             };
           }
           {
-            "SearXNG" = {
-              description = "Search Engine";
-              icon = "searx.png";
-              href = "https://searx.local.n3mohomelab.xyz";
-            };
-          }
-          {
             "Hauk" = {
               description = "Location Sharing";
               href = "https://hauk.local.n3mohomelab.xyz";
