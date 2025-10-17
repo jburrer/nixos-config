@@ -125,7 +125,7 @@
             "gnomeTheme.hideUnifiedExtensions" = false;
           };
           extensions.packages = with pkgs.nur.repos.rycee.firefox-addons; [
-            browserpass
+            #browserpass
             istilldontcareaboutcookies
             linkhints
             new-tab-override
@@ -158,10 +158,10 @@
       };
     };
 
-    browserpass = {
-      enable = true;
-      browsers = [ "firefox" ];
-    };
+    #browserpass = {
+    #  enable = true;
+    #  browsers = [ "firefox" ];
+    #};
 
   };
 

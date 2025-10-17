@@ -5,7 +5,7 @@
     #(import ./disko-config.nix { device="/dev/nvme0n1"; })
     ../../modules
     ../../modules/gnome.nix
-    ../../modules/gaming.nix
+    #../../modules/gaming.nix
     ../../modules/printing.nix
     ../../modules/music-production.nix
   ];
