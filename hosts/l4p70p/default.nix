@@ -97,6 +97,9 @@
   # run non-nix executables
   programs.nix-ld.enable = true;
 
+  # run non-free programs
+  nixpkgs.config.allowUnfree = true;
+
   # home manager
   programs.fuse.userAllowOther = true;
   home-manager.users.${config.username} = {

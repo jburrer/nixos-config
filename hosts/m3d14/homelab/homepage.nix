@@ -278,13 +278,6 @@
             ];
           }
           {
-            "XFinity" = [
-              {
-                href = "https://www.xfinity.com/auth";
-              }
-            ];
-          }
-          {
             "Nest Google Drive" = [
               {
                 href = "https://drive.google.com/drive/folders/1eIce57HC0UjhaLZxHRgjpywna1UrCdyX?usp=drive_link";
@@ -312,10 +305,6 @@
               }
             ];
           }
-        ];
-      }
-      {
-        "Trackers" = [
           {
             "MyAnonymouse" = [
               {
@@ -577,6 +566,13 @@
                 url = "https://gotify.local.n3mohomelab.xyz";
                 key = "C56b4eahOw3jAih";
               };
+            };
+          }
+          {
+            "Vaultwarden" = {
+              description = "Password Manager";
+              icon = "vaultwarden.png";
+              href = "https://vaultwarden.local.n3mohomelab.xyz";
             };
           }
           {
