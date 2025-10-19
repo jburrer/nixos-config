@@ -38,22 +38,28 @@
   #users.users.nginx.extraGroups = [ "acme" ];
 
   # agnos
-  security.agnos = {
-    enable = true;
-    #temporarilyOpenFirewall = true;
-    generateKeys.enable = true;
-    settings = {
-      dns_listen_addr = "73.103.76.89:53";
-      accounts = [
-        {
-          email = "jburrer@purdue.edu";
-          certificates = [
-            {
-              domains = [ ".local.n3mohomelab.xyz" ];
-            }
-          ];
-        }
-      ];
+  security = {
+    acme = {
+      acceptTerms = true;
+      certs.".local.n3mohomelab.xyz".email = "n3mo@startmail.com";
+    };
+    agnos = {
+      enable = true;
+      #temporarilyOpenFirewall = true;
+      generateKeys.enable = true;
+      settings = {
+        dns_listen_addr = "73.103.76.89:53";
+        accounts = [
+          {
+            email = "n3mo@startmail.com";
+            certificates = [
+              {
+                domains = [ ".local.n3mohomelab.xyz" ];
+              }
+            ];
+          }
+        ];
+      };
     };
   };
 
