@@ -19,11 +19,14 @@
       domain = "local.n3mohomelab.xyz";
       extraDomainNames = [ "*.local.n3mohomelab.xyz" ];
       dnsProvider = "vultr";
-      dnsPropagationCheck = true;
-      environmentFile = "${pkgs.writeText "vultr-creds" ''
-        VULTR_API_KEY=KYV2E5DMYYWELBZASVAVVKPW7JRVUJF3X6VQ
-      ''}";
-      # ^ fix this when secrets implemented ^
+      credentialsFile = pkgs.writeText "vultr-dns.env" ''
+        VULTR_API_KEY_FILE=/var/lib/secrets/vultr.key
+      '';
+      #dnsPropagationCheck = true;
+      #environmentFile = "${pkgs.writeText "vultr-creds" ''
+      #  VULTR_API_KEY=KYV2E5DMYYWELBZASVAVVKPW7JRVUJF3X6VQ
+      #''}";
+      webroot = lib.mkForce null;
     };
   };
   users.users.nginx.extraGroups = [ "acme" ];
