@@ -10,10 +10,10 @@
     recommendedProxySettings = true;
     recommendedTlsSettings = true;
     ###
-    virtualHosts."local.n3mohomelab.xyz" = {
-      serverAliases = [ "*.local.n3mohomelab.xyz" ];
-      enableACME = true;
-    };
+    #virtualHosts."local.n3mohomelab.xyz" = {
+    #  serverAliases = [ "*.local.n3mohomelab.xyz" ];
+    #  enableACME = true;
+    #};
     ###
   };
 
@@ -39,13 +39,13 @@
 
   # agnos
   security = {
-    acme = {
-      acceptTerms = true;
-      certs.".local.n3mohomelab.xyz" = {
-        email = "n3mo@startmail.com";
-        dnsProvider = "vultr";
-      };
-    };
+    #acme = {
+    #  acceptTerms = true;
+    #  certs.".local.n3mohomelab.xyz" = {
+    #    email = "n3mo@startmail.com";
+    #    dnsProvider = "vultr";
+    #  };
+    #};
     agnos = {
       enable = true;
       #temporarilyOpenFirewall = true;
