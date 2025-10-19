@@ -9,6 +9,12 @@
     enable = true;
     recommendedProxySettings = true;
     recommendedTlsSettings = true;
+    ###
+    virtualHosts."local.n3mohomelab.xyz" = {
+      serverAliases = [ "*.local.n3mohomelab.xyz" ];
+      enableACME = true;
+    };
+    ###
   };
 
   # acme wildcard certificate
@@ -16,8 +22,8 @@
     acceptTerms = true;
     defaults.email = "jburrer@purdue.edu";
     certs."local.n3mohomelab.xyz" = {
-      domain = "local.n3mohomelab.xyz";
-      extraDomainNames = [ "*.local.n3mohomelab.xyz" ];
+      #domain = "local.n3mohomelab.xyz";
+      #extraDomainNames = [ "*.local.n3mohomelab.xyz" ];
       dnsProvider = "vultr";
       credentialsFile = pkgs.writeText "vultr-dns.env" ''
         VULTR_API_KEY_FILE=/var/lib/secrets/vultr.key
