@@ -18,24 +18,44 @@
   };
 
   # acme wildcard certificate
-  security.acme = {
-    acceptTerms = true;
-    defaults.email = "jburrer@purdue.edu";
-    certs."local.n3mohomelab.xyz" = {
-      #domain = "local.n3mohomelab.xyz";
-      #extraDomainNames = [ "*.local.n3mohomelab.xyz" ];
-      dnsProvider = "vultr";
-      credentialsFile = pkgs.writeText "vultr-dns.env" ''
-        VULTR_API_KEY_FILE=/var/lib/secrets/vultr.key
-      '';
-      #dnsPropagationCheck = true;
-      #environmentFile = "${pkgs.writeText "vultr-creds" ''
-      #  VULTR_API_KEY=KYV2E5DMYYWELBZASVAVVKPW7JRVUJF3X6VQ
-      #''}";
-      webroot = lib.mkForce null;
+  #security.acme = {
+  #  acceptTerms = true;
+  #  defaults.email = "jburrer@purdue.edu";
+  #  certs."local.n3mohomelab.xyz" = {
+  #    #domain = "local.n3mohomelab.xyz";
+  #    #extraDomainNames = [ "*.local.n3mohomelab.xyz" ];
+  #    dnsProvider = "vultr";
+  #    credentialsFile = pkgs.writeText "vultr-dns.env" ''
+  #      VULTR_API_KEY_FILE=/var/lib/secrets/vultr.key
+  #    '';
+  #    #dnsPropagationCheck = true;
+  #    #environmentFile = "${pkgs.writeText "vultr-creds" ''
+  #    #  VULTR_API_KEY=KYV2E5DMYYWELBZASVAVVKPW7JRVUJF3X6VQ
+  #    #''}";
+  #    webroot = lib.mkForce null;
+  #  };
+  #};
+  #users.users.nginx.extraGroups = [ "acme" ];
+
+  # agnos
+  security.agnos = {
+    enable = true;
+    #temporarilyOpenFirewall = true;
+    generateKeys.enable = true;
+    settings = {
+      dns_listen_addr = "73.103.76.89:53";
+      accounts = [
+        {
+          email = "jburrer@purdue.edu";
+          certificates = [
+            {
+              domains = [ ".local.n3mohomelab.xyz" ];
+            }
+          ];
+        }
+      ];
     };
   };
-  users.users.nginx.extraGroups = [ "acme" ];
 
   # set up media user
   users.users."media" = {
