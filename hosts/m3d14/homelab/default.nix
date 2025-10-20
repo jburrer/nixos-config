@@ -56,7 +56,7 @@
       generateKeys.enable = true;
       settings = {
         #dns_listen_addr = "73.103.76.89:53";
-        dns_listen_addr = "localhost:53";
+        dns_listen_addr = "127.0.0.1:53";
         accounts = [
           {
             email = "n3mo@startmail.com";
