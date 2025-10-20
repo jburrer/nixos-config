@@ -39,6 +39,7 @@
       certs."local.n3mohomelab.xyz" = {
         domain = "local.n3mohomelab.xyz";
         extraDomainNames = [ "*.local.n3mohomelab.xyz" ];
+        dnsProvider = "vultr";
       };
     };
     agnos = {
