@@ -12,63 +12,60 @@
   };
 
   # acme wildcard certificate
-  #security.acme = {
-  #  acceptTerms = true;
-  #  defaults.email = "jburrer@purdue.edu";
-  #  certs."local.n3mohomelab.xyz" = {
-  #    #domain = "local.n3mohomelab.xyz";
-  #    #extraDomainNames = [ "*.local.n3mohomelab.xyz" ];
-  #    dnsProvider = "vultr";
-  #    credentialsFile = pkgs.writeText "vultr-dns.env" ''
-  #      VULTR_API_KEY_FILE=/var/lib/secrets/vultr.key
-  #    '';
-  #    #dnsPropagationCheck = true;
-  #    #environmentFile = "${pkgs.writeText "vultr-creds" ''
-  #    #  VULTR_API_KEY=KYV2E5DMYYWELBZASVAVVKPW7JRVUJF3X6VQ
-  #    #''}";
-  #    webroot = lib.mkForce null;
-  #  };
-  #};
+  security.acme = {
+    acceptTerms = true;
+    defaults.email = "n3mo@startmail.com";
+    certs."n3mohomelab.xyz" = {
+      domain = "n3mohomelab.xyz";
+      extraDomainNames = [ "*.n3mohomelab.xyz" ];
+      dnsProvider = "vultr";
+      environmentFile = "${pkgs.writeText "vultr-creds" ''
+        VULTR_API_KEY=63WDSZPPODZUYD22AIIU6PLAT4OL6SP5I3KA
+      ''}";
+      # ^ fix this when secrets implemented ^
+      webroot = lib.mkForce null;
+    };
+  };
   users.users.nginx.extraGroups = [ "acme" ];
 
   # agnos
-  security = {
-    acme = {
-      acceptTerms = true;
-      defaults.email = "n3mo@startmail.com";
-      certs."local.n3mohomelab.xyz" = {
-        domain = "local.n3mohomelab.xyz";
-        extraDomainNames = [ "*.local.n3mohomelab.xyz" ];
-        dnsProvider = "vultr";
-      };
-    };
-    agnos = {
-      enable = true;
-      #temporarilyOpenFirewall = true;
-      generateKeys.enable = true;
-      settings = {
-        #dns_listen_addr = "73.103.76.89:53";
-        dns_listen_addr = "127.0.0.1:53";
-        accounts = [
-          {
-            email = "n3mo@startmail.com";
-            private_key_path = "privatekey.pem";
-            certificates = [
-              {
-                domains = [
-                  "local.n3mohomelab.xyz"
-                  "*.local.n3mohomelab.xyz"
-                ];
-                fullchain_output_file = "fullchain.pem";
-                key_output_file = "certkey.pem";
-              }
-            ];
-          }
-        ];
-      };
-    };
-  };
- services.nginx.virtualHosts."agnos.n3mohomelab.xyz".locations."/".proxyPass = "http://localhost:53";
+  #security = {
+  #  acme = {
+  #    acceptTerms = true;
+  #    defaults.email = "n3mo@startmail.com";
+  #    certs."local.n3mohomelab.xyz" = {
+  #      domain = "local.n3mohomelab.xyz";
+  #      extraDomainNames = [ "*.local.n3mohomelab.xyz" ];
+  #      dnsProvider = "vultr";
+  #    };
+  #  };
+  #  agnos = {
+  #    enable = true;
+  #    #temporarilyOpenFirewall = true;
+  #    generateKeys.enable = true;
+  #    settings = {
+  #      #dns_listen_addr = "73.103.76.89:53";
+  #      dns_listen_addr = "127.0.0.1:53";
+  #      accounts = [
+  #        {
+  #          email = "n3mo@startmail.com";
+  #          private_key_path = "privatekey.pem";
+  #          certificates = [
+  #            {
+  #              domains = [
+  #                "local.n3mohomelab.xyz"
+  #                "*.local.n3mohomelab.xyz"
+  #              ];
+  #              fullchain_output_file = "fullchain.pem";
+  #              key_output_file = "certkey.pem";
+  #            }
+  #          ];
+  #        }
+  #      ];
+  #    };
+  #  };
+  #};
+  #services.nginx.virtualHosts."agnos.n3mohomelab.xyz".locations."/".proxyPass = "http://localhost:53";
 
   # set up media user
   users.users."media" = {
@@ -136,10 +133,9 @@
       "8001:80"
     ];
   };
-  services.nginx.virtualHosts."vaultwarden.local.n3mohomelab.xyz" = {
-    #forceSSL = true;
-    #useACMEHost = ".local.n3mohomelab.xyz";
-    #enableACME = true;
+  services.nginx.virtualHosts."vaultwarden.n3mohomelab.xyz" = {
+    forceSSL = true;
+    useACMEHost = "n3mohomelab.xyz";
     locations."/".proxyPass = "http://localhost:8001";
   };
 
@@ -168,10 +164,9 @@
     ];
     extraOptions = [ "--network=medianet" ];
   };
-  services.nginx.virtualHosts."jellyfin.local.n3mohomelab.xyz" = {
-    #forceSSL = true;
-    #useACMEHost = ".local.n3mohomelab.xyz";
-    #enableACME = true;
+  services.nginx.virtualHosts."jellyfin.n3mohomelab.xyz" = {
+    forceSSL = true;
+    useACMEHost = "n3mohomelab.xyz";
     locations."/".proxyPass = "http://localhost:8096";
   };
 
@@ -183,10 +178,9 @@
     ports = [ "5055:5055" ];
     extraOptions = [ "--network=medianet" ];
   };
-  services.nginx.virtualHosts."jellyseerr.local.n3mohomelab.xyz" = {
-    #forceSSL = true;
-    #useACMEHost = ".local.n3mohomelab.xyz";
-    #enableACME = true;
+  services.nginx.virtualHosts."jellyseerr.n3mohomelab.xyz" = {
+    forceSSL = true;
+    useACMEHost = "n3mohomelab.xyz";
     locations."/".proxyPass = "http://localhost:5055";
   };
 
@@ -201,10 +195,9 @@
     ];
     extraOptions = [ "--network=medianet" ];
   };
-  services.nginx.virtualHosts."navidrome.local.n3mohomelab.xyz" = {
-    #forceSSL = true;
-    #useACMEHost = ".local.n3mohomelab.xyz";
-    #enableACME = true;
+  services.nginx.virtualHosts."navidrome.n3mohomelab.xyz" = {
+    forceSSL = true;
+    useACMEHost = "n3mohomelab.xyz";
     locations."/".proxyPass = "http://localhost:4533";
   };
 
@@ -224,10 +217,9 @@
     };
     extraOptions = [ "--network=medianet" ];
   };
-  services.nginx.virtualHosts."radarr.local.n3mohomelab.xyz" = {
-    #forceSSL = true;
-    #useACMEHost = ".local.n3mohomelab.xyz";
-    #enableACME = true;
+  services.nginx.virtualHosts."radarr.n3mohomelab.xyz" = {
+    forceSSL = true;
+    useACMEHost = "n3mohomelab.xyz";
     locations."/".proxyPass = "http://localhost:7878";
   };
 
@@ -247,10 +239,9 @@
     };
     extraOptions = [ "--network=medianet" ];
   };
-  services.nginx.virtualHosts."sonarr.local.n3mohomelab.xyz" = {
-    #forceSSL = true;
-    #useACMEHost = ".local.n3mohomelab.xyz";
-    #enableACME = true;
+  services.nginx.virtualHosts."sonarr.n3mohomelab.xyz" = {
+    forceSSL = true;
+    useACMEHost = "n3mohomelab.xyz";
     locations."/".proxyPass = "http://localhost:8989";
   };
 
@@ -270,10 +261,9 @@
     };
     extraOptions = [ "--network=medianet" ];
   };
-  services.nginx.virtualHosts."lidarr.local.n3mohomelab.xyz" = {
-    #forceSSL = true;
-    #useACMEHost = ".local.n3mohomelab.xyz";
-    #enableACME = true;
+  services.nginx.virtualHosts."lidarr.n3mohomelab.xyz" = {
+    forceSSL = true;
+    useACMEHost = "n3mohomelab.xyz";
     locations."/".proxyPass = "http://localhost:8686";
   };
 
@@ -292,10 +282,9 @@
     };
     extraOptions = [ "--network=medianet" ];
   };
-  services.nginx.virtualHosts."prowlarr.local.n3mohomelab.xyz" = {
-    #forceSSL = true;
-    #useACMEHost = ".local.n3mohomelab.xyz";
-    #enableACME = true;
+  services.nginx.virtualHosts."prowlarr.n3mohomelab.xyz" = {
+    forceSSL = true;
+    useACMEHost = "n3mohomelab.xyz";
     locations."/".proxyPass = "http://localhost:9696";
   };
 
@@ -309,10 +298,9 @@
     user = "10000:10000";
     extraOptions = [ "--network=medianet" ];
   };
-  services.nginx.virtualHosts."autobrr.local.n3mohomelab.xyz" = {
-    #forceSSL = true;
-    #useACMEHost = ".local.n3mohomelab.xyz";
-    #enableACME = true;
+  services.nginx.virtualHosts."autobrr.n3mohomelab.xyz" = {
+    forceSSL = true;
+    useACMEHost = "n3mohomelab.xyz";
     locations."/".proxyPass = "http://localhost:7474";
   };
 
@@ -332,10 +320,9 @@
     };
     extraOptions = [ "--network=medianet" ];
   };
-  services.nginx.virtualHosts."bazarr.local.n3mohomelab.xyz" = {
-    #forceSSL = true;
-    #useACMEHost = ".local.n3mohomelab.xyz";
-    #enableACME = true;
+  services.nginx.virtualHosts."bazarr.n3mohomelab.xyz" = {
+    forceSSL = true;
+    useACMEHost = "n3mohomelab.xyz";
     locations."/".proxyPass = "http://localhost:6767";
   };
 
@@ -355,10 +342,9 @@
     };
     extraOptions = [ "--network=medianet" ];
   };
-  services.nginx.virtualHosts."readarr-ebooks.local.n3mohomelab.xyz" = {
-    #forceSSL = true;
-    #useACMEHost = ".local.n3mohomelab.xyz";
-    #enableACME = true;
+  services.nginx.virtualHosts."readarr-ebooks.n3mohomelab.xyz" = {
+    forceSSL = true;
+    useACMEHost = "n3mohomelab.xyz";
     locations."/".proxyPass = "http://localhost:8787";
   };
 
@@ -378,10 +364,9 @@
     };
     extraOptions = [ "--network=medianet" ];
   };
-  services.nginx.virtualHosts."readarr-audiobooks.local.n3mohomelab.xyz" = {
-    #forceSSL = true;
-    #useACMEHost = ".local.n3mohomelab.xyz";
-    #enableACME = true;
+  services.nginx.virtualHosts."readarr-audiobooks.n3mohomelab.xyz" = {
+    forceSSL = true;
+    useACMEHost = "n3mohomelab.xyz";
     locations."/".proxyPass = "http://localhost:9797";
   };
 
@@ -391,10 +376,9 @@
     user = "media";
     group = "media";
   };
-  services.nginx.virtualHosts."audiobookshelf.local.n3mohomelab.xyz" = {
-    #forceSSL = true;
-    #useACMEHost = ".local.n3mohomelab.xyz";
-    #enableACME = true;
+  services.nginx.virtualHosts."audiobookshelf.n3mohomelab.xyz" = {
+    forceSSL = true;
+    useACMEHost = "n3mohomelab.xyz";
     locations."/".proxyPass = "http://localhost:8000";
   };
 
@@ -478,10 +462,9 @@
       "--network=container:tailscalewithmullvad"
     ];
   };
-  services.nginx.virtualHosts."transmission.local.n3mohomelab.xyz" = {
-    #forceSSL = true;
-    #useACMEHost = ".local.n3mohomelab.xyz";
-    #enableACME = true;
+  services.nginx.virtualHosts."transmission.n3mohomelab.xyz" = {
+    forceSSL = true;
+    useACMEHost = "n3mohomelab.xyz";
     locations."/".proxyPass = "http://transmission-container:9091";
   };
 
@@ -503,10 +486,9 @@
     };
     extraOptions = [ "--network=medianet" ];
   };
-  services.nginx.virtualHosts."transmission1.local.n3mohomelab.xyz" = {
-    #forceSSL = true;
-    #useACMEHost = ".local.n3mohomelab.xyz";
-    #enableACME = true;
+  services.nginx.virtualHosts."transmission1.n3mohomelab.xyz" = {
+    forceSSL = true;
+    useACMEHost = "n3mohomelab.xyz";
     locations."/".proxyPass = "http://localhost:8091";
   };
 
@@ -524,10 +506,9 @@
     };
     extraOptions = [ "--network=medianet" ];
   };
-  services.nginx.virtualHosts."sabnzbd.local.n3mohomelab.xyz" = {
-    #forceSSL = true;
-    #useACMEHost = ".local.n3mohomelab.xyz";
-    #enableACME = true;
+  services.nginx.virtualHosts."sabnzbd.n3mohomelab.xyz" = {
+    forceSSL = true;
+    useACMEHost = "n3mohomelab.xyz";
     locations."/".proxyPass = "http://localhost:8080";
   };
 
@@ -548,10 +529,9 @@
       "--network=container:tailscalewithmullvad"
     ];
   };
-  services.nginx.virtualHosts."slskd.local.n3mohomelab.xyz" = {
-    #forceSSL = true;
-    #useACMEHost = ".local.n3mohomelab.xyz";
-    #enableACME = true;
+  services.nginx.virtualHosts."slskd.n3mohomelab.xyz" = {
+    forceSSL = true;
+    useACMEHost = "n3mohomelab.xyz";
     locations."/".proxyPass = "http://transmission-container:5030";
   };
 
@@ -562,10 +542,9 @@
     host = "0.0.0.0";
     mediaLocation = "/srv/storage/media/photos/";
   };
-  services.nginx.virtualHosts."immich.local.n3mohomelab.xyz" = {
-    #forceSSL = true;
-    #useACMEHost = ".local.n3mohomelab.xyz";
-    #enableACME = true;
+  services.nginx.virtualHosts."immich.n3mohomelab.xyz" = {
+    forceSSL = true;
+    useACMEHost = "n3mohomelab.xyz";
     locations."/".proxyPass = "http://localhost:2283";
   };
 
@@ -576,10 +555,9 @@
     ports = [ "6060:80" ];
     extraOptions = [ "--network=medianet" ];
   };
-  services.nginx.virtualHosts."gotify.local.n3mohomelab.xyz" = {
-    #forceSSL = true;
-    #useACMEHost = ".local.n3mohomelab.xyz";
-    #enableACME = true;
+  services.nginx.virtualHosts."gotify.n3mohomelab.xyz" = {
+    forceSSL = true;
+    useACMEHost = "n3mohomelab.xyz";
     locations."/".proxyPass = "http://localhost:6060";
   };
 
@@ -591,10 +569,9 @@
       auth.type = "none";
     };
   };
-  services.nginx.virtualHosts."radicale.local.n3mohomelab.xyz" = {
-    #forceSSL = true;
-    #useACMEHost = ".local.n3mohomelab.xyz";
-    #enableACME = true;
+  services.nginx.virtualHosts."radicale.n3mohomelab.xyz" = {
+    forceSSL = true;
+    useACMEHost = "n3mohomelab.xyz";
     locations."/".proxyPass = "http://localhost:5232";
   };
 
@@ -633,10 +610,9 @@
       ];
     };
   };
-  services.nginx.virtualHosts."searx.local.n3mohomelab.xyz" = {
+  services.nginx.virtualHosts."searx.n3mohomelab.xyz" = {
     forceSSL = true;
-    #useACMEHost = ".local.n3mohomelab.xyz";
-    enableACME = true;
+    useACMEHost = "n3mohomelab.xyz";
     locations."/".proxyPass = "http://localhost:1234";
   };
 
@@ -650,10 +626,9 @@
       "/srv/state/hauk:/etc/hauk"
     ];
   };
-  services.nginx.virtualHosts."hauk.local.n3mohomelab.xyz" = {
+  services.nginx.virtualHosts."hauk.n3mohomelab.xyz" = {
     forceSSL = true;
-    #useACMEHost = ".local.n3mohomelab.xyz";
-    enableACME = true;
+    useACMEHost = "n3mohomelab.xyz";
     locations."/".proxyPass = "http://localhost:8082";
   };
 
@@ -688,10 +663,9 @@
       gui.insecureSkipHostcheck = true;
     };
   };
-  services.nginx.virtualHosts."syncthing.local.n3mohomelab.xyz" = {
+  services.nginx.virtualHosts."syncthing.n3mohomelab.xyz" = {
     forceSSL = true;
-    #useACMEHost = ".local.n3mohomelab.xyz";
-    enableACME = true;
+    useACMEHost = "n3mohomelab.xyz";
     locations."/".proxyPass = "http://localhost:8384";
   };
 
