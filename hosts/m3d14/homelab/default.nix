@@ -12,11 +12,12 @@
       domain = "n3mohomelab.xyz";
       extraDomainNames = [ "*.n3mohomelab.xyz" ];
       dnsProvider = "vultr";
+      dnsPropagationCheck = true;
       environmentFile = "${pkgs.writeText "vultr-creds" ''
         VULTR_API_KEY=63WDSZPPODZUYD22AIIU6PLAT4OL6SP5I3KA
       ''}";
       # ^ fix this when secrets implemented ^
-      webroot = lib.mkForce null;
+      #webroot = lib.mkForce null;
     };
   };
   users.users.nginx.extraGroups = [ "acme" ];
@@ -27,45 +28,6 @@
     recommendedProxySettings = true;
     recommendedTlsSettings = true;
   };
-
-  # agnos
-  #security = {
-  #  acme = {
-  #    acceptTerms = true;
-  #    defaults.email = "n3mo@startmail.com";
-  #    certs."local.n3mohomelab.xyz" = {
-  #      domain = "local.n3mohomelab.xyz";
-  #      extraDomainNames = [ "*.local.n3mohomelab.xyz" ];
-  #      dnsProvider = "vultr";
-  #    };
-  #  };
-  #  agnos = {
-  #    enable = true;
-  #    #temporarilyOpenFirewall = true;
-  #    generateKeys.enable = true;
-  #    settings = {
-  #      #dns_listen_addr = "73.103.76.89:53";
-  #      dns_listen_addr = "127.0.0.1:53";
-  #      accounts = [
-  #        {
-  #          email = "n3mo@startmail.com";
-  #          private_key_path = "privatekey.pem";
-  #          certificates = [
-  #            {
-  #              domains = [
-  #                "local.n3mohomelab.xyz"
-  #                "*.local.n3mohomelab.xyz"
-  #              ];
-  #              fullchain_output_file = "fullchain.pem";
-  #              key_output_file = "certkey.pem";
-  #            }
-  #          ];
-  #        }
-  #      ];
-  #    };
-  #  };
-  #};
-  #services.nginx.virtualHosts."agnos.n3mohomelab.xyz".locations."/".proxyPass = "http://localhost:53";
 
   # set up media user
   users.users."media" = {
