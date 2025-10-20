@@ -1,4 +1,4 @@
-{ config, pkgs, ... }: {
+{ config, pkgs, lib, ... }: {
 
   imports = [
     ./hardware-configuration.nix
@@ -16,15 +16,15 @@
     acceptTerms = true;
     defaults.email = "jburrer@purdue.edu";
     certs = {
-      "n3mohomelab.xyz" = {
-        domain = "n3mohomelab.xyz";
-        extraDomainNames = [ "*.n3mohomelab.xyz" ];
+      "thenest207.live" = {
+        domain = "thenest207.live";
+        extraDomainNames = [ "*.thenest207.live" ];
         dnsProvider = "vultr";
-        dnsPropagationCheck = true;
         environmentFile = "${pkgs.writeText "vultr-creds" ''
-          VULTR_API_KEY=KYV2E5DMYYWELBZASVAVVKPW7JRVUJF3X6VQ
+          VULTR_API_KEY=63WDSZPPODZUYD22AIIU6PLAT4OL6SP5I3KA
         ''}";
         # ^ fix this when secrets implemented ^
+        webroot = lib.mkForce null;
       };
     };
   };
@@ -36,42 +36,21 @@
     recommendedProxySettings = true;
     recommendedTlsSettings = true;
     virtualHosts = {
+
       # whirly birds
       "whirlybirds.online" = {
         forceSSL = true;
         enableACME = true;
         root = "/var/www/whirlybirds.online";
       };
+
       # ydsa 
       "ydsapurdue.org" = {
         forceSSL = true;
         enableACME = true;
         root = "/var/www/ydsapurdue.org";
       };
-      # remote jellyfin access 
-      "jellyfin.n3mohomelab.xyz" = {
-        forceSSL = true;
-        useACMEHost = "n3mohomelab.xyz";
-        locations."/".proxyPass = "http://m3d14:8096";
-      };
-      # remote jellyseerr access 
-      "jellyseerr.n3mohomelab.xyz" = {
-        forceSSL = true;
-        useACMEHost = "n3mohomelab.xyz";
-        locations."/".proxyPass = "http://m3d14:5055";
-      };
-      # remote immich access 
-      "immich.n3mohomelab.xyz" = {
-        forceSSL = true;
-        useACMEHost = "n3mohomelab.xyz";
-        locations."/".proxyPass = "http://m3d14:2283";
-      };
-      # remote hauk access 
-      "hauk.n3mohomelab.xyz" = {
-        forceSSL = true;
-        useACMEHost = "n3mohomelab.xyz";
-        locations."/".proxyPass = "http://m3d14:8082";
-      };
+
       # nest website
       "thenest207.live" = {
         forceSSL = true;
@@ -81,15 +60,42 @@
       # nest file server
       "files.thenest207.live" = {
         forceSSL = true;
-        enableACME = true;
+        useACMEHost = "thenest207.live";
         locations."/".proxyPass = "http://m3d14:3210";
       };
+
+      # remote jellyfin access 
+      "jellyfin.thenest207.live" = {
+        forceSSL = true;
+        useACMEHost = "thenest207.live";
+        locations."/".proxyPass = "http://m3d14:8096";
+      };
+      # remote jellyseerr access 
+      "jellyseerr.thenest207.live" = {
+        forceSSL = true;
+        useACMEHost = "thenest207.live";
+        locations."/".proxyPass = "http://m3d14:5055";
+      };
+      # remote immich access 
+      "immich.thenest207.live" = {
+        forceSSL = true;
+        useACMEHost = "thenest207.live";
+        locations."/".proxyPass = "http://m3d14:2283";
+      };
+      # remote hauk access 
+      "hauk.thenest207.live" = {
+        forceSSL = true;
+        useACMEHost = "thenest207.live";
+        locations."/".proxyPass = "http://m3d14:8082";
+      };
+
       # row website
       "rowpurdue.org" = {
         forceSSL = true;
         enableACME = true;
         root = "/var/www/rowpurdue.org";
       };
+
     };
   };
 

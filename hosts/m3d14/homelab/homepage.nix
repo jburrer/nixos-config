@@ -602,9 +602,8 @@
   };
 
   services.nginx.virtualHosts."homepage.local.n3mohomelab.xyz" = {
-    #forceSSL = true;
-    #useACMEHost = ".local.n3mohomelab.xyz";
-    #enableACME = true;
+    forceSSL = true;
+    useACMEHost = "n3mohomelab.xyz";
     locations."/".proxyPass = "http://localhost:8083";
   };
 
