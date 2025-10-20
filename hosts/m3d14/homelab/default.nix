@@ -42,10 +42,10 @@
     acme = {
       acceptTerms = true;
       certs.defaults.email = "n3mo@startmail.com";
-      #certs.".local.n3mohomelab.xyz" = {
+      certs.".local.n3mohomelab.xyz" = {
       #  email = "n3mo@startmail.com";
-      #  dnsProvider = "vultr";
-      #};
+        dnsProvider = "vultr";
+      };
     };
     agnos = {
       enable = true;
