@@ -41,10 +41,11 @@
   security = {
     acme = {
       acceptTerms = true;
-      certs.".local.n3mohomelab.xyz" = {
-        email = "n3mo@startmail.com";
-        dnsProvider = "vultr";
-      };
+      certs.defaults.email = "n3mo@startmail.com";
+      #certs.".local.n3mohomelab.xyz" = {
+      #  email = "n3mo@startmail.com";
+      #  dnsProvider = "vultr";
+      #};
     };
     agnos = {
       enable = true;
