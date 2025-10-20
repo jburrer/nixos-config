@@ -9,12 +9,6 @@
     enable = true;
     recommendedProxySettings = true;
     recommendedTlsSettings = true;
-    ###
-    #virtualHosts."local.n3mohomelab.xyz" = {
-    #  serverAliases = [ "*.local.n3mohomelab.xyz" ];
-    #  enableACME = true;
-    #};
-    ###
   };
 
   # acme wildcard certificate
@@ -73,6 +67,7 @@
       };
     };
   };
+ services.nginx.virtualHosts."agnos.n3mohomelab.xyz".locations."/".proxyPass = "http://localhost:53";
 
   # set up media user
   users.users."media" = {
