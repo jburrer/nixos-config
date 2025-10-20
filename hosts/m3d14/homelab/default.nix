@@ -131,7 +131,6 @@
     #useACMEHost = "n3mohomelab.xyz";
     sslCertificate = "/var/lib/tailscale/cert.pem";
     sslCertificateKey = "/var/lib/tailscale/key.pem";
-    forceSSL = true;
     locations."/".proxyPass = "http://localhost:8096";
   };
 
