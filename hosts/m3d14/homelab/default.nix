@@ -39,17 +39,17 @@
 
   # agnos
   security = {
-    #acme = {
-    #  acceptTerms = true;
-    #  defaults = {
-    #    email = "n3mo@startmail.com";
-    #    dnsProvider = "vultr";
-    #  };
+    acme = {
+      acceptTerms = true;
+      defaults = {
+        email = "n3mo@startmail.com";
+        #dnsProvider = "vultr";
+      };
     #  #certs.".local.n3mohomelab.xyz" = {
     #  ##  email = "n3mo@startmail.com";
     #  #  dnsProvider = "vultr";
     #  #};
-    #};
+    };
     agnos = {
       enable = true;
       #temporarilyOpenFirewall = true;
