@@ -4,13 +4,6 @@
     ./homepage.nix
   ];
 
-  # enable nginx for proxying
-  services.nginx = {
-    enable = true;
-    recommendedProxySettings = true;
-    recommendedTlsSettings = true;
-  };
-
   # acme wildcard certificate
   security.acme = {
     acceptTerms = true;
@@ -27,6 +20,13 @@
     };
   };
   users.users.nginx.extraGroups = [ "acme" ];
+
+  # enable nginx for proxying
+  services.nginx = {
+    enable = true;
+    recommendedProxySettings = true;
+    recommendedTlsSettings = true;
+  };
 
   # agnos
   #security = {
