@@ -129,8 +129,8 @@
   services.nginx.virtualHosts."jellyfin.n3mohomelab.xyz" = {
     forceSSL = true;
     #useACMEHost = "n3mohomelab.xyz";
-    sslCertificate = "/var/lib/tailscale/cert.pem";
-    sslCertificateKey = "/var/lib/tailscale/key.pem";
+    sslCertificate = "/var/lib/tailscale/m3d14.tail3ddaf.ts.net.crt";
+    sslCertificateKey = "/var/lib/tailscale/m3d14.tail3ddaf.ts.net.key";
     locations."/".proxyPass = "http://localhost:8096";
   };
 
