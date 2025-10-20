@@ -29,20 +29,17 @@
   #    webroot = lib.mkForce null;
   #  };
   #};
-  #users.users.nginx.extraGroups = [ "acme" ];
+  users.users.nginx.extraGroups = [ "acme" ];
 
   # agnos
   security = {
     acme = {
       acceptTerms = true;
-      defaults = {
-        email = "n3mo@startmail.com";
-        #dnsProvider = "vultr";
+      defaults.email = "n3mo@startmail.com";
+      certs."local.n3mohomelab.xyz" = {
+        domain = "local.n3mohomelab.xyz";
+        extraDomainNames = [ "*.local.n3mohomelab.xyz" ];
       };
-    #  #certs.".local.n3mohomelab.xyz" = {
-    #  ##  email = "n3mo@startmail.com";
-    #  #  dnsProvider = "vultr";
-    #  #};
     };
     agnos = {
       enable = true;
