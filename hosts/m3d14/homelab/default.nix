@@ -35,7 +35,7 @@
   #    webroot = lib.mkForce null;
   #  };
   #};
-  #users.users.nginx.extraGroups = [ "acme" ];
+  users.users.nginx.extraGroups = [ "acme" ];
 
   # agnos
   security = {
