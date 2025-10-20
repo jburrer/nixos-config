@@ -57,7 +57,10 @@
             private_key_path = "privatekey.pem";
             certificates = [
               {
-                domains = [ "local.n3mohomelab.xyz", "*.local.n3mohomelab.xyz" ];
+                domains = [
+                  "local.n3mohomelab.xyz"
+                  "*.local.n3mohomelab.xyz"
+                ];
                 fullchain_output_file = "fullchain.pem";
                 key_output_file = "certkey.pem";
               }
