@@ -12,12 +12,12 @@
       domain = "n3mohomelab.xyz";
       extraDomainNames = [ "*.n3mohomelab.xyz" ];
       dnsProvider = "vultr";
-      dnsPropagationCheck = true;
+      #dnsPropagationCheck = true;
       environmentFile = "${pkgs.writeText "vultr-creds" ''
         VULTR_API_KEY=63WDSZPPODZUYD22AIIU6PLAT4OL6SP5I3KA
       ''}";
       # ^ fix this when secrets implemented ^
-      #webroot = lib.mkForce null;
+      webroot = lib.mkForce null;
     };
   };
   users.users.nginx.extraGroups = [ "acme" ];
@@ -128,9 +128,7 @@
   };
   services.nginx.virtualHosts."jellyfin.n3mohomelab.xyz" = {
     forceSSL = true;
-    #useACMEHost = "n3mohomelab.xyz";
-    sslCertificate = "/var/lib/tailscale/m3d14.tail3ddaf.ts.net.crt";
-    sslCertificateKey = "/var/lib/tailscale/m3d14.tail3ddaf.ts.net.key";
+    useACMEHost = "n3mohomelab.xyz";
     locations."/".proxyPass = "http://localhost:8096";
   };
 
