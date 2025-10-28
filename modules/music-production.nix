@@ -34,13 +34,14 @@
 
     # add programs (from stable branch)
     home.packages = with pkgs.stable; [
-      ardour calf helvum
+      ardour calf qpwgraph obs-studio-plugins.obs-multi-rtmp 
+    ] ++ [
+      lsp-plugins
     ];
 
     # add obs flatpak
     services.flatpak.packages = [
       "org.kde.kdenlive"
-    ] ++ lib.lists.optionals (config.hostname == "d35k70p") [
       "com.obsproject.Studio"
     ];
     

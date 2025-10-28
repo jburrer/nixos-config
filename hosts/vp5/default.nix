@@ -30,6 +30,9 @@
   };
   users.users.nginx.extraGroups = [ "acme" ];
 
+  # give n3mo write access to update websites
+  users.users."${config.username}".extraGroups = [ "nginx" ];
+
   # nginx
   services.nginx = {
     enable = true;
@@ -37,19 +40,26 @@
     recommendedTlsSettings = true;
     virtualHosts = {
 
-      # whirly birds
-      "whirlybirds.online" = {
-        forceSSL = true;
-        enableACME = true;
-        root = "/var/www/whirlybirds.online";
-      };
+      ## whirly birds
+      #"whirlybirds.online" = {
+      #  forceSSL = true;
+      #  enableACME = true;
+      #  root = "/var/www/whirlybirds.online";
+      #};
 
-      # ydsa 
-      "ydsapurdue.org" = {
-        forceSSL = true;
-        enableACME = true;
-        root = "/var/www/ydsapurdue.org";
-      };
+      ## ydsa 
+      #"ydsapurdue.org" = {
+      #  forceSSL = true;
+      #  enableACME = true;
+      #  root = "/var/www/ydsapurdue.org";
+      #};
+
+      ## row website
+      #"rowpurdue.org" = {
+      #  forceSSL = true;
+      #  enableACME = true;
+      #  root = "/var/www/rowpurdue.org";
+      #};
 
       # nest website
       "thenest207.live" = {
@@ -62,6 +72,11 @@
         forceSSL = true;
         useACMEHost = "thenest207.live";
         locations."/".proxyPass = "http://m3d14:3210";
+      };
+      "passwords.thenest207.live" = {
+        forceSSL = true;
+        useACMEHost = "thenest207.live";
+        locations."/".proxyPass = "http://m3d14:8001";
       };
 
       # remote jellyfin access 
@@ -87,13 +102,6 @@
         forceSSL = true;
         useACMEHost = "thenest207.live";
         locations."/".proxyPass = "http://m3d14:8082";
-      };
-
-      # row website
-      "rowpurdue.org" = {
-        forceSSL = true;
-        enableACME = true;
-        root = "/var/www/rowpurdue.org";
       };
 
     };

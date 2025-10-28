@@ -47,7 +47,7 @@
               "Searx" = {
                 urls = [
                   {
-                    template = "https://searx.local.n3mohomelab.xyz/search?q={searchTerms}";
+                    template = "https://searx.n3mohomelab.xyz/search?q={searchTerms}";
                   }
                 ];
                 definedAliases = [ "@s" ];
@@ -106,7 +106,7 @@
           };
           settings = {
             "general.smoothScroll" = true;
-            "browser.startup.homepage" = "homepage.local.n3mohomelab.xyz";
+            "browser.startup.homepage" = "homepage.n3mohomelab.xyz";
             "dom.security.https_only_mode" = true;
             "dom.security.https_only_mode_ever_enabled" = true;
             "privacy.donottrackheader.enabled" = true;
@@ -125,7 +125,6 @@
             "gnomeTheme.hideUnifiedExtensions" = false;
           };
           extensions.packages = with pkgs.nur.repos.rycee.firefox-addons; [
-            #browserpass
             istilldontcareaboutcookies
             linkhints
             new-tab-override
