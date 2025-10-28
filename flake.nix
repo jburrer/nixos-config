@@ -110,7 +110,7 @@
               users."${user}".imports = [
                 impermanence.nixosModules.home-manager.impermanence
                 flatpaks.homeManagerModules.nix-flatpak
-                betterfox.homeManagerModules.betterfox
+                betterfox.homeModules.betterfox
               ];
             };
           }
@@ -141,7 +141,7 @@
               extraSpecialArgs = inputs;
               users."${user}".imports = [
                 flatpaks.homeManagerModules.nix-flatpak
-                betterfox.homeManagerModules.betterfox
+                betterfox.homeModules.betterfox
               ];
             };
           }
