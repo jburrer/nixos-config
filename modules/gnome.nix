@@ -81,8 +81,7 @@
       pass wl-clipboard dconf2nix
       morewaita-icon-theme adwaita-fonts adw-gtk3
     ]) ++ (with pkgs.gnomeExtensions; [
-      paperwm blur-my-shell rounded-window-corners-reborn
-      caffeine tailscale-qs resource-monitor
+      blur-my-shell tailscale-qs system-monitor
     ]);
 
     xdg.enable = true;

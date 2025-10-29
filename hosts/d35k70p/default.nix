@@ -4,14 +4,24 @@
     ./hardware-configuration.nix
     ../../modules
     ../../modules/gnome.nix
-    ../../modules/gaming.nix
+    #../../modules/gaming.nix
     ../../modules/music-production.nix
   ];
 
   hostname = "d35k70p";
   configDir = "${config.homeDir}/Documents/nixos-config";
 
-  gaming.nvidia.enable = true;
+  #gaming.nvidia.enable = true;
+  # nvidia
+  nixpkgs.config.allowUnfree = true;
+  services.xserver.videoDrivers =  [ "nvidia" ];
+  hardware.graphics.enable = true;
+  hardware.nvidia = {
+    package = config.boot.kernelPackages.nvidiaPackages.stable;
+    modesetting.enable = true;
+    open = false;
+    nvidiaSettings = false;
+  };
 
   # bootloader
   boot = {
@@ -57,6 +67,10 @@
 
     services.syncthing.enable = true;
     
+    home.packages = (with pkgs.gnomeExtensions; [
+      tactile
+      rounded-window-corners-reborn
+    ]);
   };
 
   system.stateVersion = "22.11";

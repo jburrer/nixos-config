@@ -30,7 +30,7 @@ in
 
     git = {
       enable = true;
-      extraConfig = {
+      settings = {
         init.defaultBranch = "master";
         commit.gpgSign = true;
         user = {
@@ -46,16 +46,18 @@ in
             signingkey = "0F0B80DCA5FC0EE6";
           };
         };
-      };
-      aliases = {
-        identity = "! git-identity";
-        id = "! git-identity";
+        aliases = {
+          identity = "! git-identity";
+          id = "! git-identity";
+        };
       };
     };
 
     ssh = {
       enable = true;
+      enableDefaultConfig = false;
       matchBlocks = {
+        "*".port = 22;
         "gitea" = {
           hostname = "m3d14";
           port = 22;

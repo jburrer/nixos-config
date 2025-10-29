@@ -115,9 +115,11 @@
       "org.getmonero.Monero"
     ];
 
-    home.packages = with pkgs; [
-      corefonts
-    ];
+    home.packages = (with pkgs; [
+      corefonts 
+    ]) ++ (with pkgs.gnomeExtensions; [
+      paperwm caffeine
+    ]);
 
     #home.persistence."/persist/home" = {
     #  directories = [
