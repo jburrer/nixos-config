@@ -386,7 +386,7 @@
       "50300:50300"
     ];
     environment = {
-      "TS_AUTHKEY" = "tskey-auth-k11e8QBcpC11CNTRL-8D2hWayRGk9H9FazgqdKk9aoT65e1DGm9";
+      "TS_AUTHKEY" = "kG7sjEn3RB21CNTRL";
       "TS_EXTRA_ARGS" = ''
         --reset
         --advertise-tags=tag:container
