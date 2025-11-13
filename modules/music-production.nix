@@ -34,7 +34,7 @@
 
     # add programs (from stable branch)
     home.packages = with pkgs.stable; [
-      ardour calf qpwgraph obs-studio-plugins.obs-multi-rtmp 
+      ardour x42-avldrums helvum  
     ] ++ [
       lsp-plugins
     ];
