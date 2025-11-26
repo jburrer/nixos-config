@@ -1,9 +1,5 @@
 { pkgs, config, lib, ... }: {
 
-  imports = [
-    ./homepage.nix
-  ];
-
   # acme wildcard certificate
   security.acme = {
     acceptTerms = true;
@@ -628,6 +624,23 @@
     forceSSL = true;
     useACMEHost = "n3mohomelab.xyz";
     locations."/".proxyPass = "http://localhost:8384";
+  };
+
+  # homepage
+  virtualisation.oci-containers.containers."homepage" = {
+    image="ghcr.io/gethomepage/homepage:latest";
+    ports = [
+      "3000:3000"
+    ];
+    volumes = [
+      "/home/n3mo/nixos-config/hosts/m3d14/homelab:/app/config"
+    ];
+    environment."HOMEPAGE_ALLOWED_HOSTS" = "homepage.n3mohomelab.xyz";
+  };
+  services.nginx.virtualHosts."homepage.n3mohomelab.xyz" = {
+    forceSSL = true;
+    useACMEHost = "n3mohomelab.xyz";
+    locations."/".proxyPass = "http://localhost:3000";
   };
 
 }

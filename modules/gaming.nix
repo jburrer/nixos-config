@@ -13,7 +13,7 @@
     nixpkgs.config.allowUnfree = true;
 
     # enable steam hardware
-    hardware.steam-hardware.enable = true;
+    #hardware.steam-hardware.enable = true;
 
     # nvidia
     services.xserver.videoDrivers = lib.mkIf config.gaming.nvidia.enable [ "nvidia" ];
@@ -39,14 +39,14 @@
 
       # steam flatpak
       services.flatpak.packages = [
-        "com.valvesoftware.Steam" 
-        "io.github.Foldex.AdwSteamGtk" 
+        #"com.valvesoftware.Steam" 
+        #"io.github.Foldex.AdwSteamGtk" 
         "de.haeckerfelix.Fragments"
-        "page.kramo.Cartridges"
+        #"page.kramo.Cartridges"
       ];
 
       home.packages = with pkgs; [
-        prismlauncher jdk8 # for prism launcher
+        #prismlauncher jdk8 # for prism launcher
         distrobox podman # for jc141 games
       ];
 

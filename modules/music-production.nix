@@ -34,7 +34,7 @@
 
     # add programs (from stable branch)
     home.packages = with pkgs.stable; [
-      ardour x42-avldrums helvum  
+      ardour x42-avldrums helvum helm
     ] ++ [
       lsp-plugins
     ];
@@ -43,6 +43,7 @@
     services.flatpak.packages = [
       "org.kde.kdenlive"
       "com.obsproject.Studio"
+      "org.nickvision.tubeconverter"
     ];
     
   };
