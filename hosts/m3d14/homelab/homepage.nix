@@ -39,13 +39,13 @@
       color = "neutral";
       headerStyle = "clean";
       layout = [ 
-        #{
-        #  "Bookmarks" = {
-        #    style = "row";
-        #    header = false;
-        #    columns = 4;
-        #  };
-        #}
+        {
+          "Bookmarks" = {
+            style = "row";
+            header = false;
+            columns = 4;
+          };
+        }
         {
           "School".style = "column";
         }
@@ -111,8 +111,8 @@
     ];
     bookmarks = [
       {
-        #"Bookmarks" = [
-          #{
+        "Bookmarks" = [
+          {
             "School" = [
               {
                 "Brightspace" = [
@@ -316,8 +316,8 @@
                 ];
               }
             ];
-          #}
-        #];
+          }
+        ];
       }
     ];
     services = [
