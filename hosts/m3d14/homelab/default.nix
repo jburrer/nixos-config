@@ -1,6 +1,6 @@
 { pkgs, config, lib, ... }: {
 
-  imports = [ homepage.nix ];
+  imports = [ ./homepage.nix ];
 
   # acme wildcard certificate
   security.acme = {
