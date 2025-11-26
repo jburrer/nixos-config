@@ -82,10 +82,12 @@
   # system76 hardware settings
   hardware.system76.enableAll = true;
 
-  # power button
+  # power button & laptop lid
   services.logind = {
     powerKey = "suspend-then-hibernate";
     powerKeyLongPress = "poweroff";
+    lidSwitch = "ignore";
+    lidSwitchDocked = "ignore";
   };
 
   # bluetooth
