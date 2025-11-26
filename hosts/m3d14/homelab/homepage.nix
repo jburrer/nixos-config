@@ -583,6 +583,7 @@
           {
             "Hauk" = {
               description = "Location Sharing";
+              icon = "google-maps.png";
               href = "https://hauk.n3mohomelab.xyz";
             };
           }
