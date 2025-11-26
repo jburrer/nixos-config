@@ -52,6 +52,11 @@
           "Misc".style = "column";
         }
         {
+          "FirstRow" = {
+            style = "row";
+          };
+        }
+        {
 	  "Media & Requests" = {
             style = "column";
           };
@@ -311,171 +316,175 @@
     ];
     services = [
       {
-      	"Media & Requests" = [
+        "FirstRow" = [
           {
-            "Jellyfin" = {
-              description = "Media Viewer";
-              icon = "jellyfin.png";
-              href = "https://jellyfin.n3mohomelab.xyz";
-	      widget = {
-                type = "jellyfin";
-                url = "https://jellyfin.n3mohomelab.xyz";
-                key = "a9293ec2633d4d879cb16b1dfa7b00bf";
-                enableBlocks = true;
-                enableNowPlaying = false;
-                enableUser = true;
-                showEpisodeNumber = true;
-                expandOneStreamToTwoRows = false;
-	      };
-            };
+            "Media & Requests" = [
+              {
+                "Jellyfin" = {
+                  description = "Media Viewer";
+                  icon = "jellyfin.png";
+                  href = "https://jellyfin.n3mohomelab.xyz";
+                  widget = {
+                    type = "jellyfin";
+                    url = "https://jellyfin.n3mohomelab.xyz";
+                    key = "a9293ec2633d4d879cb16b1dfa7b00bf";
+                    enableBlocks = true;
+                    enableNowPlaying = false;
+                    enableUser = true;
+                    showEpisodeNumber = true;
+                    expandOneStreamToTwoRows = false;
+                  };
+                };
+              }
+              {
+                "Jellyseerr" = {
+                  description = "Movie & TV Requests";
+                  icon = "jellyseerr.png";
+                  href = "https://jellyseerr.n3mohomelab.xyz";
+                  widget = {
+                  	type = "jellyseerr";
+            	url = "https://jellyseerr.n3mohomelab.xyz";
+            	key = "MTc1NzA5MTQ5Nzg3NDRkMzA0ZTZiLTRhMDAtNGM4NS1iYTk5LWFlODM3NDFiMzc1NQ==";
+                  };
+                };
+              }
+              {
+                "Navidrome" = {
+                  description = "Music Streaming";
+                  icon = "navidrome.png";
+                  href = "https://navidrome.n3mohomelab.xyz";
+                  widget = {
+                  	type = "navidrome";
+            	url = "https://navidrome.n3mohomelab.xyz";
+                    user = "n3mo";
+                    token = "c0ad550919ed75e7aa5ba7ea171d844f";
+                    salt = "randomsalt";
+                  };
+                };
+              }
+            ];
           }
           {
-            "Jellyseerr" = {
-              description = "Movie & TV Requests";
-              icon = "jellyseerr.png";
-              href = "https://jellyseerr.n3mohomelab.xyz";
-	      widget = {
-	      	type = "jellyseerr";
-		url = "https://jellyseerr.n3mohomelab.xyz";
-		key = "MTc1NzA5MTQ5Nzg3NDRkMzA0ZTZiLTRhMDAtNGM4NS1iYTk5LWFlODM3NDFiMzc1NQ==";
-	      };
-            };
+            "Media Management" = [
+              {
+                "Radarr" = {
+                  description = "Movie Management";
+                  icon = "radarr.png";
+                  href = "https://radarr.n3mohomelab.xyz";
+                  widget = {
+                    type = "radarr";
+                    url = "https://radarr.n3mohomelab.xyz";
+                    key = "3756c5309a94478097ed9914830afb66";
+                    enableQueue = true;
+                  };
+                };
+              }
+              {
+                "Sonarr" = {
+                  description = "TV Show Management";
+                  icon = "sonarr.png";
+                  href = "https://sonarr.n3mohomelab.xyz";
+                  widget = {
+                    type = "sonarr";
+                    url = "https://sonarr.n3mohomelab.xyz";
+                    key = "f36406fd9cce4222899c5cd2404140bf";
+                    enableQueue = true;
+                  };
+                };
+              }
+              {
+                "Lidarr" = {
+                  description = "Music Management";
+                  icon = "lidarr.png";
+                  href = "https://lidarr.n3mohomelab.xyz";
+                  widget = {
+                    type = "lidarr";
+                    url = "https://lidarr.n3mohomelab.xyz";
+                    key = "8a473e3df5ed4622a13faadbca4a66e6";
+                  };
+                };
+              }
+            ];
           }
           {
-            "Navidrome" = {
-              description = "Music Streaming";
-              icon = "navidrome.png";
-              href = "https://navidrome.n3mohomelab.xyz";
-	      widget = {
-	      	type = "navidrome";
-		url = "https://navidrome.n3mohomelab.xyz";
-                user = "n3mo";
-                token = "c0ad550919ed75e7aa5ba7ea171d844f";
-                salt = "randomsalt";
-	      };
-            };
-          }
-        ];
-      }
-      {
-        "Media Management" = [
-          {
-            "Radarr" = {
-              description = "Movie Management";
-              icon = "radarr.png";
-              href = "https://radarr.n3mohomelab.xyz";
-              widget = {
-                type = "radarr";
-                url = "https://radarr.n3mohomelab.xyz";
-                key = "3756c5309a94478097ed9914830afb66";
-                enableQueue = true;
-              };
-            };
-          }
-          {
-            "Sonarr" = {
-              description = "TV Show Management";
-              icon = "sonarr.png";
-              href = "https://sonarr.n3mohomelab.xyz";
-              widget = {
-                type = "sonarr";
-                url = "https://sonarr.n3mohomelab.xyz";
-                key = "f36406fd9cce4222899c5cd2404140bf";
-                enableQueue = true;
-              };
-            };
+            "Extra" = [
+              {
+                "Prowlarr" = {
+                  description = "Torrent Indexer Management";
+                  icon = "prowlarr.png";
+                  href = "https://prowlarr.n3mohomelab.xyz";
+                  widget = {
+                    type = "prowlarr";
+                    url = "https://prowlarr.n3mohomelab.xyz";
+                    key = "b1efbc2a2f784d4ca8d6f5d1b98254f9";
+                  };
+                };
+              }
+              {
+                "Autobrr" = {
+                  description = "Private Tracker Management";
+                  icon = "autobrr.png";
+                  href = "https://autobrr.n3mohomelab.xyz";
+                  widget = {
+                    type = "autobrr";
+                    url = "https://autobrr.n3mohomelab.xyz";
+                    key = "6d07ed4a1f14717cd8ca8d631b8d4f5a";
+                  };
+                };
+              }
+              {
+                "Bazarr" = {
+                  description = "Subtitle Management";
+                  icon = "bazarr.png";
+                  href = "https://bazarr.n3mohomelab.xyz";
+                  widget = {
+                    type = "bazarr";
+                    url = "https://bazarr.n3mohomelab.xyz";
+                    key = "bb0549247185ccf7c93bdddd45eb5086";
+                  };
+                };
+              }
+            ];
           }
           {
-            "Lidarr" = {
-              description = "Music Management";
-              icon = "lidarr.png";
-              href = "https://lidarr.n3mohomelab.xyz";
-              widget = {
-                type = "lidarr";
-                url = "https://lidarr.n3mohomelab.xyz";
-                key = "8a473e3df5ed4622a13faadbca4a66e6";
-              };
-            };
-          }
-        ];
-      }
-      {
-        "Extra" = [
-          {
-            "Prowlarr" = {
-              description = "Torrent Indexer Management";
-              icon = "prowlarr.png";
-              href = "https://prowlarr.n3mohomelab.xyz";
-              widget = {
-                type = "prowlarr";
-                url = "https://prowlarr.n3mohomelab.xyz";
-                key = "b1efbc2a2f784d4ca8d6f5d1b98254f9";
-              };
-            };
-          }
-          {
-            "Autobrr" = {
-              description = "Private Tracker Management";
-              icon = "autobrr.png";
-              href = "https://autobrr.n3mohomelab.xyz";
-              widget = {
-                type = "autobrr";
-                url = "https://autobrr.n3mohomelab.xyz";
-                key = "6d07ed4a1f14717cd8ca8d631b8d4f5a";
-              };
-            };
-          }
-          {
-            "Bazarr" = {
-              description = "Subtitle Management";
-              icon = "bazarr.png";
-              href = "https://bazarr.n3mohomelab.xyz";
-              widget = {
-                type = "bazarr";
-                url = "https://bazarr.n3mohomelab.xyz";
-                key = "bb0549247185ccf7c93bdddd45eb5086";
-              };
-            };
-          }
-        ];
-      }
-      {
-        "Books" = [
-          {
-            "Readarr (Ebooks)" = {
-              description = "EBook Management";
-              icon = "readarr.png";
-              href = "https://readarr-ebooks.n3mohomelab.xyz";
-              widget = {
-                type = "readarr";
-                url = "https://readarr-ebooks.n3mohomelab.xyz";
-                key = "fd55c5772e7441e4beac81004cc4a719";
-              };
-            };
-          }
-          {
-            "Readarr (Audiobooks)" = {
-              description = "Audiobook Management";
-              icon = "readarr.png";
-              href = "https://readarr-audiobooks.n3mohomelab.xyz";
-              widget = {
-                type = "readarr";
-                url = "https://readarr-audiobooks.n3mohomelab.xyz";
-                key = "37e9665c46db46419adfac2df4182e23";
-              };
-            };
-          }
-          {
-            "Audiobookshelf" = {
-              description = "Audiobook Player";
-              icon = "audiobookshelf.png";
-              href = "https://audiobookshelf.n3mohomelab.xyz";
-              widget = {
-                type = "audiobookshelf";
-                url = "https://audiobookshelf.n3mohomelab.xyz";
-                key = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI5YjRkZDBlYS01YjU3LTRmZDEtYTYxZC01ZDI2MzIyY2Y5NzMiLCJ1c2VybmFtZSI6Im4zbW8iLCJpYXQiOjE3NTQyNjUyNjN9.Y7j7a71CFRL7IBEiFeG0o8nDHi4QANCCzz6x7MCdQVw";
-              };
-            };
+            "Books" = [
+              {
+                "Readarr (Ebooks)" = {
+                  description = "EBook Management";
+                  icon = "readarr.png";
+                  href = "https://readarr-ebooks.n3mohomelab.xyz";
+                  widget = {
+                    type = "readarr";
+                    url = "https://readarr-ebooks.n3mohomelab.xyz";
+                    key = "fd55c5772e7441e4beac81004cc4a719";
+                  };
+                };
+              }
+              {
+                "Readarr (Audiobooks)" = {
+                  description = "Audiobook Management";
+                  icon = "readarr.png";
+                  href = "https://readarr-audiobooks.n3mohomelab.xyz";
+                  widget = {
+                    type = "readarr";
+                    url = "https://readarr-audiobooks.n3mohomelab.xyz";
+                    key = "37e9665c46db46419adfac2df4182e23";
+                  };
+                };
+              }
+              {
+                "Audiobookshelf" = {
+                  description = "Audiobook Player";
+                  icon = "audiobookshelf.png";
+                  href = "https://audiobookshelf.n3mohomelab.xyz";
+                  widget = {
+                    type = "audiobookshelf";
+                    url = "https://audiobookshelf.n3mohomelab.xyz";
+                    key = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI5YjRkZDBlYS01YjU3LTRmZDEtYTYxZC01ZDI2MzIyY2Y5NzMiLCJ1c2VybmFtZSI6Im4zbW8iLCJpYXQiOjE3NTQyNjUyNjN9.Y7j7a71CFRL7IBEiFeG0o8nDHi4QANCCzz6x7MCdQVw";
+                  };
+                };
+              }
+            ];
           }
         ];
       }
