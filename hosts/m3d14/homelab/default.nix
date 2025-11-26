@@ -634,6 +634,7 @@
     ];
     volumes = [
       "/home/n3mo/nixos-config/hosts/m3d14/homelab:/app/config"
+      "/home/n3mo/nixos-config:/app/public/images"
     ];
     environment."HOMEPAGE_ALLOWED_HOSTS" = "homepage.n3mohomelab.xyz";
   };
