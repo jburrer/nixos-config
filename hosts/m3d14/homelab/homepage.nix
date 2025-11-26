@@ -39,17 +39,17 @@
       color = "neutral";
       headerStyle = "clean";
       layout = [ 
-        {
-          "Xookmarks" = {
-            style = "row";
-            header = false;
-            columns = 4;
-            "School".style = "column";
-            "Work".style = "column";
-            "Homelab".style = "column";
-            "Misc".style = "column";
-          };
-        }
+        #{
+        #  "Bookmarks" = {
+        #    style = "row";
+        #    header = false;
+        #    columns = 4;
+        #    "School".style = "column";
+        #    "Work".style = "column";
+        #    "Homelab".style = "column";
+        #    "Misc".style = "column";
+        #  };
+        #}
         {
 	  "Media & Requests" = {
             style = "column";
@@ -103,7 +103,7 @@
     ];
     bookmarks = [
       {
-        "Xookmarks" = [
+        "Bookmarks" = [
           {
             "School" = [
               {

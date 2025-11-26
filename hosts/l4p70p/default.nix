@@ -108,7 +108,7 @@
 
     services.flatpak.packages = [
       "org.libreoffice.LibreOffice"
-      "org.gnome.Lollypop"
+      "de.wagnermartin.Plattenalbum"
       "app.drey.EarTag"
       "org.gnome.Polari"
       "org.torproject.torbrowser-launcher"
@@ -120,6 +120,11 @@
     ]) ++ (with pkgs.gnomeExtensions; [
       paperwm caffeine
     ]);
+
+    services.mpd = {
+      enable = true;
+      musicDirectory = "${config.homeDir}/Music";
+    };
 
     #home.persistence."/persist/home" = {
     #  directories = [
