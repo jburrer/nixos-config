@@ -40,7 +40,7 @@
       headerStyle = "clean";
       layout = [ 
         {
-          "Bookmarks" = {
+          "Xookmarks" = {
             style = "row";
             header = false;
             columns = 4;
@@ -103,7 +103,7 @@
     ];
     bookmarks = [
       {
-        "Bookmarks" = [
+        "Xookmarks" = [
           {
             "School" = [
               {
