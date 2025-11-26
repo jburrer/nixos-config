@@ -54,6 +54,8 @@
         {
           "FirstRow" = {
             style = "row";
+            columns = 4;
+            header = false;
           };
         }
         {
