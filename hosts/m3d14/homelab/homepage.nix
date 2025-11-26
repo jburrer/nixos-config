@@ -42,7 +42,7 @@
         {
           "Bookmarks" = {
             style = "row";
-            header = false;
+            header = true;
             columns = 4;
           };
         }
