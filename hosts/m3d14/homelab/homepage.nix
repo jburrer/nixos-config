@@ -44,12 +44,20 @@
         #    style = "row";
         #    header = false;
         #    columns = 4;
-        #    "School".style = "column";
-        #    "Work".style = "column";
-        #    "Homelab".style = "column";
-        #    "Misc".style = "column";
         #  };
         #}
+        {
+          "School".style = "column";
+        }
+        {
+          "Work".style = "column";
+        }
+        {
+          "Homelab".style = "column";
+        }
+        {
+          "Misc".style = "column";
+        }
         {
 	  "Media & Requests" = {
             style = "column";
@@ -103,8 +111,8 @@
     ];
     bookmarks = [
       {
-        "Bookmarks" = [
-          {
+        #"Bookmarks" = [
+          #{
             "School" = [
               {
                 "Brightspace" = [
@@ -308,8 +316,8 @@
                 ];
               }
             ];
-          }
-        ];
+          #}
+        #];
       }
     ];
     services = [
