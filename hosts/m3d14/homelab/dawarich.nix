@@ -44,7 +44,7 @@ in {
 
   virtualisation.oci-containers.containers.dawarich_db = {
     image = "postgis/postgis:17-3.5-alpine";
-    shmSize = "1G";
+    #shmSize = "1G";
     volumes = [
       "dawarich_db_data:/var/lib/postgresql/data"
       "dawarich_shared:/var/shared"
