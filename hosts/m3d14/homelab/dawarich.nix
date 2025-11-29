@@ -33,7 +33,6 @@ in {
     volumes = [ "dawarich_shared:/data" ];
     extraOptions = [
       "--network=dawarich"
-      #"--restart=always"
       "--health-cmd=redis-cli --raw incr ping"
       "--health-interval=10s"
       "--health-retries=5"
@@ -57,7 +56,6 @@ in {
     dependsOn = [ "dawarich_redis" ];
     extraOptions = [
       "--network=dawarich"
-      #"--restart=always"
       "--health-cmd=pg_isready -U ${postgresUser} -d ${postgresDb}"
       "--health-interval=10s"
       "--health-retries=5"
@@ -100,7 +98,6 @@ in {
     cmd = [ "bin/rails" "server" "-p" "3000" "-b" "::" ];
     extraOptions = [
       "--network=dawarich"
-      #"--restart=on-failure"
       "--health-cmd=wget -qO - http://127.0.0.1:3000/api/v1/health | grep -q '\"status\"\\s*:\\s*\"ok\"'"
       "--health-interval=10s"
       "--health-retries=30"
@@ -145,7 +142,6 @@ in {
     cmd = [ "sidekiq" ];
     extraOptions = [
       "--network=dawarich"
-      #"--restart=on-failure"
       "--health-cmd=pgrep -f sidekiq"
       "--health-interval=10s"
       "--health-retries=30"
