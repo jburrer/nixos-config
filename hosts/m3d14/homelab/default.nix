@@ -1,6 +1,9 @@
 { pkgs, config, lib, ... }: {
 
-  imports = [ ./homepage.nix ];
+  imports = [
+    ./homepage.nix
+    ./dawarich.nix
+  ];
 
   # acme wildcard certificate
   security.acme = {
