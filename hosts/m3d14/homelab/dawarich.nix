@@ -9,7 +9,7 @@ let
   secretKeyBase = "6P5sCMHk4wnOl2raiRLEtUsMW2n3UqNA";
   
   minMinutesSpentInCity = 60;
-  timeZone = "Indianapolis";
+  timeZone = "America/Indiana/Indianapolis";
   applicationProtocol = "http";
   applicationHosts = "localhost,::1,127.0.0.1,dawarich.n3mohomelab.xyz,dawarich.thenest207.live";
   selfHosted = true;
