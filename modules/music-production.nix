@@ -42,8 +42,11 @@
     # add obs flatpak
     services.flatpak.packages = [
       "org.kde.kdenlive"
-      "com.obsproject.Studio"
       "org.nickvision.tubeconverter"
+      # obs and plugins
+      "com.obsproject.Studio"
+      "com.obsproject.Studio.Plugin.AitumMultistream"
+      "com.obsproject.Studio.Plugin.VerticalCanvas"
     ];
     
   };
