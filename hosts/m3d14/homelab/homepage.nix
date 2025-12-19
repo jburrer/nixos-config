@@ -126,27 +126,27 @@
               }
             ];
           }
-          {
-            "CS 252" = [
-              {
-                href = "https://www.cs.purdue.edu/homes/cs252/";
-              }
-            ];
-          }
-          {
-            "Partake" = [
-              {
-                href = "http://data.cs.purdue.edu:3000/";
-              }
-            ];
-          }
-          {
-            "CS 307" = [
-              {
-                href = "https://mandalore.cs.purdue.edu/~cs307/";
-              }
-            ];
-          }
+          #{
+          #  "CS 252" = [
+          #    {
+          #      href = "https://www.cs.purdue.edu/homes/cs252/";
+          #    }
+          #  ];
+          #}
+          #{
+          #  "Partake" = [
+          #    {
+          #      href = "http://data.cs.purdue.edu:3000/";
+          #    }
+          #  ];
+          #}
+          #{
+          #  "CS 307" = [
+          #    {
+          #      href = "https://mandalore.cs.purdue.edu/~cs307/";
+          #    }
+          #  ];
+          #}
           #{
           #  "Gradescope" = [
           #    {
