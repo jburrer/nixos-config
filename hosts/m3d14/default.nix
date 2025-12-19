@@ -20,10 +20,12 @@
       "/var/snapraid/snapraid.content"
       "/mnt/disks/disk0/snapraid.content"
       "/mnt/disks/disk1/snapraid.content"
+      "/mnt/disks/disk2/snapraid.content"
     ];
     dataDisks = {
       d0 = "/mnt/disks/disk0";
       d1 = "/mnt/disks/disk1";
+      d2 = "/mnt/disks/disk2";
     };
   };
   fileSystems."/srv/storage" = {

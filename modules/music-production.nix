@@ -43,6 +43,7 @@
     services.flatpak.packages = [
       "org.kde.kdenlive"
       "org.nickvision.tubeconverter"
+      "com.saivert.pwvucontrol"
       # obs and plugins
       "com.obsproject.Studio"
       "com.obsproject.Studio.Plugin.AitumMultistream"

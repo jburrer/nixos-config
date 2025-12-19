@@ -130,6 +130,7 @@
           ublock-origin
           violentmonkey
           bitwarden
+          react-devtools
         ];
         userChrome = ''
           @import "firefox-gnome-theme/userChrome.css";
