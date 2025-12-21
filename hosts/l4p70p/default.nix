@@ -110,8 +110,10 @@
 
     services.flatpak.packages = [
       "org.libreoffice.LibreOffice"
-      "app.drey.EarTag"
+      "com.quexten.Goldwarden"
+      "org.gnome.Fractal"
       "org.gnome.Polari"
+      "app.drey.EarTag"
       "org.torproject.torbrowser-launcher"
       "org.getmonero.Monero"
     ];
