@@ -14,6 +14,7 @@
     environment = {
       "CONDUIT_SERVER_NAME" = "conduit.n3mohomelab.xyz";
       "CONDUIT_DATABASE_BACKEND" = "rocksdb";
+      "CONDUIT_DATABASE_PATH" = "/var/lib/matrix-conduit/";
       "CONDUIT_ALLOW_REGISTRATION" = "true";
       "CONDUIT_ALLOW_FEDERATION" = "true";
       "CONDUIT_MAX_REQUEST_SIZE" = "20000000";
