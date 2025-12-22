@@ -22,7 +22,7 @@
       "CONDUIT_MAX_CONCURRENT_REQUESTS=100"
       "CONDUIT_PORT=6167"
     ];
-  }
+  };
   services.nginx.virtualHosts."conduit.n3mohomelab.xyz" = {
     forceSSL = true;
     useACMEHost = "n3mohomelab.xyz";
