@@ -68,6 +68,7 @@
   # signal
   virtualisation.oci-containers.containers."mautrix-signal" = {
     image = "dock.mau.dev/mautrix/signal:latest";
+    user = "10000:10000";
     ports = [
       "29328:29328"
     ];
