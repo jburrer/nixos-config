@@ -83,11 +83,11 @@
   hardware.system76.enableAll = true;
 
   # power button & laptop lid
-  services.logind = {
-    powerKey = "suspend-then-hibernate";
-    powerKeyLongPress = "poweroff";
-    lidSwitch = "ignore";
-    lidSwitchDocked = "ignore";
+  services.logind.settings.Login = {
+    HandlePowerKey = "suspend-then-hibernate";
+    HandlePowerKeyLongPress = "poweroff";
+    HandleLidSwitch = "ignore";
+    HandleLidSwitchDocked = "ignore";
   };
 
   # bluetooth
@@ -95,6 +95,10 @@
     enable = true;
     powerOnBoot = true;
   };
+
+  # android stuff
+  programs.adb.enable = true;
+  users.users.${config.username}.extraGroups = [ "adbusers" ];
 
   # run non-nix executables
   programs.nix-ld.enable = true;
@@ -110,7 +114,6 @@
 
     services.flatpak.packages = [
       "org.libreoffice.LibreOffice"
-      "com.quexten.Goldwarden"
       "org.gnome.Fractal"
       "org.gnome.Polari"
       "app.drey.EarTag"

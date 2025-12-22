@@ -2,6 +2,7 @@
 
   imports = [
     ./homepage.nix
+    ./matrix.nix
     ./dawarich.nix
   ];
 
