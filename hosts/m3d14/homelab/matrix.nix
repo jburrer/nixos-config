@@ -30,6 +30,19 @@
     locations."/".proxyPass = "http://localhost:8448";
   };
 
+  # web interface
+  virtualisation.oci-containers.containers."element" = {
+    image = "vectorim/element-web";
+    ports = [
+      "8181:80"
+    ];
+  };
+  services.nginx.virtualHosts."element.n3mohomelab.xyz" = {
+    forceSSL = true;
+    useACMEHost = "n3mohomelab.xyz";
+    locations."/".proxyPass = "http://localhost:8181";
+  };
+
   # coturn (for voice calls)
 
   ### bridges
