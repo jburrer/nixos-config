@@ -20,6 +20,7 @@
       "CONDUIT_MAX_REQUEST_SIZE" = "20000000";
       "CONDUIT_TRUSTED_SERVERS"= "[\"matrix.org\"]";
       "CONDUIT_MAX_CONCURRENT_REQUESTS" = "100";
+      "CONDUIT_ADDRESS" = "0.0.0.0";
       "CONDUIT_PORT" = "6167";
       "CONDUIT_CONFIG" = "";
     };
