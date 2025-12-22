@@ -11,7 +11,7 @@
     ports = [
       "8448:6167"
     ];
-    extraOptions = [
+    environment = [
       "CONDUIT_SERVER_NAME=conduit.n3mohomelab.xyz"
       "CONDUIT_DATABASE_BACKEND=rocksdb"
       "CONDUIT_ALLOW_REGISTRATION=true"
