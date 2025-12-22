@@ -2,6 +2,16 @@
 
 {
 
+  system.activationScripts.mkMatrixNetwork =
+    let
+      docker = config.virtualisation.oci-containers.backend;
+      dockerBin = "${pkgs.${docker}}/bin/${docker}";
+    in
+      ''
+     ${dockerBin} network inspect matrix >/dev/null 2>&1 || \\
+     ${dockerBin} network create matrix
+     '';
+
   # conduit (matrix server)
   virtualisation.oci-containers.containers."conduit" = {
     image = "matrixconduit/matrix-conduit:latest";
@@ -24,6 +34,9 @@
       "CONDUIT_PORT" = "6167";
       "CONDUIT_CONFIG" = "";
     };
+    extraOptions = [
+      "--network=matrix"
+    ];
   };
   services.nginx.virtualHosts."conduit.n3mohomelab.xyz" = {
     forceSSL = true;
@@ -31,7 +44,7 @@
     locations."/".proxyPass = "http://localhost:8448";
   };
 
-  # web interface
+  # element (web interface)
   virtualisation.oci-containers.containers."element" = {
     image = "vectorim/element-web";
     ports = [
@@ -53,6 +66,18 @@
   # instagram
 
   # signal
+  virtualisation.oci-containers.containers."mautrix-signal" = {
+    image = "dock.mau.dev/mautrix/signal:latest";
+    ports = [
+      "29328:29328"
+    ];
+    volumes = [
+      "/srv/state/mautrix-signal:/data"
+    ];
+    extraOptions = [
+      "--network=matrix"
+    ];
+  };
 
   # irc
 
