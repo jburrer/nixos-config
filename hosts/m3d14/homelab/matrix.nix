@@ -11,7 +11,7 @@
     ports = [
       "8448:6167"
     ];
-    environment = [
+    environment = {
       "CONDUIT_SERVER_NAME" = "conduit.n3mohomelab.xyz";
       "CONDUIT_DATABASE_BACKEND" = "rocksdb";
       "CONDUIT_ALLOW_REGISTRATION" = true;
@@ -21,7 +21,7 @@
       "CONDUIT_MAX_CONCURRENT_REQUESTS" = 100;
       "CONDUIT_PORT" = 6167;
       "CONDUIT_CONFIG" = "";
-    ];
+    };
   };
   services.nginx.virtualHosts."conduit.n3mohomelab.xyz" = {
     forceSSL = true;
