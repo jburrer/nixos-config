@@ -64,11 +64,22 @@
   # google messages
 
   # instagram
+  virtualisation.oci-containers.containers."mautrix-meta" = {
+    image = "dock.mau.dev/mautrix/meta:latest";
+    ports = [
+      "29319:29319"
+    ];
+    volumes = [
+      "/srv/state/mautrix-meta:/data"
+    ];
+    extraOptions = [
+      "--network=matrix"
+    ];
+  };
 
   # signal
   virtualisation.oci-containers.containers."mautrix-signal" = {
     image = "dock.mau.dev/mautrix/signal:latest";
-    #user = "10000:10000";
     ports = [
       "29328:29328"
     ];
