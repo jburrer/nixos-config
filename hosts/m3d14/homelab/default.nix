@@ -210,7 +210,8 @@
 
   # lidarr
   virtualisation.oci-containers.containers."lidarr" = {
-    image = "blampe/lidarr:lidarr-plugins-2.13.1.4678";
+    #image = "blampe/lidarr:lidarr-plugins-2.13.1.4678";
+    image = "ghcr.io/hotio/lidarr:pr-plugins";
     volumes = [
       "/srv/state/lidarr:/config"
       "/srv/storage:/storage"
