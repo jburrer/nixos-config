@@ -402,7 +402,7 @@
                   widget = {
                     type = "lidarr";
                     url = "https://lidarr.n3mohomelab.xyz";
-                    key = "8a473e3df5ed4622a13faadbca4a66e6";
+                    key = "1947a39e93d54cbaa1b797660faa010f";
                   };
                 };
               }
