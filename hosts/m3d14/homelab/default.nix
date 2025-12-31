@@ -3,7 +3,7 @@
   imports = [
     ./homepage.nix
     ./matrix.nix
-    ./dawarich.nix
+    #./dawarich.nix
   ];
 
   # acme wildcard certificate
@@ -309,6 +309,18 @@
     forceSSL = true;
     useACMEHost = "n3mohomelab.xyz";
     locations."/".proxyPass = "http://localhost:5299";
+  };
+
+  # calibre web automated downloader
+  virtualisation.oci-containers.containers."cwa-book-downloader" = {
+    image = "ghcr.io/calibrain/calibre-web-automated-book-downloader:latest";
+    ports = [
+      "8084:8084"
+    ];
+    volumes = [
+      "/srv/state/cwa-book-downloader:/config"
+      "/srv/storage/media/books:/cwa-book-ingest"
+    ];
   };
 
   # readarr for ebooks
