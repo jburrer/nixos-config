@@ -291,25 +291,25 @@
   };
 
   # lazylibrarian
-  virtualisation.oci-containers.containers."lazylibrarian" = {
-    image = "lscr.io/linuxserver/lazylibrarian:latest";
-    volumes = [
-      "/srv/state/lazylibrarian:/config"
-      "/srv/storage:/storage"
-    ];
-    ports = [
-      "5299:5299"
-    ];
-    environment = {
-      "PUID" = "10000";
-      "PGID" = "10000";
-    };
-  };
-  services.nginx.virtualHosts."lazylibrarian.n3mohomelab.xyz" = {
-    forceSSL = true;
-    useACMEHost = "n3mohomelab.xyz";
-    locations."/".proxyPass = "http://localhost:5299";
-  };
+  #virtualisation.oci-containers.containers."lazylibrarian" = {
+  #  image = "lscr.io/linuxserver/lazylibrarian:latest";
+  #  volumes = [
+  #    "/srv/state/lazylibrarian:/config"
+  #    "/srv/storage:/storage"
+  #  ];
+  #  ports = [
+  #    "5299:5299"
+  #  ];
+  #  environment = {
+  #    "PUID" = "10000";
+  #    "PGID" = "10000";
+  #  };
+  #};
+  #services.nginx.virtualHosts."lazylibrarian.n3mohomelab.xyz" = {
+  #  forceSSL = true;
+  #  useACMEHost = "n3mohomelab.xyz";
+  #  locations."/".proxyPass = "http://localhost:5299";
+  #};
 
   # calibre web automated downloader
   virtualisation.oci-containers.containers."cwa-book-downloader" = {
@@ -321,6 +321,12 @@
       "/srv/state/cwa-book-downloader:/config"
       "/srv/storage/media/books:/cwa-book-ingest"
     ];
+    extraOptions = [ "--network=medianet" ];
+  };
+  services.nginx.virtualHosts."cwa-book-downloader.n3mohomelab.xyz" = {
+    forceSSL = true;
+    useACMEHost = "n3mohomelab.xyz";
+    locations."/".proxyPass = "http://localhost:8084";
   };
 
   # readarr for ebooks
