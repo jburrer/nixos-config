@@ -311,6 +311,20 @@
   #  locations."/".proxyPass = "http://localhost:5299";
   #};
 
+  # flaresolverr
+  virtualisation.oci-containers.containers."flaresolverr" = {
+    image = "ghcr.io/flaresolverr/flaresolverr:latest";
+    ports = [
+      "8191:8191"
+    ];
+    extraOptions = [ "--network=medianet" ];
+  };
+  services.nginx.virtualHosts."flaresolverr.n3mohomelab.xyz" = {
+    forceSSL = true;
+    useACMEHost = "n3mohomelab.xyz";
+    locations."/".proxyPass = "http://localhost:8191";
+  };
+
   # calibre web automated downloader
   virtualisation.oci-containers.containers."cwa-book-downloader" = {
     image = "ghcr.io/calibrain/calibre-web-automated-book-downloader:latest";
