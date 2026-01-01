@@ -319,13 +319,27 @@
     ];
     extraOptions = [ "--network=medianet" ];
   };
-  services.nginx.virtualHosts."flaresolverr.n3mohomelab.xyz" = {
+
+  # calibre web automated
+  virtualisation.oci-containers.containers."cwa" = {
+    image = "crocodilestick/calibre-web-automated:latest";
+    ports = [
+      "8083:8083"
+    ];
+    volumes = [
+      "/srv/state/cwa:/config"
+      "/srv/storage/cwa:/cwa-book-ingest"
+      "/srv/storage/media/books:/calibre-library"
+    ];
+    extraOptions = [ "--network=medianet" ];
+  };
+  services.nginx.virtualHosts."cwa.n3mohomelab.xyz" = {
     forceSSL = true;
     useACMEHost = "n3mohomelab.xyz";
-    locations."/".proxyPass = "http://localhost:8191";
+    locations."/".proxyPass = "http://localhost:8083";
   };
 
-  # calibre web automated downloader
+  # calibre web automated book downloader
   virtualisation.oci-containers.containers."cwa-book-downloader" = {
     image = "ghcr.io/calibrain/calibre-web-automated-book-downloader:latest";
     ports = [
@@ -333,7 +347,7 @@
     ];
     volumes = [
       "/srv/state/cwa-book-downloader:/config"
-      "/srv/storage/media/books:/cwa-book-ingest"
+      "/srv/storage/cwa:/cwa-book-ingest"
     ];
     extraOptions = [ "--network=medianet" ];
   };
