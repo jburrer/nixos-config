@@ -331,6 +331,10 @@
       "/srv/storage/cwa:/cwa-book-ingest"
       "/srv/storage/media/books:/calibre-library"
     ];
+    environment = {
+      "PUID" = "10000";
+      "PGID" = "10000";
+    };
     extraOptions = [ "--network=medianet" ];
   };
   services.nginx.virtualHosts."cwa.n3mohomelab.xyz" = {
