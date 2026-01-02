@@ -290,27 +290,6 @@
     locations."/".proxyPass = "http://localhost:6767";
   };
 
-  # lazylibrarian
-  #virtualisation.oci-containers.containers."lazylibrarian" = {
-  #  image = "lscr.io/linuxserver/lazylibrarian:latest";
-  #  volumes = [
-  #    "/srv/state/lazylibrarian:/config"
-  #    "/srv/storage:/storage"
-  #  ];
-  #  ports = [
-  #    "5299:5299"
-  #  ];
-  #  environment = {
-  #    "PUID" = "10000";
-  #    "PGID" = "10000";
-  #  };
-  #};
-  #services.nginx.virtualHosts."lazylibrarian.n3mohomelab.xyz" = {
-  #  forceSSL = true;
-  #  useACMEHost = "n3mohomelab.xyz";
-  #  locations."/".proxyPass = "http://localhost:5299";
-  #};
-
   # flaresolverr
   virtualisation.oci-containers.containers."flaresolverr" = {
     image = "ghcr.io/flaresolverr/flaresolverr:latest";
@@ -359,28 +338,6 @@
     forceSSL = true;
     useACMEHost = "n3mohomelab.xyz";
     locations."/".proxyPass = "http://localhost:8084";
-  };
-
-  # readarr for ebooks
-  virtualisation.oci-containers.containers."readarr-ebooks" = {
-    image = "lscr.io/linuxserver/readarr:develop";
-    volumes = [
-      "/srv/state/readarr-ebooks:/config"
-      "/srv/storage:/storage"
-    ];
-    ports = [
-      "8787:8787"
-    ];
-    environment = {
-      "PUID" = "10000";
-      "PGID" = "10000";
-    };
-    extraOptions = [ "--network=medianet" ];
-  };
-  services.nginx.virtualHosts."readarr-ebooks.n3mohomelab.xyz" = {
-    forceSSL = true;
-    useACMEHost = "n3mohomelab.xyz";
-    locations."/".proxyPass = "http://localhost:8787";
   };
 
   # readarr for audiobooks

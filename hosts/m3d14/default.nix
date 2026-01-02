@@ -50,9 +50,7 @@
 
   # change ssh server port to access gitea on port 22
   sshServer.port = 222;
-
-  # needed to get ssl certs for tailscale address
-  #services.tailscale.interfaceName = "userspace-networking";
+  services.openssh.allowSFTP = true;
 
   system.stateVersion = "23.05";
 
