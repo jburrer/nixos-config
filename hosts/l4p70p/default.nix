@@ -106,6 +106,18 @@
   # run non-free programs
   nixpkgs.config.allowUnfree = true;
 
+  # fix for tailscale breaking on suspend
+  systemd.services.tailscale-restart = {
+    enable = true;
+    description = "restart tailscale after waking from suspend";
+    after = [ "suspend.target" ];
+    wantedBy = [ "suspend.target" ];
+    serviceConfig = {
+      Type = "oneshot";
+      ExecStart = "${pkgs.bash}/bin/bash -c 'sleep 2 && ${pkgs.tailscale}/bin/tailscale down && ${pkgs.tailscale}/bin/tailscale up'";
+    };
+  };
+
   # home manager
   programs.fuse.userAllowOther = true;
   home-manager.users.${config.username} = {
@@ -117,6 +129,7 @@
       "org.gnome.Fractal"
       "org.gnome.Polari"
       "app.drey.EarTag"
+      "com.calibre_ebook.calibre"
       "org.torproject.torbrowser-launcher"
       "org.getmonero.Monero"
     ];
