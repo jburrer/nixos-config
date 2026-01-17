@@ -451,27 +451,17 @@
           {
             "Books" = [
               {
-                "Readarr (Ebooks)" = {
-                  description = "EBook Management";
-                  icon = "readarr.png";
-                  href = "https://readarr-ebooks.n3mohomelab.xyz";
-                  widget = {
-                    type = "readarr";
-                    url = "https://readarr-ebooks.n3mohomelab.xyz";
-                    key = "fd55c5772e7441e4beac81004cc4a719";
-                  };
+                "Calibre Web Automated" = {
+                  description = "Book Management";
+                  icon = "calibre.png";
+                  href = "https://cwa.n3mohomelab.xyz";
                 };
               }
               {
-                "Readarr (Audiobooks)" = {
-                  description = "Audiobook Management";
-                  icon = "readarr.png";
-                  href = "https://readarr-audiobooks.n3mohomelab.xyz";
-                  widget = {
-                    type = "readarr";
-                    url = "https://readarr-audiobooks.n3mohomelab.xyz";
-                    key = "37e9665c46db46419adfac2df4182e23";
-                  };
+                "Shelfmark" = {
+                  description = "Ebook/Audiobook Downloader";
+                  icon = "calibre.png";
+                  href = "https://shelfmark.n3mohomelab.xyz";
                 };
               }
               {
