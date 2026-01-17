@@ -126,20 +126,20 @@
               }
             ];
           }
-          #{
-          #  "CS 252" = [
-          #    {
-          #      href = "https://www.cs.purdue.edu/homes/cs252/";
-          #    }
-          #  ];
-          #}
-          #{
-          #  "Partake" = [
-          #    {
-          #      href = "http://data.cs.purdue.edu:3000/";
-          #    }
-          #  ];
-          #}
+          {
+            "CS 252" = [
+              {
+                href = "https://www.cs.purdue.edu/homes/cs252/";
+              }
+            ];
+          }
+          {
+            "Partake" = [
+              {
+                href = "http://data.cs.purdue.edu:3001/";
+              }
+            ];
+          }
           #{
           #  "CS 307" = [
           #    {
