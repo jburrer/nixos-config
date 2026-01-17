@@ -329,8 +329,8 @@
       "8084:8084"
     ];
     volumes = [
-      "/srv/state/cwa-book-downloader:/config"
-      "/srv/storage/cwa:/cwa-book-ingest"
+      "/srv/state/shelfmark:/config"
+      "/srv/storage:/storage"
     ];
     extraOptions = [ "--network=medianet" ];
   };
