@@ -15,7 +15,7 @@
       extraDomainNames = [ "*.n3mohomelab.xyz" ];
       dnsProvider = "vultr";
       environmentFile = "${pkgs.writeText "vultr-creds" ''
-        VULTR_API_KEY=63WDSZPPODZUYD22AIIU6PLAT4OL6SP5I3KA
+        VULTR_API_KEY=AIV7776MIBF4S3MC5K3LDONBMUBS6CVC5KGQ
       ''}";
       # ^ fix this when secrets implemented ^
       webroot = lib.mkForce null;
@@ -339,28 +339,6 @@
     useACMEHost = "n3mohomelab.xyz";
     locations."/".proxyPass = "http://localhost:8084";
   };
-
-  # readarr for audiobooks
-  #virtualisation.oci-containers.containers."readarr-audiobooks" = {
-  #  image = "lscr.io/linuxserver/readarr:develop";
-  #  volumes = [
-  #    "/srv/state/readarr-audiobooks:/config"
-  #    "/srv/storage:/storage"
-  #  ];
-  #  ports = [
-  #    "9797:8787"
-  #  ];
-  #  environment = {
-  #    "PUID" = "10000";
-  #    "PGID" = "10000";
-  #  };
-  #  extraOptions = [ "--network=medianet" ];
-  #};
-  #services.nginx.virtualHosts."readarr-audiobooks.n3mohomelab.xyz" = {
-  #  forceSSL = true;
-  #  useACMEHost = "n3mohomelab.xyz";
-  #  locations."/".proxyPass = "http://localhost:9797";
-  #};
 
   # audiobookshelf
   services.audiobookshelf = {
