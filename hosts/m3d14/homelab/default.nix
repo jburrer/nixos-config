@@ -63,27 +63,47 @@
   };
 
   # copyparty 
-  services.copyparty = {
-    enable = true;
-    settings = {
-      i = "0.0.0.0";
-      p = "3210";
-    };
-    accounts."n3mo".passwordFile = "/srv/state/copyparty/n3mo_password";
-    volumes = {
-      "/" = {
-        path = "/srv/storage/nest";
-        access = {
-          r = "*";
-          rw = "n3mo";
-        };
-      };
-      "/storage" = {
-        path  = "/srv/storage";
-        access.rw = "n3mo";
-      };
-    };
+  #services.copyparty = {
+  #  enable = true;
+  #  settings = {
+  #    i = "0.0.0.0";
+  #    p = "3210";
+  #  };
+  #  accounts."n3mo".passwordFile = "/srv/state/copyparty/n3mo_password";
+  #  volumes = {
+  #    "/" = {
+  #      path = "/srv/storage/nest";
+  #      access = {
+  #        r = "*";
+  #        rw = "n3mo";
+  #      };
+  #    };
+  #    "/storage" = {
+  #      path  = "/srv/storage";
+  #      access.rw = "n3mo";
+  #    };
+  #  };
+  #};
+
+  # file browser 
+  virtualisation.oci-containers.containers."filebrowser" = {
+    image = "filebrowser/filebrowser:latest";
+    user = "10000:10000";
+    volumes = [
+      "/srv/storage/nest:/srv"
+      "/srv/state/filebrowser:/database"
+      "/srv/state/filebrowser:/config"
+    ]; 
+    ports = [
+      "8081:80"
+    ];
   };
+  services.nginx.virtualHosts."filebrowser.n3mohomelab.xyz" = {
+    forceSSL = true;
+    useACMEHost = "n3mohomelab.xyz";
+    locations."/".proxyPass = "http://localhost:8081";
+  };
+
 
   # vaultwarden
   virtualisation.oci-containers.containers."vaultwarden" = {
