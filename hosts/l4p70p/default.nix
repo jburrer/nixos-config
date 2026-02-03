@@ -7,7 +7,7 @@
     ../../modules/gnome.nix
     ../../modules/gaming.nix
     ../../modules/printing.nix
-    ../../modules/music-production.nix
+    ../../modules/music-production
   ];
 
   hostname = "l4p70p";
