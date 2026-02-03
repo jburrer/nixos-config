@@ -71,7 +71,7 @@
       "files.thenest207.live" = {
         forceSSL = true;
         useACMEHost = "thenest207.live";
-        locations."/".proxyPass = "http://m3d14:3210";
+        locations."/".proxyPass = "http://m3d14:8081";
       };
       "passwords.thenest207.live" = {
         forceSSL = true;
