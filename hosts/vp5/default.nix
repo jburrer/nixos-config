@@ -21,7 +21,7 @@
         extraDomainNames = [ "*.thenest207.live" ];
         dnsProvider = "vultr";
         environmentFile = "${pkgs.writeText "vultr-creds" ''
-          VULTR_API_KEY=63WDSZPPODZUYD22AIIU6PLAT4OL6SP5I3KA
+          VULTR_API_KEY=AIV7776MIBF4S3MC5K3LDONBMUBS6CVC5KGQ
         ''}";
         # ^ fix this when secrets implemented ^
         webroot = lib.mkForce null;
