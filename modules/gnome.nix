@@ -87,6 +87,13 @@
     xdg.enable = true;
     fonts.fontconfig.enable = true;
 
+    qt = {
+      enable = true;
+      platformTheme.name = "adwaita";
+      style.name = "adwaita-dark";
+    };
+
+
   };
 
 }
