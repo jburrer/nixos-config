@@ -1,7 +1,12 @@
 { pkgs, lib, config, ... }: {
 
   # adds user to neded groups
-  users.users."${config.username}".extraGroups = [ "audio" "video" ];
+  users.users."${config.username}".extraGroups = [ "audio" "video" "dialout" ];
+
+  # udev rules for usb dmx interface
+  services.udev.extraRules = ''
+    SUBSYSTEM=="usb", ATTRS{idVendor}=="0403", ATTRS{idProduct}=="6001", MODE="0666", GROUP="dialout"
+  '';
 
   # pipewire jack suuport
   services.pipewire = {
@@ -31,43 +36,6 @@
 
   # home manager
   home-manager.users.${config.username} = {
-
-    #home.packages = with pkgs.stable; let
-    #  #jackWrap = drv: pkgs.symlinkJoin {
-    #  #  name = "${drv.name}-jackwrapped";
-    #  #  paths = [ drv ];
-    #  #  buildInputs = [ pkgs.makeWrapper ];
-    #  #  postBuild = ''
-    #  #    ls "$out/bin"
-    #  #    for b in "$out/bin/"*; do
-    #  #      wrapProgram "$b" \
-    #  #        --prefix LD_LIBRARY_PATH : "${pkgs.pipewire.jack}/lib"
-    #  #    done
-    #  #  '';
-    #  #};
-    #  wrappedRaysession = pkgs.stable.raysession.overrideAttrs (oldAttrs: {
-    #    buildInputs = (oldAttrs.buildInputs or []) ++ [
-    #      #pkgs.python313Packages.legacy-cgi
-    #      #pkgs.python313Packages.pyqt5-sip
-    #      pkgs.python313Packages.pyqt5
-    #    ];
-    #    propagatedBuildInputs = (oldAttrs.propagatedBuildInputs or []) ++ [
-    #      pkgs.python313Packages.legacy-cgi
-    #      pkgs.python313Packages.pyqt5-sip
-    #      pkgs.python313Packages.pyqt5
-    #    ];
-    #    postFixup = (oldAttrs.postFixup or "") + ''
-    #      for b in $out/bin/*; do
-    #        wrapProgram "$b" \
-    #          --prefix LD_LIBRARY_PATH : "${pkgs.pipewire.jack}/lib"
-    #      done
-    #    '';
-    #  });
-    #in [
-    #  ardour x42-avldrums helvum helm qlcplus wrappedRaysession
-    #] ++ [
-    #  lsp-plugins
-    #];
 
     home.packages = with pkgs.stable; [
       ardour x42-avldrums helvum helm qlcplus

@@ -327,7 +327,7 @@
     ];
     volumes = [
       "/srv/state/cwa:/config"
-      "/srv/storage/cwa:/cwa-book-ingest"
+      "/srv/storage/shelfmark:/cwa-book-ingest"
       "/srv/storage/media/books:/calibre-library"
     ];
     environment = {
@@ -342,7 +342,7 @@
     locations."/".proxyPass = "http://localhost:8083";
   };
 
-  # calibre web automated book downloader
+  # shelfmark 
   virtualisation.oci-containers.containers."cwa-book-downloader" = {
     image = "ghcr.io/calibrain/calibre-web-automated-book-downloader:latest";
     ports = [
