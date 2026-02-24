@@ -4,7 +4,6 @@
     ./hardware-configuration.nix
     ../../modules
     ../../modules/gnome.nix
-    #../../modules/gaming.nix
     ../../modules/music-production.nix
   ];
 
@@ -13,47 +12,27 @@
 
   #gaming.nvidia.enable = true;
   # nvidia
-  nixpkgs.config.allowUnfree = true;
-  services.xserver.videoDrivers =  [ "nvidia" ];
-  hardware.graphics.enable = true;
-  hardware.nvidia = {
-    package = config.boot.kernelPackages.nvidiaPackages.stable;
-    modesetting.enable = true;
-    open = false;
-    nvidiaSettings = false;
-  };
+  #nixpkgs.config.allowUnfree = true;
+  #services.xserver.videoDrivers =  [ "nvidia" ];
+  #hardware.graphics.enable = true;
+  #hardware.nvidia = {
+  #  package = config.boot.kernelPackages.nvidiaPackages.stable;
+  #  modesetting.enable = true;
+  #  open = false;
+  #  nvidiaSettings = false;
+  #};
 
   # bootloader
-  boot = {
-    loader = {
-      grub = {
-        enable = true;
-        device = "nodev";
-        efiSupport = true;
-        enableCryptodisk = true;
-      };
-      efi = {
-        canTouchEfiVariables = true;
-        efiSysMountPoint = "/boot/efi";
-      };
-    };
-    initrd = {
-      luks.devices."luks-aaf591da-df34-4705-ba24-3966c20767d5" = {
-	device = "/dev/disk/by-uuid/aaf591da-df34-4705-ba24-3966c20767d5";
-        keyFile = "/keyfile.bin";
-        allowDiscards = true;
-      };
-      secrets = {
-        "keyfile.bin" = "/etc/secrets/initrd/keyfile.bin";
-      };
-    };
+  boot.loader = {
+    systemd-boot.enable = true;
+    efi.canTouchEfiVariables = true;
   };
 
-  # mount external hard drive
-  fileSystems."/home/${config.username}/Nest" = {
-    device = "/dev/disk/by-uuid/b6ec6e48-994a-4941-998b-d4533990d52c";
-    fsType = "ext4";
-  };
+  ## mount external hard drive
+  #fileSystems."/home/${config.username}/Nest" = {
+  #  device = "/dev/disk/by-uuid/b6ec6e48-994a-4941-998b-d4533990d52c";
+  #  fsType = "ext4";
+  #};
 
   # disabling autosuspend for remote desktop
   systemd.targets.sleep.enable = false;
@@ -68,11 +47,11 @@
     services.syncthing.enable = true;
     
     home.packages = (with pkgs.gnomeExtensions; [
-      tactile
       rounded-window-corners-reborn
     ]);
+
   };
 
-  system.stateVersion = "22.11";
+  system.stateVersion = "25.11";
 
 }
