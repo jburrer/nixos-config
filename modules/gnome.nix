@@ -93,7 +93,6 @@
       style.name = "adwaita-dark";
     };
 
-
   };
 
 }

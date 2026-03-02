@@ -48,8 +48,7 @@
     services.flatpak.packages = [
       "org.kde.kdenlive"
       "org.nickvision.tubeconverter"
-      "com.saivert.pwvucontrol"
-      "io.github.dimtpap.coppwr"
+      "org.entangle_photo.Manager"
       # obs and plugins
       "com.obsproject.Studio"
       "com.obsproject.Studio.Plugin.AitumMultistream"
