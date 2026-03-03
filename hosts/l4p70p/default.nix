@@ -49,6 +49,8 @@
       enable = true;
       pkiBundle = "/etc/secureboot";
     };
+    # prevent beeps on startup
+    blacklistedKernelModules = [ "pcspkr" ];
   };
 
   # directories to persist between boots
@@ -95,6 +97,20 @@
     enable = true;
     powerOnBoot = true;
   };
+
+  # sink for using raysession & ardour to boost audio while watching movies
+  services.pipewire.extraConfig.pipewire."91-live-sinks"."context.objects" = [
+    {
+      factory = "adapter";
+      args = {
+        "factory.name" = "support.null-audio-sink";
+        "node.name" = "movies-sink";
+        "node.description" = "Sink for Movies";
+        "media.class" = "Audio/Sink";
+        "audio.position" = "FL,FR";
+      };
+    }
+  ];
 
   # android stuff
   programs.adb.enable = true;

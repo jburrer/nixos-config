@@ -12,6 +12,20 @@
   services.pipewire = {
     jack.enable = true;
     wireplumber.enable = true;
+    #extraconfig.pipewire."91-live-sinks" = {
+    #  "context.objects" = [
+    #    {
+    #      factory = "adapter";
+    #      args = {
+    #        "factory.name" = "support.null-audio-sink";
+    #        "node.name" = "movies-sink";
+    #        "node.description" = "sink for movies";
+    #        "media.class" = "audio/sink";
+    #        "audio.position" = "fl,fr";
+    #      };
+    #    }
+    #  ];
+    #};
   };
 
   # musnix
@@ -40,6 +54,7 @@
     home.packages = with pkgs.stable; [
       ardour x42-avldrums helvum helm qlcplus
       (pkgs.callPackage ./custom-raysession.nix {})
+      pulseaudio
     ] ++ [
       lsp-plugins
     ];
