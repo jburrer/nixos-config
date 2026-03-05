@@ -10,17 +10,22 @@
   hostname = "d35k70p";
   configDir = "${config.homeDir}/Documents/nixos-config";
 
-  #gaming.nvidia.enable = true;
   # nvidia
-  #nixpkgs.config.allowUnfree = true;
-  #services.xserver.videoDrivers =  [ "nvidia" ];
-  #hardware.graphics.enable = true;
-  #hardware.nvidia = {
-  #  package = config.boot.kernelPackages.nvidiaPackages.stable;
-  #  modesetting.enable = true;
-  #  open = false;
-  #  nvidiaSettings = false;
-  #};
+  nixpkgs.config.allowUnfree = true;
+  services.xserver.videoDrivers =  [ "nvidia" ];
+  hardware = {
+    graphics.enable = true;
+    nvidia = {
+      modesetting.enable = true;
+      powerManagement = {
+        enable = false;
+        finegrained = false;
+      };
+      open = true;
+      nvidiaSettings = true;
+      package = config.boot.kernelPackages.nvidiaPackages.stable;
+    };
+  };
 
   # bootloader
   boot.loader = {
