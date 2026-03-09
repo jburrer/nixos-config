@@ -1,1 +1,554 @@
-/home/n3mo/Org/config.org
+:PROPERTIES:
+:ID:       e359f766-d1b7-4de1-815e-8cff9f8cd048
+:END:
+#+title: emacs config 
+#+author: Johnny Burrer
+#+description: my personal emacs config, very much a WIP
+#+options: toc:3
+
+* table-of-contents :toc:
+:PROPERTIES:
+:ID:       e13511d7-3359-4681-9232-6c2d4272f87f
+:END:
+- [[#important-programs-to-load-first][important-programs-to-load-first]]
+  - [[#evil-mode][evil-mode]]
+  - [[#general-keybinding][general-keybinding]]
+  - [[#environment-variables][environment-variables]]
+- [[#fonts][fonts]]
+- [[#gui][gui]]
+  - [[#frame-layout][frame-layout]]
+  - [[#theme][theme]]
+  - [[#tab-bar][tab-bar]]
+  - [[#line-numbers-truncating-and-indentation][line-numbers-truncating-and-indentation]]
+  - [[#telephone-line][telephone-line]]
+  - [[#smooth-scrolling][smooth-scrolling]]
+  - [[#rainbow-delimiters][rainbow-delimiters]]
+- [[#org-mode][org-mode]]
+  - [[#org-todo][org-todo]]
+  - [[#org-tags][org-tags]]
+  - [[#org-latex][org-latex]]
+  - [[#org-table-of-contents][org-table-of-contents]]
+  - [[#org-bullets][org-bullets]]
+  - [[#org-roam][org-roam]]
+- [[#which-key][which-key]]
+- [[#latex][latex]]
+  - [[#auctex][auctex]]
+  - [[#pdf-tools][pdf-tools]]
+- [[#misc][misc]]
+  - [[#vterm][vterm]]
+  - [[#nix][nix]]
+  - [[#rust][rust]]
+  - [[#highlight-indent-guides][highlight-indent-guides]]
+  - [[#pass][pass]]
+  - [[#disable-autosave][disable autosave]]
+
+* important-programs-to-load-first
+:PROPERTIES:
+:ID:       5b8cc7a5-c756-495d-8072-7ce0d3c7d06e
+:END:
+** evil-mode
+:PROPERTIES:
+:ID:       cc61c4fd-0ff3-4297-823c-e8b8c6ab7410
+:END:
+#+begin_src emacs-lisp
+(use-package evil
+  :ensure t
+  :init
+  (setq evil-want-keybinding nil
+        evil-vsplit-window-right t
+        evil-split-window-below t
+        evil-default-state 'normal
+        evil-emacs-state-modes nil 
+        evil-insert-state-modes nil
+        evil-motion-state-modes nil)
+  (evil-mode))
+(use-package evil-collection
+  :ensure t
+  :after evil
+  :config
+  (evil-collection-init))
+#+end_src 
+** general-keybinding
+:PROPERTIES:
+:ID:       f811db75-6796-42b7-a2a4-87d16cc717e8
+:END:
+#+begin_src emacs-lisp
+(use-package general
+  :config
+  (general-evil-setup)
+  (general-create-definer n3mo/leader-keys
+    :states '(normal insert visual emacs)
+    :keymaps 'override
+    :prefix "SPC"
+    :global-prefix "C-SPC") 
+  (n3mo/leader-keys "e" '(:ignore t :wk "buffer")
+    "eb" '(switch-to-buffer :wk "Switch buffer")
+    "ej" '(previous-buffer :wk "Previous buffer")
+    "ek" '(next-buffer :wk "Next buffer")
+    "er" '(revert-buffer :wk "Reload buffer")
+    "eq" '(kill-buffer (current-buffer) :wk "Kill this buffer")
+    "w" '(:ignore t :wk "window")
+    "wh" '(windmove-left :wk "Move to left window")
+    "wl" '(windmove-right :wk "Move to right window")
+    "wj" '(windmove-down :wk "Move to lower window")
+    "wk" '(windmove-up :wk "Move to upper window")
+    "wH" '(windmove-swap-states-left
+           :wk "Swap window to the left")
+    "wL" '(windmove-swap-states-right
+           :wk "Swap window to the right")
+    "ws" '(evil-window-split
+           :wk "Split window horizontally")
+    "wv" '(evil-window-vsplit
+           :wk "Split window vertically")
+    "wq" '(evil-quit
+           :wk "Close window")
+    "t" '(:ignore t :wk "tab")
+    "th" '(tab-bar-switch-to-prev-tab :wk "Previous tab")
+    "tj" '(tab-bar-switch-to-prev-tab :wk "Previous tab")
+    "tk" '(tab-bar-switch-to-next-tab :wk "Next tab")
+    "tl" '(tab-bar-switch-to-next-tab :wk "Next tab")
+    "tt" '(tab-bar-new-tab :wk "New tab")
+    "tq" '(tab-bar-close-tab :wk "Close tab")))
+#+end_src
+** environment-variables
+:PROPERTIES:
+:ID:       2edad6de-732e-4309-a1d8-3eef1de0c669
+:END:
+#+begin_src emacs-lisp
+(setenv "SSH_AUTH_SOCK" "/run/user/1000/gnupg/S.gpg-agent.ssh")
+#+end_src
+* fonts
+:PROPERTIES:
+:ID:       eafe8c85-31ab-48f0-b409-b42b539e1bf9
+:END:
+#+begin_src emacs-lisp
+(set-face-attribute 'default nil
+                    :font "Adwaita Mono"
+                    :height 130
+                    :weight 'bold)
+(set-face-attribute 'variable-pitch nil
+                    :font "Adwaita Sans"
+                    :height 120
+                    :weight 'medium)
+(set-face-attribute 'fixed-pitch nil
+                    :font "Adwaita Mono"
+                    :height 130
+                    :weight 'bold)
+(set-face-attribute 'font-lock-comment-face nil :slant 'italic)
+(set-face-attribute 'font-lock-keyword-face nil :slant 'italic)
+(add-to-list 'default-frame-alist '(font . "Adwaita Mono-13"))
+#+end_src
+* gui
+:PROPERTIES:
+:ID:       1ae6a5da-0bf7-4dbd-89b4-941767bc35ff
+:END:
+** frame-layout
+:PROPERTIES:
+:ID:       d9c8bcb6-7bf1-492a-8190-3e29d5f6d000
+:END:
+#+begin_src emacs-lisp
+(setq frame-resize-pixelwise t)
+(add-to-list 'default-frame-alist '(internal-border-width . 10))
+(menu-bar-mode -1)
+(scroll-bar-mode -1)
+(tool-bar-mode -1)
+(setq visible-bell 1)
+#+end_src
+** theme
+:PROPERTIES:
+:ID:       8d0eeeab-5670-4b7a-bb46-68d42f0fcfef
+:END:
+#+begin_src emacs-lisp
+(use-package adwaita-dark-theme
+  :ensure t
+  :config
+  (load-theme 'adwaita-dark :no-confirm))
+#+end_src
+** tab-bar
+:PROPERTIES:
+:ID:       58085a01-14a5-4183-bcb6-ec8ebf3e165f
+:END:
+#+begin_src emacs-lisp
+(defface n3mo-tab-bar-tab
+  `((t
+     :inherit 'tab-bar-tab
+     :foreground ,(face-attribute 'font-lock-keyword-face :foreground nil t)))
+  "Face for active tab in tab-bar."
+  :group 'n3mo-tab-bar)
+(defface n3mo-tab-bar-tab-inactive
+  `((t :inherit 'tab-bar-tab-inactive
+       :foreground ,(face-attribute 'font-lock-comment-face :foreground nil t)))
+  "Face for inactive tab in tab-bar."
+  :group 'n3mo-tab-bar)
+(defun n3mo-tab-bar-tab-name-format-default (tab i)
+  (let* ((current-p (eq (car tab) 'current-tab))
+         (tab-face (if current-p
+                       'n3mo-tab-bar-tab
+                     'n3mo-tab-bar-tab-inactive)))
+    (propertize (concat "  " (alist-get 'name tab) "  ") 'face tab-face)))
+(setq tab-bar-show 1
+      tab-bar-new-button nil
+      tab-bar-close-button-show nil
+      tab-bar-new-tab-choice 'multi-vterm
+      tab-bar-tab-name-format-function 'n3mo-tab-bar-tab-name-format-default)
+(tab-bar-mode 1)
+#+end_src
+** line-numbers-truncating-and-indentation
+:PROPERTIES:
+:ID:       46334118-e999-4c19-8395-ac7861eada39
+:END:
+#+begin_src emacs-lisp
+(add-hook 'prog-mode-hook 'display-line-numbers-mode)
+(add-hook 'org-mode-hook 'display-line-numbers-mode)
+(global-visual-line-mode t)
+(setq-default indent-tabs-mode nil)
+#+end_src
+** telephone-line
+:PROPERTIES:
+:ID:       d0301f5f-b0f2-4282-a96c-a20a56b5ebb1
+:END:
+#+begin_src emacs-lisp
+(use-package telephone-line
+  :ensure t
+  :config
+                                        ;(set-face-attribute 'telephone-line-evil-normal
+                                        ;                    nil
+                                        ;                    :foreground
+                                        ;                    "#1e1e2e"
+                                        ;                    :background
+                                        ;                    "#cba6f7")
+                                        ;(set-face-attribute 'telephone-line-evil-insert
+                                        ;                    nil
+                                        ;                    :foreground
+                                        ;                    "#1e1e2e"
+                                        ;                    :background
+                                        ;                    "#a6e3a1")
+                                        ;(set-face-attribute 'telephone-line-evil-visual
+                                        ;                    nil
+                                        ;                    :foreground
+                                        ;                    "#1e1e2e"
+                                        ;                    :background
+                                        ;                    "#f38ba8")
+  (setq telephone-line-primary-left-separator 'telephone-line-flat
+        telephone-line-secondary-left-separator 'telephone-line-nil
+        telephone-line-primary-right-separator 'telephone-line-flat
+        telephone-line-secondary-right-separator 'telephone-line-nil)
+  (setq telephone-line-lhs
+        '((evil . (telephone-line-evil-tag-segment))
+          (accent . (telephone-line-vc-segment
+                     telephone-line-erc-modified-channels-segment
+                     telephone-line-process-segment))
+          (nil . (telephone-line-minor-mode-segment
+                  telephone-line-buffer-segment))))
+  (setq telephone-line-rhs
+        '((nil . (telephone-line-misc-info-segment))
+          (accent . (telephone-line-major-mode-segment))
+          (evil . (telephone-line-airline-position-segment)))) 
+  (telephone-line-mode 1))
+#+end_src
+** smooth-scrolling
+:PROPERTIES:
+:ID:       7ac7c41d-8f49-4f49-9493-4132ba33f01d
+:END:
+#+begin_src emacs-lisp
+(setq redisplay-dont-pause t
+      scroll-margin 500
+      scroll-conservatively 10000
+      scroll-preserve-screen-position 1)
+#+end_src
+** rainbow-delimiters
+:PROPERTIES:
+:ID:       d64929af-df2a-4a95-93d5-0f16a7ba354d
+:END:
+#+begin_src emacs-lisp
+(use-package rainbow-delimiters
+  :ensure t
+  :config
+  (add-hook 'prog-mode-hook #'rainbow-delimiters-mode))
+#+end_src
+* org-mode
+:PROPERTIES:
+:ID:       47adb875-db16-4e93-b6ec-abd354530407
+:END:
+#+begin_src emacs-lisp
+(use-package org
+  :ensure t
+  :mode (("\\.org$" . org-mode))
+  :config
+  (setq org-edit-src-content-indentation 0
+        org-src-tab-acts-natively t
+        org-src-preserve-indentation t
+        org-startup-folded t))
+#+end_src
+** org-todo
+:PROPERTIES:
+:ID:       673cc11e-8f2a-4dba-a145-2f041645e0fe
+:END:
+#+begin_src emacs-lisp
+(setq org-todo-keywords
+      '((sequence "TODO(t)" "PLANNING(p)" "IN-PROGRESS(i@/!)" "VERIFYING(v!)"
+                  "BLOCKED(b@)"  "|" "DONE(d!)" "OBE(o@!)" "WONT-DO(w@/!)" ))
+      org-todo-keyword-faces
+      '(
+        ("TODO" . (:foreground "GoldenRod" :weight bold))
+        ("PLANNING" . (:foreground "DeepPink" :weight bold))
+        ("IN-PROGRESS" . (:foreground "Cyan" :weight bold))
+        ("VERIFYING" . (:foreground "DarkOrange" :weight bold))
+        ("BLOCKED" . (:foreground "Red" :weight bold))
+        ("DONE" . (:foreground "LimeGreen" :weight bold))
+        ("OBE" . (:foreground "LimeGreen" :weight bold))
+        ("WONT-DO" . (:foreground "LimeGreen" :weight bold))))
+#+end_src
+** org-tags
+:PROPERTIES:
+:ID:       77c094c9-95c1-4e1b-b84c-854404059347
+:END:
+#+begin_src emacs-lisp
+(setq org-tag-alist '(
+                      ("school"       . ?s)
+                      (:startgroup    . nil)
+                      ("cs251"        . nil)
+                      ("biol110"      . nil)
+                      ("mus270"       . nil)
+                      ("hist31205"    . nil)
+                      (:endgroup      . nil)
+
+                      ("tech"         . ?t)
+                      (:startgroup    . nil)
+                      ("l4p70p"       . nil)
+                      ("d35k70p"      . nil)
+                      ("m3d14"        . nil)
+                      ("vp5"          . nil)
+                      (:endgroup      . nil)
+
+                      ("venue"        . ?v)
+
+                      ("band"         . ?b)
+
+                      ("personal"     . ?p)
+
+                      ("professional" . ?P)
+
+                      ("idea"         . ?i)
+
+                      ("test"         . ?T))
+
+      org-tag-faces '(
+                      ("school"       . (:foreground "green"               :weight bold))
+                      ("cs251"        . (:foreground "spring green"        :weight bold))
+                      ("biol110"      . (:foreground "medium spring green" :weight bold))
+                      ("mus270"       . (:foreground "dark green"          :weight bold))
+                      ("hist31205"    . (:foreground "sea green"           :weight bold))
+                      ("tech"         . (:foreground "royalblue1"          :weight bold))
+                      ("venue"        . (:foreground "yellow1"             :weight bold))
+                      ("band"         . (:foreground "forest green"        :weight bold))
+                      ("personal"     . (:foreground "sienna"              :weight bold))
+                      ("professional" . (:foreground "chocolate"           :weight bold))
+                      ("idea"         . (:foreground "lawn green"          :weight bold))
+                      ("test"         . (:foreground "red1"                :weight bold))))
+#+end_src
+** org-latex
+:PROPERTIES:
+:ID:       3f36876d-6c2b-4a3c-a26e-6769a4a90898
+:END:
+#+begin_src emacs-lisp
+(setq org-highlight-latex-and-related '(latex script entities))
+(setq org-latex-packages-alist '())
+(add-to-list 'org-latex-packages-alist '("" "amsmath" t))
+(add-to-list 'org-latex-packages-alist '("" "amssymb" t))
+(add-to-list 'org-latex-packages-alist '("" "amsfonts" t))
+(add-to-list 'org-latex-packages-alist '("" "algpseudocode" t))
+#+end_src
+** org-table-of-contents
+:PROPERTIES:
+:ID:       cc9846ad-74b0-4c63-84e9-991c9c8f64e2
+:END:
+#+begin_src emacs-lisp
+(use-package toc-org
+  :commands toc-org-enable
+  :init (add-hook 'org-mode-hook 'toc-org-enable))
+#+end_src
+** org-bullets
+:PROPERTIES:
+:ID:       1f4ba243-fa14-4954-b7a6-195f9dd8cadd
+:END:
+#+begin_src emacs-lisp
+(add-hook 'org-mode-hook 'org-indent-mode)
+(use-package org-bullets
+  :ensure t
+  :config
+  (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
+#+end_src
+** org-roam
+:PROPERTIES:
+:ID:       70dfcd5e-54ac-424f-9f3e-c1613810e519
+:END:
+#+begin_src emacs-lisp
+(use-package org-roam
+  :ensure t
+  :config
+  (setq org-roam-directory "~/Org"
+        org-roam-capture-templates
+        '(("d" "default" plain
+           "%?"
+           :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n")
+           :unnarrowed t)
+          ("t" "task" entry
+           "** TODO [#B] ${title}\n\n:Created: %T\n\n%?"
+           :target (file+olp "~/Org/tasks.org" ("tasks"))
+           :unnarrowed t)
+          ("n" "note" entry
+           "** ${title}\n%?"
+           :target (file+olp "~/Org/notes.org" ("notes"))
+           :unnarrowed t)))
+  ;        ("c" "code task"
+  ;         entry (file+headline "~/Org/tasks.org" "Code-Related Tasks")
+  ;         "* TODO [#B] %?\n:Created: %T\n%i\n%a\nProposed Solution: "
+  ;         :empty-lines 0)))
+  (org-roam-db-autosync-mode)
+  :bind
+  (("C-c n l" . org-roam-buffer-toggle)
+   ("C-c n f" . org-roam-node-find)
+   ("C-c n i" . org-roam-node-insert)))
+(use-package org-roam-ui
+  :ensure t
+  :after org-roam
+  :hook (after-init . org-roam-ui-mode)
+  :config
+  (setq org-roam-ui-sync-theme t
+        org-roam-ui-follow t
+        org-roam-ui-update-on-save t
+        org-roam-ui-open-on-start t))
+#+end_src
+* which-key
+:PROPERTIES:
+:ID:       d214fc10-604b-46ba-993e-a29fe99a111b
+:END:
+#+begin_src emacs-lisp
+(use-package which-key
+  :init
+  (which-key-mode 1)
+  :config
+  (setq which-key-side-window-location 'bottom
+        which-key-sort-order #'which-key-key-order-alpha
+        which-key-sort-uppercase-first nil
+        which-key-add-column-padding 1
+        which-key-max-display-columns nil
+        which-key-min-display-lines 6
+        which-key-side-window-slot -10
+        which-key-side-window-max-height 0.25
+        which-key-idle-delay 0.8
+        which-key-max-description-length 25
+        which-key-allow-imprecise-window-fit t
+        which-key-separator " → " ))
+#+end_src
+* latex
+:PROPERTIES:
+:ID:       477a1de7-9cfc-4036-8117-832aa764af6f
+:END:
+** auctex
+:PROPERTIES:
+:ID:       ac848c78-e45f-4440-88c7-d359aed68ff4
+:END:
+#+begin_src emacs-lisp
+(use-package auctex
+  :ensure t
+  :hook
+  (LaTex-mode . turn-on-prettify-symbols-mode)
+  (LaTex-mode . turn-on-flyspell)
+  :config
+  (setq TeX-view-program-selection '((output-pdf "PDF Tools"))
+        TeX-source-correlate-start-server t))
+(add-hook 'TeX-after-compilation-finished-functions #'TeX-revert-document-buffer)
+(add-hook 'LaTeX-mode-hook #'rainbow-delimiters-mode)
+(add-hook 'LaTeX-mode-hook 'display-line-numbers-mode)
+#+end_src
+** pdf-tools
+:PROPERTIES:
+:ID:       bc0a307c-8c1c-4a4d-affb-5c37f4f1c84d
+:END:
+#+begin_src emacs-lisp
+(use-package pdf-tools
+  :ensure t
+  :init
+  (pdf-tools-install))
+#+end_src
+* misc 
+:PROPERTIES:
+:ID:       a86d167e-61e0-468e-ac8e-47b57fb7425b
+:END:
+** vterm 
+:PROPERTIES:
+:ID:       c2cf09a6-4352-4ca3-b0d9-83c066ee048b
+:END:
+#+begin_src emacs-lisp
+(use-package vterm
+  :ensure t
+  :config
+  (setq initial-buffer-choice 'multi-vterm
+        vterm-term-environment-variable "eterm-color"
+        vterm-kill-buffer-on-exit t))
+;;(evil-set-initial-state 'vterm-mode 'emacs))
+#+end_src
+** nix
+:PROPERTIES:
+:ID:       4e705eed-e7d0-425a-859a-d45c4931b1c0
+:END:
+#+begin_src emacs-lisp
+(use-package nix-ts-mode
+  :ensure t
+  :mode "\\.nix\\'")
+(add-hook 'prog-mode-hook
+          (lambda ()
+            (add-hook 'before-save-hook 'eglot-format nil t)))
+(with-eval-after-load 'eglot
+  (dolist (mode '((nix-ts-mode . ("nixd"))))
+    (add-to-list 'eglot-server-programs mode)))
+#+end_src
+** rust
+:PROPERTIES:
+:ID:       b9b84107-0278-4cd2-acb4-d0576b123b25
+:END:
+#+begin_src emacs-lisp
+(use-package rust-mode
+  :ensure t
+  :init
+  (setq rust-mode-treesitter-derive t))
+(use-package rustic
+  :ensure t
+  :after (rust-mode)
+  :config
+  (setq rustic-format-on-save nil)
+  :custom
+  (rustic-cargo-use-last-stored-arguments t))
+#+end_src
+** highlight-indent-guides
+:PROPERTIES:
+:ID:       81bdf5ad-3986-4c3f-adf8-b1c310ac14dd
+:END:
+#+begin_src emacs-lisp
+(use-package highlight-indent-guides
+  :ensure t
+  :config
+  (setq highlight-indent-guides-method 'fill))
+  ;      highlight-indent-guides-character ?|)
+  ;(set-face-background 'highlight-indent-guides-odd-face "red")
+  ;(set-face-background 'highlight-indent-guides-even-face "green")
+  ;(set-face-background 'highlight-indent-guides-character-face "darkgray"))
+(add-hook 'prog-mode-hook 'highlight-indent-guides-mode)
+(add-hook 'org-mode-hook 'highlight-indent-guides-mode)
+#+end_src
+** pass
+:PROPERTIES:
+:ID:       49f6d42b-196a-4f1e-8bcf-5bf6cf1b76f9
+:END:
+#+begin_src emacs-lisp
+(use-package pass :ensure t)
+#+end_src
+** disable autosave
+:PROPERTIES:
+:ID:       50e1c476-ed55-433c-8c50-b060e4dd9f9d
+:END:
+#+begin_src emacs-lisp
+(setq auto-save-default nil)
+#+end_src
