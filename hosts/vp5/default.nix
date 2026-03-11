@@ -14,18 +14,16 @@
   # acme
   security.acme = {
     acceptTerms = true;
-    defaults.email = "jburrer@purdue.edu";
-    certs = {
-      "thenest207.live" = {
-        domain = "thenest207.live";
-        extraDomainNames = [ "*.thenest207.live" ];
-        dnsProvider = "vultr";
-        environmentFile = "${pkgs.writeText "vultr-creds" ''
-          VULTR_API_KEY=AIV7776MIBF4S3MC5K3LDONBMUBS6CVC5KGQ
-        ''}";
-        # ^ fix this when secrets implemented ^
-        webroot = lib.mkForce null;
-      };
+    defaults.email = "n3mo@startmail.com";
+    certs."thenest207.live" = {
+      domain = "thenest207.live";
+      extraDomainNames = [ "*.thenest207.live" ];
+      dnsProvider = "vultr";
+      environmentFile = "${pkgs.writeText "vultr-creds" ''
+        VULTR_API_KEY=TE3WBDSYGVEDWNNVNQK4KYISX22YR5QKMVXQ
+      ''}";
+      # ^ fix this when secrets implemented ^
+      webroot = lib.mkForce null;
     };
   };
   users.users.nginx.extraGroups = [ "acme" ];
@@ -73,6 +71,7 @@
         useACMEHost = "thenest207.live";
         locations."/".proxyPass = "http://m3d14:8081";
       };
+      # nest password manager
       "passwords.thenest207.live" = {
         forceSSL = true;
         useACMEHost = "thenest207.live";

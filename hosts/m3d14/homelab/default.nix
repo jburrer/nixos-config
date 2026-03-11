@@ -15,7 +15,7 @@
       extraDomainNames = [ "*.n3mohomelab.xyz" ];
       dnsProvider = "vultr";
       environmentFile = "${pkgs.writeText "vultr-creds" ''
-        VULTR_API_KEY=AIV7776MIBF4S3MC5K3LDONBMUBS6CVC5KGQ
+        VULTR_API_KEY=TE3WBDSYGVEDWNNVNQK4KYISX22YR5QKMVXQ
       ''}";
       # ^ fix this when secrets implemented ^
       webroot = lib.mkForce null;

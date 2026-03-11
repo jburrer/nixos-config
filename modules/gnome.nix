@@ -71,21 +71,34 @@
       update.auto.enable = true;
       packages = [
         "org.gimp.GIMP"
-        "page.tesk.Refine"
         "app.devsuite.Ptyxis"
-        "io.github.celluloid_player.Celluloid"
       ];
     };
 
     home.packages = (with pkgs; [
-      pass wl-clipboard dconf2nix
-      morewaita-icon-theme adwaita-fonts adw-gtk3
+      wl-clipboard dconf2nix
     ]) ++ (with pkgs.gnomeExtensions; [
-      blur-my-shell tailscale-qs system-monitor
+      blur-my-shell tailscale-status system-monitor
     ]);
 
     xdg.enable = true;
     fonts.fontconfig.enable = true;
+
+    gtk = {
+      enable = true;
+      theme = {
+        package = pkgs.adw-gtk3;
+        name = "Adw-gtk3-dark";
+      };
+      iconTheme = {
+        package = pkgs.morewaita-icon-theme;
+        name = "MoreWaita";
+      };
+      font = {
+        package = pkgs.adwaita-fonts;
+        name = "Adwaita Sans";
+      };
+    };
 
     qt = {
       enable = true;
