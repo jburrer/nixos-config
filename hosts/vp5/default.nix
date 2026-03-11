@@ -14,7 +14,7 @@
   # acme
   security.acme = {
     acceptTerms = true;
-    defaults.email = "jburrer@purdue.edu";
+    defaults.email = "n3mo@startmail.com";
     certs."thenest207.live" = {
       domain = "thenest207.live";
       extraDomainNames = [ "*.thenest207.live" ];
