@@ -81,7 +81,15 @@
       blur-my-shell system-monitor
     ]);
 
-    xdg.enable = true;
+    xdg = {
+      enable = true;
+      portal = {
+        enable = true;
+        xdgOpenUsePortal = true;
+        extraPortals = [ pkgs.xdg-desktop-portal-gnome ];
+        configPackages = [ pkgs.xdg-desktop-portal-gnome ];
+      }; 
+    };
     fonts.fontconfig.enable = true;
 
     gtk = {

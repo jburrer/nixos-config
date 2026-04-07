@@ -2,7 +2,6 @@
   lib,
   fetchurl,
   python3Packages,
-  #libjack2,
   pipewire,
   which,
   bash,
@@ -29,9 +28,9 @@ python3Packages.buildPythonApplication rec {
   format = "other";
 
   nativeBuildInputs = [
-    python3Packages.pyqt5 # pyuic5 and pyrcc5 to build resources.
-    qt5.qttools # lrelease to build translations.
-    which # which to find lrelease.
+    python3Packages.pyqt5
+    qt5.qttools
+    which
     qt5.wrapQtAppsHook
   ];
   buildInputs = [
@@ -45,7 +44,7 @@ python3Packages.buildPythonApplication rec {
     python3Packages.legacy-cgi
   ];
 
-  dontWrapQtApps = true; # The program is a python script.
+  dontWrapQtApps = true;
 
   installFlags = [ "PREFIX=$(out)" ];
 
@@ -54,6 +53,9 @@ python3Packages.buildPythonApplication rec {
     "LD_LIBRARY_PATH"
     ":"
     (lib.makeLibraryPath [ pipewire.jack ])
+    "--set-default"
+    "PIPEWIRE_LATENCY"
+    "128/48000"
   ];
 
   postFixup = ''
