@@ -4,7 +4,7 @@
     ./hardware-configuration.nix
     ../../modules
     ../../modules/gnome.nix
-    ../../modules/music-production.nix
+    ../../modules/music-production
   ];
 
   hostname = "d35k70p";
