@@ -68,15 +68,11 @@
     services.flatpak = {
       enable = true;
       update.auto.enable = true;
-      packages = [
-        "org.gimp.GIMP"
-        "app.devsuite.Ptyxis"
-      ];
-      overrides."app.devsuite.Ptyxis".Context.sockets = [ "gpg-agent" ];
+      packages = [ "org.gimp.GIMP" ];
     };
 
     home.packages = (with pkgs; [
-      gcr wl-clipboard dconf2nix nerd-fonts.adwaita-mono
+      gcr wl-clipboard dconf2nix ptyxis nerd-fonts.adwaita-mono
     ]) ++ (with pkgs.gnomeExtensions; [
       blur-my-shell system-monitor
     ]);
