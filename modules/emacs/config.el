@@ -55,7 +55,7 @@
 (setenv "SSH_AUTH_SOCK" "/run/user/1000/gnupg/S.gpg-agent.ssh")
 
 (set-face-attribute 'default nil
-                    :font "Adwaita Mono"
+                    :font "AdwaitaMono Nerd Font Mono"
                     :height 130
                     :weight 'bold)
 (set-face-attribute 'variable-pitch nil
@@ -63,12 +63,12 @@
                     :height 120
                     :weight 'medium)
 (set-face-attribute 'fixed-pitch nil
-                    :font "Adwaita Mono"
+                    :font "AdwaitaMono Nerd Font Mono"
                     :height 130
                     :weight 'bold)
 (set-face-attribute 'font-lock-comment-face nil :slant 'italic)
 (set-face-attribute 'font-lock-keyword-face nil :slant 'italic)
-(add-to-list 'default-frame-alist '(font . "Adwaita Mono-13"))
+(add-to-list 'default-frame-alist '(font . "AdwaitaMono Nerd Font Mono-13"))
 
 (setq frame-resize-pixelwise t)
 (add-to-list 'default-frame-alist '(internal-border-width . 10))

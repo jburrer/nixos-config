@@ -76,7 +76,7 @@
     };
 
     home.packages = (with pkgs; [
-      gcr wl-clipboard dconf2nix
+      gcr wl-clipboard dconf2nix nerd-fonts.adwaita-mono
     ]) ++ (with pkgs.gnomeExtensions; [
       blur-my-shell system-monitor
     ]);
