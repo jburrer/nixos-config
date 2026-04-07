@@ -39,6 +39,13 @@
   #  fsType = "ext4";
   #};
 
+  # remote desktop
+  services.gnome.gnome-remote-desktop.enable = true;
+  systemd.services.gnome-remote-desktop.wantedBy = [ "graphical.target" ];
+  networking.firewall.allowedTCPPorts = [ 3389 ];
+  services.displayManager.autoLogin.enable = false;
+  services.getty.autologinUser = null;
+
   # disabling autosuspend for remote desktop
   systemd.targets.sleep.enable = false;
   systemd.targets.suspend.enable = false;

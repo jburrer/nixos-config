@@ -28,13 +28,6 @@
       packages = [ pkgs.dconf pkgs.gcr ];
     };
     udev.packages = [ pkgs.gnome-settings-daemon ];
-    flatpak.enable = true;
-    # remote desktop
-    xrdp = {
-      enable = true;
-      defaultWindowManager = "${pkgs.gnome-session}/bin/gnome-session";
-      openFirewall = true;
-    };
   };
 
   # exclude unecessary gnome crap
@@ -48,6 +41,9 @@
 
   # dconf
   programs.dconf.enable = true;
+
+  # flatpak
+  services.flatpak.enable = true;
 
   # kdeconnect
   programs.kdeconnect = {
