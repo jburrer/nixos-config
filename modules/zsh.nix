@@ -13,7 +13,7 @@ let extraZshConfig = ''
   
   gpg-connect-agent /bye
   export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
-  
+
   function vterm_printf(){
       printf "\e]%s\e\\" "$1"
   }

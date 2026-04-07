@@ -55,20 +55,20 @@
 (setenv "SSH_AUTH_SOCK" "/run/user/1000/gnupg/S.gpg-agent.ssh")
 
 (set-face-attribute 'default nil
-                    :font "Adwaita Mono Bold"
-                    :height 110
-                    :weight 'medium)
+                    :font "Adwaita Mono"
+                    :height 130
+                    :weight 'bold)
 (set-face-attribute 'variable-pitch nil
-                    :font "Cantarell"
+                    :font "Adwaita Sans"
                     :height 120
                     :weight 'medium)
 (set-face-attribute 'fixed-pitch nil
                     :font "Adwaita Mono"
-                    :height 110
-                    :weight 'medium)
+                    :height 130
+                    :weight 'bold)
 (set-face-attribute 'font-lock-comment-face nil :slant 'italic)
 (set-face-attribute 'font-lock-keyword-face nil :slant 'italic)
-(add-to-list 'default-frame-alist '(font . "Adwaita Mono-11"))
+(add-to-list 'default-frame-alist '(font . "Adwaita Mono-13"))
 
 (setq frame-resize-pixelwise t)
 (add-to-list 'default-frame-alist '(internal-border-width . 10))
@@ -225,6 +225,13 @@
                       ("idea"         . (:foreground "lawn green"          :weight bold))
                       ("test"         . (:foreground "red1"                :weight bold))))
 
+(setq org-highlight-latex-and-related '(latex script entities))
+(setq org-latex-packages-alist '())
+(add-to-list 'org-latex-packages-alist '("" "amsmath" t))
+(add-to-list 'org-latex-packages-alist '("" "amssymb" t))
+(add-to-list 'org-latex-packages-alist '("" "amsfonts" t))
+(add-to-list 'org-latex-packages-alist '("" "algpseudocode" t))
+
 (use-package toc-org
   :commands toc-org-enable
   :init (add-hook 'org-mode-hook 'toc-org-enable))
@@ -292,9 +299,10 @@
   :ensure t
   :hook
   (LaTex-mode . turn-on-prettify-symbols-mode)
-  (LaTex-mode . turn-on-flyspell))
-(setq TeX-view-program-selection '((output-pdf "PDF Tools"))
-      TeX-source-correlate-start-server t)
+  (LaTex-mode . turn-on-flyspell)
+  :config
+  (setq TeX-view-program-selection '((output-pdf "PDF Tools"))
+        TeX-source-correlate-start-server t))
 (add-hook 'TeX-after-compilation-finished-functions #'TeX-revert-document-buffer)
 (add-hook 'LaTeX-mode-hook #'rainbow-delimiters-mode)
 (add-hook 'LaTeX-mode-hook 'display-line-numbers-mode)
@@ -322,14 +330,29 @@
   (dolist (mode '((nix-ts-mode . ("nixd"))))
     (add-to-list 'eglot-server-programs mode)))
 
+(use-package rust-mode
+  :ensure t
+  :init
+  (setq rust-mode-treesitter-derive t))
+(use-package rustic
+  :ensure t
+  :after (rust-mode)
+  :config
+  (setq rustic-format-on-save nil)
+  :custom
+  (rustic-cargo-use-last-stored-arguments t))
+
 (use-package highlight-indent-guides
   :ensure t
   :config
-  (setq highlight-indent-guides-method 'character
-        highlight-indent-guides-character ?|))
-                                        ;(set-face-background 'highlight-indent-guides-odd-face "darkgray")
-                                        ;(set-face-background 'highlight-indent-guides-even-face "dimgray"))
+  (setq highlight-indent-guides-method 'fill))
+  ;      highlight-indent-guides-character ?|)
+  ;(set-face-background 'highlight-indent-guides-odd-face "red")
+  ;(set-face-background 'highlight-indent-guides-even-face "green")
+  ;(set-face-background 'highlight-indent-guides-character-face "darkgray"))
 (add-hook 'prog-mode-hook 'highlight-indent-guides-mode)
 (add-hook 'org-mode-hook 'highlight-indent-guides-mode)
 
 (use-package pass :ensure t)
+
+(setq auto-save-default nil)

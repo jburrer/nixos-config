@@ -72,6 +72,7 @@
         "org.gimp.GIMP"
         "app.devsuite.Ptyxis"
       ];
+      overrides."app.devsuite.Ptyxis".Context.sockets = [ "gpg-agent" ];
     };
 
     home.packages = (with pkgs; [
