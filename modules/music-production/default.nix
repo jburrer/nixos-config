@@ -52,7 +52,7 @@
   home-manager.users.${config.username} = {
 
     home.packages = with pkgs.stable; [
-      ardour x42-avldrums helvum helm qlcplus
+      ardour x42-avldrums x42-plugins qlcplus
       (pkgs.callPackage ./custom-raysession.nix {})
       pulseaudio
     ] ++ [
@@ -63,7 +63,6 @@
     services.flatpak.packages = [
       "org.kde.kdenlive"
       "org.nickvision.tubeconverter"
-      "org.entangle_photo.Manager"
       # obs and plugins
       "com.obsproject.Studio"
       "com.obsproject.Studio.Plugin.AitumMultistream"
