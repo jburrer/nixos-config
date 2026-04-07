@@ -105,9 +105,14 @@
       style.name = "adwaita-dark";
     };
 
-    dconf.settings."org/gnome/desktop/interface" = {
-      gtk-theme = "Adw-gtk3-dark";
-      color-scheme = "prefer-dark";
+    dconf.settings = {
+      "org/gnome/desktop/interface" = {
+        gtk-theme = "Adw-gtk3-dark";
+        color-scheme = "prefer-dark";
+      };
+      "org/gnome/desktop/input-sources" = {
+        xkb-options = [ "caps:swapescape" ];
+      };
     };
 
   };
