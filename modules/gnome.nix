@@ -87,7 +87,7 @@
       enable = true;
       theme = {
         package = pkgs.adw-gtk3;
-        name = "Adw-gtk3-dark";
+        name = "adw-gtk3-dark";
       };
       iconTheme = {
         package = pkgs.morewaita-icon-theme;
@@ -107,7 +107,7 @@
 
     dconf.settings = {
       "org/gnome/desktop/interface" = {
-        gtk-theme = "Adw-gtk3-dark";
+        gtk-theme = "adw-gtk3-dark";
         color-scheme = "prefer-dark";
       };
       "org/gnome/desktop/input-sources" = {
