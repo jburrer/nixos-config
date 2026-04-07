@@ -9,21 +9,23 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    deploy-rs.url = "github:serokell/deploy-rs";
     nur.url = "github:nix-community/NUR";
     lanzaboote = {
       url = "github:nix-community/lanzaboote";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    disko = {
-      url = "github:nix-community/disko";
+    #disko = {
+    #  url = "github:nix-community/disko";
+    #  inputs.nixpkgs.follows = "nixpkgs";
+    #};
+    #impermanence.url = "github:nix-community/impermanence";
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    impermanence.url = "github:nix-community/impermanence";
     flatpaks.url = "github:gmodena/nix-flatpak";
     betterfox.url = "github:HeitorAugustoLN/betterfox-nix";
     musnix.url = "github:musnix/musnix";
-    copyparty.url = "github:9001/copyparty";
     emacs-overlay = {
       url = "github:nix-community/emacs-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -43,15 +45,14 @@
     nixpkgs,
     nixpkgs-stable,
     home-manager,
-    deploy-rs,
     nur,
     lanzaboote,
-    disko,
-    impermanence, 
+    #disko,
+    #impermanence, 
+    sops-nix,
     flatpaks,
     betterfox,
     musnix,
-    copyparty,
     emacs-overlay,
     firefox-gnome-theme,
     thunderbird-gnome-theme
@@ -98,9 +99,10 @@
               };
             })
           ]; })
-          disko.nixosModules.disko
           lanzaboote.nixosModules.lanzaboote
-          impermanence.nixosModules.impermanence
+          #disko.nixosModules.disko
+          #impermanence.nixosModules.impermanence
+          sops-nix.nixosModules.sops
           musnix.nixosModules.musnix
           home-manager.nixosModules.home-manager {
             home-manager = {
@@ -108,7 +110,7 @@
               useUserPackages = true;
               extraSpecialArgs = inputs;
               users."${user}".imports = [
-                impermanence.nixosModules.home-manager.impermanence
+                #impermanence.nixosModules.home-manager.impermanence
                 flatpaks.homeManagerModules.nix-flatpak
                 betterfox.homeModules.betterfox
               ];
@@ -132,7 +134,8 @@
               };
             })
           ]; })
-          impermanence.nixosModules.impermanence
+          #impermanence.nixosModules.impermanence
+          sops-nix.nixosModules.sops
           musnix.nixosModules.musnix
           home-manager.nixosModules.home-manager {
             home-manager = {
@@ -153,11 +156,8 @@
         modules = [
           ./hosts/m3d14
           (nixConf pkgs)
-          impermanence.nixosModules.impermanence
-          ({pkgs, ...}: { nixpkgs.overlays = [
-            copyparty.overlays.default
-          ]; })
-          copyparty.nixosModules.default
+          #impermanence.nixosModules.impermanence
+          sops-nix.nixosModules.sops
           home-manager.nixosModules.home-manager {
             home-manager = {
               useGlobalPkgs = true;
@@ -173,7 +173,8 @@
         modules = [
           ./hosts/vp5
           (nixConf pkgs)
-          impermanence.nixosModules.impermanence
+          sops-nix.nixosModules.sops
+          #impermanence.nixosModules.impermanence
           home-manager.nixosModules.home-manager {
             home-manager = {
               useGlobalPkgs = true;
@@ -184,42 +185,5 @@
         ];
       };
     };
-
-    deploy = {
-      nodes = {
-        "l4p70p" = {
-          hostname = "l4p70p";
-          profiles.system.path =
-              deploy-rs.lib.x86_64-linux.activate.nixos
-                  self.nixosConfigurations."l4p70p";
-        };
-        "d35k70p" = {
-          hostname = "d35k70p";
-          profiles.system.path =
-              deploy-rs.lib.x86_64-linux.activate.nixos
-                  self.nixosConfigurations."d35k70p";
-        };
-        "m3d14" = {
-          hostname = "m3d14";
-          sshOpts = [ "-p" "222" ];
-          profiles.system.path =
-              deploy-rs.lib.x86_64-linux.activate.nixos
-                  self.nixosConfigurations."m3d14";
-        };
-        "vp5" = {
-          hostname = "vp5";
-          profiles.system.path =
-              deploy-rs.lib.x86_64-linux.activate.nixos
-                  self.nixosConfigurations."vp5";
-        };
-      };
-      sshUser = "${user}";
-      user = "root";
-    };
-
-    checks = builtins.mapAttrs
-        (system: deployLib: deployLib.deployChecks self.deploy) deploy-rs.lib;
-
   };
-
 }

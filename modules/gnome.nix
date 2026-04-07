@@ -23,7 +23,10 @@
       gdm.enable = true;
       defaultSession = "gnome";
     };
-    dbus.packages = [ pkgs.dconf pkgs.gcr ];
+    dbus = {
+      enable = true;
+      packages = [ pkgs.dconf pkgs.gcr ];
+    };
     udev.packages = [ pkgs.gnome-settings-daemon ];
     flatpak.enable = true;
     # remote desktop
@@ -76,9 +79,9 @@
     };
 
     home.packages = (with pkgs; [
-      wl-clipboard dconf2nix
+      gcr wl-clipboard dconf2nix
     ]) ++ (with pkgs.gnomeExtensions; [
-      blur-my-shell tailscale-status system-monitor
+      blur-my-shell system-monitor
     ]);
 
     xdg.enable = true;
@@ -104,6 +107,11 @@
       enable = true;
       platformTheme.name = "adwaita";
       style.name = "adwaita-dark";
+    };
+
+    dconf.settings."org/gnome/desktop/interface" = {
+      gtk-theme = "Adw-gtk3-dark";
+      color-scheme = "prefer-dark";
     };
 
   };

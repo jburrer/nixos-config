@@ -1,8 +1,9 @@
 { pkgs, ... }:
 
 let
-  # script slightly modified from https://pickard.cc/posts/git-identity-home-manager/
-  gitIdentity = pkgs.writeShellScriptBin "git-identity" ''
+
+# script slightly modified from https://pickard.cc/posts/git-identity-home-manager/
+gitIdentity = pkgs.writeShellScriptBin "git-identity" ''
 
 # get each set of usernames from the git config (generated from nixos config)
 IDENTITIES=$(git config --global --name-only --get-regexp "user.*..name" | sed -e 's/^user.//' -e 's/.name$//')
@@ -22,7 +23,8 @@ git config user.email "$(git config user.$ID.email)"
 echo "Name: $(git config user.name)"
 echo "Email: $(git config user.email)"
 
-  '';
+'';
+
 in
 {
 
@@ -38,12 +40,12 @@ in
           professional = {
             name = "Johnny Burrer";
             email = "jburrer@purdue.edu";
-            signingkey = "EBDE10F25B613962";
+            signingkey = "7988F185";
           };
           personal = {
             name = "n3mo";
             email = "n3mo@startmail.com";
-            signingkey = "0F0B80DCA5FC0EE6";
+            signingkey = "6350E633";
           };
         };
         aliases = {

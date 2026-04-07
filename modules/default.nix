@@ -152,20 +152,27 @@
     documentation.doc.enable = false;
 
     # import some home manager modules
-    home-manager.users.${config.username} = {
+    home-manager = {
 
-      imports = [
-        ./git.nix
-        ./gpg.nix
-      ];
+      backupFileExtension = "hmbackup";
 
-      # generic home manager setup
-      home = {
-        username = config.username;
-        homeDirectory = config.homeDir;
-        stateVersion = config.system.stateVersion;
+      users.${config.username} = {
+
+        imports = [
+          ./git.nix
+          ./gpg.nix
+        ];
+
+        # generic home manager setup
+        home = {
+          username = config.username;
+          homeDirectory = config.homeDir;
+          stateVersion = config.system.stateVersion;
+        };
+
+        programs.home-manager.enable = true;
+
       };
-      programs.home-manager.enable = true;
 
     };
 

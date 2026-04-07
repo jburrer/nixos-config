@@ -1,15 +1,17 @@
 { config, pkgs, lib, ... }: {
 
   imports = [
-    ./hardware-configuration.nix
+    ./gandicloud.nix
     ../../modules
-    ./hangar6parking.nix
   ];
 
   hostname = "vp5";
 	
   # bootloader
   boot.loader.grub.device = "/dev/vda";
+
+  # necessary for gandi.net
+  services.openssh.settings.PermitRootLogin = lib.mkForce "prohibit-password";
 
   # acme
   security.acme = {
@@ -18,9 +20,9 @@
     certs."thenest207.live" = {
       domain = "thenest207.live";
       extraDomainNames = [ "*.thenest207.live" ];
-      dnsProvider = "vultr";
-      environmentFile = "${pkgs.writeText "vultr-creds" ''
-        VULTR_API_KEY=TE3WBDSYGVEDWNNVNQK4KYISX22YR5QKMVXQ
+      dnsProvider = "gandiv5";
+      environmentFile = "${pkgs.writeText "gandi-creds" ''
+        GANDIV5_PERSONAL_ACCESS_TOKEN=9b457fcd4c18437b4f4cf967ea36d2ce61cd4d92
       ''}";
       # ^ fix this when secrets implemented ^
       webroot = lib.mkForce null;
@@ -111,7 +113,5 @@
     enable = true;
     allowedTCPPorts = [ 80 443 ];
   };
-
-  system.stateVersion = "23.05";
 
 }
