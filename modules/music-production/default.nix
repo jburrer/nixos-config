@@ -1,4 +1,23 @@
-{ pkgs, lib, config, ... }: {
+{ pkgs, lib, config, ... }:
+
+let
+
+launchFlatpak = pkgs.writeShellScriptBin "launch-flatpak" ''
+  APP=$1
+  flatpak run $APP &
+  LAUNCH_PID=$!
+  cleanup() {
+    echo "Shutting down..."
+    flatpak kill $APP
+    exit 0
+  }
+  trap cleanup SIGTERM SIGINT
+  wait $LAUNCH_PID
+  echo "Launcher quitting..."
+'';
+
+in
+{
 
   # adds user to neded groups
   users.users."${config.username}".extraGroups = [ "audio" "video" "dialout" ];
@@ -62,14 +81,12 @@
   home-manager.users.${config.username} = {
 
     home.packages = with pkgs.stable; [
-      ardour x42-avldrums x42-plugins qlcplus
+      ardour x42-plugins x42-avldrums qlcplus pulseaudio
       (pkgs.callPackage ./custom-raysession.nix {})
-      pulseaudio #spotify
     ] ++ [
-      lsp-plugins
+      lsp-plugins launchFlatpak
     ];
 
-    # add obs flatpak
     services.flatpak.packages = [
       "org.kde.kdenlive"
       "org.nickvision.tubeconverter"
