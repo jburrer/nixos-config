@@ -4,15 +4,16 @@ let
 
 launchFlatpak = pkgs.writeShellScriptBin "launch-flatpak" ''
   APP=$1
-  flatpak run $APP &
-  LAUNCH_PID=$!
+  flatpak run $APP
+  LAUNCH_PID=$(flatpak ps --columns=child-pid --columns=application | grep $APP | cut -d $'\t' -f 1)
+  echo $LAUNCH_PID
   cleanup() {
-    echo "Shutting down..."
-    flatpak kill $APP
-    exit 0
+      echo "Shutting down..."
+      flatpak kill $APP
+      exit 0
   }
   trap cleanup SIGTERM SIGINT
-  wait $LAUNCH_PID
+  tail --pid=$LAUNCH_PID -f /dev/null
   echo "Launcher quitting..."
 '';
 
