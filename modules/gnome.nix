@@ -68,7 +68,10 @@
     services.flatpak = {
       enable = true;
       update.auto.enable = true;
-      packages = [ "org.gimp.GIMP" ];
+      packages = [
+        "org.gimp.GIMP"
+        "org.libreoffice.LibreOffice"
+      ];
     };
 
     home.packages = (with pkgs; [
