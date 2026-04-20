@@ -1,19 +1,19 @@
 { pkgs, ... }: {
 
-  services.homepage-dashboard =
-  let
-    background = ../../../wallpaper.jpg;
-    package = pkgs.homepage-dashboard.overrideAttrs (oldAttrs: {
-      postInstall = ''
-        mkdir -p $out/share/homepage/public/images
-        ln -s ${background} $out/share/homepage/public/images/wallpaper.jpg
-      '';
-    });
-  in
-  {
+  services.homepage-dashboard = {
+  #let
+  #  background = ../../../wallpaper.jpg;
+  #  package = pkgs.homepage-dashboard.overrideAttrs (oldAttrs: {
+  #    postInstall = ''
+  #      mkdir -p $out/share/homepage/public/images
+  #      ln -s ${background} $out/share/homepage/public/images/wallpaper.jpg
+  #    '';
+  #  });
+  #in
+  #{
     enable = true;
     listenPort = 8085;
-    package = package;
+    #package = package;
     environmentFile = builtins.toFile "homepage-dashboard-environment-file" "
       HOMEPAGE_ALLOWED_HOSTS=homepage.n3mohomelab.xyz
     ";
@@ -28,13 +28,13 @@
     settings = {
       title = "n3mo's homepage";
       description = "landing page for all my services :P";
-      background = {
-        image = "/images/wallpaper.jpg";
-	blur = "sm";
-	saturate = 50;
-	brightness = 75;
-	opacity = 50;
-      };
+      #background = {
+      #  image = "/images/wallpaper.jpg";
+      #  blur = "sm";
+      #  saturate = 50;
+      #  brightness = 75;
+      #  opacity = 50;
+      #};
       theme = "dark";
       color = "neutral";
       headerStyle = "clean";
