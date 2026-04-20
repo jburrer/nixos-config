@@ -92,18 +92,11 @@
           ({pkgs, ...}: { nixpkgs.overlays = [
             emacs-overlay.overlay
             nur.overlays.default
-            (final: _: {
-              stable = import inputs.nixpkgs-stable {
-                inherit (final.stdenv.hostPlatform) system;
-                inherit (final) config;
-              };
-            })
           ]; })
           lanzaboote.nixosModules.lanzaboote
           #disko.nixosModules.disko
           #impermanence.nixosModules.impermanence
           sops-nix.nixosModules.sops
-          musnix.nixosModules.musnix
           home-manager.nixosModules.home-manager {
             home-manager = {
               useGlobalPkgs = true;

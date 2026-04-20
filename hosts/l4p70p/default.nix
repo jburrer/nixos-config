@@ -6,7 +6,6 @@
     ../../modules/gnome.nix
     ../../modules/gaming.nix
     ../../modules/printing.nix
-    ../../modules/music-production
   ];
 
   hostname = "l4p70p";
@@ -42,18 +41,18 @@
   };
 
   # sink for using raysession & ardour to boost audio while watching movies
-  services.pipewire.extraConfig.pipewire."91-live-sinks"."context.objects" = [
-    {
-      factory = "adapter";
-      args = {
-        "factory.name" = "support.null-audio-sink";
-        "node.name" = "movies-sink";
-        "node.description" = "Sink for Movies";
-        "media.class" = "Audio/Sink";
-        "audio.position" = "FL,FR";
-      };
-    }
-  ];
+  #services.pipewire.extraConfig.pipewire."91-live-sinks"."context.objects" = [
+  #  {
+  #    factory = "adapter";
+  #    args = {
+  #      "factory.name" = "support.null-audio-sink";
+  #      "node.name" = "movies-sink";
+  #      "node.description" = "Sink for Movies";
+  #      "media.class" = "Audio/Sink";
+  #      "audio.position" = "FL,FR";
+  #    };
+  #  }
+  #];
 
   # android stuff
   programs.adb.enable = true;
@@ -84,9 +83,8 @@
     imports = [ ../../modules/thunderbird.nix ];
 
     services.flatpak.packages = [
-      "org.libreoffice.LibreOffice"
-      "org.gnome.Fractal"
-      "org.gnome.Polari"
+      "org.ardour.Ardour"
+      "com.jeffser.Nocturne"
       "app.drey.EarTag"
       "com.calibre_ebook.calibre"
     ];
