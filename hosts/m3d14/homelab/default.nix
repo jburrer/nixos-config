@@ -13,9 +13,9 @@
     certs."n3mohomelab.xyz" = {
       domain = "n3mohomelab.xyz";
       extraDomainNames = [ "*.n3mohomelab.xyz" ];
-      dnsProvider = "vultr";
-      environmentFile = "${pkgs.writeText "vultr-creds" ''
-        VULTR_API_KEY=TE3WBDSYGVEDWNNVNQK4KYISX22YR5QKMVXQ
+      dnsProvider = "gandiv5";
+      environmentFile = "${pkgs.writeText "gandi-creds" ''
+        GANDIV5_PERSONAL_ACCESS_TOKEN=9b457fcd4c18437b4f4cf967ea36d2ce61cd4d92
       ''}";
       # ^ fix this when secrets implemented ^
       webroot = lib.mkForce null;
@@ -583,7 +583,7 @@
         hotkeys = "vim";
       };
       server = {
-        base_url = "https://searx.local.n3mohomelab.xyz";
+        base_url = "https://searx.n3mohomelab.xyz";
         port = 1234;
         bind_address = "127.0.0.1";
         secret_key = "superDuperSecret";
