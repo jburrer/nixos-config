@@ -82,7 +82,8 @@ in
   home-manager.users.${config.username} = {
 
     home.packages = with pkgs.stable; [
-      ardour x42-plugins x42-avldrums qlcplus pulseaudio
+      ardour qlcplus pulseaudio
+      x42-plugins x42-avldrums dragonfly-reverb # daw plugins
       (pkgs.callPackage ./custom-raysession.nix {})
     ] ++ [
       lsp-plugins launchFlatpak
