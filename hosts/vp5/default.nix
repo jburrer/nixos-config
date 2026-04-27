@@ -104,6 +104,12 @@
         useACMEHost = "thenest207.live";
         locations."/".proxyPass = "http://m3d14:8082";
       };
+      # raisas writing portfolio
+      "raisa.thenest207.live" = {
+        forceSSL = true;
+        enableACME = true;
+        root = "/var/www/raisa.thenest207.live";
+      };
 
     };
   };
