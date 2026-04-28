@@ -16,10 +16,10 @@
       image = "docker.io/mariadb:10.11";
       autoStart = true;
       environment = {
-        MYSQL_ROOT_PASSWORD_FILE = "/var/lib/db_password";
+        MYSQL_ROOT_PASSWORD = "this is my db password";
         MYSQL_DATABASE = "akaunting";
         MYSQL_USER = "akaunting";
-        MYSQL_PASSWORD_FILE = "/var/lib/db_password";
+        MYSQL_PASSWORD = "this is my db password";
       };
       volumes = [
         "/srv/state/akaunting/:/var/lib/"
@@ -50,7 +50,7 @@
         DB_NAME = "akaunting";
         DB_DATABASE = "akaunting";
         DB_USERNAME = "akaunting";
-        DB_PASSWORD_FILE = "/var/www/akaunting/db_password";
+        DB_PASSWORD = "this is my db password";
         REDIS_HOST = "akaunting-redis";
         REDIS_PORT = "6379";
         CACHE_DRIVER = "redis";
