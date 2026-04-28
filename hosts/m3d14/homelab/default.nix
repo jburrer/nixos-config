@@ -184,6 +184,24 @@
     locations."/".proxyPass = "http://localhost:4533";
   };
 
+  # aurral
+  virtualisation.oci-containers.containers."aurral" = {
+    image = "lklynet/aurral:latest";
+    user = "10000:10000";
+    ports = [ "3001:3001" ];
+    volumes = [
+      "/srv/state/aurral:/app/backend/data"
+      "/srv/storage/aurral:/app/downloads"
+    ];
+    environment."DOWNLOAD_FOLDER" = "/srv/storage/aurral";
+    extraOptions = [ "--network=medianet" ];
+  };
+  services.nginx.virtualHosts."aurral.n3mohomelab.xyz" = {
+    forceSSL = true;
+    useACMEHost = "n3mohomelab.xyz";
+    locations."/".proxyPass = "http://localhost:3001";
+  };
+
   # radarr
   virtualisation.oci-containers.containers."radarr" = {
     image = "lscr.io/linuxserver/radarr:latest";
