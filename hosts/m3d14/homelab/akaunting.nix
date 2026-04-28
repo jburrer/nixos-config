@@ -1,5 +1,15 @@
 { pkgs, ... }: {
 
+  system.activationScripts.mkMatrixNetwork =
+    let
+      docker = config.virtualisation.oci-containers.backend;
+      dockerBin = "${pkgs.${docker}}/bin/${docker}";
+    in
+      ''
+     ${dockerBin} network inspect akaunting >/dev/null 2>&1 || \\
+     ${dockerBin} network create akaunting 
+     '';
+
   virtualisation.oci-containers.containers = {
 
     akaunting-db = {
@@ -14,6 +24,9 @@
       volumes = [
         "/srv/state/akaunting/:/var/lib/"
       ];
+      extraOptions = [
+        "--network=akaunting"
+      ];
     };
 
     akaunting-redis = {
@@ -21,6 +34,9 @@
       autoStart = true;
       volumes = [
         "/srv/state/akaunting/redis/:/data/"
+      ];
+      extraOptions = [
+        "--network=akaunting"
       ];
     };
 
@@ -57,6 +73,9 @@
       ];
       ports = [
         "8889:8080"
+      ];
+      extraOptions = [
+        "--network=akaunting"
       ];
     };
     
