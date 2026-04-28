@@ -1,6 +1,5 @@
 { pkgs, ... }: {
 
-
   virtualisation.oci-containers.containers = {
 
     akaunting-db = {
@@ -15,9 +14,6 @@
       volumes = [
         "/srv/state/akaunting/mysql:/var/lib/mysql"
       ];
-      extraOptions = [
-        "--restart=unless-stopped"
-      ];
     };
 
     akaunting-redis = {
@@ -25,9 +21,6 @@
       autoStart = true;
       volumes = [
         "/srv/state/akaunting/redis:/data"
-      ];
-      extraOptions = [
-        "--restart=unless-stopped"
       ];
     };
 
@@ -60,9 +53,6 @@
       ];
       ports = [
         "8889:8080"
-      ];
-      extraOptions = [
-        "--restart=unless-stopped"
       ];
     };
     
