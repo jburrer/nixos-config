@@ -31,6 +31,7 @@
       environment = {
         DB_HOST = "akaunting-db";
         DB_PORT = "3306";
+        DB_NAME = "akaunting";
         DB_DATABASE = "akaunting";
         DB_USERNAME = "akaunting";
         DB_PASSWORD_FILE = "/var/www/akaunting/db_password";
