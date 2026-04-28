@@ -1,6 +1,6 @@
 { pkgs, config, ... }: {
 
-  system.activationScripts.mkMatrixNetwork =
+  system.activationScripts.mkAkauntingNetwork =
     let
       docker = config.virtualisation.oci-containers.backend;
       dockerBin = "${pkgs.${docker}}/bin/${docker}";
