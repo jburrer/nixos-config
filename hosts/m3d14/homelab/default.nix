@@ -186,7 +186,7 @@
 
   # aurral
   virtualisation.oci-containers.containers."aurral" = {
-    image = "lklynet/aurral:latest";
+    image = "ghcr.io/lklynet/aurral:latest";
     user = "10000:10000";
     ports = [ "3001:3001" ];
     volumes = [
