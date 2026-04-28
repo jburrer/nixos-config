@@ -3,7 +3,7 @@
   imports = [
     ./homepage.nix
     ./matrix.nix
-    #./dawarich.nix
+    ./akaunting.nix
   ];
 
   # acme wildcard certificate
