@@ -57,6 +57,7 @@
         SESSION_DRIVER = "redis";
         QUEUE_CONNECTION = "redis";
         APP_URL = "https://accounting.thenest207.live";
+        TRUSTED_PROXIES = "172.20.0.0/16 127.0.0.0/8 10.0.0.0/8";
         APP_ENV = "production";
         APP_DEBUG = "false";
         APP_LOG_LEVEL = "warning";

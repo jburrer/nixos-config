@@ -79,6 +79,12 @@
         useACMEHost = "thenest207.live";
         locations."/".proxyPass = "http://m3d14:8001";
       };
+      # nest accounting software
+      "accounting.thenest207.live" = {
+        forceSSL = true;
+        useACMEHost = "thenest207.live";
+        locations."/".proxyPass = "http://m3d14:8889";
+      };
 
       # remote jellyfin access 
       "jellyfin.thenest207.live" = {
