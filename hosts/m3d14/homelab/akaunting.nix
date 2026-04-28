@@ -6,13 +6,13 @@
       image = "docker.io/mariadb:10.11";
       autoStart = true;
       environment = {
-        MYSQL_ROOT_PASSWORD_FILE = "/srv/state/akaunting/db_password";
+        MYSQL_ROOT_PASSWORD_FILE = "/var/lib/db_password";
         MYSQL_DATABASE = "akaunting";
         MYSQL_USER = "akaunting";
-        MYSQL_PASSWORD_FILE = "/srv/state/akaunting/db_password";
+        MYSQL_PASSWORD_FILE = "/var/lib/db_password";
       };
       volumes = [
-        "/srv/state/akaunting/mysql:/var/lib/mysql"
+        "/srv/state/akaunting/:/var/lib/"
       ];
     };
 
@@ -20,7 +20,7 @@
       image = "docker.io/redis:7-alpine";
       autoStart = true;
       volumes = [
-        "/srv/state/akaunting/redis:/data"
+        "/srv/state/akaunting/redis/:/data/"
       ];
     };
 
@@ -33,7 +33,7 @@
         DB_PORT = "3306";
         DB_DATABASE = "akaunting";
         DB_USERNAME = "akaunting";
-        DB_PASSWORD_FILE = "/srv/state/akaunting/db_password";
+        DB_PASSWORD_FILE = "/var/www/akaunting/db_password";
         REDIS_HOST = "akaunting-redis";
         REDIS_PORT = "6379";
         CACHE_DRIVER = "redis";
@@ -47,9 +47,7 @@
         AKAUNTING_SETUP = "true";
       };
       volumes = [
-        "/srv/state/akaunting/storage:/var/www/akaunting/storage"
-        "/srv/state/akaunting/modules:/var/www/akaunting/modules"
-        "/srv/state/akaunting/language:/var/www/akaunting/language"
+        "/srv/state/akaunting/:/var/www/akaunting/"
       ];
       ports = [
         "8889:8080"
