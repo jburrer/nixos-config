@@ -61,7 +61,7 @@
         APP_DEBUG = "false";
         APP_LOG_LEVEL = "warning";
         MAIL_DRIVER = "log"; # change later?
-        AKAUNTING_SETUP = "true";
+        #AKAUNTING_SETUP = "true";
         LOCALE = "en-US";
         COMPANY_NAME = "Nest Productions Incorporated";
         COMPANY_EMAIL = "thenestvenue207@gmail.com";
