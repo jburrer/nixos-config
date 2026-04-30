@@ -33,6 +33,18 @@
   # give n3mo write access to update websites
   users.users."${config.username}".extraGroups = [ "nginx" ];
 
+  # systemd service for nest website backend
+  systemd.services."nest-website-backend" = {
+    description = "Backend for thenest207.live";
+    after = [ "network.target" ];
+    serviceConfig = {
+      WorkingDirectory="/var/www/thenest207.live";
+      ExecStart = "/var/www/thenest207.live/.venv/bin/python ./app.py";
+      User = "n3mo";
+      Restart = "always";
+    };
+  };
+
   # nginx
   services.nginx = {
     enable = true;
@@ -40,32 +52,11 @@
     recommendedTlsSettings = true;
     virtualHosts = {
 
-      ## whirly birds
-      #"whirlybirds.online" = {
-      #  forceSSL = true;
-      #  enableACME = true;
-      #  root = "/var/www/whirlybirds.online";
-      #};
-
-      ## ydsa 
-      #"ydsapurdue.org" = {
-      #  forceSSL = true;
-      #  enableACME = true;
-      #  root = "/var/www/ydsapurdue.org";
-      #};
-
-      ## row website
-      #"rowpurdue.org" = {
-      #  forceSSL = true;
-      #  enableACME = true;
-      #  root = "/var/www/rowpurdue.org";
-      #};
-
       # nest website
       "thenest207.live" = {
         forceSSL = true;
         enableACME = true;
-        root = "/var/www/thenest207.live";
+        locations."/".proxyPass = "http://localhost:5000";
       };
       # nest file server
       "files.thenest207.live" = {
