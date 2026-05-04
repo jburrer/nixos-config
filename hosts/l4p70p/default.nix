@@ -93,7 +93,7 @@
       corefonts 
       x42-plugins x42-avldrums lsp-plugins dragonfly-reverb # daw plugins
     ]) ++ (with pkgs.gnomeExtensions; [
-      paperwm caffeine
+      paperwm
     ]);
 
     services.syncthing.enable = true;

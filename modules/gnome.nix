@@ -77,7 +77,7 @@
     home.packages = (with pkgs; [
       gcr wl-clipboard dconf2nix ptyxis nerd-fonts.adwaita-mono
     ]) ++ (with pkgs.gnomeExtensions; [
-      blur-my-shell system-monitor
+      blur-my-shell system-monitor caffeine
     ]);
 
     xdg = {
