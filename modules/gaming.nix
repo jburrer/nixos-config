@@ -2,9 +2,6 @@
 
   nixpkgs.config.allowUnfree = true;
  
-  # enable steam hardware
-  #hardware.steam-hardware.enable = true;
- 
   virtualisation.podman = {
     enable = true;
     dockerCompat = true;
@@ -16,18 +13,15 @@
  
   home-manager.users.${config.username} = {
  
-    # steam flatpak
     services.flatpak.packages = [
-      #"com.valvesoftware.Steam" 
-      #"io.github.Foldex.AdwSteamGtk" 
+      { # specific version of prismlauncher that allows offline play
+        appId = "org.prismlauncher.PrismLauncher";
+        commit = "385bb500b9195765a6e6fb5c81855b24eb48bf91";
+      }
       "de.haeckerfelix.Fragments"
-      #"page.kramo.Cartridges"
-      "org.prismlauncher.PrismLauncher"
-      "org.polymc.PolyMC"
     ];
  
     home.packages = with pkgs; [
-      #prismlauncher jdk8 # for prism launcher
       distrobox podman # for jc141 games
     ];
  
