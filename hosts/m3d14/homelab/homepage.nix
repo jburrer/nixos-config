@@ -70,7 +70,7 @@
         {
           "Other" = {
             style = "row";
-            columns = 5;
+            columns = 4;
           };
         }
 	{
