@@ -556,19 +556,6 @@
     locations."/".proxyPass = "http://localhost:2283";
   };
 
-  # gotify
-  virtualisation.oci-containers.containers."gotify" = {
-    image = "gotify/server";
-    volumes = [ "/srv/state/gotify:/app/data" ];
-    ports = [ "6060:80" ];
-    extraOptions = [ "--network=medianet" ];
-  };
-  services.nginx.virtualHosts."gotify.n3mohomelab.xyz" = {
-    forceSSL = true;
-    useACMEHost = "n3mohomelab.xyz";
-    locations."/".proxyPass = "http://localhost:6060";
-  };
-
   # radicale
   services.radicale = {
     enable = true;

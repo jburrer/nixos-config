@@ -520,18 +520,6 @@
             };
           }
           {
-            "Gotify" = {
-              description = "Notifications";
-              icon = "gotify.png";
-              href = "https://gotify.n3mohomelab.xyz";
-              widget = {
-                type = "gotify";
-                url = "https://gotify.n3mohomelab.xyz";
-                key = "C56b4eahOw3jAih";
-              };
-            };
-          }
-          {
             "Vaultwarden" = {
               description = "Password Manager";
               icon = "vaultwarden.png";

@@ -23,6 +23,7 @@
       "de.haeckerfelix.Fragments"
       #"page.kramo.Cartridges"
       "org.prismlauncher.PrismLauncher"
+      "org.polymc.PolyMC"
     ];
  
     home.packages = with pkgs; [
