@@ -32,6 +32,7 @@ in
 
     git = {
       enable = true;
+      signing.format = "openpgp";
       settings = {
         init.defaultBranch = "master";
         commit.gpgSign = true;

@@ -1,10 +1,10 @@
 { config, osConfig, pkgs, firefox-gnome-theme, ... }: {
 
-  home.file.".mozilla/firefox/${osConfig.username}/chrome/firefox-gnome-theme".source =
-      firefox-gnome-theme;
+  home.file.".mozilla/firefox/${osConfig.username}/chrome/firefox-gnome-theme".source = firefox-gnome-theme;
 
   programs.firefox = {
     enable = true;
+    configPath = "${osConfig.homeDir}/.mozilla/firefox";
     package = pkgs.wrapFirefox pkgs.firefox-unwrapped {
       extraPolicies = {
         CaptivePortal = false;

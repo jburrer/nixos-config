@@ -54,10 +54,6 @@
   #  }
   #];
 
-  # android stuff
-  programs.adb.enable = true;
-  users.users.${config.username}.extraGroups = [ "adbusers" ];
-
   # run non-nix executables
   programs.nix-ld.enable = true;
 
@@ -90,7 +86,7 @@
     ];
 
     home.packages = (with pkgs; [
-      corefonts 
+      corefonts android-tools
       x42-plugins x42-avldrums lsp-plugins dragonfly-reverb # daw plugins
     ]) ++ (with pkgs.gnomeExtensions; [
       paperwm

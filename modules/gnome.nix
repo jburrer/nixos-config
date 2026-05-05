@@ -105,6 +105,7 @@
         package = pkgs.adwaita-fonts;
         name = "Adwaita Sans";
       };
+      gtk4.theme = null;
     };
 
     qt = {

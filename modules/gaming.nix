@@ -22,6 +22,7 @@
       #"io.github.Foldex.AdwSteamGtk" 
       "de.haeckerfelix.Fragments"
       #"page.kramo.Cartridges"
+      "org.prismlauncher.PrismLauncher"
     ];
  
     home.packages = with pkgs; [

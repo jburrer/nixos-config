@@ -56,6 +56,7 @@ in {
       autosuggestion.enable = true;
       enableCompletion = true;
       enableVteIntegration = true;
+      dotDir = "${config.homeDir}/.config/zsh";
       history = {
         size = 10000;
         ignoreAllDups = true;
