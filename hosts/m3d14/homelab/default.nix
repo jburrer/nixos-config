@@ -677,4 +677,22 @@
     locations."/".proxyPass = "http://localhost:8384";
   };
 
+  services.minecraft-server = {
+    enable = true;
+    eula = true;
+    declarative = true;
+    serverProperties = {
+      motd = "Johnny's Minecraft Server :3";
+      online-mode = false;
+      difficulty = "hard"; 
+      gamemode = "survival";
+      force-gamemode = false;
+    };
+  };
+  services.nginx.virtualHosts."minecraft.n3mohomelab.xyz" = {
+    forceSSL = true;
+    useACMEHost = "n3mohomelab.xyz";
+    locations."/".proxyPass = "http://localhost:25565";
+  };
+
 }
