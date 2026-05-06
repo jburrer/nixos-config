@@ -10,10 +10,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nur.url = "github:nix-community/NUR";
-    lanzaboote = {
-      url = "github:nix-community/lanzaboote";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     #disko = {
     #  url = "github:nix-community/disko";
     #  inputs.nixpkgs.follows = "nixpkgs";
@@ -46,7 +42,6 @@
     nixpkgs-stable,
     home-manager,
     nur,
-    lanzaboote,
     #disko,
     #impermanence, 
     sops-nix,
@@ -61,6 +56,10 @@
     user = "n3mo";
     system = "x86_64-linux";
     pkgs = import nixpkgs {
+      inherit system;
+      config.allowUnfree = true;
+    };
+    stablePkgs = import nixpkgs-stable {
       inherit system;
       config.allowUnfree = true;
     };
@@ -85,7 +84,7 @@
     nixosConfigurations = {
       "l4p70p" = nixpkgs.lib.nixosSystem {
         inherit system;
-        specialArgs = inputs;
+        specialArgs = inputs // { inherit stablePkgs; };
         modules = [
           ./hosts/l4p70p
           (nixConf pkgs)
@@ -93,7 +92,6 @@
             emacs-overlay.overlay
             nur.overlays.default
           ]; })
-          lanzaboote.nixosModules.lanzaboote
           #disko.nixosModules.disko
           #impermanence.nixosModules.impermanence
           sops-nix.nixosModules.sops
@@ -101,7 +99,7 @@
             home-manager = {
               useGlobalPkgs = true;
               useUserPackages = true;
-              extraSpecialArgs = inputs;
+              extraSpecialArgs = inputs // { inherit stablePkgs; };
               users."${user}".imports = [
                 #impermanence.nixosModules.home-manager.impermanence
                 flatpaks.homeManagerModules.nix-flatpak
@@ -113,19 +111,13 @@
       };
       "d35k70p" = nixpkgs.lib.nixosSystem {
         inherit system;
-        specialArgs = inputs;
+        specialArgs = inputs // { inherit stablePkgs; };
         modules = [
           ./hosts/d35k70p
           (nixConf pkgs)
           ({pkgs, ...}: { nixpkgs.overlays = [
             emacs-overlay.overlay
             nur.overlays.default
-            (final: _: {
-              stable = import inputs.nixpkgs-stable {
-                inherit (final.stdenv.hostPlatform) system;
-                inherit (final) config;
-              };
-            })
           ]; })
           #impermanence.nixosModules.impermanence
           sops-nix.nixosModules.sops
@@ -134,7 +126,7 @@
             home-manager = {
               useGlobalPkgs = true;
               useUserPackages = true;
-              extraSpecialArgs = inputs;
+              extraSpecialArgs = inputs // { inherit stablePkgs; };
               users."${user}".imports = [
                 flatpaks.homeManagerModules.nix-flatpak
                 betterfox.homeModules.betterfox

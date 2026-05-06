@@ -12,15 +12,9 @@
   configDir = "${config.homeDir}/Documents/nixos-config";
 
   # boot 
-  boot = {
-    loader = {
-      systemd-boot.enable = lib.mkForce false;
-      efi.efiSysMountPoint = "/boot";
-    };
-    lanzaboote = {
-      enable = true;
-      pkiBundle = "/etc/secureboot";
-    };
+  boot.loader = {
+    systemd-boot.enable = true;
+    efi.canTouchEfiVariables = true;
   };
 
   # system76 hardware settings
@@ -39,20 +33,6 @@
     enable = true;
     powerOnBoot = true;
   };
-
-  # sink for using raysession & ardour to boost audio while watching movies
-  #services.pipewire.extraConfig.pipewire."91-live-sinks"."context.objects" = [
-  #  {
-  #    factory = "adapter";
-  #    args = {
-  #      "factory.name" = "support.null-audio-sink";
-  #      "node.name" = "movies-sink";
-  #      "node.description" = "Sink for Movies";
-  #      "media.class" = "Audio/Sink";
-  #      "audio.position" = "FL,FR";
-  #    };
-  #  }
-  #];
 
   # run non-nix executables
   programs.nix-ld.enable = true;

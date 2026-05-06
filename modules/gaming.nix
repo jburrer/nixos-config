@@ -1,7 +1,5 @@
-{ pkgs, lib, config, ... }: {
+{ pkgs, stablePkgs, lib, config, ... }: {
 
-  nixpkgs.config.allowUnfree = true;
- 
   virtualisation.podman = {
     enable = true;
     dockerCompat = true;
@@ -14,16 +12,15 @@
   home-manager.users.${config.username} = {
  
     services.flatpak.packages = [
-      { # specific version of prismlauncher that allows offline play
-        appId = "org.prismlauncher.PrismLauncher";
-        commit = "385bb500b9195765a6e6fb5c81855b24eb48bf91";
-      }
       "de.haeckerfelix.Fragments"
     ];
  
-    home.packages = with pkgs; [
+    home.packages = (with stablePkgs; [
+      prismlauncher
+    ]) ++ (with pkgs; [
+      javaPackages.compiler.openjdk25
       distrobox podman # for jc141 games
-    ];
+    ]);
  
   };
 

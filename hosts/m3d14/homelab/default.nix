@@ -664,16 +664,19 @@
     locations."/".proxyPass = "http://localhost:8384";
   };
 
-  services.minecraft-server = {
-    enable = true;
-    eula = true;
-    declarative = true;
-    serverProperties = {
-      motd = "Johnny's Minecraft Server :3";
-      online-mode = false;
-      difficulty = "hard"; 
-      gamemode = "survival";
-      force-gamemode = false;
+  virtualisation.oci-containers.containers."minecraft" = {
+    image = "itzg/minecraft-server:latest";
+    volumes = [
+      "/srv/state/minecraft:/data"
+    ];
+    ports = [
+      "25565:25565"
+    ];
+    environment = {
+      "EULA" = "TRUE";
+      "ONLINE_MODE" = "FALSE";
+      "MODE" = "survival";
+      "DIFFICULTY" = "hard";
     };
   };
   services.nginx.virtualHosts."minecraft.n3mohomelab.xyz" = {

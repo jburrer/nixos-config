@@ -1,4 +1,4 @@
-{ pkgs, lib, config, ... }:
+{ pkgs, stablePkgs, lib, config, ... }:
 
 let
 
@@ -81,13 +81,13 @@ in
   # home manager
   home-manager.users.${config.username} = {
 
-    home.packages = with pkgs.stable; [
+    home.packages = (with stablePkgs; [
       ardour qlcplus pulseaudio
       x42-plugins x42-avldrums dragonfly-reverb # daw plugins
-      (pkgs.callPackage ./custom-raysession.nix {})
-    ] ++ [
+      (stablePkgs.callPackage ./custom-raysession.nix {})
+    ]) ++ (with pkgs; [
       lsp-plugins launchFlatpak
-    ];
+    ]);
 
     services.flatpak.packages = [
       "org.kde.kdenlive"
