@@ -70,7 +70,7 @@ in {
         rm = "rm -v";
         rmdir = "rmdir -v";
         mkdir = "mkdir -v";
-        neofetch = "${pkgs.microfetch}/bin/microfetch && echo";
+        neofetch = "${pkgs.microfetch}/bin/microfetch";
       };
       plugins = [
         {

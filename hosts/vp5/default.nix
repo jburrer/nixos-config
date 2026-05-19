@@ -101,12 +101,6 @@
         useACMEHost = "thenest207.live";
         locations."/".proxyPass = "http://m3d14:8082";
       };
-      # remote minecraft access 
-      "minecraft.thenest207.live" = {
-        forceSSL = true;
-        useACMEHost = "thenest207.live";
-        locations."/".proxyPass = "http://m3d14:25565";
-      };
       # raisas writing portfolio
       "raisa.thenest207.live" = {
         forceSSL = true;
@@ -115,6 +109,18 @@
       };
 
     };
+    # remote minecraft access 
+    appendConfig = ''
+      stream {
+        upstream minecraft_backend {
+          server m3d14:25565;
+        }
+        server {
+          listen 25565;
+          proxy_pass minecraft_backend;
+        }
+      }
+    '';
   };
 
   # open firewall for web hosting

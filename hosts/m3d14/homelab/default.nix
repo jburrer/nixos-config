@@ -665,7 +665,7 @@
   };
 
   virtualisation.oci-containers.containers."minecraft" = {
-    image = "itzg/minecraft-server:latest";
+    image = "itzg/minecraft-server:stable";
     volumes = [
       "/srv/state/minecraft:/data"
     ];
@@ -674,6 +674,7 @@
     ];
     environment = {
       "EULA" = "TRUE";
+      "VERSION" = "26.1.2";
       "ONLINE_MODE" = "FALSE";
       "MODE" = "survival";
       "DIFFICULTY" = "hard";

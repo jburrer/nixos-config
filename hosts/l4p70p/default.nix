@@ -63,6 +63,7 @@
       "com.jeffser.Nocturne"
       "app.drey.EarTag"
       "com.calibre_ebook.calibre"
+      "com.github.wwmm.easyeffects"
     ];
 
     home.packages = (with pkgs; [
