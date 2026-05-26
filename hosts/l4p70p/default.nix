@@ -64,6 +64,7 @@
       "app.drey.EarTag"
       "com.calibre_ebook.calibre"
       "com.github.wwmm.easyeffects"
+      "us.zoom.Zoom"
     ];
 
     home.packages = (with pkgs; [

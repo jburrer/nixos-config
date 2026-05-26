@@ -51,7 +51,6 @@
     recommendedProxySettings = true;
     recommendedTlsSettings = true;
     virtualHosts = {
-
       # nest website
       "thenest207.live" = {
         forceSSL = true;
@@ -76,7 +75,6 @@
         useACMEHost = "thenest207.live";
         locations."/".proxyPass = "http://m3d14:8889";
       };
-
       # remote jellyfin access 
       "jellyfin.thenest207.live" = {
         forceSSL = true;
@@ -107,7 +105,18 @@
         enableACME = true;
         root = "/var/www/raisa.thenest207.live";
       };
-
+      # ydsa purdue website
+      "ydsapurdue.org" = {
+        forceSSL = true;
+        enableACME = true;
+        root = "/var/www/ydsapurdue.org";
+      };
+      # webhook 
+      "webhook.thenest207.live" = {
+        forceSSL = true;
+        enableACME = true;
+        locations."/".proxyPass = "http://localhost:9000";
+      };
     };
     # remote minecraft access 
     appendConfig = ''
@@ -121,6 +130,19 @@
         }
       }
     '';
+  };
+
+  # webhook (to update websites on github push)
+  services.webhook = {
+    enable = true;
+    user = "n3mo";
+    group = "users";
+    hooks = {
+      ydsaPurdue = {
+        execute-command = "git pull";
+        command-working-directory = "/var/www/ydsapurdue.org";
+      };
+    };
   };
 
   # open firewall for web hosting
