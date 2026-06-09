@@ -69,13 +69,12 @@
       "com.jeffser.Nocturne"
       "app.drey.EarTag"
       "com.calibre_ebook.calibre"
-      "com.github.wwmm.easyeffects"
       "us.zoom.Zoom"
     ];
 
     home.packages = (with pkgs; [
       corefonts android-tools
-      x42-plugins x42-avldrums lsp-plugins dragonfly-reverb # daw plugins
+      x42-plugins x42-avldrums calf lsp-plugins dragonfly-reverb # daw plugins
     ]) ++ (with pkgs.gnomeExtensions; [
       paperwm
     ]);
