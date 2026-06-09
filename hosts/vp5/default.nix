@@ -1,4 +1,23 @@
-{ config, pkgs, lib, ... }: {
+{ config, pkgs, lib, ... }:
+
+let
+
+  updateNestWebsiteScript = pkgs.writeShellScript "update-nest-website-script" ''
+    #!/bin/sh
+    set -e
+    USER_ID=$(id -u n3mo)
+    export XDG_RUNTIME_DIR="/run/user/$USER_ID"
+    export DBUS_SESSION_BUS_ADDRESS="unix:path=$XDG_RUNTIME_DIR/bus"
+    ${pkgs.git}/bin/git pull
+    ${pkgs.systemd}/bin/systemctl restart nest-website-backend
+  '';
+
+  updateYdsaWebsiteScript = pkgs.writeShellScript "update-ydsa-website-script" ''
+    #!/bin/sh
+    ${pkgs.git}/bin/git pull
+  '';
+
+in {
 
   imports = [
     ./gandicloud.nix
@@ -138,9 +157,15 @@
     user = "n3mo";
     group = "users";
     hooks = {
-      ydsaPurdue = {
-        execute-command = "git pull";
+      update-nest-website = {
+        execute-command = "${updateNestWebsiteScript}";
+        command-working-directory = "/var/www/thenest207.live";
+        response-message = "OK\n";
+      };
+      update-ydsa-website = {
+        execute-command = "${updateYdsaWebsiteScript}";
         command-working-directory = "/var/www/ydsapurdue.org";
+        response-message = "OK\n";
       };
     };
   };

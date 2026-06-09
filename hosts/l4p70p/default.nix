@@ -40,7 +40,13 @@
   # run non-free programs
   nixpkgs.config.allowUnfree = true;
 
-  # fix for tailscale breaking on suspend
+  # fix for trackpad breaking after wake from suspend
+  powerManagement.resumeCommands = ''
+    ${pkgs.kmod}/bin/modprobe -r i2c_hid_acpi
+    ${pkgs.kmod}/bin/modprobe i2c_hid_acpi
+  '';
+
+  # fix for tailscale breaking after wake from suspend
   systemd.services.tailscale-restart = {
     enable = true;
     description = "restart tailscale after waking from suspend";
