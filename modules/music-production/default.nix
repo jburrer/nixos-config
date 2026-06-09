@@ -96,6 +96,11 @@ in
       "com.obsproject.Studio"
       "com.obsproject.Studio.Plugin.AitumMultistream"
       "com.obsproject.Studio.Plugin.VerticalCanvas"
+      {
+        appId = "com.obsproject.Studio.Plugin.ptz.flatpak";
+        bundle = "${config.configDir}/modules/music-production/com.obsproject.Studio.Plugin.ptz.flatpak";
+
+      }
     ];
     
   };
