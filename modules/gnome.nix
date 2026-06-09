@@ -67,7 +67,8 @@
 
     services.flatpak = {
       enable = true;
-      update.auto.enable = true;
+      update.onActivation = true;
+      uninstallUnmanaged = true;
       packages = [
         "org.gimp.GIMP"
         "org.libreoffice.LibreOffice"
