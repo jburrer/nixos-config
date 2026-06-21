@@ -3,7 +3,7 @@
   imports = [
     ./homepage.nix
     ./matrix.nix
-    ./akaunting.nix
+    #./akaunting.nix
   ];
 
   # acme wildcard certificate
@@ -61,29 +61,6 @@
       "/var/run/docker.sock:/var/run/docker.sock"
     ]; 
   };
-
-  # copyparty 
-  #services.copyparty = {
-  #  enable = true;
-  #  settings = {
-  #    i = "0.0.0.0";
-  #    p = "3210";
-  #  };
-  #  accounts."n3mo".passwordFile = "/srv/state/copyparty/n3mo_password";
-  #  volumes = {
-  #    "/" = {
-  #      path = "/srv/storage/nest";
-  #      access = {
-  #        r = "*";
-  #        rw = "n3mo";
-  #      };
-  #    };
-  #    "/storage" = {
-  #      path  = "/srv/storage";
-  #      access.rw = "n3mo";
-  #    };
-  #  };
-  #};
 
   # file browser 
   virtualisation.oci-containers.containers."filebrowser" = {
@@ -326,6 +303,28 @@
     forceSSL = true;
     useACMEHost = "n3mohomelab.xyz";
     locations."/".proxyPass = "http://localhost:6767";
+  };
+
+  # muxarr
+  virtualisation.oci-containers.containers."muxarr" = {
+    image = "ghcr.io/kirovair/muxarr:latest";
+    volumes = [
+      "/srv/state/muxarr:/config"
+      "/srv/storage:/storage"
+    ];
+    ports = [
+      "8183:8183"
+    ];
+    environment = {
+      "PUID" = "10000";
+      "PGID" = "10000";
+    };
+    extraOptions = [ "--network=medianet" ];
+  };
+  services.nginx.virtualHosts."muxarr.n3mohomelab.xyz" = {
+    forceSSL = true;
+    useACMEHost = "n3mohomelab.xyz";
+    locations."/".proxyPass = "http://localhost:8183";
   };
 
   # flaresolverr
