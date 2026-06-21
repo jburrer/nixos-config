@@ -404,7 +404,7 @@
               {
                 "Muxarr" = {
                   description = "Audio/Subtitle Language Management";
-                  icon = "agent-dvr.png";
+                  icon = "handbrake.png";
                   href = "https://muxarr.n3mohomelab.xyz";
                 };
               }
