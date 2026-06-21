@@ -49,10 +49,10 @@
       dockerBin = "${pkgs.${docker}}/bin/${docker}";
     in
       ''
-     if ! ${dockerBin} network inspect medianet >/dev/null 2>&1; then
-         ${dockerBin} network create medianet
-     fi
-     '';
+      if ! ${dockerBin} network inspect medianet >/dev/null 2>&1; then
+          ${dockerBin} network create medianet
+      fi
+      '';
 
   # watchtower
   virtualisation.oci-containers.containers."watchtower" = {

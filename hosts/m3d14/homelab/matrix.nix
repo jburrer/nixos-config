@@ -8,9 +8,10 @@
       dockerBin = "${pkgs.${docker}}/bin/${docker}";
     in
       ''
-     ${dockerBin} network inspect matrix >/dev/null 2>&1 || \\
-     ${dockerBin} network create matrix
-     '';
+      if ! ${dockerBin} network inspect matrix >/dev/null 2>&1; then
+        ${dockerBin} network create matrix 
+      fi
+      '';
 
   # conduit (matrix server)
   virtualisation.oci-containers.containers."conduit" = {
