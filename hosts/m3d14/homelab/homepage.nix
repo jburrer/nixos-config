@@ -66,7 +66,7 @@
         {
           "Other" = {
             style = "row";
-            columns = 4;
+            columns = 5;
           };
         }
 	{
