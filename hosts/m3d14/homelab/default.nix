@@ -49,8 +49,9 @@
       dockerBin = "${pkgs.${docker}}/bin/${docker}";
     in
       ''
-     ${dockerBin} network inspect medianet >/dev/null 2>&1 || \\
-     ${dockerBin} network create medianet
+     if ! ${dockerBin} network inspect medianet >/dev/null 2>&1; then
+         ${dockerBin} network create medianet
+     fi
      '';
 
   # watchtower
