@@ -66,15 +66,17 @@
 
     services.flatpak.packages = [
       "org.ardour.Ardour"
-      "com.jeffser.Nocturne"
+      "org.freedesktop.LinuxAudio.Plugins.Calf"
+      "org.freedesktop.LinuxAudio.Plugins.DragonflyReverb"
       "app.drey.EarTag"
       "com.calibre_ebook.calibre"
       "us.zoom.Zoom"
+      #"com.behringer.XAirEdit"
     ];
 
     home.packages = (with pkgs; [
       corefonts android-tools
-      x42-plugins x42-avldrums calf lsp-plugins dragonfly-reverb # daw plugins
+      x42-plugins x42-avldrums lsp-plugins # daw plugins
     ]) ++ (with pkgs.gnomeExtensions; [
       paperwm
     ]);
