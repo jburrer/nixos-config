@@ -360,8 +360,8 @@
   };
 
   # shelfmark 
-  virtualisation.oci-containers.containers."cwa-book-downloader" = {
-    image = "ghcr.io/calibrain/calibre-web-automated-book-downloader:latest";
+  virtualisation.oci-containers.containers."shelfmark" = {
+    image = "ghcr.io/calibrain/shelfmark:latest";
     ports = [
       "8084:8084"
     ];
@@ -369,6 +369,10 @@
       "/srv/state/shelfmark:/config"
       "/srv/storage:/storage"
     ];
+    environment = {
+      "PUID" = "10000";
+      "PGID" = "10000";
+    };
     extraOptions = [ "--network=medianet" ];
   };
   services.nginx.virtualHosts."shelfmark.n3mohomelab.xyz" = {
