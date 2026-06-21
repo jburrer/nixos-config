@@ -3,9 +3,9 @@
   services.homepage-dashboard = {
     enable = true;
     listenPort = 8085;
-    environmentFile = builtins.toFile "homepage-dashboard-environment-file" "
-      HOMEPAGE_ALLOWED_HOSTS=homepage.n3mohomelab.xyz
-    ";
+    environmentFiles = [
+      (builtins.toFile "homepage-dashboard-environment-file" "HOMEPAGE_ALLOWED_HOSTS=homepage.n3mohomelab.xyz")
+    ];
     customCSS = "
       .services-group {
         margin-bottom: 1%;
@@ -25,9 +25,6 @@
           "School".style = "column";
         }
         {
-          "Work".style = "column";
-        }
-        {
           "Homelab".style = "column";
         }
         {
@@ -36,12 +33,12 @@
         {
           "FirstRow" = {
             style = "row";
-            columns = 4;
+            columns = 3;
             header = false;
           };
         }
         {
-	  "Media & Requests" = {
+	  "Media" = {
             style = "column";
           };
 	}
@@ -56,15 +53,9 @@
           };
 	}
         {
-	  "Books" = {
-            style = "column";
-            rows = 3;
-          };
-        }
-        {
           "Download Clients" = {
             style = "row";
-            columns = 4;
+            columns = 5;
           };
         }
         {
@@ -109,47 +100,33 @@
             ];
           }
           {
-            "CS 252" = [
-              {
-                href = "https://www.cs.purdue.edu/homes/cs252/";
-              }
-            ];
-          }
-          {
-            "Partake" = [
-              {
-                href = "http://data.cs.purdue.edu:3001/";
-              }
-            ];
-          }
-          {
             "Gradescope" = [
               {
                 href = "https://www.gradescope.com/";
               }
             ];
           }
-          #{
-          #  "Pearson" = [
-          #    {
-          #      href = "https://mycourses.pearson.com/course-home#/tab/active";
-          #    }
-          #  ];
-          #}
           {
-            "Ed" = [
+            "Pearson" = [
               {
-                href = "https://edstem.org/us/dashboard";
+                href = "https://mycourses.pearson.com/course-home#/tab/active";
               }
             ];
           }
           #{
-          #  "Boilerexams" = [
+          #  "Ed" = [
           #    {
-          #      href = "https://www.boilerexams.com/";
+          #      href = "https://edstem.org/us/dashboard";
           #    }
           #  ];
           #}
+          {
+            "Boilerexams" = [
+              {
+                href = "https://www.boilerexams.com/";
+              }
+            ];
+          }
           {
             "Deepseek" = [
               {
@@ -160,50 +137,11 @@
         ];
       }
       {
-        "Work" = [
-          {
-            "MFT" = [
-              {
-                href = "https://mft.mfs.polytechnic.purdue.edu/";
-              }
-            ]; 
-          }
-          {
-            "Humanity" = [
-              {
-                href = "https://purdueuniversity1.humanity.com/app/dashboard/";
-              }
-            ]; 
-          }
-          {
-            "SuccessFactors" = [
-              {
-                href = "https://one.purdue.edu/task/all/successfactors-employee";
-              }
-            ]; 
-          }
-        ];
-      }
-      {
         "Homelab" = [
           {
             "Gandi" = [
               {
                 href = "https://admin.gandi.net";
-              }
-            ];
-          }
-          {
-            "Namecheap" = [
-              {
-                href = "https://ap.www.namecheap.com/";
-              }
-            ];
-          }
-          {
-            "FreeDNS" = [
-              {
-                href = "https://freedns.afraid.org/";
               }
             ];
           }
@@ -232,6 +170,20 @@
             "OpenSubtitles" = [
               {
                 href = "https://www.opensubtitles.com/";
+              }
+            ];
+          }
+          {
+            "MyAnonymouse" = [
+              {
+                href = "https://www.myanonamouse.net/index.php";
+              }
+            ];
+          }
+          {
+            "TorrentLeech" = [
+              {
+                href = "https://torrentleech.org";
               }
             ];
           }
@@ -274,20 +226,6 @@
               }
             ];
           }
-          {
-            "MyAnonymouse" = [
-              {
-                href = "https://www.myanonamouse.net/index.php";
-              }
-            ];
-          }
-          {
-            "TorrentLeech" = [
-              {
-                href = "https://torrentleech.org";
-              }
-            ];
-          }
         ];
       }
     ];
@@ -295,7 +233,7 @@
       {
         "FirstRow" = [
           {
-            "Media & Requests" = [
+            "Media" = [
               {
                 "Jellyfin" = {
                   description = "Media Viewer";
@@ -314,18 +252,6 @@
                 };
               }
               {
-                "Jellyseerr" = {
-                  description = "Movie & TV Requests";
-                  icon = "jellyseerr.png";
-                  href = "https://jellyseerr.n3mohomelab.xyz";
-                  widget = {
-                  	type = "jellyseerr";
-            	url = "https://jellyseerr.n3mohomelab.xyz";
-            	key = "MTc1NzA5MTQ5Nzg3NDRkMzA0ZTZiLTRhMDAtNGM4NS1iYTk5LWFlODM3NDFiMzc1NQ==";
-                  };
-                };
-              }
-              {
                 "Navidrome" = {
                   description = "Music Streaming";
                   icon = "navidrome.png";
@@ -339,10 +265,41 @@
                   };
                 };
               }
+              {
+                "Calibre Web Automated" = {
+                  description = "Book Management";
+                  icon = "calibre.png";
+                  href = "https://cwa.n3mohomelab.xyz";
+                };
+              }
+              {
+                "Audiobookshelf" = {
+                  description = "Audiobook Player";
+                  icon = "audiobookshelf.png";
+                  href = "https://audiobookshelf.n3mohomelab.xyz";
+                  widget = {
+                    type = "audiobookshelf";
+                    url = "https://audiobookshelf.n3mohomelab.xyz";
+                    key = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI5YjRkZDBlYS01YjU3LTRmZDEtYTYxZC01ZDI2MzIyY2Y5NzMiLCJ1c2VybmFtZSI6Im4zbW8iLCJpYXQiOjE3NTQyNjUyNjN9.Y7j7a71CFRL7IBEiFeG0o8nDHi4QANCCzz6x7MCdQVw";
+                  };
+                };
+              }
             ];
           }
           {
             "Media Management" = [
+              {
+                "Jellyseerr" = {
+                  description = "Movie & TV Requests";
+                  icon = "jellyseerr.png";
+                  href = "https://jellyseerr.n3mohomelab.xyz";
+                  widget = {
+                  	type = "jellyseerr";
+            	url = "https://jellyseerr.n3mohomelab.xyz";
+            	key = "MTc1NzA5MTQ5Nzg3NDRkMzA0ZTZiLTRhMDAtNGM4NS1iYTk5LWFlODM3NDFiMzc1NQ==";
+                  };
+                };
+              }
               {
                 "Radarr" = {
                   description = "Movie Management";
@@ -421,34 +378,11 @@
                   };
                 };
               }
-            ];
-          }
-          {
-            "Books" = [
               {
-                "Calibre Web Automated" = {
-                  description = "Book Management";
-                  icon = "calibre.png";
-                  href = "https://cwa.n3mohomelab.xyz";
-                };
-              }
-              {
-                "Shelfmark" = {
-                  description = "Ebook/Audiobook Downloader";
-                  icon = "calibre.png";
-                  href = "https://shelfmark.n3mohomelab.xyz";
-                };
-              }
-              {
-                "Audiobookshelf" = {
-                  description = "Audiobook Player";
-                  icon = "audiobookshelf.png";
-                  href = "https://audiobookshelf.n3mohomelab.xyz";
-                  widget = {
-                    type = "audiobookshelf";
-                    url = "https://audiobookshelf.n3mohomelab.xyz";
-                    key = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI5YjRkZDBlYS01YjU3LTRmZDEtYTYxZC01ZDI2MzIyY2Y5NzMiLCJ1c2VybmFtZSI6Im4zbW8iLCJpYXQiOjE3NTQyNjUyNjN9.Y7j7a71CFRL7IBEiFeG0o8nDHi4QANCCzz6x7MCdQVw";
-                  };
+                "Muxarr" = {
+                  description = "Audio/Subtitle Language Management";
+                  icon = "video-station.png";
+                  href = "https://muxarr.n3mohomelab.xyz";
                 };
               }
             ];
@@ -500,6 +434,13 @@
               description = "Soulseek Client";
               icon = "slskd.png";
               href = "https://slskd.n3mohomelab.xyz";
+            };
+          }
+          {
+            "Shelfmark" = {
+              description = "Ebook/Audiobook Downloader";
+              icon = "calibre.png";
+              href = "https://shelfmark.n3mohomelab.xyz";
             };
           }
         ];
