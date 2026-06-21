@@ -698,6 +698,9 @@
     ];
     ports = [ "8008:80" ];
     cmd = [ "serve" ];
+    environment = {
+      "NTFY_BEHIND_PROXY" = "true";
+    };
     extraOptions = [ "--network=medianet" ];
   };
   services.nginx.virtualHosts."ntfy.n3mohomelab.xyz" = {
