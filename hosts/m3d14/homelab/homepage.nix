@@ -33,7 +33,7 @@
         {
           "FirstRow" = {
             style = "row";
-            columns = 3;
+            columns = 4;
             header = false;
           };
         }
@@ -42,8 +42,13 @@
             style = "column";
           };
 	}
+        {
+	  "Requests" = {
+            style = "column";
+          };
+	}
 	{
-          "Media Management" = {
+          "Management" = {
             style = "column";
           };
 	}
@@ -55,7 +60,7 @@
         {
           "Download Clients" = {
             style = "row";
-            columns = 5;
+            columns = 4;
           };
         }
         {
@@ -159,20 +164,20 @@
               }
             ];
           }
-          {
-            "NZBFinder" = [
-              {
-                href = "https://nzbfinder.ws/";
-              }
-            ];
-          }
-          {
-            "OpenSubtitles" = [
-              {
-                href = "https://www.opensubtitles.com/";
-              }
-            ];
-          }
+          #{
+          #  "NZBFinder" = [
+          #    {
+          #      href = "https://nzbfinder.ws/";
+          #    }
+          #  ];
+          #}
+          #{
+          #  "OpenSubtitles" = [
+          #    {
+          #      href = "https://www.opensubtitles.com/";
+          #    }
+          #  ];
+          #}
           {
             "MyAnonymouse" = [
               {
@@ -287,19 +292,37 @@
             ];
           }
           {
-            "Media Management" = [
+            "Requests" = [
               {
                 "Jellyseerr" = {
                   description = "Movie & TV Requests";
                   icon = "jellyseerr.png";
                   href = "https://jellyseerr.n3mohomelab.xyz";
                   widget = {
-                  	type = "jellyseerr";
-            	url = "https://jellyseerr.n3mohomelab.xyz";
-            	key = "MTc1NzA5MTQ5Nzg3NDRkMzA0ZTZiLTRhMDAtNGM4NS1iYTk5LWFlODM3NDFiMzc1NQ==";
+                    type = "jellyseerr";
+            	    url = "https://jellyseerr.n3mohomelab.xyz";
+            	    key = "MTc1NzA5MTQ5Nzg3NDRkMzA0ZTZiLTRhMDAtNGM4NS1iYTk5LWFlODM3NDFiMzc1NQ==";
                   };
                 };
               }
+              {
+                "Aurral" = {
+                  description = "Music Requests";
+                  icon = "aurral.png";
+                  href = "https://aurral.n3mohomelab.xyz";
+                };
+              }
+              {
+                "Shelfmark" = {
+                  description = "Ebook/Audiobook Requests & Downloader";
+                  icon = "calibre.png";
+                  href = "https://shelfmark.n3mohomelab.xyz";
+                };
+              }
+            ];
+          }
+          {
+            "Management" = [
               {
                 "Radarr" = {
                   description = "Movie Management";
@@ -381,7 +404,7 @@
               {
                 "Muxarr" = {
                   description = "Audio/Subtitle Language Management";
-                  icon = "video-station.png";
+                  icon = "agent-dvr.png";
                   href = "https://muxarr.n3mohomelab.xyz";
                 };
               }
@@ -434,13 +457,6 @@
               description = "Soulseek Client";
               icon = "slskd.png";
               href = "https://slskd.n3mohomelab.xyz";
-            };
-          }
-          {
-            "Shelfmark" = {
-              description = "Ebook/Audiobook Downloader";
-              icon = "calibre.png";
-              href = "https://shelfmark.n3mohomelab.xyz";
             };
           }
         ];
