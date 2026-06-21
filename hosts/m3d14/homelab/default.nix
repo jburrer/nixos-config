@@ -61,6 +61,7 @@
     volumes = [
       "/var/run/docker.sock:/var/run/docker.sock"
     ]; 
+    environment."WATCHTOWER_NOTIFICATION_URL" = "ntfy://@ntfy:80/Watchtower";
   };
 
   # file browser 
@@ -533,9 +534,7 @@
       "/srv/storage/media/music:/music"
     ];
     user = "10000:10000";
-    environment = {
-      "SLSKD_REMOTE_CONFIGURATION" = "true";
-    };
+    environment."SLSKD_REMOTE_CONFIGURATION" = "true";
     dependsOn = [ "tailscalewithmullvad" ];
     extraOptions = [
       "--network=container:tailscalewithmullvad"
@@ -699,9 +698,7 @@
     ];
     ports = [ "8008:80" ];
     cmd = [ "serve" ];
-    environment = {
-      "NTFY_BEHIND_PROXY" = "true";
-    };
+    environment."NTFY_BEHIND_PROXY" = "true";
     extraOptions = [ "--network=medianet" ];
   };
   services.nginx.virtualHosts."ntfy.n3mohomelab.xyz" = {
