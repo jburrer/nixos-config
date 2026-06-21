@@ -477,6 +477,18 @@
             };
           }
           {
+            "ntfy" = {
+              description = "Notifications";
+              icon = "ntfy.png";
+              href = "https://ntfy.n3mohomelab.xyz";
+	      widget = {
+  		type = "ntfy";
+		url = "https://ntfy.n3mohomelab.xyz";
+  		topic = "Jellyseerr";
+	      };
+            };
+          }
+          {
             "Vaultwarden" = {
               description = "Password Manager";
               icon = "vaultwarden.png";
