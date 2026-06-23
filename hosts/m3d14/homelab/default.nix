@@ -84,7 +84,7 @@
       "/srv/state/beszel/socket:/beszel_socket"
       "/var/run/docker.sock:/var/run/docker.sock:ro"
     ]; 
-    user = "10000:131";
+    user = "0:0";
     privileged = true;
     environment = {
       "LISTEN" = "/beszel_socket/beszel.sock";
