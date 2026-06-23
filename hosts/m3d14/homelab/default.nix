@@ -64,6 +64,42 @@
     environment."WATCHTOWER_NOTIFICATION_URL" = "ntfy://@ntfy:80/Watchtower";
   };
 
+  # beszel
+  virtualisation.oci-containers.containers."beszel" = {
+    image = "henrygd/beszel:latest";
+    volumes = [
+      "/srv/state/beszel/data:/beszel_data"
+      "/srv/state/beszel/socket:/beszel_socket"
+    ]; 
+    ports = [ "8090:8090" ];
+    user = "10000:10000";
+    environment."APP_URL" = "https://beszel.n3mohomelab.xyz"
+  };
+  virtualisation.oci-containers.containers."beszel-agent" = {
+    image = "henrygd/beszel-agent:latest";
+    volumes = [
+      "/srv/state/beszel/agent:/var/lib/beszel-agent"
+      "/srv/state/beszel/socket:/beszel_socket"
+      "/var/run/docker.sock:/var/run/docker.sock:ro"
+    ]; 
+    user = "10000:10000";
+    environment = {
+      "LISTEN" = "/beszel_socket/beszel.sock";
+      "HUB_URL" = "https://beszel.n3mohomelab.xyz";
+      "TOKEN" = "<token>";
+      "KEY" = "<key>";
+    };
+    extraOptions = [ "--network=host" ];
+  };
+  services.nginx.virtualHosts."beszel.n3mohomelab.xyz" = {
+    forceSSL = true;
+    useACMEHost = "n3mohomelab.xyz";
+    locations."/" = {
+      proxyPass = "http://localhost:8090";
+      proxyWebsockets = true;
+    };
+  };
+
   # file browser 
   virtualisation.oci-containers.containers."filebrowser" = {
     image = "filebrowser/filebrowser:latest";
