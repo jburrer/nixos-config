@@ -92,11 +92,13 @@
       "TOKEN" = "40488c59-0100-4e8e-bbe5-4e6f0b984467";
       "KEY" = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIO1WsRcNztdi8jLrfjYM1oI7ilCPDumDiLB/6cXEUwNN";
       "LOG_LEVEL" = "debug";
+      "SMART_DEVICES" = "/dev/sda,/dev/sdb,/dev/sdc,/dev/sdd,/dev/nvme0n1";
+      "EXCLUDE_SMART" = "/dev/nvme0";
     };
     extraOptions = [
       "--network=host"
-      #"--cap-add=SYS_ADMIN"
-      #"--cap-add=SYS_RAWIO"
+      "--cap-add=SYS_ADMIN"
+      "--cap-add=SYS_RAWIO"
     ];
     devices = [
       "/dev/sda:/dev/sda"
