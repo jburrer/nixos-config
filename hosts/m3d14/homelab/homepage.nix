@@ -314,7 +314,7 @@
               }
               {
                 "Shelfmark" = {
-                  description = "Ebook/Audiobook Requests & Downloader";
+                  description = "Book Requests & Downloader";
                   icon = "calibre.png";
                   href = "https://shelfmark.n3mohomelab.xyz";
                 };
@@ -367,7 +367,7 @@
             "Extra" = [
               {
                 "Prowlarr" = {
-                  description = "Torrent Indexer Management";
+                  description = "Indexer Management";
                   icon = "prowlarr.png";
                   href = "https://prowlarr.n3mohomelab.xyz";
                   widget = {
@@ -471,7 +471,7 @@
 	      widget = {
   		type = "beszel";
                 url = "https://beszel.n3mohomelab.xyz";
-                username = "n3mo";
+                username = "n3mo@startmail.com";
                 password = "J0hn 0316";
                 systemId = "nll5avseccuk5fm";
 		version = 2;
@@ -507,7 +507,7 @@
           }
           {
             "Radicale" = {
-              description = "Contacts and Calendar Sync";
+              description = "Contacts & Calendar Sync";
               icon = "radicale.png";
               href = "https://radicale.n3mohomelab.xyz";
             };
