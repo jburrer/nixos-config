@@ -84,7 +84,7 @@
       "/srv/state/beszel/socket:/beszel_socket"
       "/var/run/docker.sock:/var/run/docker.sock:ro"
     ]; 
-    user = "10000:10000";
+    user = "10000:131";
     environment = {
       "LISTEN" = "/beszel_socket/beszel.sock";
       "HUB_URL" = "https://beszel.n3mohomelab.xyz";
