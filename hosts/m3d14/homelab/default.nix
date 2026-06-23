@@ -125,6 +125,7 @@
     image = "louislam/uptime-kuma:latest";
     volumes = [ "/srv/state/uptime-kuma:/app/data" ]; 
     ports = [ "3002:3001" ];
+    extraOptions = [ "--network=medianet" ];
   };
   services.nginx.virtualHosts."uptime-kuma.n3mohomelab.xyz" = {
     forceSSL = true;
