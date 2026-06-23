@@ -73,7 +73,7 @@
     ]; 
     ports = [ "8090:8090" ];
     user = "10000:10000";
-    environment."APP_URL" = "https://beszel.n3mohomelab.xyz"
+    environment."APP_URL" = "https://beszel.n3mohomelab.xyz";
   };
   virtualisation.oci-containers.containers."beszel-agent" = {
     image = "henrygd/beszel-agent:latest";
