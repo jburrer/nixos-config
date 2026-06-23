@@ -130,7 +130,10 @@
   services.nginx.virtualHosts."uptime-kuma.n3mohomelab.xyz" = {
     forceSSL = true;
     useACMEHost = "n3mohomelab.xyz";
-    locations."/".proxyPass = "http://localhost:3002";
+    locations."/" = {
+      proxyPass = "http://localhost:3002";
+      proxyWebsockets = true;
+    };
   };
 
   # file browser 
