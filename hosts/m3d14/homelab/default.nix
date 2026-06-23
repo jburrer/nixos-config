@@ -35,7 +35,7 @@
     isSystemUser = true;
     uid = 10000;
     group = "media";
-    extraGroups  = [ "docker" ];
+    extraGroups  = [ "docker" "disk" ]; # for beszel monitoring
   };
   users.groups."media".gid = 10000;
 
@@ -90,6 +90,7 @@
       "HUB_URL" = "https://beszel.n3mohomelab.xyz";
       "TOKEN" = "40488c59-0100-4e8e-bbe5-4e6f0b984467";
       "KEY" = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIO1WsRcNztdi8jLrfjYM1oI7ilCPDumDiLB/6cXEUwNN";
+      "LOG_LEVEL" = "debug";
     };
     extraOptions = [
       "--network=host"
