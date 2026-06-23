@@ -88,8 +88,10 @@
     environment = {
       "LISTEN" = "/beszel_socket/beszel.sock";
       "HUB_URL" = "https://beszel.n3mohomelab.xyz";
+      "DOCKER_HOST" = "unix:///var/run/docker.sock";
       "TOKEN" = "40488c59-0100-4e8e-bbe5-4e6f0b984467";
       "KEY" = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIO1WsRcNztdi8jLrfjYM1oI7ilCPDumDiLB/6cXEUwNN";
+      "LOG_LEVEL" = "debug";
     };
     extraOptions = [ "--network=host" ];
   };
