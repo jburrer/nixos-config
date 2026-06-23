@@ -120,6 +120,18 @@
     };
   };
 
+  # uptime kuma
+  virtualisation.oci-containers.containers."uptime-kuma" = {
+    image = "louislam/uptime-kuma:latest";
+    volumes = [ "/srv/state/uptime-kuma:/app/data" ]; 
+    ports = [ "3002:3001" ];
+  };
+  services.nginx.virtualHosts."uptime-kuma.n3mohomelab.xyz" = {
+    forceSSL = true;
+    useACMEHost = "n3mohomelab.xyz";
+    locations."/".proxyPass = "http://localhost:3002";
+  };
+
   # file browser 
   virtualisation.oci-containers.containers."filebrowser" = {
     image = "filebrowser/filebrowser:latest";
@@ -129,9 +141,7 @@
       "/srv/state/filebrowser:/database"
       "/srv/state/filebrowser:/config"
     ]; 
-    ports = [
-      "8081:80"
-    ];
+    ports = [ "8081:80" ];
   };
   services.nginx.virtualHosts."filebrowser.n3mohomelab.xyz" = {
     forceSSL = true;
@@ -143,12 +153,8 @@
   virtualisation.oci-containers.containers."vaultwarden" = {
     image = "vaultwarden/server:latest";
     user = "10000:10000";
-    volumes = [
-      "/srv/state/vaultwarden:/data"
-    ]; 
-    ports = [
-      "8001:80"
-    ];
+    volumes = [ "/srv/state/vaultwarden:/data" ]; 
+    ports = [ "8001:80" ];
   };
   services.nginx.virtualHosts."vaultwarden.n3mohomelab.xyz" = {
     forceSSL = true;
@@ -176,9 +182,7 @@
       "/srv/state/jellyfin/cache:/cache"
       "/srv/storage/media:/media"
     ];
-    ports = [
-      "8096:8096"
-    ];
+    ports = [ "8096:8096" ];
     extraOptions = [ "--network=medianet" ];
   };
   services.nginx.virtualHosts."jellyfin.n3mohomelab.xyz" = {
@@ -243,9 +247,7 @@
       "/srv/state/radarr:/config"
       "/srv/storage:/storage"
     ];
-    ports = [
-      "7878:7878"
-    ];
+    ports = [ "7878:7878" ];
     environment = {
       "PUID" = "10000";
       "PGID" = "10000";
@@ -265,9 +267,7 @@
       "/srv/state/sonarr:/config"
       "/srv/storage:/storage"
     ];
-    ports = [
-      "8989:8989"
-    ];
+    ports = [ "8989:8989" ];
     environment = {
       "PUID" = "10000";
       "PGID" = "10000";
@@ -288,9 +288,7 @@
       "/srv/state/lidarr:/config"
       "/srv/storage:/storage"
     ];
-    ports = [
-      "8686:8686"
-    ];
+    ports = [ "8686:8686" ];
     environment = {
       "PUID" = "10000";
       "PGID" = "10000";
@@ -306,12 +304,8 @@
   # prowlarr
   virtualisation.oci-containers.containers."prowlarr" = {
     image = "lscr.io/linuxserver/prowlarr:latest";
-    volumes = [
-      "/srv/state/prowlarr:/config"
-    ];
-    ports = [
-      "9696:9696"
-    ];
+    volumes = [ "/srv/state/prowlarr:/config" ];
+    ports = [ "9696:9696" ];
     environment = {
       "PUID" = "10000";
       "PGID" = "10000";
@@ -328,9 +322,7 @@
   virtualisation.oci-containers.containers."autobrr" = {
     image = "ghcr.io/autobrr/autobrr:latest";
     volumes = [ "/srv/state/autobrr:/config" ];
-    ports = [
-      "7474:7474"
-    ];
+    ports = [ "7474:7474" ];
     user = "10000:10000";
     extraOptions = [ "--network=medianet" ];
   };
@@ -347,9 +339,7 @@
       "/srv/state/bazarr:/config"
       "/srv/storage:/storage"
     ];
-    ports = [
-      "6767:6767"
-    ];
+    ports = [ "6767:6767" ];
     environment = {
       "PUID" = "10000";
       "PGID" = "10000";
@@ -369,9 +359,7 @@
       "/srv/state/muxarr:/config"
       "/srv/storage:/storage"
     ];
-    ports = [
-      "8183:8183"
-    ];
+    ports = [ "8183:8183" ];
     environment = {
       "PUID" = "10000";
       "PGID" = "10000";
@@ -387,9 +375,7 @@
   # flaresolverr
   virtualisation.oci-containers.containers."flaresolverr" = {
     image = "ghcr.io/flaresolverr/flaresolverr:latest";
-    ports = [
-      "8191:8191"
-    ];
+    ports = [ "8191:8191" ];
     extraOptions = [ "--network=medianet" ];
   };
 
@@ -421,14 +407,12 @@
   # calibre web automated
   virtualisation.oci-containers.containers."cwa" = {
     image = "crocodilestick/calibre-web-automated:latest";
-    ports = [
-      "8083:8083"
-    ];
     volumes = [
       "/srv/state/cwa:/config"
       "/srv/storage/shelfmark:/cwa-book-ingest"
       "/srv/storage/media/books:/calibre-library"
     ];
+    ports = [ "8083:8083" ];
     environment = {
       "PUID" = "10000";
       "PGID" = "10000";
@@ -444,13 +428,11 @@
   # shelfmark 
   virtualisation.oci-containers.containers."shelfmark" = {
     image = "ghcr.io/calibrain/shelfmark:latest";
-    ports = [
-      "8084:8084"
-    ];
     volumes = [
       "/srv/state/shelfmark:/config"
       "/srv/storage:/storage"
     ];
+    ports = [ "8084:8084" ];
     environment = {
       "PUID" = "10000";
       "PGID" = "10000";
@@ -479,9 +461,7 @@
   virtualisation.oci-containers.containers."tailscalewithmullvad" = {
     image = "tailscale/tailscale:latest";
     hostname = "transmission-container";
-    volumes = [
-      "/srv/state/tailscale:/var/lib/tailscale"
-    ];
+    volumes = [ "/srv/state/tailscale:/var/lib/tailscale" ];
     ports = [
       # for transmission
       "9091:9091"
@@ -591,9 +571,7 @@
     user = "10000:10000";
     environment."SLSKD_REMOTE_CONFIGURATION" = "true";
     dependsOn = [ "tailscalewithmullvad" ];
-    extraOptions = [
-      "--network=container:tailscalewithmullvad"
-    ];
+    extraOptions = [ "--network=container:tailscalewithmullvad" ];
   };
   services.nginx.virtualHosts."slskd.n3mohomelab.xyz" = {
     forceSSL = true;
@@ -672,12 +650,8 @@
   # hauk 
   virtualisation.oci-containers.containers."hauk" = {
     image="bilde2910/hauk:latest";
-    ports = [
-      "8082:80"
-    ];
-    volumes = [
-      "/srv/state/hauk:/etc/hauk"
-    ];
+    ports = [ "8082:80" ];
+    volumes = [ "/srv/state/hauk:/etc/hauk" ];
   };
   services.nginx.virtualHosts."hauk.n3mohomelab.xyz" = {
     forceSSL = true;
@@ -724,12 +698,8 @@
 
   virtualisation.oci-containers.containers."minecraft" = {
     image = "itzg/minecraft-server:stable";
-    volumes = [
-      "/srv/state/minecraft:/data"
-    ];
-    ports = [
-      "25565:25565"
-    ];
+    volumes = [ "/srv/state/minecraft:/data" ];
+    ports = [ "25565:25565" ];
     environment = {
       "EULA" = "TRUE";
       "VERSION" = "26.1.2";
