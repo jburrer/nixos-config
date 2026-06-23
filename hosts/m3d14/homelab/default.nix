@@ -35,6 +35,7 @@
     isSystemUser = true;
     uid = 10000;
     group = "media";
+    extraGroups  = [ "docker" ];
   };
   users.groups."media".gid = 10000;
 
