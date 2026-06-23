@@ -66,7 +66,7 @@
         {
           "Other" = {
             style = "row";
-            columns = 5;
+            columns = 6;
           };
         }
 	{
@@ -463,6 +463,21 @@
       }
       {
         "Other" = [
+          {
+            "Beszel" = {
+              description = "Monitoring & Stats";
+              icon = "beszel.png";
+              href = "https://beszel.n3mohomelab.xyz";
+	      widget = {
+  		type = "beszel";
+                url = "https://beszel.n3mohomelab.xyz";
+                username = "n3mo";
+                password = "J0hn 0316";
+                systemId = "m3d14";
+		version = 2;
+	      };
+            };
+          }
           {
             "Immich" = {
               description = "Photo Viewer";
