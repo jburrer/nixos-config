@@ -85,7 +85,7 @@
       "/var/run/docker.sock:/var/run/docker.sock:ro"
     ]; 
     user = "10000:131";
-    priveleged = true;
+    privileged = true;
     environment = {
       "LISTEN" = "/beszel_socket/beszel.sock";
       "HUB_URL" = "https://beszel.n3mohomelab.xyz";
