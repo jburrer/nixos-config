@@ -78,7 +78,7 @@
     extraOptions = [ "--network=medianet" ];
   };
   virtualisation.oci-containers.containers."beszel-agent" = {
-    image = "henrygd/beszel-agent:latest";
+    image = "henrygd/beszel-agent:alpine";
     volumes = [
       "/srv/state/beszel/agent:/var/lib/beszel-agent"
       "/srv/state/beszel/socket:/beszel_socket"
@@ -88,12 +88,25 @@
     environment = {
       "LISTEN" = "/beszel_socket/beszel.sock";
       "HUB_URL" = "https://beszel.n3mohomelab.xyz";
-      #"DOCKER_HOST" = "unix:///var/run/docker.sock";
       "TOKEN" = "40488c59-0100-4e8e-bbe5-4e6f0b984467";
       "KEY" = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIO1WsRcNztdi8jLrfjYM1oI7ilCPDumDiLB/6cXEUwNN";
     };
-    extraOptions = [ "--network=host" ];
+    extraOptions = [
+      "--network=host"
+      "--cap-add=SYS_ADMIN"
+      "--cap-add=SYS_RAWIO"
+    ];
+    devices = [
+      "/dev/sda:/dev/sda"
+      "/dev/sdb:/dev/sdb"
+      "/dev/sdc:/dev/sdc"
+      "/dev/sdd:/dev/sdd"
+      "/dev/nvme0n1:/dev/nvme0n1"
+    ];
   };
+  environment.systemPackages = [ # for smart disk monitoring
+    pkgs.smartmontools
+  ];
   services.nginx.virtualHosts."beszel.n3mohomelab.xyz" = {
     forceSSL = true;
     useACMEHost = "n3mohomelab.xyz";
@@ -121,7 +134,6 @@
     useACMEHost = "n3mohomelab.xyz";
     locations."/".proxyPass = "http://localhost:8081";
   };
-
 
   # vaultwarden
   virtualisation.oci-containers.containers."vaultwarden" = {
