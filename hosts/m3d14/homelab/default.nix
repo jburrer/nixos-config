@@ -85,6 +85,7 @@
       "/var/run/docker.sock:/var/run/docker.sock:ro"
     ]; 
     user = "10000:131";
+    priveleged = true;
     environment = {
       "LISTEN" = "/beszel_socket/beszel.sock";
       "HUB_URL" = "https://beszel.n3mohomelab.xyz";
@@ -94,8 +95,8 @@
     };
     extraOptions = [
       "--network=host"
-      "--cap-add=SYS_ADMIN"
-      "--cap-add=SYS_RAWIO"
+      #"--cap-add=SYS_ADMIN"
+      #"--cap-add=SYS_RAWIO"
     ];
     devices = [
       "/dev/sda:/dev/sda"
