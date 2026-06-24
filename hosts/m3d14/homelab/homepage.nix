@@ -64,9 +64,15 @@
           };
         }
         {
+          "Monitoring" = {
+            style = "row";
+            columns = 2;
+          };
+        }
+        {
           "Other" = {
             style = "row";
-            columns = 6;
+            columns = 5;
           };
         }
 	{
@@ -462,7 +468,7 @@
         ];
       }
       {
-        "Other" = [
+        "Monitoring" = [
           {
             "Beszel" = {
               description = "Monitoring & Stats";
@@ -478,6 +484,22 @@
 	      };
             };
           }
+          {
+            "Uptime Kuma" = {
+              description = "Uptime Monitoring";
+              icon = "uptimekuma.png";
+              href = "https://uptime-kuma.n3mohomelab.xyz";
+	      widget = {
+  		type = "uptimekuma";
+                url = "https://uptime-kuma.n3mohomelab.xyz";
+                slug = "m3d14";
+	      };
+            };
+          }
+        ];
+      }
+      {
+        "Other" = [
           {
             "Immich" = {
               description = "Photo Viewer";
