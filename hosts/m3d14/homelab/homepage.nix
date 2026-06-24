@@ -487,7 +487,7 @@
           {
             "Uptime Kuma" = {
               description = "Uptime Monitoring";
-              icon = "uptimekuma.png";
+              icon = "uptime-kuma.png";
               href = "https://uptime-kuma.n3mohomelab.xyz";
 	      widget = {
   		type = "uptimekuma";
