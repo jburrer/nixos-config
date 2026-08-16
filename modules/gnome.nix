@@ -78,18 +78,22 @@
     home.packages = (with pkgs; [
       gcr wl-clipboard dconf2nix ptyxis nerd-fonts.adwaita-mono
     ]) ++ (with pkgs.gnomeExtensions; [
-      blur-my-shell system-monitor caffeine
+      blur-my-shell system-monitor caffeine appindicator
     ]);
 
     xdg = {
       enable = true;
       portal = {
-        enable = true;
         xdgOpenUsePortal = true;
         extraPortals = [ pkgs.xdg-desktop-portal-gnome ];
         configPackages = [ pkgs.xdg-desktop-portal-gnome ];
       }; 
+      terminal-exec = {
+        enable = true;
+        settings.default = [ "kitty.desktop" ];
+      };
     };
+
     fonts.fontconfig.enable = true;
 
     gtk = {
@@ -124,6 +128,9 @@
         xkb-options = [ "caps:swapescape" ];
       };
     };
+
+    # tailscale systray
+    services.tailscale-systray.enable = true;
 
   };
 

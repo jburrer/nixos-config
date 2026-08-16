@@ -71,7 +71,7 @@
       "app.drey.EarTag"
       "com.calibre_ebook.calibre"
       "us.zoom.Zoom"
-      #"com.behringer.XAirEdit"
+      "com.obsproject.Studio"
     ];
 
     home.packages = (with pkgs; [
