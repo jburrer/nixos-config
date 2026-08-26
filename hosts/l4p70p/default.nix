@@ -20,14 +20,6 @@
   # system76 hardware settings
   hardware.system76.enableAll = true;
 
-  # power button & laptop lid
-  services.logind.settings.Login = {
-    HandlePowerKey = "suspend-then-hibernate";
-    HandlePowerKeyLongPress = "poweroff";
-    HandleLidSwitch = "ignore";
-    HandleLidSwitchDocked = "ignore";
-  };
-
   # bluetooth
   hardware.bluetooth = {
     enable = true;
