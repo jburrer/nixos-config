@@ -611,39 +611,47 @@
   };
 
   # searxng 
-  services.searx = {
-    enable = true;
-    package = pkgs.searxng;
-    redisCreateLocally = true;
-    settings = {
-      general.instance_name = "n3mo's searx";
-      ui = {
-        default_locale = "en";
-        query_in_title = true;
-        infinite_scroll = true;
-        center_alignment = true;
-        default_theme = "simple";
-        theme_args.simple_style = "dark";
-        results_on_new_tab = true;
-        hotkeys = "vim";
-      };
-      server = {
-        base_url = "https://searx.n3mohomelab.xyz";
-        port = 1234;
-        bind_address = "127.0.0.1";
-        secret_key = "superDuperSecret";
-        method = "GET";
-      };
-      enabled_plugins = [
-        "Basic Calculator"
-        "Hash plugin"
-        "Tor check plugin"
-        "Open Access DOI rewrite"
-        "Hostnames plugin"
-        "Unit converter plugin"
-        "Tracker URL remover"
-      ];
-    };
+  #services.searx = {
+  #  enable = true;
+  #  package = pkgs.searxng;
+  #  redisCreateLocally = true;
+  #  settings = {
+  #    general.instance_name = "n3mo's searx";
+  #    ui = {
+  #      default_locale = "en";
+  #      query_in_title = true;
+  #      infinite_scroll = true;
+  #      center_alignment = true;
+  #      default_theme = "simple";
+  #      theme_args.simple_style = "dark";
+  #      results_on_new_tab = true;
+  #      hotkeys = "vim";
+  #    };
+  #    server = {
+  #      base_url = "https://searx.n3mohomelab.xyz";
+  #      port = 1234;
+  #      bind_address = "127.0.0.1";
+  #      secret_key = "superDuperSecret";
+  #      method = "GET";
+  #    };
+  #    enabled_plugins = [
+  #      "Basic Calculator"
+  #      "Hash plugin"
+  #      "Tor check plugin"
+  #      "Open Access DOI rewrite"
+  #      "Hostnames plugin"
+  #      "Unit converter plugin"
+  #      "Tracker URL remover"
+  #    ];
+  #  };
+  #};
+  virtualisation.oci-containers.containers."searxng" = {
+    image="searxng/searxng:latest";
+    ports = [ "1234:8080" ];
+    volumes = [
+      "/srv/state/searx/config:/etc/searxng"
+      "/srv/state/searx/cache:/var/cache/searxng"
+    ];
   };
   services.nginx.virtualHosts."searx.n3mohomelab.xyz" = {
     forceSSL = true;
