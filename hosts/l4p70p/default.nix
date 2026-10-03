@@ -57,9 +57,6 @@
     imports = [ ../../modules/thunderbird.nix ];
 
     services.flatpak.packages = [
-      "org.ardour.Ardour"
-      "org.freedesktop.LinuxAudio.Plugins.Calf"
-      "org.freedesktop.LinuxAudio.Plugins.DragonflyReverb"
       "app.drey.EarTag"
       "com.calibre_ebook.calibre"
       "us.zoom.Zoom"
@@ -68,7 +65,7 @@
 
     home.packages = (with pkgs; [
       corefonts android-tools
-      x42-plugins x42-avldrums lsp-plugins # daw plugins
+      ardour calf x42-plugins x42-avldrums lsp-plugins calf dragonfly-reverb # daw & plugins
     ]) ++ (with pkgs.gnomeExtensions; [
       paperwm
     ]);

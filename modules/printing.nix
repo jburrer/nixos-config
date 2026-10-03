@@ -2,6 +2,11 @@
 
   # enable printing
   services.printing.enable = true;
+  
+  services.printing.drivers = with pkgs; [
+    epson-escpr
+    gutenprint
+  ];
 
   # enables scanning and giving my user access
   hardware.sane.enable = true;
