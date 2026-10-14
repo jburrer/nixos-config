@@ -254,6 +254,7 @@
                     type = "jellyfin";
                     url = "https://jellyfin.n3mohomelab.xyz";
                     key = "a9293ec2633d4d879cb16b1dfa7b00bf";
+                    version = "2";
                     enableBlocks = true;
                     enableNowPlaying = false;
                     enableUser = true;
