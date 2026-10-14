@@ -4,7 +4,6 @@
     ./hardware-configuration.nix
     ../../modules
     ../../modules/gnome.nix
-    ../../modules/gaming.nix
     ../../modules/printing.nix
   ];
 
@@ -57,17 +56,15 @@
     imports = [ ../../modules/thunderbird.nix ];
 
     services.flatpak.packages = [
-      "app.drey.EarTag"
       "com.calibre_ebook.calibre"
-      "us.zoom.Zoom"
-      "com.obsproject.Studio"
+      "org.signal.Signal"
+      #"app.drey.EarTag"
+      #"us.zoom.Zoom"
+      #"com.obsproject.Studio"
     ];
 
     home.packages = (with pkgs; [
-      corefonts android-tools
-      ardour calf x42-plugins x42-avldrums lsp-plugins calf dragonfly-reverb # daw & plugins
-    ]) ++ (with pkgs.gnomeExtensions; [
-      paperwm
+      corefonts android-tools gnomeExtensions.paperwm
     ]);
 
     services.syncthing.enable = true;

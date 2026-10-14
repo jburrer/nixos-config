@@ -25,7 +25,7 @@
     };
     dbus = {
       enable = true;
-      packages = [ pkgs.dconf pkgs.gcr ];
+      packages = [ pkgs.dconf ];
     };
     udev.packages = [ pkgs.gnome-settings-daemon ];
   };
@@ -76,7 +76,7 @@
     };
 
     home.packages = (with pkgs; [
-      gcr wl-clipboard dconf2nix ptyxis nerd-fonts.adwaita-mono
+      wl-clipboard dconf2nix ptyxis nerd-fonts.adwaita-mono
     ]) ++ (with pkgs.gnomeExtensions; [
       blur-my-shell system-monitor caffeine appindicator
     ]);
