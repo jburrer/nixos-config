@@ -195,15 +195,27 @@
     locations."/".proxyPass = "http://localhost:8096";
   };
 
-  # jellyseerr
-  virtualisation.oci-containers.containers."jellyseerr" = {
-    image = "fallenbagel/jellyseerr";
+  # seerr
+  #virtualisation.oci-containers.containers."jellyseerr" = {
+  #  image = "fallenbagel/jellyseerr";
+  #  user = "10000:10000";
+  #  volumes = [ "/srv/state/jellyseerr:/app/config" ];
+  #  ports = [ "5055:5055" ];
+  #  extraOptions = [ "--network=medianet" ];
+  #};
+  #services.nginx.virtualHosts."jellyseerr.n3mohomelab.xyz" = {
+  #  forceSSL = true;
+  #  useACMEHost = "n3mohomelab.xyz";
+  #  locations."/".proxyPass = "http://localhost:5055";
+  #};
+  virtualisation.oci-containers.containers."seerr" = {
+    image = "ghcr.io/seerr-team/seerr:latest";
     user = "10000:10000";
-    volumes = [ "/srv/state/jellyseerr:/app/config" ];
+    volumes = [ "/srv/state/seerr:/app/config" ];
     ports = [ "5055:5055" ];
     extraOptions = [ "--network=medianet" ];
   };
-  services.nginx.virtualHosts."jellyseerr.n3mohomelab.xyz" = {
+  services.nginx.virtualHosts."seerr.n3mohomelab.xyz" = {
     forceSSL = true;
     useACMEHost = "n3mohomelab.xyz";
     locations."/".proxyPass = "http://localhost:5055";
