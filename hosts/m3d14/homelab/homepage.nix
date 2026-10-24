@@ -301,14 +301,14 @@
           {
             "Requests" = [
               {
-                "Jellyseerr" = {
+                "Seerr" = {
                   description = "Movie & TV Requests";
-                  icon = "jellyseerr.png";
-                  href = "https://jellyseerr.n3mohomelab.xyz";
+                  icon = "seerr.png";
+                  href = "https://seerr.n3mohomelab.xyz";
                   widget = {
-                    type = "jellyseerr";
-            	    url = "https://jellyseerr.n3mohomelab.xyz";
-            	    key = "MTc1NzA5MTQ5Nzg3NDRkMzA0ZTZiLTRhMDAtNGM4NS1iYTk5LWFlODM3NDFiMzc1NQ==";
+                    type = "seerr";
+            	    url = "https://seerr.n3mohomelab.xyz";
+            	    key = "MTc5Mjg2MDY2NzgyOTY4ZTQ0ODdjLTQzNzMtNDkyNS05OWQ2LTNmNjliODRlZmJlMg==";
                   };
                 };
               }
