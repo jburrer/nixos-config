@@ -11,9 +11,17 @@
   configDir = "${config.homeDir}/Documents/nixos-config";
 
   # boot 
-  boot.loader = {
-    systemd-boot.enable = true;
-    efi.canTouchEfiVariables = true;
+  boot = {
+    kernelPackages = pkgs.linuxPackages_latest;
+    loader = {
+      efi.canTouchEfiVariables = true;
+      grub = {
+        enable = true;
+        device = "nodev";
+        efiSupport = true;
+      };
+    };
+    initrd.luks.devices.cryptroot.device = "/dev/disk/by-uuid/104728b8-46c0-4c7c-a36c-ded34df7e387"; 
   };
 
   # system76 hardware settings
@@ -32,22 +40,32 @@
   nixpkgs.config.allowUnfree = true;
 
   # fix for trackpad breaking after wake from suspend
-  powerManagement.resumeCommands = ''
-    ${pkgs.kmod}/bin/modprobe -r i2c_hid_acpi
-    ${pkgs.kmod}/bin/modprobe i2c_hid_acpi
-  '';
+  #powerManagement.resumeCommands = ''
+  #  ${pkgs.kmod}/bin/modprobe -r i2c_hid_acpi
+  #  ${pkgs.kmod}/bin/modprobe i2c_hid_acpi
+  #'';
+  systemd.services.fix-touchpad = {
+    description = "Reload touchpad driver after suspend";
+    wantedBy = [ "post-resume.target" ];
+    after = [ "post-resume.target" ];
+    serviceConfig.Type = "oneshot";
+    script = ''
+      ${pkgs.kmod}/bin/modprobe -r i2c_hid_acpi
+      ${pkgs.kmod}/bin/modprobe i2c_hid_acpi
+    '';
+  };
 
   # fix for tailscale breaking after wake from suspend
-  systemd.services.tailscale-restart = {
-    enable = true;
-    description = "restart tailscale after waking from suspend";
-    after = [ "suspend.target" ];
-    wantedBy = [ "suspend.target" ];
-    serviceConfig = {
-      Type = "oneshot";
-      ExecStart = "${pkgs.bash}/bin/bash -c 'sleep 2 && ${pkgs.tailscale}/bin/tailscale down && ${pkgs.tailscale}/bin/tailscale up'";
-    };
-  };
+  #systemd.services.tailscale-restart = {
+  #  enable = true;
+  #  description = "restart tailscale after waking from suspend";
+  #  after = [ "suspend.target" ];
+  #  wantedBy = [ "suspend.target" ];
+  #  serviceConfig = {
+  #    Type = "oneshot";
+  #    ExecStart = "${pkgs.bash}/bin/bash -c 'sleep 2 && ${pkgs.tailscale}/bin/tailscale down && ${pkgs.tailscale}/bin/tailscale up'";
+  #  };
+  #};
 
   # home manager
   programs.fuse.userAllowOther = true;
@@ -71,6 +89,6 @@
 
   };
 
-  system.stateVersion = "23.05";
+  system.stateVersion = "26.05";
 
 }

@@ -59,7 +59,7 @@ in
     ssh = {
       enable = true;
       enableDefaultConfig = false;
-      matchBlocks = {
+      settings = {
         "*".port = 22;
         "gitea" = {
           hostname = "m3d14";

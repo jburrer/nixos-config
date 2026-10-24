@@ -136,7 +136,10 @@
       trustedInterfaces = [ "tailscale0" ];
       allowedUDPPorts = [ config.services.tailscale.port ];
     };
-    services.tailscale.enable = true;
+    services.tailscale = {
+      enable = true;
+      extraUpFlags = [ "--operator=${config.username}" ];
+    };
 
     # nh (for rebuilding config)
     programs.nh = {
