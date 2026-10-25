@@ -470,7 +470,10 @@
   services.nginx.virtualHosts."audiobookshelf.n3mohomelab.xyz" = {
     forceSSL = true;
     useACMEHost = "n3mohomelab.xyz";
-    locations."/".proxyPass = "http://localhost:8000";
+    locations."/" = {
+      proxyPass = "http://localhost:8000";
+      proxyWebsockets = true;
+    };
   };
 
   # tailscale
