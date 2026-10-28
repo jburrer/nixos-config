@@ -40,32 +40,23 @@
   nixpkgs.config.allowUnfree = true;
 
   # fix for trackpad breaking after wake from suspend
-  #powerManagement.resumeCommands = ''
-  #  ${pkgs.kmod}/bin/modprobe -r i2c_hid_acpi
-  #  ${pkgs.kmod}/bin/modprobe i2c_hid_acpi
-  #'';
+  powerManagement.enable = true;
   systemd.services.fix-touchpad = {
-    description = "Reload touchpad driver after suspend";
-    wantedBy = [ "post-resume.target" ];
-    after = [ "post-resume.target" ];
-    serviceConfig.Type = "oneshot";
-    script = ''
-      ${pkgs.kmod}/bin/modprobe -r i2c_hid_acpi
-      ${pkgs.kmod}/bin/modprobe i2c_hid_acpi
-    '';
+    description = "Reload touchpad driver after resume";
+    wantedBy = [ "sleep.target" ];
+    before = [ "sleep.target" ];
+    unitConfig.StopWhenUnneeded = true;
+    serviceConfig = {
+      Type = "oneshot";
+      RemainAfterExit = true;
+      ExecStart = "${pkgs.coreutils}/bin/true";
+      ExecStop = pkgs.writeShellScript "fix-touchpad-resume" ''
+        ${pkgs.coreutils}/bin/sleep 1
+        ${pkgs.kmod}/bin/modprobe -r i2c_hid_acpi
+        ${pkgs.kmod}/bin/modprobe i2c_hid_acpi
+      '';
+    };
   };
-
-  # fix for tailscale breaking after wake from suspend
-  #systemd.services.tailscale-restart = {
-  #  enable = true;
-  #  description = "restart tailscale after waking from suspend";
-  #  after = [ "suspend.target" ];
-  #  wantedBy = [ "suspend.target" ];
-  #  serviceConfig = {
-  #    Type = "oneshot";
-  #    ExecStart = "${pkgs.bash}/bin/bash -c 'sleep 2 && ${pkgs.tailscale}/bin/tailscale down && ${pkgs.tailscale}/bin/tailscale up'";
-  #  };
-  #};
 
   # home manager
   programs.fuse.userAllowOther = true;
