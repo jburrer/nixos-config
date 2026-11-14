@@ -59,9 +59,9 @@ in {
   systemd.services."nest-website-backend" = {
     description = "Backend for thenest207.live";
     after = [ "network.target" ];
+    wantedBy = [ "multi-user.target" ];
     serviceConfig = {
       WorkingDirectory="/var/www/thenest207.live";
-      ExecStart = "/var/www/thenest207.live/.venv/bin/python ./app.py";
       ExecStart = ''
         ${nestWebEnv}/bin/gunicorn --bind 127.0.0.1:${nestWebPort}
         --workers 3 wsgi:app
