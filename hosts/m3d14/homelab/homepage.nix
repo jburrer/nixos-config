@@ -72,7 +72,7 @@
         {
           "Other" = {
             style = "row";
-            columns = 5;
+            columns = 4;
           };
         }
 	{
@@ -313,13 +313,6 @@
                 };
               }
               {
-                "Aurral" = {
-                  description = "Music Requests";
-                  icon = "aurral.png";
-                  href = "https://aurral.n3mohomelab.xyz";
-                };
-              }
-              {
                 "Shelfmark" = {
                   description = "Book Requests & Downloader";
                   icon = "calibre.png";
@@ -533,13 +526,6 @@
               description = "Contacts & Calendar Sync";
               icon = "radicale.png";
               href = "https://radicale.n3mohomelab.xyz";
-            };
-          }
-          {
-            "Hauk" = {
-              description = "Location Sharing";
-              icon = "google-maps.png";
-              href = "https://hauk.n3mohomelab.xyz";
             };
           }
         ];
