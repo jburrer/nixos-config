@@ -2,8 +2,6 @@
 
   imports = [
     ./homepage.nix
-    ./matrix.nix
-    #./akaunting.nix
   ];
 
   # acme wildcard certificate
@@ -136,22 +134,22 @@
     };
   };
 
-  # file browser 
-  virtualisation.oci-containers.containers."filebrowser" = {
-    image = "filebrowser/filebrowser:latest";
-    user = "10000:10000";
-    volumes = [
-      "/srv/storage/nest:/srv"
-      "/srv/state/filebrowser:/database"
-      "/srv/state/filebrowser:/config"
-    ]; 
-    ports = [ "8081:80" ];
-  };
-  services.nginx.virtualHosts."filebrowser.n3mohomelab.xyz" = {
-    forceSSL = true;
-    useACMEHost = "n3mohomelab.xyz";
-    locations."/".proxyPass = "http://localhost:8081";
-  };
+  ## file browser 
+  #virtualisation.oci-containers.containers."filebrowser" = {
+  #  image = "filebrowser/filebrowser:latest";
+  #  user = "10000:10000";
+  #  volumes = [
+  #    "/srv/storage/nest:/srv"
+  #    "/srv/state/filebrowser:/database"
+  #    "/srv/state/filebrowser:/config"
+  #  ]; 
+  #  ports = [ "8081:80" ];
+  #};
+  #services.nginx.virtualHosts."filebrowser.n3mohomelab.xyz" = {
+  #  forceSSL = true;
+  #  useACMEHost = "n3mohomelab.xyz";
+  #  locations."/".proxyPass = "http://localhost:8081";
+  #};
 
   # vaultwarden
   virtualisation.oci-containers.containers."vaultwarden" = {
@@ -238,23 +236,23 @@
     locations."/".proxyPass = "http://localhost:4533";
   };
 
-  # aurral
-  virtualisation.oci-containers.containers."aurral" = {
-    image = "ghcr.io/lklynet/aurral:latest";
-    user = "10000:10000";
-    ports = [ "3001:3001" ];
-    volumes = [
-      "/srv/state/aurral:/app/backend/data"
-      "/srv/storage/aurral:/app/downloads"
-    ];
-    environment."DOWNLOAD_FOLDER" = "/srv/storage/aurral";
-    extraOptions = [ "--network=medianet" ];
-  };
-  services.nginx.virtualHosts."aurral.n3mohomelab.xyz" = {
-    forceSSL = true;
-    useACMEHost = "n3mohomelab.xyz";
-    locations."/".proxyPass = "http://localhost:3001";
-  };
+  ## aurral
+  #virtualisation.oci-containers.containers."aurral" = {
+  #  image = "ghcr.io/lklynet/aurral:latest";
+  #  user = "10000:10000";
+  #  ports = [ "3001:3001" ];
+  #  volumes = [
+  #    "/srv/state/aurral:/app/backend/data"
+  #    "/srv/storage/aurral:/app/downloads"
+  #  ];
+  #  environment."DOWNLOAD_FOLDER" = "/srv/storage/aurral";
+  #  extraOptions = [ "--network=medianet" ];
+  #};
+  #services.nginx.virtualHosts."aurral.n3mohomelab.xyz" = {
+  #  forceSSL = true;
+  #  useACMEHost = "n3mohomelab.xyz";
+  #  locations."/".proxyPass = "http://localhost:3001";
+  #};
 
   # radarr
   virtualisation.oci-containers.containers."radarr" = {
@@ -637,17 +635,17 @@
     locations."/".proxyPass = "http://localhost:1234";
   };
 
-  # hauk 
-  virtualisation.oci-containers.containers."hauk" = {
-    image="bilde2910/hauk:latest";
-    ports = [ "8082:80" ];
-    volumes = [ "/srv/state/hauk:/etc/hauk" ];
-  };
-  services.nginx.virtualHosts."hauk.n3mohomelab.xyz" = {
-    forceSSL = true;
-    useACMEHost = "n3mohomelab.xyz";
-    locations."/".proxyPass = "http://localhost:8082";
-  };
+  ## hauk 
+  #virtualisation.oci-containers.containers."hauk" = {
+  #  image="bilde2910/hauk:latest";
+  #  ports = [ "8082:80" ];
+  #  volumes = [ "/srv/state/hauk:/etc/hauk" ];
+  #};
+  #services.nginx.virtualHosts."hauk.n3mohomelab.xyz" = {
+  #  forceSSL = true;
+  #  useACMEHost = "n3mohomelab.xyz";
+  #  locations."/".proxyPass = "http://localhost:8082";
+  #};
 
   # syncthing
   services.syncthing = {
@@ -686,23 +684,23 @@
     locations."/".proxyPass = "http://localhost:8384";
   };
 
-  virtualisation.oci-containers.containers."minecraft" = {
-    image = "itzg/minecraft-server:stable";
-    volumes = [ "/srv/state/minecraft:/data" ];
-    ports = [ "25565:25565" ];
-    environment = {
-      "EULA" = "TRUE";
-      "VERSION" = "26.1.2";
-      "ONLINE_MODE" = "FALSE";
-      "MODE" = "survival";
-      "DIFFICULTY" = "hard";
-    };
-  };
-  services.nginx.virtualHosts."minecraft.n3mohomelab.xyz" = {
-    forceSSL = true;
-    useACMEHost = "n3mohomelab.xyz";
-    locations."/".proxyPass = "http://localhost:25565";
-  };
+  #virtualisation.oci-containers.containers."minecraft" = {
+  #  image = "itzg/minecraft-server:stable";
+  #  volumes = [ "/srv/state/minecraft:/data" ];
+  #  ports = [ "25565:25565" ];
+  #  environment = {
+  #    "EULA" = "TRUE";
+  #    "VERSION" = "26.1.2";
+  #    "ONLINE_MODE" = "FALSE";
+  #    "MODE" = "survival";
+  #    "DIFFICULTY" = "hard";
+  #  };
+  #};
+  #services.nginx.virtualHosts."minecraft.n3mohomelab.xyz" = {
+  #  forceSSL = true;
+  #  useACMEHost = "n3mohomelab.xyz";
+  #  locations."/".proxyPass = "http://localhost:25565";
+  #};
 
   virtualisation.oci-containers.containers."ntfy" = {
     image = "binwiederhier/ntfy:latest";
