@@ -132,6 +132,16 @@ in {
       #};
 
     };
+
+    streamConfig = ''
+      server {
+        listen 2222;
+        proxy_pass file-server:2222;
+        proxy_timeout 3s;
+        proxy_connect_timeout 3s;
+      }
+    '';
+
   };
 
   # webhook (to update websites on github push)
