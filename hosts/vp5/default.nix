@@ -63,7 +63,7 @@ in {
     serviceConfig = {
       WorkingDirectory="/var/www/thenest207.live";
       ExecStart = ''
-        ${nestWebEnv}/bin/gunicorn --bind 127.0.0.1:${nestWebPort}
+        ${nestWebEnv}/bin/gunicorn --bind 127.0.0.1:${nestWebPort} \
         --workers 3 wsgi:app
       '';
       User = "n3mo";
