@@ -12,11 +12,6 @@ let
     ${pkgs.systemd}/bin/systemctl restart nest-website-backend
   '';
 
-  updateYdsaWebsiteScript = pkgs.writeShellScript "update-ydsa-website-script" ''
-    #!/bin/sh
-    ${pkgs.git}/bin/git pull
-  '';
-
 in {
 
   imports = [
@@ -70,85 +65,61 @@ in {
     recommendedProxySettings = true;
     recommendedTlsSettings = true;
     virtualHosts = {
+
+      ## nest online services ##
+      # nest file server
+      "files.thenest207.live" = {
+        forceSSL = true;
+        useACMEHost = "thenest207.live";
+        locations."/".proxyPass = "http://file-server:8080";
+      };
+      # nest password manager
+      "passwords.thenest207.live" = {
+        forceSSL = true;
+        useACMEHost = "thenest207.live";
+        locations."/".proxyPass = "http://file-server:8001";
+      };
+      # nest git forge
+      "git.thenest207.live" = {
+        forceSSL = true;
+        useACMEHost = "thenest207.live";
+        locations."/".proxyPass = "http://file-server:3000";
+        # may also need to proxy port 22 for ssh access ?
+      };
       # nest website
       "thenest207.live" = {
         forceSSL = true;
         enableACME = true;
         locations."/".proxyPass = "http://localhost:5000";
       };
-      # nest file server
-      "files.thenest207.live" = {
+      # webhook  (for updating website)
+      "webhook.thenest207.live" = {
         forceSSL = true;
-        useACMEHost = "thenest207.live";
-        locations."/".proxyPass = "http://m3d14:8081";
+        enableACME = true;
+        locations."/".proxyPass = "http://localhost:9000";
       };
-      # nest password manager
-      "passwords.thenest207.live" = {
-        forceSSL = true;
-        useACMEHost = "thenest207.live";
-        locations."/".proxyPass = "http://m3d14:8001";
-      };
-      # nest accounting software
-      "accounting.thenest207.live" = {
-        forceSSL = true;
-        useACMEHost = "thenest207.live";
-        locations."/".proxyPass = "http://m3d14:8889";
-      };
+
+      ## remote access to personal services via nest website ##
       # remote jellyfin access 
       "jellyfin.thenest207.live" = {
         forceSSL = true;
         useACMEHost = "thenest207.live";
         locations."/".proxyPass = "http://m3d14:8096";
       };
-      # remote jellyseerr access 
-      "jellyseerr.thenest207.live" = {
-        forceSSL = true;
-        useACMEHost = "thenest207.live";
-        locations."/".proxyPass = "http://m3d14:5055";
-      };
-      # remote immich access 
-      "immich.thenest207.live" = {
-        forceSSL = true;
-        useACMEHost = "thenest207.live";
-        locations."/".proxyPass = "http://m3d14:2283";
-      };
-      # remote hauk access 
-      "hauk.thenest207.live" = {
-        forceSSL = true;
-        useACMEHost = "thenest207.live";
-        locations."/".proxyPass = "http://m3d14:8082";
-      };
-      # raisas writing portfolio
-      "raisa.thenest207.live" = {
-        forceSSL = true;
-        enableACME = true;
-        root = "/var/www/raisa.thenest207.live";
-      };
-      # ydsa purdue website
-      "ydsapurdue.org" = {
-        forceSSL = true;
-        enableACME = true;
-        root = "/var/www/ydsapurdue.org";
-      };
-      # webhook 
-      "webhook.thenest207.live" = {
-        forceSSL = true;
-        enableACME = true;
-        locations."/".proxyPass = "http://localhost:9000";
-      };
+      ## remote jellyseerr access 
+      #"jellyseerr.thenest207.live" = {
+      #  forceSSL = true;
+      #  useACMEHost = "thenest207.live";
+      #  locations."/".proxyPass = "http://m3d14:5055";
+      #};
+      ## remote immich access 
+      #"immich.thenest207.live" = {
+      #  forceSSL = true;
+      #  useACMEHost = "thenest207.live";
+      #  locations."/".proxyPass = "http://m3d14:2283";
+      #};
+
     };
-    # remote minecraft access 
-    appendConfig = ''
-      stream {
-        upstream minecraft_backend {
-          server m3d14:25565;
-        }
-        server {
-          listen 25565;
-          proxy_pass minecraft_backend;
-        }
-      }
-    '';
   };
 
   # webhook (to update websites on github push)
@@ -156,24 +127,17 @@ in {
     enable = true;
     user = "n3mo";
     group = "users";
-    hooks = {
-      update-nest-website = {
-        execute-command = "${updateNestWebsiteScript}";
-        command-working-directory = "/var/www/thenest207.live";
-        response-message = "OK\n";
-      };
-      update-ydsa-website = {
-        execute-command = "${updateYdsaWebsiteScript}";
-        command-working-directory = "/var/www/ydsapurdue.org";
-        response-message = "OK\n";
-      };
+    hooks.update-nest-website = {
+      execute-command = "${updateNestWebsiteScript}";
+      command-working-directory = "/var/www/thenest207.live";
+      response-message = "OK\n";
     };
   };
 
   # open firewall for web hosting
   networking.firewall = {
     enable = true;
-    allowedTCPPorts = [ 80 443 25565 ];
+    allowedTCPPorts = [ 80 443 ];
   };
 
 }
