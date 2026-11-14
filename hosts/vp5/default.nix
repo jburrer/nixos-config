@@ -2,6 +2,14 @@
 
 let
 
+  nestWebPort = "8000";
+
+  nestWebEnv = pkgs.python3.withPackages (ps: with ps; [
+    flask
+    flask-sqlalchemy
+    gunicorn
+  ]);
+
   updateNestWebsiteScript = pkgs.writeShellScript "update-nest-website-script" ''
     #!/bin/sh
     set -e
@@ -54,6 +62,10 @@ in {
     serviceConfig = {
       WorkingDirectory="/var/www/thenest207.live";
       ExecStart = "/var/www/thenest207.live/.venv/bin/python ./app.py";
+      ExecStart = ''
+        ${nestWebEnv}/bin/gunicorn --bind 127.0.0.1:${nestWebPort}
+        --workers 3 wsgi:app
+      '';
       User = "n3mo";
       Restart = "always";
     };
@@ -90,7 +102,7 @@ in {
       "thenest207.live" = {
         forceSSL = true;
         enableACME = true;
-        locations."/".proxyPass = "http://localhost:5000";
+        locations."/".proxyPass = "http://localhost:${nestWebPort}";
       };
       # webhook  (for updating website)
       "webhook.thenest207.live" = {
