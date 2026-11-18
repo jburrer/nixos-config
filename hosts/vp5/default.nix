@@ -79,6 +79,13 @@ in {
     virtualHosts = {
 
       ## nest online services ##
+
+      # nest homepage
+      "home.thenest207.live" = {
+        forceSSL = true;
+        useACMEHost = "thenest207.live";
+        locations."/".proxyPass = "http://file-server:8085";
+      };
       # nest file server
       "files.thenest207.live" = {
         forceSSL = true;
@@ -96,7 +103,12 @@ in {
         forceSSL = true;
         useACMEHost = "thenest207.live";
         locations."/".proxyPass = "http://file-server:3000";
-        # may also need to proxy port 22 for ssh access ?
+      };
+      # nest git forge
+      "uptimekuma.thenest207.live" = {
+        forceSSL = true;
+        useACMEHost = "thenest207.live";
+        locations."/".proxyPass = "http://file-server:3001";
       };
       # nest website
       "thenest207.live" = {
@@ -111,19 +123,12 @@ in {
         locations."/".proxyPass = "http://localhost:9000";
       };
 
-      ## remote access to personal services via nest website ##
-      # remote jellyfin access 
+      # remote access to personal jellyfin via nest website
       "jellyfin.thenest207.live" = {
         forceSSL = true;
         useACMEHost = "thenest207.live";
         locations."/".proxyPass = "http://m3d14:8096";
       };
-      ## remote jellyseerr access 
-      #"jellyseerr.thenest207.live" = {
-      #  forceSSL = true;
-      #  useACMEHost = "thenest207.live";
-      #  locations."/".proxyPass = "http://m3d14:5055";
-      #};
       ## remote immich access 
       #"immich.thenest207.live" = {
       #  forceSSL = true;
@@ -133,12 +138,13 @@ in {
 
     };
 
+    # for forgejo git server
     streamConfig = ''
       server {
         listen 2222;
         proxy_pass file-server:2222;
-        proxy_timeout 3s;
-        proxy_connect_timeout 3s;
+        proxy_timeout 10s;
+        proxy_connect_timeout 5s;
       }
     '';
 
@@ -159,7 +165,7 @@ in {
   # open firewall for web hosting
   networking.firewall = {
     enable = true;
-    allowedTCPPorts = [ 80 443 ];
+    allowedTCPPorts = [ 80 443 2222 ];
   };
 
 }
