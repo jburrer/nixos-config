@@ -45,7 +45,11 @@
     wantedBy = [ "suspend.target" ];
     serviceConfig = {
       Type = "oneshot";
-      ExecStart = "${pkgs.bash}/bin/bash -c 'sleep 2 && ${pkgs.tailscale}/bin/tailscale down && ${pkgs.tailscale}/bin/tailscale up'";
+      ExecStart = ''
+        ${pkgs.bash}/bin/bash -c "sleep 2 && \
+        ${pkgs.tailscale}/bin/tailscale down && \
+        ${pkgs.tailscale}/bin/tailscale up"
+      '';
     };
   };
 
@@ -58,9 +62,8 @@
     services.flatpak.packages = [
       "com.calibre_ebook.calibre"
       "org.signal.Signal"
-      #"app.drey.EarTag"
-      #"us.zoom.Zoom"
-      #"com.obsproject.Studio"
+      "app.rufin.rufin"
+      "md.obsidian.Obsidian"
     ];
 
     home.packages = (with pkgs; [
